@@ -1,0 +1,9 @@
+groups:
+  - name: devs
+    reviewers: 4 
+    usernames: 
+      - gitdog01
+      - hi0826
+      - ji3427
+      - Minkwan-Song
+      - wogus3602
