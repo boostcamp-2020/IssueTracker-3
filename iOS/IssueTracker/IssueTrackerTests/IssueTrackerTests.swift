@@ -18,8 +18,12 @@ class IssueTrackerTests: XCTestCase {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
 
-    func testExample() throws {
+    func testTrueExample() throws {
         XCTAssertTrue(true)
+    }
+
+    func testFalseExample() throws {
+        XCTAssertFalse(false)
     }
 
     func testPerformanceExample() throws {
