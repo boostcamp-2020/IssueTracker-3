@@ -140,6 +140,9 @@
                                                 <rect key="frame" x="83" y="302" width="45" height="33"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <state key="normal" title="로그인"/>
+                                                <connections>
+                                                    <action selector="SignInTouched:" destination="8q5-Xp-b3w" eventType="touchUpInside" id="1oh-yf-5IP"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1XK-4g-6ED">
                                                 <rect key="frame" x="240" y="302" width="64" height="33"/>
@@ -161,6 +164,9 @@
                                                         <real key="value" value="10"/>
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="SignInWithGitHubTouched:" destination="8q5-Xp-b3w" eventType="touchUpInside" id="9cL-IX-kMK"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5lc-U6-soJ">
                                                 <rect key="frame" x="38" y="444" width="300" height="36"/>
@@ -174,6 +180,9 @@
                                                         <real key="value" value="10"/>
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="SignInWithAppleTouched:" destination="8q5-Xp-b3w" eventType="touchUpInside" id="XK9-s3-EAC"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                         <color key="backgroundColor" red="0.93333333330000001" green="0.93333333330000001" blue="0.93725490199999995" alpha="1" colorSpace="calibratedRGB"/>
