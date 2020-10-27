@@ -2,8 +2,6 @@ name: Swift
 
 on:
   push:
-    paths:
-      - 'iOS/IssueTracker/**'
     branches: [ ios_develop ]
   pull_request:
     branches: [ ios_release ]
