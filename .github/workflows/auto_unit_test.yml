@@ -17,9 +17,13 @@ jobs:
         - name: Select latest Xcode 
           run: "sudo xcode-select -s /Applications/Xcode_$XC_VERSION.app" 
         - name: Install Dependencies
-          run: echo ${{ github.action_path }}
-        - name: Install Dependencies2
-          run: pod install
-        - uses: actions/checkout@v2 
-        - name: Run Unit and UI Tests 
-          run: /usr/bin/xcodebuild test -project "$XC_PROJECT" -scheme "$XC_SCHEME" -destination 'platform=iOS Simulator,name=iPhone 11'
+          run: |
+            cd iOS/IssueTracker
+            pod install --repo-update
+          shell: bash
+        - name: CocoaPods Action
+          uses: ty0x2333/cocoapods-action@0.2.0
+          with:
+            additional_build_params: -destination 'platform=iOS Simulator,name=iPhone 11,OS=13.0'          
+          
+       
