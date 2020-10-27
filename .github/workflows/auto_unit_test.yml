@@ -1,8 +1,8 @@
 name: Swift
 
 on:
-  #push:
-    #branches: [ ios_develop ]
+  push:
+    branches: [ ios_develop ]
   pull_request:
     branches: [ ios_release ]
   
@@ -17,9 +17,8 @@ jobs:
         - name: Select latest Xcode 
           run: "sudo xcode-select -s /Applications/Xcode_$XC_VERSION.app" 
         - name: Install Dependencies
-          run: |
-            ls
-            cd IssueTracker-3/iOS/IssueTracker
+          run: 
+            cd iOS/IssueTracker/
             pod install --repo-update
           shell: bash
         - uses: actions/checkout@v2 
