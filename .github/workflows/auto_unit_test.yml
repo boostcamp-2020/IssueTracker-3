@@ -12,7 +12,7 @@ jobs:
         env: 
           XC_VERSION: ${{ '12.1.0' }}
           XC_PROJECT: ${{ 'iOS/IssueTracker/IssueTracker.xcodeproj' }}
-          XC_SCHEME: ${{ 'IssueTracker' }} 
+          XC_SCHEME: ${{ 'IssueTrackerTest' }} 
         steps: 
         - name: Select latest Xcode 
           run: "sudo xcode-select -s /Applications/Xcode_$XC_VERSION.app" 
