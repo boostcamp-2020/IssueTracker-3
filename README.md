@@ -17,14 +17,16 @@
 ![NodeJS](https://img.shields.io/badge/node.js-v12.18.3-green?logo=node.js)
 ![Javascript](https://img.shields.io/badge/javascript-ES6+-yellow?logo=javascript) 
 
+[Pull requests](https://github.com/boostcamp-2020/IssueTracker-3/pulls)[![GitHub Open PR](https://img.shields.io/github/issues-pr-raw/boostcamp-2020/IssueTracker-3?color=green)](https://github.com/boostcamp-2020/IssueTracker-3/issues)
+[![GitHub Closed PR](https://img.shields.io/github/issues-pr-closed-raw/boostcamp-2020/IssueTracker-3?color=red)](https://github.com/boostcamp-2020/IssueTracker-3/issues)
+
+[Issue](https://github.com/boostcamp-2020/IssueTracker-3/issues) [![GitHub Open Issues](https://img.shields.io/github/issues-raw/boostcamp-2020/IssueTracker-3?color=green)](https://github.com/boostcamp-2020/IssueTracker-3/issues)
+[![GitHub Closed Issues](https://img.shields.io/github/issues-closed-raw/boostcamp-2020/IssueTracker-3?color=red)](https://github.com/boostcamp-2020/IssueTracker-3/issues)
+
 <div align="center">
 
-[Wiki Documentation](https://github.com/boostcamp-2020/IssueTracker-3/wiki)&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;[Issue](https://github.com/boostcamp-2020/IssueTracker-3/issues)
+[Wiki Documentation](https://github.com/boostcamp-2020/IssueTracker-3/wiki)&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
 
-[![GitHub Open Issues](https://img.shields.io/github/issues-raw/boostcamp-2020/IssueTracker-3?color=green)](https://github.com/boostcamp-2020/IssueTracker-3/issues)
-[![GitHub Closed Issues](https://img.shields.io/github/issues-closed-raw/boostcamp-2020/IssueTracker-3?color=red)](https://github.com/boostcamp-2020/IssueTracker-3/issues)
-[![GitHub Open PR](https://img.shields.io/github/issues-pr-raw/boostcamp-2020/IssueTracker-3?color=green)](https://github.com/boostcamp-2020/IssueTracker-3/issues)
-[![GitHub Closed PR](https://img.shields.io/github/issues-pr-closed-raw/boostcamp-2020/IssueTracker-3?color=red)](https://github.com/boostcamp-2020/IssueTracker-3/issues)
 
 
 ![Contributions welcome](https://img.shields.io/badge/contributions-welcome-orange.svg)
