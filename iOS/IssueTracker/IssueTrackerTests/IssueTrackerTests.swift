@@ -26,7 +26,6 @@ class IssueTrackerTests: XCTestCase {
         XCTAssertFalse(false)
     }
 
-
     func testPerformanceExample() throws {
         self.measure {
             
