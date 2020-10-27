@@ -1,8 +1,8 @@
 name: Swift
 
 on:
-  #push:
-    #branches: [ ios_develop ]
+  push:
+    branches: [ ios_develop ]
   pull_request:
     branches: [ ios_release ]
   
