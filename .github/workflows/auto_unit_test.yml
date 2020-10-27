@@ -18,9 +18,7 @@ jobs:
           run: "sudo xcode-select -s /Applications/Xcode_$XC_VERSION.app" 
         - name: Install Dependencies
           shell: bash
-          run: |
-            cd iOS/IssueTracker
-            pod install --repo-update
-        - uses: actions/checkout@v2 
-        - name: Run Unit and UI Tests 
-          run: /usr/bin/xcodebuild test -project "$XC_PROJECT" -scheme "$XC_SCHEME" -destination 'platform=iOS Simulator,name=iPhone 11'
+          run: ls
+        #- uses: actions/checkout@v2 
+        #- name: Run Unit and UI Tests 
+        #  run: /usr/bin/xcodebuild test -project "$XC_PROJECT" -scheme "$XC_SCHEME" -destination 'platform=iOS Simulator,name=iPhone 11'
