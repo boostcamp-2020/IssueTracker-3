@@ -1,7 +1,7 @@
 # IssueTracker-3
 
 <h1 align="center">
-  <img src="images/" alt="로고" />
+  <img src="https://simpleicons.org/icons/github.svg" width=200 alt="로고" />
 </h1>
 
 <div align="center">
