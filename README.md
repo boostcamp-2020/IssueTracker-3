@@ -17,7 +17,9 @@
 ![react](https://img.shields.io/badge/react-0.0-9cf?logo=react)
 ![NodeJS](https://img.shields.io/badge/node.js-v12.18.3-green?logo=node.js)
 
-[![GitHub Issues](https://img.shields.io/github/issues/anfederico/Clairvoyant.svg)](https://github.com/boostcamp-2020/IssueTracker-3/issues)
+[![GitHub Open Issues](https://img.shields.io/github/issues-raw/boostcamp-2020/IssueTracker-3?color=blue)](https://github.com/boostcamp-2020/IssueTracker-3/issues)
+[![GitHub Closed Issues](https://img.shields.io/github/issues-closed-raw/boostcamp-2020/IssueTracker-3?color=red)](https://github.com/boostcamp-2020/IssueTracker-3/issues)
+
 ![Contributions welcome](https://img.shields.io/badge/contributions-welcome-orange.svg)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
