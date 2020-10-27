@@ -87,6 +87,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7006F9002547EC850051EC0A /* SignIn */ = {
+			isa = PBXGroup;
+			children = (
+				BBCC49EC2547E8F300FAB2F4 /* SignInViewController.swift */,
+			);
+			path = SignIn;
+			sourceTree = "<group>";
+		};
 		708EFEE12546DBC9009D9DEC = {
 			isa = PBXGroup;
 			children = (
@@ -113,11 +121,11 @@
 		708EFEEC2546DBC9009D9DEC /* IssueTracker */ = {
 			isa = PBXGroup;
 			children = (
+				7006F9002547EC850051EC0A /* SignIn */,
 				708EFEED2546DBC9009D9DEC /* AppDelegate.swift */,
 				708EFEEF2546DBC9009D9DEC /* SceneDelegate.swift */,
 				708EFEF12546DBC9009D9DEC /* ViewController.swift */,
 				BBCC49F22547E9FD00FAB2F4 /* UIViewExtension.swift */,
-				BBCC49EC2547E8F300FAB2F4 /* SignInViewController.swift */,
 				708EFEF32546DBC9009D9DEC /* Main.storyboard */,
 				708EFEF62546DBCA009D9DEC /* Assets.xcassets */,
 				708EFEF82546DBCA009D9DEC /* LaunchScreen.storyboard */,
