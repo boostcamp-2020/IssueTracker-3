@@ -7,23 +7,26 @@
 
 import UIKit
 
-class SignInViewController: UIViewController {
+final class SignInViewController: UIViewController {
+    
+    @IBOutlet private weak var idTextField: UITextField!
+    @IBOutlet private weak var pwTextField: UITextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
     }
     
     @IBAction func SignInTouched(_ sender: UIButton) {
-        
+        // TODO: idTextField.text / pwTextField.text => 인터렉터(검증)
     }
     
     // TODO: 로그인 실패/성공 : toast
     
     @IBAction func SignInWithGitHubTouched(_ sender: UIButton) {
-        
+        // TODO: 깃허브 로그인 검증
     }
     
     @IBAction func SignInWithAppleTouched(_ sender: UIButton) {
-        
+        // TODO: 애플 로그인 검증
     }
 }

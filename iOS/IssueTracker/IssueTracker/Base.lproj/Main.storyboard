@@ -231,6 +231,10 @@
                             <constraint firstItem="Xa9-MQ-cEJ" firstAttribute="leading" secondItem="2Ux-DR-s1k" secondAttribute="leading" id="pzC-nD-zBX"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="idTextField" destination="m6l-g3-sQv" id="wOK-h3-wPs"/>
+                        <outlet property="pwTextField" destination="zv2-1n-DnL" id="ffF-UF-q7D"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zEh-cz-ZMo" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
