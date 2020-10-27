@@ -18,7 +18,7 @@ jobs:
           run: "sudo xcode-select -s /Applications/Xcode_$XC_VERSION.app" 
         - name: Install Dependencies
           run: |
-            cd Example
+            cd iOS/IssueTracker
             pod install --repo-update
           shell: bash
         - uses: actions/checkout@v2 
