@@ -4,7 +4,7 @@
   <img src="https://simpleicons.org/icons/github.svg" width=200 alt="로고" />
 </h1>
 
-<div align="center">
+
 
 [iOS](https://github.com/boostcamp-2020/IssueTracker-3/tree/master/iOS)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp; 
 ![Swift](https://img.shields.io/badge/swift-v5.1-orange?logo=swift)
@@ -16,6 +16,8 @@
 
 ![NodeJS](https://img.shields.io/badge/node.js-v12.18.3-green?logo=node.js)
 ![Javascript](https://img.shields.io/badge/javascript-ES6+-yellow?logo=javascript) 
+
+<div align="center">
 
 [Wiki Documentation](https://github.com/boostcamp-2020/IssueTracker-3/wiki)&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;[Issue](https://github.com/boostcamp-2020/IssueTracker-3/issues)
 
