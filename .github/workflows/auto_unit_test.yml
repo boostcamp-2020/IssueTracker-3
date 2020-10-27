@@ -15,9 +15,12 @@ jobs:
           XC_SCHEME: ${{ 'IssueTrackerTest' }} 
         steps: 
         - name: Select latest Xcode 
-          run: 
+          run: "sudo xcode-select -s /Applications/Xcode_$XC_VERSION.app" 
+        - name: Install Dependencies
+          run: |
+            cd iOS/IssueTracker
             pod install
-            "sudo xcode-select -s /Applications/Xcode_$XC_VERSION.app" 
+          shell: bash
         - uses: actions/checkout@v2 
         - name: Run Unit and UI Tests 
           run: /usr/bin/xcodebuild test -project "$XC_PROJECT" -scheme "$XC_SCHEME" -destination 'platform=iOS Simulator,name=iPhone 11'
