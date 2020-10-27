@@ -16,17 +16,17 @@ final class SignInViewController: UIViewController {
         super.viewDidLoad()
     }
     
-    @IBAction func SignInTouched(_ sender: UIButton) {
+    @IBAction func signInTouched(_ sender: UIButton) {
         // TODO: idTextField.text / pwTextField.text => 인터렉터(검증)
     }
     
     // TODO: 로그인 실패/성공 : toast
     
-    @IBAction func SignInWithGitHubTouched(_ sender: UIButton) {
+    @IBAction func signInWithGitHubTouched(_ sender: UIButton) {
         // TODO: 깃허브 로그인 검증
     }
     
-    @IBAction func SignInWithAppleTouched(_ sender: UIButton) {
+    @IBAction func signInWithAppleTouched(_ sender: UIButton) {
         // TODO: 애플 로그인 검증
     }
 }
