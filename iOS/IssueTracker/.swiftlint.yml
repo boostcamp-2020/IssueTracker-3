@@ -1,0 +1,15 @@
+disabled_rules:
+    - trailing_whitespace
+    - todo
+included:
+excluded:
+    - Pods
+    - IssueTracker/AppDelegate.swift
+    - IssueTracker/SceneDelegate.swift
+#line_length:
+#    warning: 150
+#identifier_name:
+#  min_length: 2
+#nesting:
+#  type_level: 3
+
