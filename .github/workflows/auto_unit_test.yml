@@ -2,6 +2,8 @@ name: Swift
 
 on:
   push:
+    paths:
+    - 'iOS/IssueTracker'
     branches: [ ios_develop ]
   pull_request:
     branches: [ ios_release ]
@@ -11,16 +13,13 @@ jobs:
         runs-on: [macos-latest] 
         env: 
           XC_VERSION: ${{ '12.1.0' }}
-          XC_PROJECT: ${{ 'iOS/IssueTracker/IssueTracker.xcodeproj' }}
+          XC_PROJECT: ${{ 'IssueTracker.xcodeproj' }}
           XC_SCHEME: ${{ 'IssueTracker' }} 
         steps: 
         - name: Select latest Xcode 
           run: "sudo xcode-select -s /Applications/Xcode_$XC_VERSION.app" 
         - name: Install Dependencies
-          run: |
-            cd iOS/IssueTracker
-            pod install --repo-update
-          shell: bash
+          run: pod install
         - uses: actions/checkout@v2 
         - name: Run Unit and UI Tests 
           run: /usr/bin/xcodebuild test -project "$XC_PROJECT" -scheme "$XC_SCHEME" -destination 'platform=iOS Simulator,name=iPhone 11'
