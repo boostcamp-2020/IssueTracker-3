@@ -3,10 +3,16 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7012DC8E2549ADC400EAADD7 /* SignInEndPointTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7012DC8D2549ADC400EAADD7 /* SignInEndPointTest.swift */; };
+		7012DC942549AEE500EAADD7 /* EndPointMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7012DC932549AEE500EAADD7 /* EndPointMock.swift */; };
+		7012DC982549AF1B00EAADD7 /* SessionManagerStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7012DC972549AF1B00EAADD7 /* SessionManagerStub.swift */; };
+		701343B32549061B0044080A /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 701343B22549061B0044080A /* Alamofire */; };
+		701343BB254907AA0044080A /* NetworkManagerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 701343BA254907AA0044080A /* NetworkManagerTest.swift */; };
+		701343C125493A160044080A /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 701343C025493A160044080A /* NetworkManager.swift */; };
 		7074DE212547DB9800A64FC2 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 7074DE202547DB9800A64FC2 /* .swiftlint.yml */; };
 		708EFEEE2546DBC9009D9DEC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 708EFEED2546DBC9009D9DEC /* AppDelegate.swift */; };
 		708EFEF02546DBC9009D9DEC /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 708EFEEF2546DBC9009D9DEC /* SceneDelegate.swift */; };
@@ -15,6 +21,8 @@
 		708EFEF72546DBCA009D9DEC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 708EFEF62546DBCA009D9DEC /* Assets.xcassets */; };
 		708EFEFA2546DBCA009D9DEC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 708EFEF82546DBCA009D9DEC /* LaunchScreen.storyboard */; };
 		708EFF052546DBCB009D9DEC /* IssueTrackerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 708EFF042546DBCB009D9DEC /* IssueTrackerTests.swift */; };
+		BB41E027254963FA008245A3 /* APIConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB41E026254963FA008245A3 /* APIConfiguration.swift */; };
+		BB41E02B2549655B008245A3 /* SignInEndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB41E02A2549655B008245A3 /* SignInEndPoint.swift */; };
 		BBCC49ED2547E8F300FAB2F4 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBCC49EC2547E8F300FAB2F4 /* SignInViewController.swift */; };
 		BBCC49F32547E9FD00FAB2F4 /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBCC49F22547E9FD00FAB2F4 /* UIViewExtension.swift */; };
 		BBCC4A032547FCF800FAB2F4 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBCC4A022547FCF800FAB2F4 /* SignUpViewController.swift */; };
@@ -34,6 +42,11 @@
 
 /* Begin PBXFileReference section */
 		00CD71BADFAF37AAD7411928 /* Pods-IssueTracker.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IssueTracker.debug.xcconfig"; path = "Target Support Files/Pods-IssueTracker/Pods-IssueTracker.debug.xcconfig"; sourceTree = "<group>"; };
+		7012DC8D2549ADC400EAADD7 /* SignInEndPointTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInEndPointTest.swift; sourceTree = "<group>"; };
+		7012DC932549AEE500EAADD7 /* EndPointMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndPointMock.swift; sourceTree = "<group>"; };
+		7012DC972549AF1B00EAADD7 /* SessionManagerStub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionManagerStub.swift; sourceTree = "<group>"; };
+		701343BA254907AA0044080A /* NetworkManagerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManagerTest.swift; sourceTree = "<group>"; };
+		701343C025493A160044080A /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		7074DE202547DB9800A64FC2 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		708EFEEA2546DBC9009D9DEC /* IssueTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IssueTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		708EFEED2546DBC9009D9DEC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -47,6 +60,8 @@
 		708EFF042546DBCB009D9DEC /* IssueTrackerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueTrackerTests.swift; sourceTree = "<group>"; };
 		708EFF062546DBCB009D9DEC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8FB431BFDCDAC5FA1D443DF4 /* libPods-IssueTracker.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-IssueTracker.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		BB41E026254963FA008245A3 /* APIConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIConfiguration.swift; sourceTree = "<group>"; };
+		BB41E02A2549655B008245A3 /* SignInEndPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInEndPoint.swift; sourceTree = "<group>"; };
 		BBCC49EC2547E8F300FAB2F4 /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		BBCC49F22547E9FD00FAB2F4 /* UIViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
 		BBCC4A022547FCF800FAB2F4 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
@@ -60,6 +75,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FB61544F48E987F7556EC50C /* libPods-IssueTracker.a in Frameworks */,
+				701343B32549061B0044080A /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -78,8 +94,36 @@
 			children = (
 				BBCC49EC2547E8F300FAB2F4 /* SignInViewController.swift */,
 				BBCC4A122548204200FAB2F4 /* SignInInteractor.swift */,
+				BB41E02A2549655B008245A3 /* SignInEndPoint.swift */,
 			);
 			path = SignIn;
+			sourceTree = "<group>";
+		};
+		7012DC8C2549AD9400EAADD7 /* SignInTests */ = {
+			isa = PBXGroup;
+			children = (
+				7012DC8D2549ADC400EAADD7 /* SignInEndPointTest.swift */,
+			);
+			path = SignInTests;
+			sourceTree = "<group>";
+		};
+		701343B6254906D30044080A /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				701343C025493A160044080A /* NetworkManager.swift */,
+				BB41E026254963FA008245A3 /* APIConfiguration.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		701343B9254907890044080A /* NetworkTests */ = {
+			isa = PBXGroup;
+			children = (
+				701343BA254907AA0044080A /* NetworkManagerTest.swift */,
+				7012DC932549AEE500EAADD7 /* EndPointMock.swift */,
+				7012DC972549AF1B00EAADD7 /* SessionManagerStub.swift */,
+			);
+			path = NetworkTests;
 			sourceTree = "<group>";
 		};
 		708EFEE12546DBC9009D9DEC = {
@@ -106,6 +150,7 @@
 		708EFEEC2546DBC9009D9DEC /* IssueTracker */ = {
 			isa = PBXGroup;
 			children = (
+				701343B6254906D30044080A /* Network */,
 				7006F9002547EC850051EC0A /* SignIn */,
 				BBCC4A012547FCD700FAB2F4 /* SignUp */,
 				708EFEED2546DBC9009D9DEC /* AppDelegate.swift */,
@@ -123,6 +168,8 @@
 		708EFF032546DBCB009D9DEC /* IssueTrackerTests */ = {
 			isa = PBXGroup;
 			children = (
+				7012DC8C2549AD9400EAADD7 /* SignInTests */,
+				701343B9254907890044080A /* NetworkTests */,
 				708EFF042546DBCB009D9DEC /* IssueTrackerTests.swift */,
 				708EFF062546DBCB009D9DEC /* Info.plist */,
 			);
@@ -172,6 +219,9 @@
 			dependencies = (
 			);
 			name = IssueTracker;
+			packageProductDependencies = (
+				701343B22549061B0044080A /* Alamofire */,
+			);
 			productName = IssueTracker;
 			productReference = 708EFEEA2546DBC9009D9DEC /* IssueTracker.app */;
 			productType = "com.apple.product-type.application";
@@ -221,6 +271,9 @@
 				Base,
 			);
 			mainGroup = 708EFEE12546DBC9009D9DEC;
+			packageReferences = (
+				701343B12549061B0044080A /* XCRemoteSwiftPackageReference "Alamofire" */,
+			);
 			productRefGroup = 708EFEEB2546DBC9009D9DEC /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -300,9 +353,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				BBCC4A032547FCF800FAB2F4 /* SignUpViewController.swift in Sources */,
+				BB41E02B2549655B008245A3 /* SignInEndPoint.swift in Sources */,
 				BBCC49F32547E9FD00FAB2F4 /* UIViewExtension.swift in Sources */,
 				BBCC49ED2547E8F300FAB2F4 /* SignInViewController.swift in Sources */,
 				708EFEF22546DBC9009D9DEC /* ViewController.swift in Sources */,
+				BB41E027254963FA008245A3 /* APIConfiguration.swift in Sources */,
+				701343C125493A160044080A /* NetworkManager.swift in Sources */,
 				708EFEEE2546DBC9009D9DEC /* AppDelegate.swift in Sources */,
 				BBCC4A132548204200FAB2F4 /* SignInInteractor.swift in Sources */,
 				708EFEF02546DBC9009D9DEC /* SceneDelegate.swift in Sources */,
@@ -313,7 +369,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7012DC942549AEE500EAADD7 /* EndPointMock.swift in Sources */,
+				7012DC8E2549ADC400EAADD7 /* SignInEndPointTest.swift in Sources */,
+				701343BB254907AA0044080A /* NetworkManagerTest.swift in Sources */,
 				708EFF052546DBCB009D9DEC /* IssueTrackerTests.swift in Sources */,
+				7012DC982549AF1B00EAADD7 /* SessionManagerStub.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -578,6 +638,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		701343B12549061B0044080A /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.3.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		701343B22549061B0044080A /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 701343B12549061B0044080A /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 708EFEE22546DBC9009D9DEC /* Project object */;
 }
