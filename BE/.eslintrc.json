@@ -10,5 +10,5 @@
   "ignorePatterns": ["node_modules/","build/"],
   "rules": {
       "prettier/prettier": "error"
-  },
+  }
 }
