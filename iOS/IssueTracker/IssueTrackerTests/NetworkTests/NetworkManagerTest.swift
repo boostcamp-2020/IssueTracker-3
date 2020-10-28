@@ -37,7 +37,6 @@ final class NetworkManagerTest: XCTestCase {
         )
 
         guard let data = userData?.body else {
-            XCTFail("fail")
             return
         }
 
