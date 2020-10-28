@@ -11,7 +11,7 @@ import os
 
 class NetworkManager {
     let session: SessionManager
-    
+
     init(sessionManager: SessionManager) {
         self.session = sessionManager
     }
@@ -33,5 +33,4 @@ protocol SessionManager {
 }
 
 extension Session: SessionManager {
-    
 }
