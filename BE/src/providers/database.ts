@@ -5,7 +5,7 @@ import path from "path";
 dotenv.config({ path: path.join(__dirname, "../../.env") });
 
 class DB {
-  pool: any;
+  pool: mysql2.Pool;
 
   constructor() {
     this.pool = mysql2.createPool({
@@ -18,10 +18,14 @@ class DB {
     });
   }
 
-  connect() {
-    this.pool.getConnection((err: Error) => {
-      console.error(err);
-    });
+  async query(str: string) {
+    try {
+      await this.pool.getConnection();
+      const result = await this.pool.query(str);
+      return result;
+    } catch (err) {
+      return err;
+    }
   }
 }
 
