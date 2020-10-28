@@ -8,11 +8,6 @@ import XCTest
 @testable import Alamofire
 @testable import IssueTracker
 
-struct User: Codable {
-    let userID: String
-    let password: String
-}
-
 final class NetworkManagerStub: SessionManager {
     var requestParameters: (
         url: URLConvertible,
@@ -59,5 +54,6 @@ final class NetworkTest: XCTestCase {
         XCTAssertEqual(try? networkManagerStub.requestParameters?.url.asURL(),
                        URL(string: "http://api.boostcamp.com/auth/login"))
         XCTAssertEqual(networkManagerStub.requestParameters?.method, .get)
+        // login : id/pw equal test
     }
 }
