@@ -8,21 +8,6 @@
 import Foundation
 import Alamofire
 
-protocol SignInEndPointProtocol {
-    
-}
-
-//final class SignInEndPoint {
-//    let networkManager = NetworkManager(sessionManager: Session())
-//    let url = "http://api.boostcamp.com/auth/login"
-//
-//    func validateUser(user: User) -> Bool {
-//        networkManager.request(url: url) { data in
-//        }
-//        return false
-//    }
-//}
-
 struct SignInEndPointType: APIConfiguration {
     let user: User
     
@@ -45,10 +30,11 @@ struct SignInEndPointType: APIConfiguration {
         urlRequest.setValue(ContentType.json.rawValue, forHTTPHeaderField: HTTPHeaderField.acceptType.rawValue)
         urlRequest.setValue(ContentType.json.rawValue, forHTTPHeaderField: HTTPHeaderField.contentType.rawValue)
         
+        // TODO: url 의미 알고 해결
 //        switch parameters {
 //        case .body (let params):
         let params = parameters // 원래 없었음
-            // TODO: JSONEncoder()
+        // TODO: JSONEncoder()
         urlRequest.httpBody = try JSONSerialization.data(withJSONObject: params, options: [])
 //        case .url (let params):
 //            let queryParams = params.map { pair  in
