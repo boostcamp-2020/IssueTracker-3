@@ -9,7 +9,9 @@
   "extends": ["airbnb-base","plugin:@typescript-eslint/recommended", "plugin:prettier/recommended", "prettier/@typescript-eslint"],
   "ignorePatterns": ["node_modules/","build/"],
   "rules": {
+
       "prettier/prettier": ["error",{ "endOfLine": "auto"}],
+
       "import/extensions": [
         "error",
         "ignorePackages",
