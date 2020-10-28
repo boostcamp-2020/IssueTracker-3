@@ -16,7 +16,7 @@ import Passport from "./passport/passport";
 class App {
   private app: Application;
 
-  private passportConfig: Passport;
+  private passportConfig: any;
 
   constructor(private port?: number | string) {
     this.app = express();
@@ -25,8 +25,8 @@ class App {
     this.routes();
   }
 
-  public async listen() {
-    await this.app.listen(this.app.get("port"));
+  public listen(): void {
+    this.app.listen(this.app.get("port"));
     console.info(`Server on port ${this.app.get(`port`)}`);
   }
 

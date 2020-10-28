@@ -23,7 +23,7 @@ class Passport {
       done(null, user);
     });
 
-    passport.deserializeUser(function (user, done) {
+    passport.deserializeUser((user, done) => {
       done(null, user);
     });
   };
