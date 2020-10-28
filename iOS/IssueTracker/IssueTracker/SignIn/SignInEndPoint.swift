@@ -8,7 +8,7 @@
 import Foundation
 import Alamofire
 
-struct SignInEndPointType: APIConfiguration {
+struct SignInEndPoint: APIConfiguration {
     let user: User
     
     var method: HTTPMethod {
