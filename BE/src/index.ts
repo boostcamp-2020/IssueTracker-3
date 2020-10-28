@@ -1,4 +1,5 @@
 import express from "express";
+import index from "./route/index";
 
 class App {
   public application: express.Application;
@@ -8,7 +9,6 @@ class App {
   }
 }
 const app = new App().application;
-app.get("/", (req: express.Request, res: express.Response) => {
-  res.send("start");
-});
+
+app.use("/", index);
 app.listen(4000, () => console.log("start"));
