@@ -7,46 +7,31 @@
 
 import Foundation
 import Alamofire
+import os
 
 class NetworkManager {
     let session: SessionManager
-
+    
     init(sessionManager: SessionManager) {
         self.session = sessionManager
     }
-
-    // TODO: EndPoint 만들기
-    func request(url: String, completionHandler: @escaping (Data?) -> Void) {
-
-        let alamofire = session.request(url,
-                                        method: .get,
-                                        parameters: nil,
-                                        encoding: URLEncoding.default,
-                                        headers: nil,
-                                        interceptor: nil,
-                                        requestModifier: nil)
-
-        alamofire.response { response in
+    
+    func request(endPoint: URLRequestConvertible, handler: @escaping (Data?) -> Void) {
+        session.request(endPoint, interceptor: nil).response { response in
             switch response.result {
-            case .success(let value):
-                completionHandler(value)
+            case .success(let response):
+                handler(response)
             case .failure(let error):
-                print(error)
+                os_log("%@", error.localizedDescription)
             }
         }
     }
 }
 
 protocol SessionManager {
-    func request(_ convertible: URLConvertible,
-                 method: HTTPMethod,
-                 parameters: Parameters?,
-                 encoding: ParameterEncoding,
-                 headers: HTTPHeaders?,
-                 interceptor: RequestInterceptor?,
-                 requestModifier: Session.RequestModifier?) -> DataRequest
+    func request(_ convertible: URLRequestConvertible, interceptor: RequestInterceptor?) -> DataRequest
 }
 
 extension Session: SessionManager {
-
+    
 }
