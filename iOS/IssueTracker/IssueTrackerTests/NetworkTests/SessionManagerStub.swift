@@ -9,7 +9,7 @@ import Foundation
 @testable import Alamofire
 @testable import IssueTracker
 
-final class NetworkManagerStub: SessionManager {
+final class SessionManagerStub: SessionManager {
     var urlRequest: URLRequest?
     var userData: (
         method: HTTPMethod?,
