@@ -15,16 +15,9 @@ class AppleSignInButton: UIView {
 
     override init(frame: CGRect) {
         super.init(frame: frame)
+        
         setUpView()
     }
-
-//    @IBInspectable
-//    private var cornerRadius: CGFloat = 0.0 {
-//        didSet {
-//            appleBtn.cornerRadius = cornerRadius
-//            self.layer.cornerRadius = cornerRadius
-//        }
-//    }
 
     @IBInspectable
     private var style: Int = ASAuthorizationAppleIDButton.Style.black.rawValue {
@@ -72,12 +65,14 @@ class AppleSignInButton: UIView {
     private func setUpView() {
         appleButton.translatesAutoresizingMaskIntoConstraints = false
         self.addSubview(appleButton)
+
         NSLayoutConstraint.activate([
             appleButton.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 0),
             appleButton.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: 0),
             appleButton.topAnchor.constraint(equalTo: self.topAnchor, constant: 0),
             appleButton.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: 0)
         ])
+
         appleButton.addTarget(self, action: #selector(didTapASAuthorizationButton), for: .touchUpInside)
     }
 
@@ -90,7 +85,6 @@ class AppleSignInButton: UIView {
         controller.presentationContextProvider = self
         controller.performRequests()
     }
-
 }
 
 // MARK: - Presentation Context Provider Delegate
@@ -121,7 +115,6 @@ extension AppleSignInButton: ASAuthorizationControllerDelegate {
 //
 //            let data = String(data: authorization, encoding: .utf8)
 //            let data2 = String(data: jwt, encoding: .utf8)
-
 
             didCompletedSignIn?(AppleUser(credentials.user,
                                           credentials.fullName?.givenName,

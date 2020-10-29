@@ -8,8 +8,10 @@ excluded:
     - IssueTracker/SceneDelegate.swift
 #line_length:
 #    warning: 150
-#identifier_name:
-#  min_length: 2
+identifier_name:
+  min_length: 2
+large_tuple:
+    - 3
 #nesting:
 #  type_level: 3
 

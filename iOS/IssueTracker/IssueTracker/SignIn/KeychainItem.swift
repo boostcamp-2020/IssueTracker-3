@@ -110,7 +110,9 @@ struct KeychainItem {
 
     // MARK: Convenience
 
-    private static func keychainQuery(withService service: String, account: String? = nil, accessGroup: String? = nil) -> [String: AnyObject] {
+    private static func keychainQuery(withService service: String,
+                                      account: String? = nil,
+                                      accessGroup: String? = nil) -> [String: AnyObject] {
         var query = [String: AnyObject]()
         query[kSecClass as String] = kSecClassGenericPassword
         query[kSecAttrService as String] = service as AnyObject?
@@ -132,7 +134,9 @@ struct KeychainItem {
      */
     static var currentUserIdentifier: String {
         do {
-            let storedIdentifier = try KeychainItem(service: "com.example.apple-samplecode.juice", account: "userIdentifier").readItem()
+            let storedIdentifier = try KeychainItem(
+                service: "com.example.apple-samplecode.juice",
+                account: "userIdentifier").readItem()
             return storedIdentifier
         } catch {
             return ""

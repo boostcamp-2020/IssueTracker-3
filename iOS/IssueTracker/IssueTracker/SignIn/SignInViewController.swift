@@ -69,18 +69,7 @@ final class SignInViewController: UIViewController {
         self.present(loginViewController, animated: true, completion: nil)
 
         DispatchQueue.main.async {
-            loginViewController.userIdentifierLabel.text = userIdentifier
-            if let givenName = givenName {
-                loginViewController.givenNameLabel.text = givenName
-            }
-            if let familyName = familyName {
-                loginViewController.familyNameLabel.text = familyName
-            }
-            if let email = email {
-                loginViewController.emailLabel.text = email
-            }
         }
-
     }
   
     // MARK: Action Functions
@@ -106,10 +95,6 @@ final class SignInViewController: UIViewController {
     @IBAction func signInWithAppleTouched(_ sender: UIButton) {
         // TODO: 애플 로그인 검증
     }
-}
-
-extension SignInViewController: ASAuthorizationControllerDelegate {
-
 }
 
 extension SignInViewController: ASWebAuthenticationPresentationContextProviding {
