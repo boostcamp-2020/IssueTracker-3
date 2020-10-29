@@ -9,34 +9,39 @@ import Foundation
 import AuthenticationServices
 
 final class OAuthManager {
-    private let presentationContextProvider: ASWebAuthenticationPresentationContextProviding
+    private let provider: ASWebAuthenticationPresentationContextProviding
     private let callbackScheme: String
-    private let tokenQuery: String = "token"
-    private var webAuthSession: ASWebAuthenticationSession?
+    private let tokenQuery: String
+    private var session: ASWebAuthenticationSession?
     
-    init(provider: ASWebAuthenticationPresentationContextProviding) {
-        presentationContextProvider = provider
+    init(provider presentationContextProvider: ASWebAuthenticationPresentationContextProviding) {
+        provider = presentationContextProvider
         callbackScheme = ""
+        tokenQuery = "token"
     }
     
     func reqeustToken(url: String, handler: @escaping (String) -> Void) {
         guard let url = try? url.asURL() else { return }
         
-        
-        
-        let session = ASWebAuthenticationSession(url: url, callbackURLScheme: callbackScheme) { callBack, error in
-//            guard error == nil, let callbackURL = callBack else {
-//                return
-//            }
-//            let queryItems = URLComponents(string: callbackURL.absoluteString)?.queryItems
-//
-//            guard let token = queryItems?.filter({ $0.name == self.tokenQuery }).first?.value else {
-//                return
-//            }
-//            handler(token)
+        session = ASWebAuthenticationSession(url: url, callbackURLScheme: callbackScheme) { callBackURL, error in
+            guard let callBackURL = callBackURL, error == nil else {
+                print(String(describing: error?.localizedDescription))
+                return
+            }
+            handler(callBackURL.searchToken(of: self.tokenQuery))
         }
-        
-        session.presentationContextProvider = presentationContextProvider
-        session.start()
+        session?.presentationContextProvider = provider
+        session?.start()
+    }
+}
+
+extension URL {
+    func searchToken(of tokenQuery: String) -> String {
+        guard let queryItems = URLComponents(string: self.absoluteString)?.queryItems,
+              let token = queryItems.first(where: { $0.name == tokenQuery })?.value
+        else {
+            return ""
+        }
+        return token
     }
 }
