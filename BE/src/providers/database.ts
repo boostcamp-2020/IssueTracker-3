@@ -18,10 +18,9 @@ class DB {
     });
   }
 
-  async query(str: string) {
+  async query<T>(str: string, params: T): Promise<any> {
     try {
-      await this.pool.getConnection();
-      const result = await this.pool.query(str);
+      const result = await this.pool.query(str, params);
       return result;
     } catch (err) {
       return err;
