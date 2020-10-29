@@ -18,7 +18,11 @@ function login(req: Request, res: Response): void {
   })(req, res);
 }
 function githubLogin(req: Request, res: Response): any {
-  return res.json({ state: "success" });
+  const User = req.user;
+  if (!User) {
+    return res.json({ state: "fail", User });
+  }
+  return res.json({ state: "success", User });
 }
 const github = passport.authenticate("github");
 export default { login, githubLogin, github };

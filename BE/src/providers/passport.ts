@@ -23,9 +23,9 @@ class Passport {
     passport.use(
       new GithubStrategy(
         {
-          clientID: "d20e11f7575f75de3e43",
-          clientSecret: "92cef0a81b7e187eb00b2a07e90846311c987f26",
-          callbackURL: "http://127.0.0.1:3000/auth/github/callback",
+          clientID: process.env.GIT_ID as string,
+          clientSecret: process.env.GIT_PASSWORD as string,
+          callbackURL: process.env.GIT_CALLBACK as string,
         },
         async (accessToken, refreshToken, profile, cb) => {
           const user = profile;

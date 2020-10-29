@@ -6,7 +6,7 @@ const router = express.Router();
 router.post("/login", authController.login);
 
 router.get("/github", authController.github);
-router.get("/gituhb/callback", authController.githubLogin);
+router.get("/github/callback", authController.githubLogin);
 
 router.get("/logout", (req: Request, res: Response, next: NextFunction) => {
   res.send("logout");
