@@ -9,12 +9,18 @@ import UIKit
 
 final class SignInViewController: UIViewController {
     
+    // MARK: Properties
+    
     @IBOutlet private weak var idTextField: UITextField!
     @IBOutlet private weak var pwTextField: UITextField!
+    
+    // MARK: View Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
     }
+    
+    // MARK: Action Functions
     
     @IBAction func signInTouched(_ sender: UIButton) {
         // TODO: idTextField.text / pwTextField.text => 인터렉터(검증)
