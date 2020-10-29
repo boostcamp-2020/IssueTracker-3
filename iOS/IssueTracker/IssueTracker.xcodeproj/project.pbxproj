@@ -26,6 +26,7 @@
 		BB41E027254963FA008245A3 /* APIConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB41E026254963FA008245A3 /* APIConfiguration.swift */; };
 		BB41E02B2549655B008245A3 /* SignInEndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB41E02A2549655B008245A3 /* SignInEndPoint.swift */; };
 		BB52170F254A81D8008455D4 /* UserTestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB52170E254A81D8008455D4 /* UserTestModel.swift */; };
+		BB52171B254A9EAF008455D4 /* OAuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB52171A254A9EAF008455D4 /* OAuthManager.swift */; };
 		BBCC49ED2547E8F300FAB2F4 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBCC49EC2547E8F300FAB2F4 /* SignInViewController.swift */; };
 		BBCC49F32547E9FD00FAB2F4 /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBCC49F22547E9FD00FAB2F4 /* UIViewExtension.swift */; };
 		BBCC4A032547FCF800FAB2F4 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBCC4A022547FCF800FAB2F4 /* SignUpViewController.swift */; };
@@ -69,6 +70,7 @@
 		BB41E026254963FA008245A3 /* APIConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIConfiguration.swift; sourceTree = "<group>"; };
 		BB41E02A2549655B008245A3 /* SignInEndPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInEndPoint.swift; sourceTree = "<group>"; };
 		BB52170E254A81D8008455D4 /* UserTestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTestModel.swift; sourceTree = "<group>"; };
+		BB52171A254A9EAF008455D4 /* OAuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OAuthManager.swift; sourceTree = "<group>"; };
 		BBCC49EC2547E8F300FAB2F4 /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		BBCC49F22547E9FD00FAB2F4 /* UIViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
 		BBCC4A022547FCF800FAB2F4 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
@@ -104,6 +106,7 @@
 				BBCC4A122548204200FAB2F4 /* SignInInteractor.swift */,
 				BB41E02A2549655B008245A3 /* SignInEndPoint.swift */,
 				702D6C37254AB0DB00E1A706 /* KeychainItem.swift */,
+				BB52171A254A9EAF008455D4 /* OAuthManager.swift */,
 			);
 			path = SignIn;
 			sourceTree = "<group>";
@@ -376,6 +379,7 @@
 				BBCC49F32547E9FD00FAB2F4 /* UIViewExtension.swift in Sources */,
 				BBCC49ED2547E8F300FAB2F4 /* SignInViewController.swift in Sources */,
 				708EFEF22546DBC9009D9DEC /* ViewController.swift in Sources */,
+				BB52171B254A9EAF008455D4 /* OAuthManager.swift in Sources */,
 				BB41E027254963FA008245A3 /* APIConfiguration.swift in Sources */,
 				701343C125493A160044080A /* NetworkManager.swift in Sources */,
 				708EFEEE2546DBC9009D9DEC /* AppDelegate.swift in Sources */,

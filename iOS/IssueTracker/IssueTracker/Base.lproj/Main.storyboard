@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="8q5-Xp-b3w">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="RoK-7g-YYk">
     <device id="retina5_9" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
@@ -85,13 +85,13 @@
         <!--Sign In View Controller-->
         <scene sceneID="AhX-wd-i4K">
             <objects>
-                <viewController id="8q5-Xp-b3w" customClass="SignInViewController" customModule="IssueTracker" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SignInViewController" id="8q5-Xp-b3w" customClass="SignInViewController" customModule="IssueTracker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="bgY-cH-2Xg">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xa9-MQ-cEJ">
-                                <rect key="frame" x="0.0" y="44" width="375" height="734"/>
+                                <rect key="frame" x="0.0" y="88" width="375" height="690"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="L6K-ow-iCS" userLabel="Content View">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="730"/>
@@ -274,6 +274,7 @@
                             <constraint firstItem="Xa9-MQ-cEJ" firstAttribute="leading" secondItem="2Ux-DR-s1k" secondAttribute="leading" id="pzC-nD-zBX"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="koI-0A-qvH"/>
                     <connections>
                         <outlet property="idTextField" destination="m6l-g3-sQv" id="wOK-h3-wPs"/>
                         <outlet property="pwTextField" destination="zv2-1n-DnL" id="ffF-UF-q7D"/>
@@ -282,18 +283,18 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zEh-cz-ZMo" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-784.79999999999995" y="122.66009852216749"/>
+            <point key="canvasLocation" x="157.59999999999999" y="122.66009852216749"/>
         </scene>
         <!--Sign Up View Controller-->
         <scene sceneID="ytn-bN-4fp">
             <objects>
                 <viewController id="AH7-Vn-m2L" customClass="SignUpViewController" customModule="IssueTracker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="HLg-VY-kLa">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="758"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xwo-fX-nnR">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="724"/>
+                                <rect key="frame" x="0.0" y="88" width="375" height="690"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CaL-gw-jfx" userLabel="Content View">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="762"/>
@@ -470,7 +471,25 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7jz-cc-ISk" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-785" y="911"/>
+            <point key="canvasLocation" x="158" y="832"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="0KD-1E-U1p">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="RoK-7g-YYk" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="RsG-wH-xuc">
+                        <rect key="frame" x="0.0" y="44" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="8q5-Xp-b3w" kind="relationship" relationship="rootViewController" id="zaH-29-Ywu"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="aep-Io-TAI" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-687" y="123"/>
         </scene>
     </scenes>
     <resources>

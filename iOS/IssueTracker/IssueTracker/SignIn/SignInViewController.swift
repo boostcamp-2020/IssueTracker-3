@@ -25,6 +25,16 @@ final class SignInViewController: UIViewController {
         configureSignInWithAppleView()
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        navigationController?.navigationBar.isHidden = true
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        navigationController?.navigationBar.isHidden = false
+    }
+
     func configureSignInWithAppleView() {
         signInWithAppleView.didCompletedSignIn = { [weak self] (user) in
             // user.identityToken = JWT 토큰을 풀어서 name, email 가져오기, 서버로 보내기
@@ -72,7 +82,7 @@ final class SignInViewController: UIViewController {
         }
 
     }
-
+  
     // MARK: Action Functions
     
     @IBAction func signInTouched(_ sender: UIButton) {
@@ -82,7 +92,15 @@ final class SignInViewController: UIViewController {
     // TODO: 로그인 실패/성공 : toast
     
     @IBAction func signInWithGitHubTouched(_ sender: UIButton) {
-        // TODO: 깃허브 로그인 검증
+        let path = "http://101.101.210.34:3000/auth/github"
+//        let path = "https://github.com/login/oauth/authorize"
+        OAuthManager.init(provider: self).reqeustToken(url: path) { token in
+            guard token != "" else {
+                print("nilnil닐닐")
+                return
+            }
+            print(token)
+        }
     }
     
     @IBAction func signInWithAppleTouched(_ sender: UIButton) {
@@ -92,6 +110,12 @@ final class SignInViewController: UIViewController {
 
 extension SignInViewController: ASAuthorizationControllerDelegate {
 
+}
+
+extension SignInViewController: ASWebAuthenticationPresentationContextProviding {
+    func presentationAnchor(for session: ASWebAuthenticationSession) -> ASPresentationAnchor {
+        return self.view.window ?? ASPresentationAnchor()
+    }
 }
 
 extension SignInViewController: ASAuthorizationControllerPresentationContextProviding {
