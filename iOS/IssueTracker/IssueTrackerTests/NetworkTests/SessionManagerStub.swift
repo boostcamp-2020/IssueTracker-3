@@ -18,16 +18,11 @@ final class SessionManagerStub: SessionManager {
     )?
 
     func request(_ convertible: URLRequestConvertible, interceptor: RequestInterceptor?) -> DataRequest {
-        self.urlRequest = try? convertible.asURLRequest()
-
-        let method = convertible.urlRequest?.method
-        let path = convertible.urlRequest?.url
-        let body = convertible.urlRequest?.httpBody
-
+        let request = try? convertible.asURLRequest()
         self.userData = (
-            method: method,
-            path: path,
-            body: body
+            method: request?.method,
+            path: request?.url,
+            body: request?.httpBody
         )
 
         return .init(convertible: URLRequest(url: (convertible.urlRequest?.url)!),

@@ -9,19 +9,19 @@ import Foundation
 import Alamofire
 
 protocol APIConfiguration: URLRequestConvertible {
+    associatedtype Data: Codable
+    
     var method: HTTPMethod { get }
     var path: String { get }
-    var parameters: RequestParams { get }
+    var parameters: RequestParams<Data> { get }
 }
 
-struct Constants {
-    struct ProductionServer {
-        static let baseURL = "http://api.boostcamp.com"
-    }
+struct APIServer {
+    static let baseURL = "http://api.boostcamp.com"
 }
 
 // TODO: API명세서 맞추기
-enum HTTPHeaderField: String {
+enum HTTPHeader: String {
     case authentication = "Authorization"
     case contentType = "Content-Type"
     case acceptType = "Accept"
@@ -34,7 +34,7 @@ enum ContentType: String {
     case formEncode = "application/x-www-form-urlencoded"
 }
 
-enum RequestParams {
-    case body(_: Parameters)
-    case url(_: Parameters)
+enum RequestParams<Data: Codable> {
+    case body(_: Data)
+    case url(_: URL)
 }

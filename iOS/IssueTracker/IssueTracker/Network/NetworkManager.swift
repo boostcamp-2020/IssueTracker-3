@@ -6,12 +6,12 @@
 //
 
 import Foundation
-import Alamofire
 import os
+import Alamofire
 
 class NetworkManager {
     let session: SessionManager
-
+    
     init(sessionManager: SessionManager) {
         self.session = sessionManager
     }
