@@ -7,9 +7,11 @@ const router = express.Router();
 
 router.post("/login", authController.login);
 
-router.get("/logout", (req: Request, res: Response, next: NextFunction) => {
-  res.send("logout");
-});
+router.get("/github", authController.github);
+router.get("/github/callback", authController.githubLogin);
+router.get("/github/loginFail", authController.githubLoginFail);
+
+router.get("/logout", authController.logout);
 router.post("/register", (req: Request, res: Response, next: NextFunction) => {
   const user: User = {
     id: null,
