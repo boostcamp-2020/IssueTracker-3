@@ -1,7 +1,8 @@
+/* eslint-disable camelcase */
 export interface User {
-  id: number;
-  loginID: string;
+  id: number | null;
+  login_id: string;
   password: string;
   img: string;
-  createdAt: Date;
+  created_at: Date;
 }
