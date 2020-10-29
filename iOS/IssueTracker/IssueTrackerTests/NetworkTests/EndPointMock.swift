@@ -6,7 +6,7 @@
 //
 
 import Foundation
-import Alamofire
+@testable import Alamofire
 @testable import IssueTracker
 
 class EndPointMock: APIConfiguration {
@@ -23,7 +23,7 @@ class EndPointMock: APIConfiguration {
     }
 
     func asURLRequest() throws -> URLRequest {
-        let url = try Constants.ProductionServer.baseURL.asURL()
+        let url = try IssueTrackerServer.baseURL.asURL()
         var urlRequest = URLRequest(url: url.appendingPathComponent(path))
 
         urlRequest.httpMethod = method.rawValue
