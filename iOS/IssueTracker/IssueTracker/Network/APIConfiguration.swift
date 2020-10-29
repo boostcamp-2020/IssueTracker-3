@@ -14,14 +14,12 @@ protocol APIConfiguration: URLRequestConvertible {
     var parameters: RequestParams { get }
 }
 
-struct Constants {
-    struct ProductionServer {
-        static let baseURL = "http://api.boostcamp.com"
-    }
+enum IssueTrackerServer {
+    static let baseURL = "http://api.boostcamp.com"
 }
 
 // TODO: API명세서 맞추기
-enum HTTPHeaderField: String {
+enum HTTPHeader: String {
     case authentication = "Authorization"
     case contentType = "Content-Type"
     case acceptType = "Accept"
@@ -37,4 +35,9 @@ enum ContentType: String {
 enum RequestParams {
     case body(_: Parameters)
     case url(_: Parameters)
+    
+    /*
+     case body(_: Codable)
+     case url(_: URL)
+    */
 }
