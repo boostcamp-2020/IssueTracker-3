@@ -1,6 +1,10 @@
 import passport from "passport";
 import passportLocal from "passport-local";
 import passportGithub from "passport-github";
+import dotenv from "dotenv";
+import path from "path";
+
+dotenv.config({ path: path.join(__dirname, "../../.env") });
 
 const LocalStrategy = passportLocal.Strategy;
 const GithubStrategy = passportGithub.Strategy;
