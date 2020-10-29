@@ -17,4 +17,8 @@ function login(req: Request, res: Response): void {
     });
   })(req, res);
 }
-export default { login };
+function githubLogin(req: Request, res: Response): any {
+  return res.json({ state: "success" });
+}
+const github = passport.authenticate("github");
+export default { login, githubLogin, github };
