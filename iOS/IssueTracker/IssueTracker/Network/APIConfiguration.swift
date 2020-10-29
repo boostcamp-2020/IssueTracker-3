@@ -9,12 +9,14 @@ import Foundation
 import Alamofire
 
 protocol APIConfiguration: URLRequestConvertible {
+    associatedtype Data: Codable
+    
     var method: HTTPMethod { get }
     var path: String { get }
-    var parameters: RequestParams { get }
+    var parameters: RequestParams<Data> { get }
 }
 
-enum IssueTrackerServer {
+struct APIServer {
     static let baseURL = "http://api.boostcamp.com"
 }
 
@@ -32,12 +34,7 @@ enum ContentType: String {
     case formEncode = "application/x-www-form-urlencoded"
 }
 
-enum RequestParams {
-    case body(_: Parameters)
-    case url(_: Parameters)
-    
-    /*
-     case body(_: Codable)
-     case url(_: URL)
-    */
+enum RequestParams<Data: Codable> {
+    case body(_: Data)
+    case url(_: URL)
 }

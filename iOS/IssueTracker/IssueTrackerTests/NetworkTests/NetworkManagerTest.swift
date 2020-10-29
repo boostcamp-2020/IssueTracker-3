@@ -8,11 +8,6 @@ import XCTest
 @testable import Alamofire
 @testable import IssueTracker
 
-struct ToDoModel: Codable {
-    let park: String
-    let song: String
-}
-
 final class NetworkManagerTest: XCTestCase {
     func test_request_with_endPointMock_success() throws {
         //Given
@@ -40,7 +35,7 @@ final class NetworkManagerTest: XCTestCase {
             return
         }
 
-        let model = try? JSONDecoder().decode(ToDoModel.self, from: data)
+        let model = try? JSONDecoder().decode(UserTestModel.self, from: data)
 
         XCTAssertEqual(
             model?.park,
