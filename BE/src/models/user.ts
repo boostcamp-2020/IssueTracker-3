@@ -1,16 +1,15 @@
-import { User } from "./interface/user";
+import Model from "./model";
 
-class UserModel {
-  user: User;
-
-  constructor(pLoginID: string, pPassword: string, pImg: string) {
-    const date = new Date();
-    this.user = {
-      id: 0,
-      loginID: pLoginID,
-      password: pPassword,
-      img: pImg,
-      createdAt: date,
-    };
+class UserModel extends Model {
+  static async read(): Promise<any> {
+    return new Promise((resolve, reject) => {
+      try {
+        resolve(1);
+      } catch (err) {
+        reject(err);
+      }
+    });
   }
 }
+
+export default UserModel;
