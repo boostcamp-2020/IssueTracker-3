@@ -13,14 +13,17 @@ jobs:
           XC_VERSION: ${{ '12.1.0' }}
           XC_PROJECT: ${{ 'iOS/IssueTracker/IssueTracker.xcworkspace' }}
           XC_SCHEME: ${{ 'IssueTracker' }} 
+
         steps:  
         - uses: actions/checkout@v2
+          
         - name: Install Dependencies
-          run: |
-            cd iOS/IssueTracker
-            pod install
+          working-directory: ./iOS/IssueTracker
+          run: pod install --repo-update
           shell: bash
+          
         - name: Select latest Xcode 
           run: "sudo xcode-select -s /Applications/Xcode_$XC_VERSION.app"  
+          
         - name: Run Unit and UI Tests
           run: /usr/bin/xcodebuild test -project "$XC_PROJECT" -scheme "$XC_SCHEME" -destination 'platform=iOS Simulator,name=iPhone 11'       
