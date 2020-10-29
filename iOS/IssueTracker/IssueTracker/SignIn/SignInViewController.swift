@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import AuthenticationServices
 
 final class SignInViewController: UIViewController {
     
@@ -20,6 +21,16 @@ final class SignInViewController: UIViewController {
         super.viewDidLoad()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        navigationController?.navigationBar.isHidden = true
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        navigationController?.navigationBar.isHidden = false
+    }
+    
     // MARK: Action Functions
     
     @IBAction func signInTouched(_ sender: UIButton) {
@@ -30,10 +41,24 @@ final class SignInViewController: UIViewController {
     // TODO: 로그인 실패/성공 : toast
     
     @IBAction func signInWithGitHubTouched(_ sender: UIButton) {
-        // TODO: 깃허브 로그인 검증
+        let path = "http://101.101.210.34:3000/auth/github"
+//        let path = "https://github.com/login/oauth/authorize"
+        OAuthManager.init(provider: self).reqeustToken(url: path) { token in
+            guard token != "" else {
+                print("nilnil닐닐")
+                return
+            }
+            print(token)
+        }
     }
     
     @IBAction func signInWithAppleTouched(_ sender: UIButton) {
         // TODO: 애플 로그인 검증
+    }
+}
+
+extension SignInViewController: ASWebAuthenticationPresentationContextProviding {
+    func presentationAnchor(for session: ASWebAuthenticationSession) -> ASPresentationAnchor {
+        return self.view.window ?? ASPresentationAnchor()
     }
 }
