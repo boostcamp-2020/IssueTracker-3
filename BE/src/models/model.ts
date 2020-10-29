@@ -13,4 +13,10 @@ export default class Model {
     const { affectedRow } = result[0];
     return affectedRow;
   }
+
+  static async delete(id: number, pTableName: string): Promise<number> {
+    const result = await db.query<number>(`DELETE FROM ${pTableName} WHERE id = ?`, id);
+    const { affectedRow } = result[0];
+    return affectedRow;
+  }
 }
