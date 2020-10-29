@@ -2,7 +2,7 @@
 ### Code Coverage 목표 : 60% 이상
 
 ## Library
-1. [Alamofire](https://github.com/Alamofire/AlamofireImage)
+1. <a href="https://github.com/Alamofire/AlamofireImage" target="_blank">Alamofire</a>
 
 
 ## Team
