@@ -17,12 +17,15 @@ function login(req: Request, res: Response): void {
     });
   })(req, res);
 }
-function githubLogin(req: Request, res: Response): any {
-  const User = req.user;
-  if (!User) {
-    return res.json({ state: "fail", User });
-  }
-  return res.json({ state: "success", User });
+function logout(req: Request, res: Response): any {
+  req.logout();
+  return res.json({ state: "success" });
 }
-const github = passport.authenticate("github");
-export default { login, githubLogin, github };
+function githubLogin(req: Request, res: Response): any {
+  return res.json({ state: "success" });
+}
+function githubLoginFail(req: Request, res: Response): any {
+  return res.json({ state: "fail" });
+}
+const github = passport.authenticate("github", { failureRedirect: "/auth/github/loginFail" });
+export default { login, logout, githubLogin, githubLoginFail, github };
