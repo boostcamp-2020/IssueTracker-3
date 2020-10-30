@@ -1,6 +1,6 @@
 groups:
   - name: devs
-    reviewers: 4 
+    reviewers: 3
     usernames: 
       - gitdog01
       - hi0826
