@@ -1,4 +1,4 @@
-import db from "../providers/database";
+import db from "@providers/database";
 
 export default class Model {
   static async insert<T>(pData: T, pTableName: string): Promise<number> {

@@ -1,4 +1,4 @@
-import Model from "./model";
+import Model from "@models/model";
 
 class UserModel extends Model {
   static async read(): Promise<any> {

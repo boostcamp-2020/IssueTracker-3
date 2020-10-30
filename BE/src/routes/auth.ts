@@ -1,7 +1,7 @@
 import express, { Request, Response, NextFunction } from "express";
-import authController from "../controllers/auth";
-import UserModel from "../models/user";
-import { User } from "../interfaces/user";
+import authController from "@controllers/auth";
+import UserModel from "@models/user";
+import { User } from "@interfaces/user";
 
 const router = express.Router();
 
