@@ -3,7 +3,7 @@
 //  IssueTracker
 //
 //  Created by ParkJaeHyun on 2020/10/29.
-//
+// test
 
 import UIKit
 import AuthenticationServices
@@ -12,7 +12,7 @@ import AuthenticationServices
 class AppleSignInButton: UIView {
     private var appleButton = ASAuthorizationAppleIDButton()
     var didCompletedSignIn: ((_ user: AppleUser) -> Void)?
-    //333
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         
