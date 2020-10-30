@@ -37,8 +37,7 @@ jobs:
               const ref = "${{github.ref}}"
               const pull_number = Number(ref.split("/")[2])
 
-              console.log(context)
-              await await github.issues.createComment({
+              await github.issues.createComment({
                 issue_number: pull_number,
                 owner: context.repo.owner,
                 repo: context.repo.repo,
