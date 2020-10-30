@@ -28,9 +28,7 @@
 
 </div>
 
-
-
-## IssueTracker
+## IssueTracker 기획
 
 ![](https://i.imgur.com/TqgxK4b.jpg)
 
@@ -57,6 +55,8 @@ Github에서 **Issue** 란 개발에 관련된 모든 것이 issue라고 볼 수
     - 해당 issue 에는 **Assignees** 기능으로 담당자를 정하거나 본인이 직접되어 보는 것은 어떨까요 ?
 
 
+## 사용 기술
+![기술스택정리](https://user-images.githubusercontent.com/28282793/97660930-4e99bb80-1ab6-11eb-820f-91326dd7a6bd.png)
 
 
 ### License
