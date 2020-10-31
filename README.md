@@ -23,7 +23,7 @@
 [![GitHub Closed PR](https://img.shields.io/github/issues-pr-closed-raw/boostcamp-2020/IssueTracker-3?color=red)](https://github.com/boostcamp-2020/IssueTracker-3/pulls?q=is%3Apr+is%3Aclosed)
 
 
-![Contributions welcome](https://img.shields.io/badge/contributions-welcome-orange.svg)
+[![Contributions welcome](https://img.shields.io/badge/contributions-welcome-orange.svg)](https://github.com/boostcamp-2020/IssueTracker-3)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
 </div>
