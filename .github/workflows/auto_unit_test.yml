@@ -36,7 +36,7 @@ jobs:
         env:
           INCOMING_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
         with:
-          text: 🎉Unit test Success🎉.
+          text: 🎉Unit Test Success🎉.
           attachments: |
             [
               {
@@ -62,7 +62,7 @@ jobs:
         env:
           INCOMING_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
         with:
-          text: 🚨Unit test failure🚨.
+          text: 🚨Unit Test Failure🚨.
           attachments: |
             [
               {
