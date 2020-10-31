@@ -1,6 +1,3 @@
-# IssueTracker-3
-### Code Coverage 목표 : 70% 이상
-
 ## Library
 1. <a href="https://github.com/Alamofire/AlamofireImage" target="_self">Alamofire</a>
 
