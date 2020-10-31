@@ -4,7 +4,40 @@
 ## Library
 1. <a href="https://github.com/Alamofire/AlamofireImage" target="_self">Alamofire</a>
 
-## Team
+## Requirements
+
+ - iOS 13.6+
+ - Xcode 12.1+
+ - Swift 5.3+
+ 
+## Cocoapods
+
+```ruby
+target 'IssueTracker' do
+
+  pod 'SwiftLint'
+
+end
+```
+
+## Swift Package Manager
+```swift
+  import Alamofire
+```
+
+## Installation
+
+```
+$ pod install
+```
+
+
+## Author
 
 - 박재현 [@wogus3602](https://github.com/wogus3602)
 - 송민관 [@Minkwan-Song](https://github.com/Minkwan-Song)
+
+
+## License
+
+This code is distributed under the terms and conditions of the [MIT license](LICENSE). 
