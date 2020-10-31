@@ -172,5 +172,3 @@ class AppleUser {
         self.identityToken = identityToken
     }
 }
-
-//testdas
