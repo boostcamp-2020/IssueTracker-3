@@ -2,7 +2,7 @@ name: Auto Unit Test and Fail Comment
 
 on:
   push:
-    branches: [ ios_develop, actions_test ]
+    branches: [ ios_develop ]
   pull_request:
     branches: [ ios_release, actions_test ]
   
@@ -32,10 +32,6 @@ jobs:
 
       - name: Run Unit and UI Tests
         run: /usr/bin/xcodebuild test -workspace "$XC_PROJECT" -scheme "$XC_SCHEME" -destination 'platform=iOS Simulator,name=iPhone 11'
-     
-      - name: Get the version
-        id: get_version
-        run: echo ::set-env name=ISSUE_NUMBER::$(echo $GITHUB_REF | cut -d / -f 3)
 
       # Unit Test 성공했을 때 Slack에 Success Message 보냄
       - name: Slack Success Message
