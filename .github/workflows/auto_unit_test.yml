@@ -2,7 +2,7 @@ name: Swift
 
 on:
   push:
-    branches: [ ios_develop ]
+    branches: [ ios_develop, actions_test ]
   pull_request:
     branches: [ ios_release, actions_test ]
   
