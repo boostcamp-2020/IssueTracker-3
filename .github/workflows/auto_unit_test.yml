@@ -14,9 +14,12 @@ jobs:
       XC_VERSION: ${{ '12.1.0' }}
       XC_PROJECT: ${{ 'iOS/IssueTracker/IssueTracker.xcworkspace' }}
       XC_SCHEME: ${{ 'IssueTrackerTests' }}
-      ISSUE_NUMBER: $(echo $GITHUB_REF | cut -d / -f 3)
     
     steps:
+      - name: Get the version
+        id: get_version
+        run: echo ::set-env name=ISSUE_NUMBER::$(echo $GITHUB_REF | cut -d / -f 3)
+        
       - uses: actions/checkout@v2
       - name: Install Dependencies
         working-directory: ./iOS/IssueTracker
