@@ -1,4 +1,4 @@
-name: Auto Unit Test and Fail Comment
+name: iOS CI
 
 on:
   push:
