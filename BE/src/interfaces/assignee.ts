@@ -1,5 +1,6 @@
+/* eslint-disable camelcase */
 export interface Assignee {
   id: number;
-  issueID: number;
-  userID: number;
+  issue_id: number;
+  user_id: number;
 }
