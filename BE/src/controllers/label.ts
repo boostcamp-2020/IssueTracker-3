@@ -12,3 +12,14 @@ const postLabel = async (req: Request, res: Response): Promise<any> => {
   const result = await LabelModel.add(label);
   return res.json(result);
 };
+const updateLabel = async (req: Request, res: Response): Promise<any> => {
+  const label: Label = {
+    id: req.body.id,
+    name: req.body.name,
+    description: req.body.description,
+    color: req.body.color,
+    created_at: new Date(),
+  };
+  const result = await LabelModel.edit(label);
+  return res.json(result);
+};
