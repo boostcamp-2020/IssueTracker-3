@@ -35,7 +35,7 @@ function githubLoginFail(req: Request, res: Response): any {
 }
 //const github = passport.authenticate("github", { failureRedirect: "/auth/github/loginFail" });
 function github(req: Request, res: Response): void {
-  passport.authenticate("local", (err, userResult) => {
+  passport.authenticate("github", (err, userResult) => {
     if (err || !userResult) {
       return res.status(400).json({
         message: "Something is not right",
