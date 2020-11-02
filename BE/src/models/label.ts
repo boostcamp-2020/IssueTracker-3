@@ -21,6 +21,11 @@ class LabelModel extends Model {
     return res;
   }
 
+  async add(pData: Label): Promise<number> {
+    const insertId = await super.insert<Label>(pData, `${this.tableName}`);
+    return insertId;
+  }
+
 }
 
 const labelModel = new LabelModel();

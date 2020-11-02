@@ -4,4 +4,5 @@ import LabelController from "@controllers/label";
 const router = express.Router();
 
 router.get("/", LabelController.getLabel);
+router.post("/", LabelController.postLabel);
 export = router;
