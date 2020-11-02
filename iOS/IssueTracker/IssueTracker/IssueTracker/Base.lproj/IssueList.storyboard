@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17126"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -13,7 +15,7 @@
             <objects>
                 <viewController storyboardIdentifier="IssueListViewController" id="3gb-xx-251" customClass="IssueListViewController" customModule="IssueTracker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="LRX-0S-xiC">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="gMJ-9A-2wT">
@@ -35,13 +37,13 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="레이블 목록 보기 구현" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lki-kq-UDe">
-                                                    <rect key="frame" x="16" y="9.9999999999999982" width="144.66666666666666" height="20.333333333333329"/>
+                                                    <rect key="frame" x="16" y="10" width="145" height="20.5"/>
                                                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="레이블 전체 목록을 볼 수 있어야 한다 2줄까지 보입니다." lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rz8-SB-ZgW">
-                                                    <rect key="frame" x="15.999999999999986" y="36.333333333333336" width="231.66666666666663" height="36.000000000000007"/>
+                                                    <rect key="frame" x="16" y="36.5" width="231.5" height="36"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <color key="textColor" red="0.23529411764705882" green="0.23529411764705882" blue="0.26666666666666666" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -50,7 +52,7 @@
                                                     <rect key="frame" x="289" y="11" width="74" height="66"/>
                                                     <subviews>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uE8-Jy-7th">
-                                                            <rect key="frame" x="2" y="0.0" width="70" height="17.333333333333332"/>
+                                                            <rect key="frame" x="2" y="0.0" width="70" height="17"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                             <inset key="contentEdgeInsets" minX="8" minY="2" maxX="9" maxY="0.0"/>
                                                             <state key="normal" title="스프린트2">
@@ -69,7 +71,7 @@
                                                             </userDefinedRuntimeAttributes>
                                                         </button>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="P2r-dP-hO9">
-                                                            <rect key="frame" x="5.6666666666666856" y="21.333333333333336" width="63" height="20"/>
+                                                            <rect key="frame" x="5.5" y="21" width="63" height="20.5"/>
                                                             <color key="backgroundColor" systemColor="systemBlueColor"/>
                                                             <inset key="contentEdgeInsets" minX="7" minY="2" maxX="7" maxY="1"/>
                                                             <state key="normal" title="feature">
@@ -82,7 +84,7 @@
                                                             </userDefinedRuntimeAttributes>
                                                         </button>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QbU-m2-Csv">
-                                                            <rect key="frame" x="16.666666666666686" y="45.333333333333336" width="41" height="20.666666666666664"/>
+                                                            <rect key="frame" x="16.5" y="45.5" width="41" height="20.5"/>
                                                             <color key="backgroundColor" systemColor="systemRedColor"/>
                                                             <inset key="contentEdgeInsets" minX="7" minY="2" maxX="7" maxY="2"/>
                                                             <state key="normal" title="bug">
@@ -121,7 +123,7 @@
                                 </connections>
                             </collectionView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="contactAdd" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cWt-Qc-OJy">
-                                <rect key="frame" x="313" y="667" width="44" height="44"/>
+                                <rect key="frame" x="352" y="800" width="44" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="44" id="KB5-Wp-t6l"/>
                                     <constraint firstAttribute="height" constant="44" id="kJq-z1-UyL"/>
@@ -160,11 +162,11 @@
             <objects>
                 <viewController id="5lT-kN-PTP" customClass="IssueFilterViewController" customModule="IssueTracker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="HaT-do-bD0">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zQQ-ry-YoI">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="56"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
                                 <items>
                                     <navigationItem largeTitleDisplayMode="always" id="wvP-Cz-i0S">
                                         <barButtonItem key="leftBarButtonItem" title="Cancel" id="qy8-sc-I8x">
@@ -181,25 +183,25 @@
                                 </items>
                             </navigationBar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ee0-7A-Cls">
-                                <rect key="frame" x="0.0" y="56" width="375" height="702"/>
+                                <rect key="frame" x="0.0" y="56" width="414" height="786"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="IssueFilterTableViewCell" textLabel="b3g-wu-bDh" detailTextLabel="R5h-P1-HQD" style="IBUITableViewCellStyleValue1" id="P8O-bc-yAG">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="43.666667938232422"/>
+                                        <rect key="frame" x="0.0" y="28" width="414" height="43.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="P8O-bc-yAG" id="hDq-xK-vcc" customClass="IssueFilterTableViewCell" customModule="IssueTracker" customModuleProvider="target">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.666667938232422"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="열린 이슈들" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="b3g-wu-bDh">
-                                                    <rect key="frame" x="16" y="11.999999999999998" width="78" height="20.333333333333332"/>
+                                                    <rect key="frame" x="20" y="12" width="78" height="20.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="&gt;" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="R5h-P1-HQD">
-                                                    <rect key="frame" x="348.66666666666669" y="11.999999999999998" width="10.333333333333334" height="20.333333333333332"/>
+                                                    <rect key="frame" x="383.5" y="12" width="10.5" height="20.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -241,11 +243,13 @@
             <objects>
                 <viewController id="lMJ-Dn-Q9j" customClass="IssueDetailViewController" customModule="IssueTracker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="UDn-aR-Nou">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <viewLayoutGuide key="safeArea" id="1Xg-HL-rZo"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
+                    <toolbarItems/>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="I9L-2x-rC8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -256,11 +260,11 @@
             <objects>
                 <viewController id="sam-5C-mGZ" customClass="CreateIssueViewController" customModule="IssueTracker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Fi7-tt-66z">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9Oh-4V-DOR">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="56"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
                                 <items>
                                     <navigationItem id="OGL-aS-dzZ">
                                         <barButtonItem key="leftBarButtonItem" title="Cancel" id="DIP-EE-fCT"/>
@@ -268,32 +272,32 @@
                                 </items>
                             </navigationBar>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="새 이슈" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oWw-TA-c4U">
-                                <rect key="frame" x="12" y="63" width="95.666666666666671" height="41"/>
+                                <rect key="frame" x="12" y="63" width="95.5" height="41"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="34"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="제목" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="d7M-AP-djI">
-                                <rect key="frame" x="12" y="133" width="351" height="22"/>
+                                <rect key="frame" x="12" y="133" width="390" height="22"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7Hw-mv-mKy" userLabel="Line View">
-                                <rect key="frame" x="12" y="163" width="351" height="1"/>
+                                <rect key="frame" x="12" y="163" width="390" height="1"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="1" id="thD-1L-Ku7"/>
                                 </constraints>
                             </view>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="fl3-aF-M7a">
-                                <rect key="frame" x="16" y="185" width="343" height="32"/>
+                                <rect key="frame" x="16" y="185" width="382" height="32"/>
                                 <segments>
                                     <segment title="마크다운"/>
                                     <segment title="미리보기"/>
                                 </segments>
                             </segmentedControl>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="코멘트는 여기에" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="7Qm-3i-rgo">
-                                <rect key="frame" x="20" y="223" width="335" height="494"/>
+                                <rect key="frame" x="20" y="223" width="374" height="578"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <color key="textColor" systemColor="labelColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -348,7 +352,7 @@
                     <tabBarItem key="tabBarItem" title="이슈" image="1.circle.fill" catalog="system" id="2y5-cR-K3w"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="plI-a0-IEk">
-                        <rect key="frame" x="0.0" y="44" width="375" height="96"/>
+                        <rect key="frame" x="0.0" y="44" width="414" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
