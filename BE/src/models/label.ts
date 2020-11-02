@@ -1,23 +1,18 @@
 import { Label } from "@interfaces/label";
-import { User } from "@interfaces/user";
 import Model from "@models/model";
 import db from "@providers/database";
 
 class LabelModel extends Model {
-  tableName: string;
+  protected tableName: string;
 
   constructor() {
     super();
     this.tableName = "LABEL";
   }
 
-  async get(): Promise<Array<Label>> {
-    const res: Array<Label> = [];
+  async select(): Promise<Array<Label>> {
     const data = await db.query(`select name, description, color, created_at from ${this.tableName}`);
-    data[0].forEach((labelData: any) => {
-      const label: Label = labelData;
-      res.push(label);
-    });
+    const res: Array<Label> = [...data[0]];
     return res;
   }
 
@@ -31,7 +26,7 @@ class LabelModel extends Model {
     return affecedId;
   }
 
-  async remove(id: number): Promise<number> {
+  async del(id: number): Promise<number> {
     const affecedId = await super.delete(id, `${this.tableName}`);
     return affecedId;
   }

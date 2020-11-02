@@ -3,6 +3,8 @@ import db from "@providers/database";
 export default abstract class Model {
   data: any;
 
+  protected abstract tableName: string;
+
   constructor() {
     this.data = 0;
   }

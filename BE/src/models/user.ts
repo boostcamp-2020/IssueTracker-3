@@ -3,11 +3,11 @@ import db from "@providers/database";
 import { User } from "@interfaces/user";
 
 class UserModel extends Model {
-  type: string;
+  protected tableName: string;
 
   constructor() {
     super();
-    this.type = "USERMODEL";
+    this.tableName = "USER";
   }
 
   async select<T>(pData: T): Promise<User> {
@@ -22,7 +22,7 @@ class UserModel extends Model {
   }
 
   async addUser(pData: User): Promise<number> {
-    this.data = await super.insert(pData, "USER");
+    this.data = await super.insert(pData, this.tableName);
     return this.data;
   }
 }

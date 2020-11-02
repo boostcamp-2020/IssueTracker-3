@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
-import { Milestone } from "../interfaces/milestone";
-import MilestoneModel from "../models/milestone";
+import { Milestone } from "@interfaces/milestone";
+import MilestoneModel from "@models/milestone";
 
 const get = async (req: Request, res: Response): Promise<Response> => {
   const result = await MilestoneModel.select();
