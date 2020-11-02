@@ -390,27 +390,62 @@ HTML형태로 보여줘야 할까요</string>
                     <toolbarItems/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <segue destination="6Re-li-5VW" kind="custom" id="mzW-jG-FYl"/>
+                        <segue destination="6Re-li-5VW" kind="presentation" id="AIl-p8-bk6"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="I9L-2x-rC8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-939" y="3376"/>
+            <point key="canvasLocation" x="-936" y="4064"/>
         </scene>
-        <!--View Controller-->
+        <!--Issue Management View Controller-->
         <scene sceneID="gpk-5A-NjN">
             <objects>
-                <viewController id="6Re-li-5VW" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="IssueManagementViewController" id="6Re-li-5VW" customClass="IssueManagementViewController" customModule="IssueTracker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="t5f-hx-K2G">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fig-JY-iaM">
+                                <rect key="frame" x="30" y="32" width="230" height="30"/>
+                                <color key="backgroundColor" systemColor="systemGreenColor"/>
+                                <state key="normal" title="댓글 추가"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tq7-kJ-FY0">
+                                <rect key="frame" x="287" y="32" width="42" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="위"/>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YXY-25-9aC">
+                                <rect key="frame" x="186" y="653" width="42" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SUD-Zb-Nl2">
+                                <rect key="frame" x="341" y="31" width="30" height="30"/>
+                                <color key="backgroundColor" systemColor="systemGreenColor"/>
+                                <state key="normal" title="아래"/>
+                            </button>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="Ff6-XA-WkT"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="Ff6-XA-WkT" firstAttribute="trailing" secondItem="SUD-Zb-Nl2" secondAttribute="trailing" constant="43" id="2SS-Ed-GyE"/>
+                            <constraint firstItem="fig-JY-iaM" firstAttribute="top" secondItem="Ff6-XA-WkT" secondAttribute="top" constant="32" id="Djl-B4-uz4"/>
+                            <constraint firstItem="fig-JY-iaM" firstAttribute="leading" secondItem="Ff6-XA-WkT" secondAttribute="leading" constant="30" id="LCG-aa-HUe"/>
+                            <constraint firstItem="SUD-Zb-Nl2" firstAttribute="top" secondItem="Ff6-XA-WkT" secondAttribute="top" constant="31" id="ewa-fa-XgY"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="addCommentButton" destination="fig-JY-iaM" id="r7j-bQ-BWk"/>
+                        <outlet property="downButton" destination="SUD-Zb-Nl2" id="KzU-PA-4Re"/>
+                        <outlet property="upButtom" destination="Tq7-kJ-FY0" id="TcC-XE-uuC"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ITf-94-2ML" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-939" y="4140"/>
+            <point key="canvasLocation" x="-936.23188405797111" y="4753.125"/>
         </scene>
         <!--Create Issue View Controller-->
         <scene sceneID="5EK-P7-WOP">
@@ -536,6 +571,9 @@ HTML형태로 보여줘야 할까요</string>
         </systemColor>
         <systemColor name="systemBlueColor">
             <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemGreenColor">
+            <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemRedColor">
             <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
