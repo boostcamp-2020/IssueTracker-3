@@ -23,7 +23,7 @@ class Passport {
         }
       )
     );
-    //Github Strategy
+    // Github Strategy
     passport.use(
       new GithubStrategy(
         {
