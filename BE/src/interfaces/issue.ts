@@ -1,10 +1,11 @@
+/* eslint-disable camelcase */
 export interface Issue {
-  id: number;
+  id: number | null;
   title: string;
   body: string;
-  userID: number;
+  user_id: number;
   state: boolean;
-  milestoneID: number;
-  createdAt: Date;
-  closedAt: Date;
+  milestone_id: number;
+  created_at: Date;
+  closed_at: Date;
 }

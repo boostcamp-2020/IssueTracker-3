@@ -1,6 +1,6 @@
 /* eslint-disable camelcase */
-export interface Assignee {
+export interface Label {
   id: number | null;
   issue_id: number;
-  user_id: number;
+  iabel_id: number;
 }
