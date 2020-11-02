@@ -9,11 +9,13 @@ import UIKit
 
 class IssueFilterViewController: UIViewController {
     @IBOutlet weak var issueFilterTableView: UITableView!
-    
+    @IBOutlet weak var headerView: UIView!
+
     override func viewDidLoad() {
         super.viewDidLoad()
         issueFilterTableView.dataSource = self
         issueFilterTableView.delegate = self
+
     }
     
     @IBAction func cancelButtonTouched(_ sender: UIBarButtonItem) {
@@ -38,5 +40,14 @@ extension IssueFilterViewController: UITableViewDelegate {
 extension IssueFilterViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         tableView.dequeueReusableCell(withIdentifier: "IssueFilterTableViewCell", for: indexPath)
+    }
+
+    func tableView(_ tableView: UITableView,
+                   viewForHeaderInSection section: Int) -> UIView? {
+
+        if section == 0 {
+            return HeaderView(text: "다음 중에 조건을 고르세요")
+        }
+        return HeaderView(text: "세부 조건")
     }
 }
