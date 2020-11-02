@@ -30,6 +30,11 @@ class LabelModel extends Model {
     const affecedId = await super.update<Label>(pData, `${this.tableName}`);
     return affecedId;
   }
+
+  async remove(id: number): Promise<number> {
+    const affecedId = await super.delete(id, `${this.tableName}`);
+    return affecedId;
+  }
 }
 
 const labelModel = new LabelModel();

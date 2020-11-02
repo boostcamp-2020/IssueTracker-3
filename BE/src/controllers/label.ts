@@ -23,3 +23,11 @@ const updateLabel = async (req: Request, res: Response): Promise<any> => {
   const result = await LabelModel.edit(label);
   return res.json(result);
 };
+
+const deleteLabel = async (req: Request, res: Response): Promise<any> => {
+  const { id } = req.body;
+  const result = await LabelModel.remove(id);
+  return res.json(result);
+};
+
+export default { getLabel, postLabel, updateLabel, deleteLabel };
