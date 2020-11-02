@@ -10,12 +10,12 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-    <!--이슈-->
+        <!--이슈-->
         <scene sceneID="DUF-ay-SM2">
             <objects>
                 <viewController storyboardIdentifier="IssueListViewController" id="3gb-xx-251" customClass="IssueListViewController" customModule="IssueTracker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="LRX-0S-xiC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="gMJ-9A-2wT">
@@ -37,13 +37,13 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="레이블 목록 보기 구현" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lki-kq-UDe">
-                                                    <rect key="frame" x="16" y="9.9999999999999982" width="144.66666666666666" height="20.333333333333329"/>
+                                                    <rect key="frame" x="16" y="10" width="145" height="20.5"/>
                                                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="레이블 전체 목록을 볼 수 있어야 한다 2줄까지 보입니다." lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rz8-SB-ZgW">
-                                                    <rect key="frame" x="15.999999999999986" y="36.333333333333336" width="231.66666666666663" height="36.000000000000007"/>
+                                                    <rect key="frame" x="16" y="36.5" width="231.5" height="36"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <color key="textColor" red="0.23529411764705882" green="0.23529411764705882" blue="0.26666666666666666" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -52,7 +52,7 @@
                                                     <rect key="frame" x="289" y="11" width="74" height="66"/>
                                                     <subviews>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uE8-Jy-7th">
-                                                            <rect key="frame" x="2" y="0.0" width="70" height="17.333333333333332"/>
+                                                            <rect key="frame" x="2" y="0.0" width="70" height="17"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                             <inset key="contentEdgeInsets" minX="8" minY="2" maxX="9" maxY="0.0"/>
                                                             <state key="normal" title="스프린트2">
@@ -71,7 +71,7 @@
                                                             </userDefinedRuntimeAttributes>
                                                         </button>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="P2r-dP-hO9">
-                                                            <rect key="frame" x="5.6666666666666856" y="21.333333333333336" width="63" height="20"/>
+                                                            <rect key="frame" x="5.5" y="21" width="63" height="20.5"/>
                                                             <color key="backgroundColor" systemColor="systemBlueColor"/>
                                                             <inset key="contentEdgeInsets" minX="7" minY="2" maxX="7" maxY="1"/>
                                                             <state key="normal" title="feature">
@@ -84,7 +84,7 @@
                                                             </userDefinedRuntimeAttributes>
                                                         </button>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QbU-m2-Csv">
-                                                            <rect key="frame" x="16.666666666666686" y="45.333333333333336" width="41" height="20.666666666666664"/>
+                                                            <rect key="frame" x="16.5" y="45.5" width="41" height="20.5"/>
                                                             <color key="backgroundColor" systemColor="systemRedColor"/>
                                                             <inset key="contentEdgeInsets" minX="7" minY="2" maxX="7" maxY="2"/>
                                                             <state key="normal" title="bug">
@@ -123,7 +123,7 @@
                                 </connections>
                             </collectionView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="contactAdd" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cWt-Qc-OJy">
-                                <rect key="frame" x="313" y="667" width="44" height="44"/>
+                                <rect key="frame" x="352" y="800" width="44" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="44" id="KB5-Wp-t6l"/>
                                     <constraint firstAttribute="height" constant="44" id="kJq-z1-UyL"/>
@@ -389,10 +389,28 @@ HTML형태로 보여줘야 할까요</string>
                     </view>
                     <toolbarItems/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <segue destination="6Re-li-5VW" kind="custom" id="mzW-jG-FYl"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="I9L-2x-rC8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-938" y="3376"/>
+            <point key="canvasLocation" x="-939" y="3376"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="gpk-5A-NjN">
+            <objects>
+                <viewController id="6Re-li-5VW" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="t5f-hx-K2G">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="Ff6-XA-WkT"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ITf-94-2ML" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-939" y="4140"/>
         </scene>
         <!--Create Issue View Controller-->
         <scene sceneID="5EK-P7-WOP">
