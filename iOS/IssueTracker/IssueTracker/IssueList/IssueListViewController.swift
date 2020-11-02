@@ -11,7 +11,8 @@ class IssueListViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        navigationItem.searchController = UISearchController(searchResultsController: nil)
+        navigationItem.hidesSearchBarWhenScrolling = false
     }
 }
 
@@ -27,19 +28,9 @@ extension IssueListViewController: UICollectionViewDataSource {
         1
     }
     
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        //      guard let cell = collectionView.dequeueReusableCell(
-        //              withReuseIdentifier: "IssueListCell", for: indexPath) else {
-        //        return UICollectionViewCell()
-        //      }
+    func collectionView(_ collectionView: UICollectionView,
+                        cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+
         return collectionView.dequeueReusableCell(withReuseIdentifier: "IssueListCell", for: indexPath)
     }
-    
-    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-      return collectionView.dequeueReusableSupplementaryView(ofKind: kind,
-                                                             withReuseIdentifier: "HeaderCollectionReusableView",
-                                                             for: indexPath)
-    }
 }
-
-
