@@ -17,7 +17,12 @@ class IssueListViewController: UIViewController {
 }
 
 extension IssueListViewController: UICollectionViewDelegate {
-    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard let storyboard = UIStoryboard(name: "IssueList", bundle: nil)
+                .instantiateViewController(identifier: "IssueDetailViewController") as? IssueDetailViewController else { return }
+        
+        navigationController?.pushViewController(storyboard, animated: true)
+    }
 }
 
 extension IssueListViewController: UICollectionViewDataSource {
