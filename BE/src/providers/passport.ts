@@ -32,8 +32,8 @@ class Passport {
           callbackURL: process.env.GIT_CALLBACK as string,
         },
         async (accessToken, refreshToken, profile, done) => {
-          const user = profile;
-          return done(null, { user, accessToken }, { message: "Logged In Successfully" });
+          const user = { profile, accessToken };
+          return done(null, user, { message: "Logged In Successfully" });
         }
       )
     );

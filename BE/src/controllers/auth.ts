@@ -28,28 +28,11 @@ function logout(req: Request, res: Response): any {
   return res.json({ state: "success" });
 }
 function githubLogin(req: Request, res: Response): any {
-  console.log(req.body);
+  console.log(req.user);
   return res.json({ state: "success" });
 }
 function githubLoginFail(req: Request, res: Response): any {
   return res.json({ state: "fail" });
 }
-//const github = passport.authenticate("github", { failureRedirect: "/auth/github/loginFail" });
-function github(req: Request, res: Response): void {
-  passport.authenticate("github", (err, userResult) => {
-    if (err || !userResult) {
-      return res.status(400).json({
-        message: "Something is not right",
-        user: userResult,
-      });
-    }
-    req.login(userResult, (error) => {
-      if (error) {
-        return res.send(error);
-      }
-      const token = jwt.sign(JSON.parse(JSON.stringify(userResult)), String(process.env.JWT_SECRET), { expiresIn: "10m" });
-      return res.json({ userResult, token });
-    });
-  })(req, res);
-}
+const github = passport.authenticate("github", { failureRedirect: "/auth/github/loginFail" });
 export default { login, logout, githubLogin, githubLoginFail, github };
