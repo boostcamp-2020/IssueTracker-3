@@ -8,16 +8,24 @@
 import UIKit
 
 class IssueFilterViewController: UIViewController {
-    @IBOutlet weak var tableView: UITableView!
-
+    @IBOutlet weak var issueFilterTableView: UITableView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.dataSource = self
-        tableView.delegate = self
+        issueFilterTableView.dataSource = self
+        issueFilterTableView.delegate = self
+    }
+    
+    @IBAction func cancelButtonTouched(_ sender: UIBarButtonItem) {
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+    @IBAction func doneButtonTouched(_ sender: UIBarButtonItem) {
+        
     }
 }
 
-extension IssueFilterViewController: UITableViewDataSource {
+extension IssueFilterViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         5
     }
@@ -25,12 +33,10 @@ extension IssueFilterViewController: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         2
     }
+}
 
+extension IssueFilterViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         tableView.dequeueReusableCell(withIdentifier: "IssueFilterTableViewCell", for: indexPath)
     }
-}
-
-extension IssueFilterViewController: UITableViewDelegate {
-
 }
