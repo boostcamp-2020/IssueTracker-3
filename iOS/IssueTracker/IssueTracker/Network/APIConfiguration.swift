@@ -17,7 +17,8 @@ protocol APIConfiguration: URLRequestConvertible {
 }
 
 struct APIServer {
-    static let baseURL = "http://api.boostcamp.com"
+//    static let baseURL = "http://api.boostcamp.com"
+    static let baseURL = "http://101.101.210.34:3000/"
 }
 
 // TODO: API명세서 맞추기
