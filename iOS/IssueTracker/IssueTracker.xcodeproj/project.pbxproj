@@ -43,6 +43,8 @@
 		BBCC49F32547E9FD00FAB2F4 /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBCC49F22547E9FD00FAB2F4 /* UIViewExtension.swift */; };
 		BBCC4A032547FCF800FAB2F4 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBCC4A022547FCF800FAB2F4 /* SignUpViewController.swift */; };
 		BBCC4A132548204200FAB2F4 /* SignInInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBCC4A122548204200FAB2F4 /* SignInInteractor.swift */; };
+		BBE2860A25503C1200A59009 /* Authentication.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BBE2860825503C1200A59009 /* Authentication.storyboard */; };
+		BBE2861125503D8A00A59009 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBE2861025503D8A00A59009 /* SettingViewController.swift */; };
 		FB61544F48E987F7556EC50C /* libPods-IssueTracker.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8FB431BFDCDAC5FA1D443DF4 /* libPods-IssueTracker.a */; };
 /* End PBXBuildFile section */
 
@@ -99,6 +101,8 @@
 		BBCC49F22547E9FD00FAB2F4 /* UIViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
 		BBCC4A022547FCF800FAB2F4 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		BBCC4A122548204200FAB2F4 /* SignInInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInInteractor.swift; sourceTree = "<group>"; };
+		BBE2860925503C1200A59009 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = IssueTracker/Base.lproj/Authentication.storyboard; sourceTree = "<group>"; };
+		BBE2861025503D8A00A59009 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		E3F70225329F0E308853325D /* Pods-IssueTracker.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IssueTracker.release.xcconfig"; path = "Target Support Files/Pods-IssueTracker/Pods-IssueTracker.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -246,6 +250,7 @@
 				701343B6254906D30044080A /* Network */,
 				7006F9002547EC850051EC0A /* SignIn */,
 				BBCC4A012547FCD700FAB2F4 /* SignUp */,
+				BBE2860F25503D6400A59009 /* Setting */,
 				708EFEED2546DBC9009D9DEC /* AppDelegate.swift */,
 				708EFEEF2546DBC9009D9DEC /* SceneDelegate.swift */,
 				708EFEF12546DBC9009D9DEC /* ViewController.swift */,
@@ -254,6 +259,7 @@
 				708EFEF82546DBCA009D9DEC /* LaunchScreen.storyboard */,
 				708EFEFB2546DBCA009D9DEC /* Info.plist */,
 				708EFEF32546DBC9009D9DEC /* Main.storyboard */,
+				BBE2860825503C1200A59009 /* Authentication.storyboard */,
 				705930F72550380F003FE49F /* IssueList.storyboard */,
 				705930FE25503840003FE49F /* Label.storyboard */,
 				7059310425503859003FE49F /* MileStone.storyboard */,
@@ -313,6 +319,14 @@
 				BBCC4A022547FCF800FAB2F4 /* SignUpViewController.swift */,
 			);
 			path = SignUp;
+			sourceTree = "<group>";
+		};
+		BBE2860F25503D6400A59009 /* Setting */ = {
+			isa = PBXGroup;
+			children = (
+				BBE2861025503D8A00A59009 /* SettingViewController.swift */,
+			);
+			path = Setting;
 			sourceTree = "<group>";
 		};
 		C689676893C0F30050631770 /* Frameworks */ = {
@@ -417,6 +431,7 @@
 				705930F92550380F003FE49F /* IssueList.storyboard in Resources */,
 				705930FF25503840003FE49F /* Label.storyboard in Resources */,
 				708EFEF72546DBCA009D9DEC /* Assets.xcassets in Resources */,
+				BBE2860A25503C1200A59009 /* Authentication.storyboard in Resources */,
 				708EFEF52546DBC9009D9DEC /* Main.storyboard in Resources */,
 				7059310C2550386F003FE49F /* Setting.storyboard in Resources */,
 			);
@@ -483,6 +498,7 @@
 				BB41E02B2549655B008245A3 /* SignInEndPoint.swift in Sources */,
 				705930DB25500126003FE49F /* IssueFilterTableViewCell.swift in Sources */,
 				BBCC49F32547E9FD00FAB2F4 /* UIViewExtension.swift in Sources */,
+				BBE2861125503D8A00A59009 /* SettingViewController.swift in Sources */,
 				BBCC49ED2547E8F300FAB2F4 /* SignInViewController.swift in Sources */,
 				BB65A04C254FED2000D09DD5 /* IssueDetailViewController.swift in Sources */,
 				708EFEF22546DBC9009D9DEC /* ViewController.swift in Sources */,
@@ -556,6 +572,14 @@
 				708EFEF92546DBCA009D9DEC /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		BBE2860825503C1200A59009 /* Authentication.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				BBE2860925503C1200A59009 /* Base */,
+			);
+			name = Authentication.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

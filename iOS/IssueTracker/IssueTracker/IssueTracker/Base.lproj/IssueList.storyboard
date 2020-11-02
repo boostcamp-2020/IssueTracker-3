@@ -281,6 +281,8 @@
                             <constraint firstItem="Etv-eu-euX" firstAttribute="top" secondItem="1Xg-HL-rZo" secondAttribute="top" id="gC6-nN-iBH"/>
                         </constraints>
                     </view>
+                    <toolbarItems/>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="I9L-2x-rC8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
