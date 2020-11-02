@@ -2,10 +2,30 @@ import Model from "@models/model";
 import db from "@providers/database";
 import { User } from "@interfaces/user";
 
-export default class UserModel extends Model {
-  static async read(pLoginID: string, pTableName: string): Promise<User> {
-    const data = await db.query(`SELECT * FROM ${pTableName} WHERE login_id = ?`, pLoginID);
-    const userData: User = data[0][0];
-    return userData;
+class UserModel extends Model {
+  type: string;
+
+  constructor() {
+    super();
+    this.type = "USERMODEL";
+  }
+
+  async select<T>(pData: T): Promise<User> {
+    try {
+      const result = await db.query<T>(`SELECT * FROM USER WHERE login_id = ?`, pData);
+      this.data = [...result[0]];
+      return this.data;
+    } catch (err) {
+      console.error(err);
+      return err;
+    }
+  }
+
+  async addUser(pData: User): Promise<number> {
+    this.data = await super.insert(pData, "USER");
+    return this.data;
   }
 }
+
+const user = new UserModel();
+export default user;
