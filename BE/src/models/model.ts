@@ -1,22 +1,50 @@
 import db from "@providers/database";
 
-export default class Model {
-  static async insert<T>(pData: T, pTableName: string): Promise<number> {
-    const data = await db.query<T>(`INSERT INTO ${pTableName} SET ?`, pData);
-    const { insertId } = data[0];
-    return insertId;
+export default abstract class Model {
+  data: any;
+
+  protected abstract tableName: string;
+
+  constructor() {
+    this.data = 0;
   }
 
-  static async update<T>(pData: T, pTableName: string): Promise<number> {
-    const id = Object.entries(pData)[0][1];
-    const result = await db.query<Array<any>>(`UPDATE ${pTableName} SET ? WHERE id = ?`, [pData, id]);
-    const { affectedRows } = result[0];
-    return affectedRows;
+  async insert<T>(pData: T, pTableName: string): Promise<number> {
+    try {
+      const data = await db.query<T>(`INSERT INTO ${pTableName} SET ?`, pData);
+      const { insertId } = data[0];
+      this.data = insertId;
+      return this.data;
+    } catch (err) {
+      console.error(err);
+      return err;
+    }
   }
 
-  static async delete(id: number, pTableName: string): Promise<number> {
-    const result = await db.query<number>(`DELETE FROM ${pTableName} WHERE id = ?`, id);
-    const { affectedRows } = result[0];
-    return affectedRows;
+  async update<T>(pData: T, pTableName: string): Promise<number> {
+    try {
+      const id = Object.entries(pData)[0][1];
+      const result = await db.query<Array<any>>(`UPDATE ${pTableName} SET ? WHERE id = ?`, [pData, id]);
+      const { affectedRows } = result[0];
+      this.data = affectedRows;
+      return this.data;
+    } catch (err) {
+      console.error(err);
+      return err;
+    }
   }
+
+  async delete(id: number, pTableName: string): Promise<number> {
+    try {
+      const result = await db.query<number>(`DELETE FROM ${pTableName} WHERE id = ?`, id);
+      const { affectedRows } = result[0];
+      this.data = affectedRows;
+      return this.data;
+    } catch (err) {
+      console.error(err);
+      return err;
+    }
+  }
+
+  abstract async select<T>(pData: T): Promise<any>;
 }

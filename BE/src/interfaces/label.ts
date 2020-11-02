@@ -1,8 +1,8 @@
 /* eslint-disable camelcase */
-export interface LabelList {
+export interface Label {
   id: number | null;
   name: string;
   description: string;
   color: string;
-  create_at: Date;
+  created_at: Date;
 }
