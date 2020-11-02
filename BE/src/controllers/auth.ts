@@ -40,4 +40,4 @@ function apple(req: Request, res: Response): any {
   const user = req.body;
   return res.json({ user });
 }
-export default { login, logout, githubLogin, githubLoginFail, github };
+export default { login, logout, githubLogin, githubLoginFail, github, apple };

@@ -11,6 +11,8 @@ router.get("/github", authController.github);
 router.get("/github/callback", authController.github, authController.githubLogin);
 router.get("/github/loginFail", authController.githubLoginFail);
 
+router.post("/apple", authController.apple);
+
 router.get("/logout", authController.logout);
 router.post("/register", async (req: Request, res: Response, next: NextFunction) => {
   const user: User = {
