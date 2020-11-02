@@ -1,3 +1,4 @@
+import "module-alias/register";
 import App from "./app";
 
 (async function main() {

@@ -1,6 +1,4 @@
-import db from "../providers/database";
-import Model from "./model";
-import { User } from "../interfaces/user";
+import Model from "@models/model";
 
 export default class UserModel extends Model {
   static async read(pLoginID: string, pTableName: string): Promise<User> {

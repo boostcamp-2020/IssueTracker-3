@@ -4,14 +4,14 @@ import session from "express-session";
 import bodyParser from "body-parser";
 import helmet from "helmet";
 
-import index from "./routes/index";
-import auth from "./routes/auth";
-import milestone from "./routes/milestone";
-import label from "./routes/label";
-import issue from "./routes/issue";
-import event from "./routes/event";
+import index from "@routes/index";
+import auth from "@routes/auth";
+import milestone from "@routes/milestone";
+import label from "@routes/label";
+import issue from "@routes/issue";
+import event from "@routes/event";
 
-import Passport from "./providers/passport";
+import Passport from "@providers/passport";
 
 class App {
   private app: Application;
