@@ -28,6 +28,7 @@ function logout(req: Request, res: Response): any {
   return res.json({ state: "success" });
 }
 function githubLogin(req: Request, res: Response): any {
+  console.log(req.body);
   return res.json({ state: "success" });
 }
 function githubLoginFail(req: Request, res: Response): any {
