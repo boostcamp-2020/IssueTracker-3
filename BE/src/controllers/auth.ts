@@ -18,8 +18,8 @@ function login(req: Request, res: Response): void {
       if (error) {
         return res.send(error);
       }
-      const token = jwt.sign(JSON.parse(JSON.stringify(userResult)), String(process.env.JWT_SECRET), { expiresIn: "10m" });
-      return res.json({ userResult, token });
+      const accessToken = jwt.sign(JSON.parse(JSON.stringify(userResult)), String(process.env.JWT_SECRET), { expiresIn: "10m" });
+      return res.json({ userResult, accessToken });
     });
   })(req, res);
 }
@@ -28,8 +28,8 @@ function logout(req: Request, res: Response): any {
   return res.json({ state: "success" });
 }
 function githubLogin(req: Request, res: Response): any {
-  console.log(req.user);
-  return res.json({ state: "success" });
+  const userResult = req.user;
+  return res.json({ state: "success", userResult });
 }
 function githubLoginFail(req: Request, res: Response): any {
   return res.json({ state: "fail" });
