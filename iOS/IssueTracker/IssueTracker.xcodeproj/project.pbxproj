@@ -31,6 +31,8 @@
 		BB52171B254A9EAF008455D4 /* OAuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB52171A254A9EAF008455D4 /* OAuthManager.swift */; };
 		BB65A046254FECA300D09DD5 /* IssueListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB65A045254FECA300D09DD5 /* IssueListViewController.swift */; };
 		BB65A04C254FED2000D09DD5 /* IssueDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB65A04B254FED2000D09DD5 /* IssueDetailViewController.swift */; };
+		BB91912425500E25007D25B7 /* CreateIssueViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB91912325500E25007D25B7 /* CreateIssueViewController.swift */; };
+		BB91912925500E8F007D25B7 /* EditIssueViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB91912825500E8F007D25B7 /* EditIssueViewController.swift */; };
 		BBCC49ED2547E8F300FAB2F4 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBCC49EC2547E8F300FAB2F4 /* SignInViewController.swift */; };
 		BBCC49F32547E9FD00FAB2F4 /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBCC49F22547E9FD00FAB2F4 /* UIViewExtension.swift */; };
 		BBCC4A032547FCF800FAB2F4 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBCC4A022547FCF800FAB2F4 /* SignUpViewController.swift */; };
@@ -79,6 +81,8 @@
 		BB52171A254A9EAF008455D4 /* OAuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OAuthManager.swift; sourceTree = "<group>"; };
 		BB65A045254FECA300D09DD5 /* IssueListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueListViewController.swift; sourceTree = "<group>"; };
 		BB65A04B254FED2000D09DD5 /* IssueDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueDetailViewController.swift; sourceTree = "<group>"; };
+		BB91912325500E25007D25B7 /* CreateIssueViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateIssueViewController.swift; sourceTree = "<group>"; };
+		BB91912825500E8F007D25B7 /* EditIssueViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditIssueViewController.swift; sourceTree = "<group>"; };
 		BBCC49EC2547E8F300FAB2F4 /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		BBCC49F22547E9FD00FAB2F4 /* UIViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
 		BBCC4A022547FCF800FAB2F4 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
@@ -212,6 +216,8 @@
 		708EFEEC2546DBC9009D9DEC /* IssueTracker */ = {
 			isa = PBXGroup;
 			children = (
+				BB91912725500E7E007D25B7 /* EditIssue */,
+				BB91912225500D6F007D25B7 /* CreateIssue */,
 				705930D2254FFF47003FE49F /* IssueFilter */,
 				BB65A044254FEC7200D09DD5 /* IssueDetail */,
 				705930BE254FE232003FE49F /* IssueList */,
@@ -257,6 +263,22 @@
 				BB65A04B254FED2000D09DD5 /* IssueDetailViewController.swift */,
 			);
 			path = IssueDetail;
+			sourceTree = "<group>";
+		};
+		BB91912225500D6F007D25B7 /* CreateIssue */ = {
+			isa = PBXGroup;
+			children = (
+				BB91912325500E25007D25B7 /* CreateIssueViewController.swift */,
+			);
+			path = CreateIssue;
+			sourceTree = "<group>";
+		};
+		BB91912725500E7E007D25B7 /* EditIssue */ = {
+			isa = PBXGroup;
+			children = (
+				BB91912825500E8F007D25B7 /* EditIssueViewController.swift */,
+			);
+			path = EditIssue;
 			sourceTree = "<group>";
 		};
 		BBCC4A012547FCD700FAB2F4 /* SignUp */ = {
@@ -427,6 +449,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BBCC4A032547FCF800FAB2F4 /* SignUpViewController.swift in Sources */,
+				BB91912925500E8F007D25B7 /* EditIssueViewController.swift in Sources */,
 				BB41E02B2549655B008245A3 /* SignInEndPoint.swift in Sources */,
 				705930DB25500126003FE49F /* IssueFilterTableViewCell.swift in Sources */,
 				BBCC49F32547E9FD00FAB2F4 /* UIViewExtension.swift in Sources */,
@@ -440,6 +463,7 @@
 				708EFEEE2546DBC9009D9DEC /* AppDelegate.swift in Sources */,
 				702D6C38254AB0DB00E1A706 /* KeychainItem.swift in Sources */,
 				702D6C0B254A8E0100E1A706 /* SignInWithAppleButton.swift in Sources */,
+				BB91912425500E25007D25B7 /* CreateIssueViewController.swift in Sources */,
 				BB65A046254FECA300D09DD5 /* IssueListViewController.swift in Sources */,
 				BBCC4A132548204200FAB2F4 /* SignInInteractor.swift in Sources */,
 				708EFEF02546DBC9009D9DEC /* SceneDelegate.swift in Sources */,
