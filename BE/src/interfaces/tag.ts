@@ -1,5 +1,5 @@
 /* eslint-disable camelcase */
-export interface Label {
+export interface Tag {
   id: number | null;
   issue_id: number;
   iabel_id: number;
