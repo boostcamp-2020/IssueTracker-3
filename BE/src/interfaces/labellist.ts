@@ -1,6 +1,6 @@
 /* eslint-disable camelcase */
 export interface LabelList {
-  id: number;
+  id: number | null;
   name: string;
   description: string;
   color: string;

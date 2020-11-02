@@ -1,6 +1,6 @@
 /* eslint-disable camelcase */
 export interface Issue {
-  id: number;
+  id: number | null;
   title: string;
   body: string;
   user_id: number;

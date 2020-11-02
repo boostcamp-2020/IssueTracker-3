@@ -1,6 +1,6 @@
 /* eslint-disable camelcase */
 export interface Event {
-  id: number;
+  id: number | null;
   issue_id: number;
   actor: string;
   log: string;

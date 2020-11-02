@@ -1,6 +1,6 @@
 /* eslint-disable camelcase */
 export interface Comment {
-  id: number;
+  id: number | null;
   issue_id: number;
   user_id: number;
   body: string;
