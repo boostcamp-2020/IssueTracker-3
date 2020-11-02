@@ -31,9 +31,9 @@ class Passport {
           clientSecret: process.env.GIT_PASSWORD as string,
           callbackURL: process.env.GIT_CALLBACK as string,
         },
-        async (accessToken, refreshToken, profile, cb) => {
-          const user = profile;
-          return cb(null, user);
+        async (accessToken, refreshToken, profile, done) => {
+          const user = { profile, accessToken };
+          return done(null, user, { message: "Logged In Successfully" });
         }
       )
     );

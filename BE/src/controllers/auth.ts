@@ -1,5 +1,10 @@
 import { Request, Response } from "express";
 import passport from "passport";
+import jwt from "jsonwebtoken";
+import dotenv from "dotenv";
+import path from "path";
+
+dotenv.config({ path: path.join(__dirname, "../../.env") });
 
 function login(req: Request, res: Response): void {
   passport.authenticate("local", (err, userResult) => {
@@ -13,7 +18,8 @@ function login(req: Request, res: Response): void {
       if (error) {
         return res.send(error);
       }
-      return res.json({ userResult });
+      const accessToken = jwt.sign(JSON.parse(JSON.stringify(userResult)), String(process.env.JWT_SECRET), { expiresIn: "10m" });
+      return res.json({ userResult, accessToken });
     });
   })(req, res);
 }
@@ -22,7 +28,8 @@ function logout(req: Request, res: Response): any {
   return res.json({ state: "success" });
 }
 function githubLogin(req: Request, res: Response): any {
-  return res.json({ state: "success" });
+  const userResult = req.user;
+  return res.json({ state: "success", userResult });
 }
 function githubLoginFail(req: Request, res: Response): any {
   return res.json({ state: "fail" });
