@@ -33,7 +33,7 @@ class Passport {
         },
         async (accessToken, refreshToken, profile, done) => {
           const user = profile;
-          return done(null, user);
+          return done(null, { user, accessToken }, { message: "Logged In Successfully" });
         }
       )
     );
