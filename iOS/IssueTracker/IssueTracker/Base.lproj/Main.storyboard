@@ -467,10 +467,10 @@
             </objects>
             <point key="canvasLocation" x="1548" y="1827.3399014778327"/>
         </scene>
-        <!--View Controller-->
+        <!--이슈-->
         <scene sceneID="DUF-ay-SM2">
             <objects>
-                <viewController id="3gb-xx-251" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="IssueListViewController" id="3gb-xx-251" customClass="IssueListViewController" customModule="IssueTracker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="LRX-0S-xiC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -479,14 +479,14 @@
                                 <rect key="frame" x="0.0" y="44" width="375" height="685"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Ejc-cX-RjK">
-                                    <size key="itemSize" width="375" height="128"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Ejc-cX-RjK">
+                                    <size key="itemSize" width="375" height="88"/>
                                     <size key="headerReferenceSize" width="50" height="109"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gwF-wj-lmi">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="IssueListCell" id="gwF-wj-lmi">
                                         <rect key="frame" x="0.0" y="109" width="375" height="88"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="A55-YJ-JBY">
@@ -505,11 +505,13 @@
                                                     <color key="textColor" red="0.23529411764705882" green="0.23529411764705882" blue="0.26666666666666666" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="pgy-ki-F4b">
+                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" alignment="center" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="pgy-ki-F4b">
                                                     <rect key="frame" x="289" y="11" width="74" height="66"/>
                                                     <subviews>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uE8-Jy-7th">
-                                                            <rect key="frame" x="6.6666666666666856" y="0.0" width="61" height="22"/>
+                                                            <rect key="frame" x="2" y="0.0" width="70" height="17.333333333333332"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                            <inset key="contentEdgeInsets" minX="8" minY="2" maxX="9" maxY="0.0"/>
                                                             <state key="normal" title="스프린트2">
                                                                 <color key="titleColor" systemColor="labelColor"/>
                                                             </state>
@@ -520,21 +522,36 @@
                                                                 <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
                                                                     <color key="value" systemColor="labelColor"/>
                                                                 </userDefinedRuntimeAttribute>
+                                                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                    <real key="value" value="5"/>
+                                                                </userDefinedRuntimeAttribute>
                                                             </userDefinedRuntimeAttributes>
                                                         </button>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="P2r-dP-hO9">
-                                                            <rect key="frame" x="12.666666666666686" y="22" width="49" height="22"/>
+                                                            <rect key="frame" x="5.6666666666666856" y="21.333333333333336" width="63" height="20"/>
                                                             <color key="backgroundColor" systemColor="systemBlueColor"/>
+                                                            <inset key="contentEdgeInsets" minX="7" minY="2" maxX="7" maxY="1"/>
                                                             <state key="normal" title="feature">
                                                                 <color key="titleColor" systemColor="labelColor"/>
                                                             </state>
+                                                            <userDefinedRuntimeAttributes>
+                                                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                    <real key="value" value="5"/>
+                                                                </userDefinedRuntimeAttribute>
+                                                            </userDefinedRuntimeAttributes>
                                                         </button>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QbU-m2-Csv">
-                                                            <rect key="frame" x="22" y="44" width="30" height="22"/>
+                                                            <rect key="frame" x="16.666666666666686" y="45.333333333333336" width="41" height="20.666666666666664"/>
                                                             <color key="backgroundColor" systemColor="systemRedColor"/>
+                                                            <inset key="contentEdgeInsets" minX="7" minY="2" maxX="7" maxY="2"/>
                                                             <state key="normal" title="bug">
                                                                 <color key="titleColor" systemColor="labelColor"/>
                                                             </state>
+                                                            <userDefinedRuntimeAttributes>
+                                                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                    <real key="value" value="5"/>
+                                                                </userDefinedRuntimeAttribute>
+                                                            </userDefinedRuntimeAttributes>
                                                         </button>
                                                     </subviews>
                                                     <constraints>
@@ -557,29 +574,33 @@
                                         <size key="customSize" width="375" height="88"/>
                                     </collectionViewCell>
                                 </cells>
-                                <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="4xz-es-IxQ" customClass="HeaderCollectionReusableView" customModule="IssueTracker" customModuleProvider="target">
+                                <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" reuseIdentifier="HeaderCollectionReusableView" id="4xz-es-IxQ" customClass="HeaderCollectionReusableView" customModule="IssueTracker" customModuleProvider="target">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="109"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <searchBar contentMode="redraw" placeholder="Search" translatesAutoresizingMaskIntoConstraints="NO" id="JCf-Vf-XlI">
-                                            <rect key="frame" x="0.0" y="53" width="375" height="56"/>
+                                            <rect key="frame" x="8" y="53" width="359" height="56"/>
                                             <textInputTraits key="textInputTraits"/>
                                         </searchBar>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="이슈" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WHm-fZ-qs8">
-                                            <rect key="frame" x="8" y="8" width="59" height="40.666666666666664"/>
+                                            <rect key="frame" x="16" y="8" width="59" height="40.666666666666664"/>
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="34"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="JCf-Vf-XlI" firstAttribute="leading" secondItem="4xz-es-IxQ" secondAttribute="leading" id="1n7-wl-n4x"/>
-                                        <constraint firstAttribute="trailing" secondItem="JCf-Vf-XlI" secondAttribute="trailing" id="XS0-4M-fvA"/>
+                                        <constraint firstItem="JCf-Vf-XlI" firstAttribute="leading" secondItem="4xz-es-IxQ" secondAttribute="leading" constant="8" id="1n7-wl-n4x"/>
+                                        <constraint firstAttribute="trailing" secondItem="JCf-Vf-XlI" secondAttribute="trailing" constant="8" id="XS0-4M-fvA"/>
                                         <constraint firstItem="WHm-fZ-qs8" firstAttribute="top" secondItem="4xz-es-IxQ" secondAttribute="topMargin" id="oDc-wi-823"/>
                                         <constraint firstAttribute="bottom" secondItem="JCf-Vf-XlI" secondAttribute="bottom" id="sDz-bz-4ca"/>
-                                        <constraint firstItem="WHm-fZ-qs8" firstAttribute="leading" secondItem="4xz-es-IxQ" secondAttribute="leadingMargin" id="yW3-5d-BBp"/>
+                                        <constraint firstItem="WHm-fZ-qs8" firstAttribute="leading" secondItem="4xz-es-IxQ" secondAttribute="leadingMargin" constant="8" id="yW3-5d-BBp"/>
                                     </constraints>
                                 </collectionReusableView>
+                                <connections>
+                                    <outlet property="dataSource" destination="3gb-xx-251" id="wvE-Ae-ILk"/>
+                                    <outlet property="delegate" destination="3gb-xx-251" id="ma8-HP-IWF"/>
+                                </connections>
                             </collectionView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="contactAdd" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cWt-Qc-OJy">
                                 <rect key="frame" x="313" y="667" width="44" height="44"/>
@@ -600,14 +621,29 @@
                             <constraint firstItem="qel-gu-NqZ" firstAttribute="trailing" secondItem="cWt-Qc-OJy" secondAttribute="trailing" constant="18" id="s6K-f2-giW"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="rdD-Ya-dsd">
+                    <navigationItem key="navigationItem" title="이슈" id="rdD-Ya-dsd">
                         <barButtonItem key="leftBarButtonItem" title="Filter" id="JRe-cC-ddy"/>
                         <barButtonItem key="rightBarButtonItem" title="Edit" id="4r2-K3-cbm"/>
                     </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zFo-zb-cVf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-156" y="1826.600985221675"/>
+            <point key="canvasLocation" x="-121" y="1827"/>
+        </scene>
+        <!--Issue Detail View Controller-->
+        <scene sceneID="S9A-8H-36J">
+            <objects>
+                <viewController id="lMJ-Dn-Q9j" customClass="IssueDetailViewController" customModule="IssueTracker" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="UDn-aR-Nou">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="1Xg-HL-rZo"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="I9L-2x-rC8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-122" y="2512"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="eUf-e9-Gzq">
@@ -653,8 +689,8 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="rPo-vs-DwV" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="이슈" image="1.circle.fill" catalog="system" id="2y5-cR-K3w"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="plI-a0-IEk">
-                        <rect key="frame" x="0.0" y="44" width="375" height="44"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="plI-a0-IEk">
+                        <rect key="frame" x="0.0" y="44" width="375" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -664,7 +700,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RSd-cd-4XT" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1098.4000000000001" y="1826.600985221675"/>
+            <point key="canvasLocation" x="-934" y="1827"/>
         </scene>
     </scenes>
     <resources>
