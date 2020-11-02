@@ -8,30 +8,50 @@
 import UIKit
 
 class CreateIssueViewController: UIViewController {
-    
     @IBOutlet private weak var commentWritingTextView: UITextView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        configureMenuControllerItems()
+        placeholderSetting()
     }
-    
-    private func configureMenuControllerItems() {
-        UIMenuController.shared.setMenuVisible(true, animated: true)
-        let imagePicker = UIMenuItem(title: "Insert Photo", action: #selector(insertPhotoDidTap))
-        UIMenuController.shared.menuItems?.append(imagePicker)
-    }
-    
+
     override func canPerformAction(_ action: Selector, withSender sender: Any!) -> Bool {
-        action == #selector(insertPhotoDidTap)
+        if action == #selector(insertPhotoDidTap) ||
+            action == #selector(cut(_ :)) ||
+            action == #selector(copy(_ :)) {
+            return true
+        }
+        return false
     }
-    
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        commentWritingTextView.resignFirstResponder()
-        return true
-    }
-    
+
     @objc func insertPhotoDidTap(sender: UIMenuItem) {
         print("image picker")
+    }
+
+    func placeholderSetting() {
+        commentWritingTextView.delegate = self
+        commentWritingTextView.text = "코멘트는 여기에 작성하세요"
+        commentWritingTextView.textColor = UIColor.lightGray
+    }
+}
+
+extension CreateIssueViewController: UITextViewDelegate {
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        if textView.textColor == UIColor.lightGray {
+            textView.text = nil
+            textView.textColor = UIColor.black
+        }
+        
+        let uiMenuController = UIMenuController.shared
+        let imagePicker = UIMenuItem(title: "Insert Photo", action: #selector(insertPhotoDidTap))
+
+        uiMenuController.menuItems = [imagePicker]
+    }
+
+    func textViewDidEndEditing(_ textView: UITextView) {
+        if textView.text.isEmpty {
+            textView.text = "코멘트는 여기에 작성하세요"
+            textView.textColor = UIColor.lightGray
+        }
     }
 }
