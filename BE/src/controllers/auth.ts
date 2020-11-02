@@ -35,4 +35,9 @@ function githubLoginFail(req: Request, res: Response): any {
   return res.json({ state: "fail" });
 }
 const github = passport.authenticate("github", { failureRedirect: "/auth/github/loginFail" });
+function apple(req: Request, res: Response): any {
+  console.log(req.body);
+  const user = req.body;
+  return res.json({ user });
+}
 export default { login, logout, githubLogin, githubLoginFail, github };
