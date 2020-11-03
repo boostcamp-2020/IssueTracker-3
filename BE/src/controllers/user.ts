@@ -17,7 +17,7 @@ const add = async (req: Request, res: Response): Promise<Response> => {
 const find = async (userID: string, password: string): Promise<boolean> => {
   const rawPassword = password;
   const encrpytPassword = rawPassword;
-  const result = await UserModel.findId({ login_id: userID, password: encrpytPassword });
+  const result = await UserModel.findId( [userID, encrpytPassword ]);
   return result;
 };
 export default { find, add };
