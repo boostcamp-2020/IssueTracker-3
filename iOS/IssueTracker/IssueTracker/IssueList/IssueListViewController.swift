@@ -39,7 +39,7 @@ class IssueListViewController: UIViewController {
     }
     
     // MARK: Dummy Issue Data
-
+    
     private func generateIssues() -> [IssueListViewModel] {
         var issues = [IssueListViewModel]()
         issues.append(IssueListViewModel(title: "test1",
@@ -64,7 +64,7 @@ class IssueListViewController: UIViewController {
                                          labels: ["label1, label2"]))
         return issues
     }
-
+    
 }
 
 // MARK: CollectionView DataSource
@@ -76,13 +76,9 @@ extension IssueListViewController {
             cellProvider: {(
                 collectionView, indexPath, item
             ) -> UICollectionViewCell? in
-                guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "IssueListCell", for: indexPath) as? IssueListCollectionViewCell else { return UICollectionViewCell() }
-                
-                cell.titleLabel.text = item.title
-                cell.issueListDescription.text = item.description
-                cell.firstLabel.titleLabel?.text = item.labels.first
-                cell.secondLabel.titleLabel?.text = item.labels.last
-                cell.mileStone.titleLabel?.text = item.milestone
+                guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "IssueListCell", for: indexPath)
+                        as? IssueListCollectionViewCell else { return UICollectionViewCell() }
+                cell.configureIssueListCell(of: item)
                 return cell
             })
     }
