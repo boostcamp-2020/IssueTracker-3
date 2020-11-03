@@ -11,6 +11,7 @@ import label from "@routes/label";
 import issue from "@routes/issue";
 import event from "@routes/event";
 import tag from "@routes/tag";
+import comment from "@routes/comment";
 import Passport from "@providers/passport";
 
 class App {
@@ -59,6 +60,7 @@ class App {
     this.app.use("/issue", issue);
     this.app.use("/event", event);
     this.app.use("/tag", tag);
+    this.app.use("/comment", comment);
   }
 }
 export default App;

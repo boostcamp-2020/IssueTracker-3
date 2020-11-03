@@ -1,10 +1,9 @@
 import express, { Request, Response, NextFunction } from "express";
+import CommentController from "@controllers/comment";
 
 const router = express.Router();
 
-router.get("/:id", (req: Request, res: Response, next: NextFunction) => {
-  res.send("comment get");
-});
+router.get("/:issueId", CommentController.get);
 router.post("/", (req: Request, res: Response, next: NextFunction) => {
   res.send("comment post");
 });
