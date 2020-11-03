@@ -99,8 +99,10 @@ extension IssueDetailViewController {
                                                    height: cardHeight)
         issueDetailBottomSheet.view.clipsToBounds = true
         
-        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.bottomSheetTapped(recognzier:)))
-        let panGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(self.bottomSheetPanned(recognizer:)))
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self,
+                                                          action: #selector(self.bottomSheetTapped(recognzier:)))
+        let panGestureRecognizer = UIPanGestureRecognizer(target: self,
+                                                          action: #selector(self.bottomSheetPanned(recognizer:)))
         
         issueDetailBottomSheet.handleArea.addGestureRecognizer(tapGestureRecognizer)
         issueDetailBottomSheet.handleArea.addGestureRecognizer(panGestureRecognizer)
