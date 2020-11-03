@@ -1,3 +1,4 @@
+import db from "@providers/database";
 import { Tag } from "@interfaces/tag";
 import Model from "@models/model";
 
@@ -9,10 +10,22 @@ class TagModel extends Model {
     this.tableName = "TAG";
   }
 
-  select<T>(pData: T): Promise<any> {
-    return new Promise((resolve, reject) => {
-      resolve(this.tableName);
-    });
+  async select<T>(pId: T): Promise<Array<Tag>> {
+    try {
+      const result = await db.query<T>(
+        `
+        select t.id, l.name, l.color
+        from ${this.tableName} t 
+        join LABEL l on t.label_id = l.id
+        where t.issue_id = ?`,
+        pId
+      );
+      this.data = [...result[0]];
+      return this.data;
+    } catch (err) {
+      console.error(err);
+      return err;
+    }
   }
 
   async add(pData: Tag): Promise<number> {
