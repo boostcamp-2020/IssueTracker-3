@@ -5,12 +5,12 @@ import AssigneeModel from "@models/assignee";
 import { Assignee } from "@interfaces/assignee";
 
 const get = async (req: Request, res: Response): Promise<Response> => {
-  const result = await AssigneeModel.select(+req.params.issue_id);
+  const result = await AssigneeModel.select(+req.params.issueid);
   return res.json(result);
 };
 
 const edit = async (req: Request, res: Response): Promise<Response> => {
-  const data = await AssigneeModel.select(+req.params.issue_id);
+  const data = await AssigneeModel.select(+req.params.issueid);
   const ids = data.map((value) => Number(value.id));
   for (const id of ids) {
     try {

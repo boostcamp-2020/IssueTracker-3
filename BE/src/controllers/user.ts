@@ -7,7 +7,7 @@ const add = async (req: Request, res: Response): Promise<Response> => {
     id: null,
     login_id: req.body.userID,
     password: req.body.password,
-    img: "https://user-images.githubusercontent.com/5876149/97951341-39d26600-1ddd-11eb-94e7-9102b90bda8b.jpg",
+    img: req.body?.img ?? "https://user-images.githubusercontent.com/5876149/97951341-39d26600-1ddd-11eb-94e7-9102b90bda8b.jpg",
     created_at: new Date(),
   };
   const result = await UserModel.insert(user, "USER");

@@ -43,7 +43,7 @@ const del = async (req: Request, res: Response): Promise<any> => {
 };
 
 const changeState = async (req: Request, res: Response): Promise<any> => {
-  const result = await IssueModel.changeState(+req.params.id, !!req.params.state);
+  const result = await IssueModel.changeState(+req.params.id, !!+req.params.state);
   return res.json(result);
 };
 
