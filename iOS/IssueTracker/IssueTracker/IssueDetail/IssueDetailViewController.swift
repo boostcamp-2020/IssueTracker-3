@@ -7,13 +7,29 @@
 
 import UIKit
 
-class IssueDetailViewController: UIViewController {
-
+final class IssueDetailViewController: UIViewController {
+    
+    // MARK: Properties
+    
+    private var issueDetailBottomSheet: IssueDetailBottomSheetViewController!
+    private var visualEffectView: UIVisualEffectView!
+    private var cardVisible = false
+    private var runningAnimations = [UIViewPropertyAnimator]()
+    private var animationProgressWhenInterrupted: CGFloat = .zero
+    private let cardHeight: CGFloat = 600
+    private let cardHandleAreaHeight: CGFloat = 65
+    
+    var nextState: BottomSheetState {
+        return cardVisible ? .collapsed : .expanded
+    }ㅇ
+    
+    // MARK: View Cycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         configureNavigationItem()
-//        addBottomSheetView()
-        setupCard()
+        // addBottomSheetView()
+        configureBottomSheet()
         tabBarController?.tabBar.isHidden = true
     }
     
@@ -21,56 +37,24 @@ class IssueDetailViewController: UIViewController {
         super.viewDidDisappear(animated)
         tabBarController?.tabBar.isHidden = false
     }
-
-    func configureNavigationItem() {
+    
+    // MARK: Configure View
+    
+    private func configureNavigationItem() {
         let editButtonItem = UIBarButtonItem(title: "Edit",
                                              style: .plain,
                                              target: nil,
                                              action: #selector(editButtonTouched))
         navigationItem.rightBarButtonItem = editButtonItem
     }
-
-    func addBottomSheetView() {
-        // 1- Init bottomSheetVC
-        guard let storyboard = UIStoryboard.init(name: "IssueList",
-                                                 bundle: nil)
-                .instantiateViewController(identifier: "IssueManagementViewController")
-                as? IssueDetailBottomSheetViewController else { return }
-
-        let bottomSheetVC = storyboard
-
-        // 2- Add bottomSheetVC as a child view
-        self.addChild(bottomSheetVC)
-        self.view.addSubview(bottomSheetVC.view)
-        bottomSheetVC.didMove(toParent: self)
-
-        // 3- Adjust bottomSheet frame and initial position.
-        let height = view.frame.height
-        let width  = view.frame.width
-        bottomSheetVC.view.frame = CGRect(x: 0, y: self.view.frame.maxY, width: width, height: height)
-    }
-
+    
     @objc func editButtonTouched() {
-
+        
     }
-    
-    var issueDetailBottomSheet: IssueDetailBottomSheetViewController!
-    var visualEffectView: UIVisualEffectView!
-    
-    let cardHeight: CGFloat = 600
-    let cardHandleAreaHeight: CGFloat = 65
-    
-    var cardVisible = false
-    var nextState:CardState {
-        return cardVisible ? .collapsed : .expanded
-    }
-    
-    var runningAnimations = [UIViewPropertyAnimator]()
-    var animationProgressWhenInterrupted:CGFloat = 0
 }
 
 extension IssueDetailViewController: UICollectionViewDelegate {
-
+    
 }
 
 extension IssueDetailViewController: UICollectionViewDataSource {
@@ -80,7 +64,7 @@ extension IssueDetailViewController: UICollectionViewDataSource {
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         2
     }
-
+    
     func collectionView(_ collectionView: UICollectionView,
                         cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "IssueDetailCell", for: indexPath)
@@ -88,135 +72,150 @@ extension IssueDetailViewController: UICollectionViewDataSource {
     }
 }
 
+// BottomSheet 수정 ver
 extension IssueDetailViewController {
-    enum CardState {
-            case expanded
-            case collapsed
-        }
+    enum BottomSheetState {
+        case expanded
+        case collapsed
+    }
+    
+    private func configureBottomSheet() {
+        visualEffectView = UIVisualEffectView()
+        visualEffectView.frame = view.frame
+        view.addSubview(visualEffectView)
         
-        func setupCard() {
-            visualEffectView = UIVisualEffectView()
-            visualEffectView.frame = self.view.frame
-            self.view.addSubview(visualEffectView)
+        // issueDetailBottomSheet = IssueDetailBottomSheetViewController(nibName: "BottomSheetTest", bundle: nil)
+        guard let viewController = UIStoryboard(name: "IssueList", bundle: nil)
+                .instantiateViewController(identifier: "IssueDetailBottomSheet")
+                as? IssueDetailBottomSheetViewController else { return }
+        issueDetailBottomSheet = viewController
+        
+        self.addChild(issueDetailBottomSheet)
+        self.view.addSubview(issueDetailBottomSheet.view)
+        
+        issueDetailBottomSheet.view.frame = CGRect(x: .zero,
+                                                   y: view.frame.height-cardHandleAreaHeight,
+                                                   width: view.bounds.width,
+                                                   height: cardHeight)
+        issueDetailBottomSheet.view.clipsToBounds = true
+        
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.bottomSheetTapped(recognzier:)))
+        let panGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(self.bottomSheetPanned(recognizer:)))
+        
+        issueDetailBottomSheet.handleArea.addGestureRecognizer(tapGestureRecognizer)
+        issueDetailBottomSheet.handleArea.addGestureRecognizer(panGestureRecognizer)
+    }
+    
+    private func animateTransitionIfNeeded(state: BottomSheetState, duration: TimeInterval) {
+        if runningAnimations.isEmpty {
+            let frameAnimator = UIViewPropertyAnimator(duration: duration, dampingRatio: 1) {
+                switch state {
+                case .expanded:
+                    self.issueDetailBottomSheet.view.frame.origin.y = self.view.frame.height - self.cardHeight
+                case .collapsed:
+                    self.issueDetailBottomSheet.view.frame.origin.y = self.view.frame.height - self.cardHandleAreaHeight
+                }
+            }
             
-//            issueDetailBottomSheet = IssueDetailBottomSheetViewController(nibName: "BottomSheetTest", bundle: nil)
-            guard let viewController = UIStoryboard(name: "IssueList", bundle: nil)
-                    .instantiateViewController(identifier: "IssueDetailBottomSheet")
-                    as? IssueDetailBottomSheetViewController else { return }
-            issueDetailBottomSheet = viewController
-                
-            self.addChild(issueDetailBottomSheet)
-            self.view.addSubview(issueDetailBottomSheet.view)
+            frameAnimator.addCompletion { _ in
+                self.cardVisible = !(self.cardVisible)
+                self.runningAnimations.removeAll()
+            }
             
-            issueDetailBottomSheet.view.frame = CGRect(x: 0,
-                                                       y: self.view.frame.height-cardHandleAreaHeight,
-                                                       width: self.view.bounds.width,
-                                                       height: cardHeight)
+            frameAnimator.startAnimation()
+            runningAnimations.append(frameAnimator)
             
-            issueDetailBottomSheet.view.clipsToBounds = true
+            let cornerRadiusAnimator = UIViewPropertyAnimator(duration: duration, curve: .linear) {
+                switch state {
+                case .expanded:
+                    self.issueDetailBottomSheet.view.layer.cornerRadius = 12
+                case .collapsed:
+                    self.issueDetailBottomSheet.view.layer.cornerRadius = 0
+                }
+            }
             
-            let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.handleCardTap(recognzier:)))
-            let panGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(self.handleCardPan(recognizer:)))
+            cornerRadiusAnimator.startAnimation()
+            runningAnimations.append(cornerRadiusAnimator)
             
-            issueDetailBottomSheet.handleArea.addGestureRecognizer(tapGestureRecognizer)
-            issueDetailBottomSheet.handleArea.addGestureRecognizer(panGestureRecognizer)
+            let blurAnimator = UIViewPropertyAnimator(duration: duration, dampingRatio: 1) {
+                switch state {
+                case .expanded:
+                    self.visualEffectView.effect = UIBlurEffect(style: .dark)
+                    self.visualEffectView.alpha = 0.3
+                case .collapsed:
+                    self.visualEffectView.effect = nil
+                }
+            }
             
-            
+            blurAnimator.startAnimation()
+            runningAnimations.append(blurAnimator)
         }
+    }
+    
+    private func startInteractiveTransition(state: BottomSheetState, duration: TimeInterval) {
+        if runningAnimations.isEmpty {
+            animateTransitionIfNeeded(state: state, duration: duration)
+        }
+        for animator in runningAnimations {
+            animator.pauseAnimation()
+            animationProgressWhenInterrupted = animator.fractionComplete
+        }
+    }
+    
+    private func updateInteractiveTransition(fractionCompleted: CGFloat) {
+        for animator in runningAnimations {
+            animator.fractionComplete = fractionCompleted + animationProgressWhenInterrupted
+        }
+    }
+    
+    private func continueInteractiveTransition() {
+        for animator in runningAnimations {
+            animator.continueAnimation(withTimingParameters: nil, durationFactor: 0)
+        }
+    }
+    
+    // MARK: Actions
+    
+    @objc func bottomSheetTapped(recognzier: UITapGestureRecognizer) {
+        switch recognzier.state {
+        case .ended:
+            animateTransitionIfNeeded(state: nextState, duration: 0.9)
+        default:
+            break
+        }
+    }
+    
+    @objc func bottomSheetPanned(recognizer: UIPanGestureRecognizer) {
+        switch recognizer.state {
+        case .began:
+            startInteractiveTransition(state: nextState, duration: 0.9)
+        case .changed:
+            let translation = recognizer.translation(in: issueDetailBottomSheet.handleArea)
+            var fractionComplete = translation.y / cardHeight
+            fractionComplete = cardVisible ? fractionComplete : -fractionComplete
+            updateInteractiveTransition(fractionCompleted: fractionComplete)
+        case .ended:
+            continueInteractiveTransition()
+        default:
+            break
+        }
+    }
+}
 
-        @objc func handleCardTap(recognzier:UITapGestureRecognizer) {
-            switch recognzier.state {
-            case .ended:
-                animateTransitionIfNeeded(state: nextState, duration: 0.9)
-            default:
-                break
-            }
-        }
+// 옛날꺼 BottomSheet
+extension IssueDetailViewController {
+    func addBottomSheetView() {
+        guard let storyboard = UIStoryboard.init(name: "IssueList", bundle: nil)
+                .instantiateViewController(identifier: "IssueManagementViewController")
+                as? IssueDetailBottomSheetViewController else { return }
+        let bottomSheetVC = storyboard
         
-        @objc func handleCardPan (recognizer:UIPanGestureRecognizer) {
-            switch recognizer.state {
-            case .began:
-                startInteractiveTransition(state: nextState, duration: 0.9)
-            case .changed:
-                let translation = recognizer.translation(in: self.issueDetailBottomSheet.handleArea)
-                var fractionComplete = translation.y / cardHeight
-                fractionComplete = cardVisible ? fractionComplete : -fractionComplete
-                updateInteractiveTransition(fractionCompleted: fractionComplete)
-            case .ended:
-                continueInteractiveTransition()
-            default:
-                break
-            }
-            
-        }
+        self.addChild(bottomSheetVC)
+        self.view.addSubview(bottomSheetVC.view)
+        bottomSheetVC.didMove(toParent: self)
         
-        func animateTransitionIfNeeded (state:CardState, duration:TimeInterval) {
-            if runningAnimations.isEmpty {
-                let frameAnimator = UIViewPropertyAnimator(duration: duration, dampingRatio: 1) {
-                    switch state {
-                    case .expanded:
-                        self.issueDetailBottomSheet.view.frame.origin.y = self.view.frame.height - self.cardHeight
-                    case .collapsed:
-                        self.issueDetailBottomSheet.view.frame.origin.y = self.view.frame.height-self.cardHandleAreaHeight
-                    }
-                }
-                
-                frameAnimator.addCompletion { _ in
-                    self.cardVisible = !self.cardVisible
-                    self.runningAnimations.removeAll()
-                }
-                
-                frameAnimator.startAnimation()
-                runningAnimations.append(frameAnimator)
-                
-                
-                let cornerRadiusAnimator = UIViewPropertyAnimator(duration: duration, curve: .linear) {
-                    switch state {
-                    case .expanded:
-                        self.issueDetailBottomSheet.view.layer.cornerRadius = 12
-                    case .collapsed:
-                        self.issueDetailBottomSheet.view.layer.cornerRadius = 0
-                    }
-                }
-                
-                cornerRadiusAnimator.startAnimation()
-                runningAnimations.append(cornerRadiusAnimator)
-                
-                let blurAnimator = UIViewPropertyAnimator(duration: duration, dampingRatio: 1) {
-                    switch state {
-                    case .expanded:
-                        self.visualEffectView.effect = UIBlurEffect(style: .dark)
-                        self.visualEffectView.alpha = 0.3
-                    case .collapsed:
-                        self.visualEffectView.effect = nil
-                    }
-                }
-                
-                blurAnimator.startAnimation()
-                runningAnimations.append(blurAnimator)
-                
-            }
-        }
-        
-        func startInteractiveTransition(state:CardState, duration:TimeInterval) {
-            if runningAnimations.isEmpty {
-                animateTransitionIfNeeded(state: state, duration: duration)
-            }
-            for animator in runningAnimations {
-                animator.pauseAnimation()
-                animationProgressWhenInterrupted = animator.fractionComplete
-            }
-        }
-        
-        func updateInteractiveTransition(fractionCompleted:CGFloat) {
-            for animator in runningAnimations {
-                animator.fractionComplete = fractionCompleted + animationProgressWhenInterrupted
-            }
-        }
-        
-        func continueInteractiveTransition (){
-            for animator in runningAnimations {
-                animator.continueAnimation(withTimingParameters: nil, durationFactor: 0)
-            }
-        }
+        let height = view.frame.height
+        let width  = view.frame.width
+        bottomSheetVC.view.frame = CGRect(x: 0, y: self.view.frame.maxY, width: width, height: height)
+    }
 }
