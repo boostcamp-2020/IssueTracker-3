@@ -7,4 +7,10 @@ const add = async (req: Request, res: Response): Promise<Response> => {
   return res.json(result);
 };
 
-export default { add };
+const del = async (req: Request, res: Response): Promise<Response> => {
+  const { id } = req.body;
+  const result = await TagModel.del(id);
+  return res.json(result);
+};
+
+export default { add, del };

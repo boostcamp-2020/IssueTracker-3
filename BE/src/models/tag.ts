@@ -19,6 +19,11 @@ class TagModel extends Model {
     const result = await super.insert(pData, this.tableName);
     return result;
   }
+
+  async del(id: number): Promise<number> {
+    const result = await super.delete(id, this.tableName);
+    return result;
+  }
 }
 
 export default new TagModel();
