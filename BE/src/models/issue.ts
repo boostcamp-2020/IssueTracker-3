@@ -32,5 +32,10 @@ class IssueModel extends Model {
     const insertId = await super.insert(pData, this.tableName);
     return insertId;
   }
+
+  async edit(pData: Issue): Promise<number> {
+    const affectedId = await super.update(pData, this.tableName);
+    return affectedId;
+  }
 }
 export default new IssueModel();

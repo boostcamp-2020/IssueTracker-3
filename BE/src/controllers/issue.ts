@@ -1,7 +1,6 @@
 import { Request, Response } from "express";
 import IssueModel from "@models/issue";
 import { Issue } from "@interfaces/issue";
-import { json } from "body-parser";
 
 const get = async (req: Request, res: Response): Promise<any> => {
   const result = await IssueModel.select();
@@ -23,4 +22,19 @@ const add = async (req: Request, res: Response): Promise<any> => {
   return res.json(result);
 };
 
-export default { get, add };
+const edit = async (req: Request, res: Response): Promise<any> => {
+  const issue: Issue = {
+    id: req.body.id,
+    title: req.body.title,
+    body: req.body.body,
+    user_id: req.body.author,
+    created_at: req.body.createdAt,
+    closed_at: req.body?.closedAt ?? null,
+    state: req.body.state,
+    milestone_id: req.body?.milestoneId ?? null,
+  };
+  const result = await IssueModel.edit(issue);
+  return res.json(result);
+};
+
+export default { get, add, edit };
