@@ -2,7 +2,7 @@
 export interface Event {
   id: number | null;
   issue_id: number;
-  actor: string;
+  user_id: number;
   log: string;
   created_at: Date;
 }
