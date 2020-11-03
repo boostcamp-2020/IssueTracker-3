@@ -38,6 +38,10 @@ class IssueListViewController: UIViewController {
         issueListCollectionView.allowsMultipleSelection = editing
     }
     
+    @IBAction func EditButtonTouched(_ sender: UIBarButtonItem) {
+        setEditing(true, animated: true)
+    }
+    
     // MARK: Dummy Issue Data
     
     private func generateIssues() -> [IssueListViewModel] {
@@ -98,7 +102,6 @@ extension IssueListViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didBeginMultipleSelectionInteractionAt indexPath: IndexPath) {
         // Replace the Select button with Done, and put the
         // collection view into editing mode.
-        setEditing(true, animated: true)
     }
 }
 

@@ -159,7 +159,11 @@
                                 <segue destination="5lT-kN-PTP" kind="presentation" id="oWk-lT-Mwg"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Edit" id="4r2-K3-cbm"/>
+                        <barButtonItem key="rightBarButtonItem" title="Edit" id="4r2-K3-cbm">
+                            <connections>
+                                <action selector="EditButtonTouched:" destination="3gb-xx-251" id="jeY-wM-p1i"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="issueListCollectionView" destination="gMJ-9A-2wT" id="Gb3-Ij-daJ"/>
