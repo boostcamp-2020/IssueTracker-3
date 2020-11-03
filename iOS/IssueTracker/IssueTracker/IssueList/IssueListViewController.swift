@@ -35,7 +35,6 @@ extension IssueListViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView,
                         cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-
-        return collectionView.dequeueReusableCell(withReuseIdentifier: "IssueListCell", for: indexPath)
+        collectionView.dequeueReusableCell(withReuseIdentifier: "IssueListCell", for: indexPath)
     }
 }
