@@ -27,5 +27,10 @@ class IssueModel extends Model {
     }
     return issue;
   }
+
+  async add(pData: Issue): Promise<number> {
+    const insertId = await super.insert(pData, this.tableName);
+    return insertId;
+  }
 }
 export default new IssueModel();

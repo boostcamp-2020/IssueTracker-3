@@ -7,9 +7,7 @@ router.get("/", IssueController.get);
 router.get("/:id", (req: Request, res: Response, next: NextFunction) => {
   res.send("issue single get");
 });
-router.post("/", (req: Request, res: Response, next: NextFunction) => {
-  res.send("issue post");
-});
+router.post("/", IssueController.add);
 router.patch("/", (req: Request, res: Response, next: NextFunction) => {
   res.send("issue patch");
 });
