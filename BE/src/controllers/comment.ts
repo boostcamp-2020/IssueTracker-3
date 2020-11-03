@@ -29,9 +29,13 @@ const edit = async (req: Request, res: Response): Promise<Response> => {
     emoji: req.body.emoji,
     created_at: req.body.createdAt,
   };
-  console.log(comment);
   const result = await CommentModel.edit(comment);
   return res.json(result);
 };
 
-export default { get, add, edit };
+const del = async (req: Request, res: Response): Promise<Response> => {
+  const result = await CommentModel.del(+req.body.id);
+  return res.json(result);
+};
+
+export default { get, add, edit, del };

@@ -24,6 +24,11 @@ class CommentModel extends Model {
     const affectedId = await super.update(pData, this.tableName);
     return affectedId;
   }
+
+  async del(id: number): Promise<any> {
+    const affectedId = await super.delete(id, this.tableName);
+    return affectedId;
+  }
 }
 
 export default new CommentModel();
