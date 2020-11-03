@@ -32,4 +32,11 @@ struct IssueListViewModel: Hashable {
     static func == (lhs: IssueListViewModel, rhs: IssueListViewModel) -> Bool {
         return lhs.identifier == rhs.identifier
     }
+
+    func contains(_ filter: String?) -> Bool {
+        guard let filterText = filter else { return true }
+        if filterText.isEmpty { return true }
+        let lowercasedFilter = filterText.lowercased()
+        return title.lowercased().contains(lowercasedFilter)
+    }
 }
