@@ -4,7 +4,7 @@ on:
   push:
     branches: [ ios_develop ]
   pull_request:
-    branches: [ ios_release ]
+    branches: [ ios_release, ios_develop ]
   
 jobs:
   build-and-UnitTest:
