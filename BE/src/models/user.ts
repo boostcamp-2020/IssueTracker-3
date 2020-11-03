@@ -25,6 +25,14 @@ class UserModel extends Model {
     this.data = await super.insert(pData, this.tableName);
     return this.data;
   }
+
+  async findId<T>(pData: T): Promise<boolean> {
+    const result = await db.query<T>(`SELECT * FROM ${this.tableName} WHERE login_id = ? AND password = ?`, pData);
+    if (result) {
+      return true;
+    }
+    return false;
+  }
 }
 
 const user = new UserModel();
