@@ -8,5 +8,6 @@
 import UIKit
 
 class IssueDetailCollectionViewCell: UICollectionViewCell {
-    
+    var editClosure: (() -> Void)?
+
 }

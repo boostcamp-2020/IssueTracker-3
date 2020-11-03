@@ -78,13 +78,13 @@ extension IssueDetailViewController: UICollectionViewDataSource {
         10
     }
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        1
+        2
     }
 
     func collectionView(_ collectionView: UICollectionView,
                         cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-
-        return collectionView.dequeueReusableCell(withReuseIdentifier: "IssueDetailCell", for: indexPath)
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "IssueDetailCell", for: indexPath)
+        return cell
     }
 }
 
