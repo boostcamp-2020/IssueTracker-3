@@ -29,17 +29,15 @@ function apple(req: Request, res: Response): Response<JSON> | Response<string> {
 }
 function githubLogin(req: Request, res: Response): Response<JSON> | Response<string> {
   const loginUser: any = req.user;
-  req.login(loginUser, (error) => {
-    if (error) {
-      return res.send(error);
-    }
-    const decoded: any = jwt.decode(loginUser.identity_token);
-    const userEmail: string = decoded.payload.email;
-    const userResult = userEmail.split("@")[0];
-    const JWT = jwt.sign(JSON.parse(JSON.stringify(userResult)), String(process.env.JWT_SECRET), { expiresIn: "10m" });
-    return res.json({ state: "success", JWT });
-  });
-  return res.json({ state: "fail" });
+  console.log(loginUser);
+  const decoded: any = jwt.decode(loginUser.identity_token);
+  console.log(decoded);
+  const userEmail: string = decoded.payload.email;
+  console.log(userEmail);
+  const userResult = userEmail.split("@")[0];
+  console.log(userResult);
+  const JWT = jwt.sign(JSON.parse(JSON.stringify(userResult)), String(process.env.JWT_SECRET), { expiresIn: "10m" });
+  return res.json({ state: "success", JWT });
 }
 
 function logout(req: Request, res: Response): Response<JSON> {
