@@ -10,9 +10,16 @@ class AssigneeModel extends Model {
     this.tableName = "ASSIGNEE";
   }
 
-  async select<T>(pData: T): Promise<Array<Assignee>> {
+  async select<T>(pId: T): Promise<Array<Assignee>> {
     try {
-      const result = await db.query<T>(`SELECT * FROM ASSIGNEE WHERE issue_id = ?`, pData);
+      const result = await db.query<T>(
+        `
+      select a.id, u.login_id, u.img 
+      from ${this.tableName} a 
+      join USER u on a.user_id = u.id
+      where a.issue_id = ?`,
+        pId
+      );
       this.data = [...result[0]];
       return this.data;
     } catch (err) {
