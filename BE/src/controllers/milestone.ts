@@ -2,7 +2,7 @@ import { Request, Response } from "express";
 import { Milestone } from "@interfaces/milestone";
 import MilestoneModel from "@models/milestone";
 
-const get = async (req: Request, res: Response): Promise<Response> => {
+const get = async (req: Request, res: Response): Promise<Response<any>> => {
   const result = await MilestoneModel.select();
   return res.json(result);
 };
