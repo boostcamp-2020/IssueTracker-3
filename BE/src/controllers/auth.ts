@@ -17,7 +17,7 @@ function login(req: Request, res: Response): void {
       if (error) {
         return res.send(error);
       }
-      const JWT = jwt.sign(JSON.parse(JSON.stringify(userResult)), String(process.env.JWT_SECRET), { expiresIn: "10m" });
+      const JWT = jwt.sign(JSON.parse(JSON.stringify(userResult.userID)), String(process.env.JWT_SECRET), { expiresIn: "10m" });
       return res.json({ state: "success", JWT });
     });
     return res.json({ state: "fail" });
@@ -25,13 +25,16 @@ function login(req: Request, res: Response): void {
 }
 function apple(req: Request, res: Response): Response<JSON> | Response<string> {
   const userResult = req.body.profile.username;
+  const JWT = jwt.sign(JSON.parse(JSON.stringify(userResult)), String(process.env.JWT_SECRET), { expiresIn: "10m" });
+  return res.json({ state: "success", JWT });
+  /*
   req.login(userResult, (error) => {
     if (error) {
       return res.send(error);
     }
-    const JWT = jwt.sign(JSON.parse(JSON.stringify(userResult)), String(process.env.JWT_SECRET), { expiresIn: "10m" });
-    return res.json({ state: "success", JWT });
+
   });
+  */
   return res.json({ state: "fail" });
 }
 function githubLogin(req: Request, res: Response): Response<JSON> | Response<string> {
