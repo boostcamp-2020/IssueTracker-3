@@ -1,5 +1,6 @@
 import express from "express";
 import authController from "@controllers/auth";
+import userController from "@controllers/user";
 
 const router = express.Router();
 
@@ -12,6 +13,6 @@ router.get("/github/loginFail", authController.githubLoginFail);
 router.post("/apple", authController.apple);
 
 router.get("/logout", authController.logout);
-router.post("/register", authController.register);
+router.post("/register", userController.add);
 
 export = router;

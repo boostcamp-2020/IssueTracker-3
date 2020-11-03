@@ -3,8 +3,8 @@ import passport from "passport";
 import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
 import path from "path";
-import UserModel from "@models/user";
-import { User } from "@interfaces/user";
+
+import userController from "@controllers/user";
 
 dotenv.config({ path: path.join(__dirname, "../../.env") });
 
@@ -15,13 +15,19 @@ function login(req: Request, res: Response): void {
         message: "Something is not right",
       });
     }
-    req.login(userResult, (error) => {
-      if (error) {
-        return res.send(error);
-      }
-      const JWT = jwt.sign(JSON.parse(JSON.stringify(userResult)), String(process.env.JWT_SECRET), { expiresIn: "10m" });
-      return res.json({ state: "success", JWT });
-    });
+    const loginId = userResult.userId;
+    const rawPassword = userResult.password;
+    const searchResult = userController.find(loginId, rawPassword);
+    if (searchResult) {
+      req.login(userResult, (error) => {
+        if (error) {
+          return res.send(error);
+        }
+        const JWT = jwt.sign(JSON.parse(JSON.stringify(userResult)), String(process.env.JWT_SECRET), { expiresIn: "10m" });
+        return res.json({ state: "success", JWT });
+      });
+      return res.json({ state: "fail" });
+    }
   })(req, res);
 }
 function githubLogin(req: Request, res: Response): Response<JSON> | Response<string> {
@@ -43,19 +49,9 @@ function logout(req: Request, res: Response): Response<JSON> {
   req.logout();
   return res.json({ state: "success" });
 }
-async function register(req: Request, res: Response): Promise<Response> {
-  const user: User = {
-    id: null,
-    login_id: req.body.userID,
-    password: req.body.password,
-    img: "https://user-images.githubusercontent.com/5876149/97951341-39d26600-1ddd-11eb-94e7-9102b90bda8b.jpg",
-    created_at: new Date(),
-  };
-  const result = await UserModel.insert(user, "USER");
-  return res.json(result);
-}
+
 function githubLoginFail(req: Request, res: Response): Response<JSON> {
   return res.json({ state: "fail" });
 }
 const github = passport.authenticate("github", { failureRedirect: "/auth/github/loginFail" });
-export default { login, logout, githubLogin, githubLoginFail, github, apple, register };
+export default { login, logout, githubLogin, githubLoginFail, github, apple };
