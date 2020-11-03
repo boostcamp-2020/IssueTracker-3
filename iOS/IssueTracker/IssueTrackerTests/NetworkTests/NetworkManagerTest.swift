@@ -29,7 +29,7 @@ final class NetworkManagerTest: XCTestCase {
 
         XCTAssertEqual(
             try userData?.path?.asURL().absoluteString,
-            "http://api.boostcamp.com/test"
+            "http://101.101.210.34:3000/test"
         )
 
         guard let data = userData?.body else {
