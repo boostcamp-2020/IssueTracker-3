@@ -3,6 +3,8 @@ import passport from "passport";
 import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
 import path from "path";
+import UserModel from "@models/user";
+import { User } from "@interfaces/user";
 
 dotenv.config({ path: path.join(__dirname, "../../.env") });
 
@@ -23,9 +25,9 @@ function login(req: Request, res: Response): void {
   })(req, res);
 }
 function githubLogin(req: Request, res: Response): Response<JSON> | Response<string> {
-  const gitUser : any = req.user
+  const gitUser: any = req.user;
   const userResult = gitUser.profile.username;
-  const JWT = jwt.sign(JSON.parse(JSON.stringify({userResult})), String(process.env.JWT_SECRET), { expiresIn: "10m" });
+  const JWT = jwt.sign(JSON.parse(JSON.stringify({ userResult })), String(process.env.JWT_SECRET), { expiresIn: "10m" });
   return res.json({ state: "success", JWT });
 }
 function apple(req: Request, res: Response): Response<JSON> | Response<string> {
@@ -33,7 +35,7 @@ function apple(req: Request, res: Response): Response<JSON> | Response<string> {
   const decoded: any = jwt.decode(loginUser.identity_token);
   const userEmail: string = decoded.email;
   const userResult = userEmail.split("@")[0];
-  const JWT = jwt.sign(JSON.parse(JSON.stringify({userResult})), String(process.env.JWT_SECRET), { expiresIn: "10m" });
+  const JWT = jwt.sign(JSON.parse(JSON.stringify({ userResult })), String(process.env.JWT_SECRET), { expiresIn: "10m" });
   return res.json({ state: "success", JWT });
 }
 
@@ -41,8 +43,19 @@ function logout(req: Request, res: Response): Response<JSON> {
   req.logout();
   return res.json({ state: "success" });
 }
+async function register(req: Request, res: Response): Promise<Response> {
+  const user: User = {
+    id: null,
+    login_id: req.body.userID,
+    password: req.body.password,
+    img: "https://user-images.githubusercontent.com/5876149/97951341-39d26600-1ddd-11eb-94e7-9102b90bda8b.jpg",
+    created_at: new Date(),
+  };
+  const result = await UserModel.insert(user, "USER");
+  return res.json(result);
+}
 function githubLoginFail(req: Request, res: Response): Response<JSON> {
   return res.json({ state: "fail" });
 }
 const github = passport.authenticate("github", { failureRedirect: "/auth/github/loginFail" });
-export default { login, logout, githubLogin, githubLoginFail, github, apple };
+export default { login, logout, githubLogin, githubLoginFail, github, apple, register };
