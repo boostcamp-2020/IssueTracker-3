@@ -7,5 +7,5 @@ router.get("/", IssueController.get);
 router.post("/", IssueController.add);
 router.patch("/", IssueController.edit);
 router.delete("/", IssueController.del);
-router.patch("/:id", IssueController.changeState);
+router.patch("/:id/state/:state", IssueController.changeState);
 export = router;
