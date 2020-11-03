@@ -1,9 +1,8 @@
-import express, { Request, Response, NextFunction } from "express";
+import express from "express";
+import controller from "@controllers/event";
 
 const router = express.Router();
 
-router.get("/", (req: Request, res: Response, next: NextFunction) => {
-  res.send("event get");
-});
-
+router.get("/:issueid", controller.get);
+router.post("/:issueid", controller.add);
 export = router;

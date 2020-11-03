@@ -21,8 +21,8 @@ class LabelModel extends Model {
     return insertId;
   }
 
-  async edit(pData: Label): Promise<number> {
-    const affecedId = await super.update<Label>(pData, `${this.tableName}`);
+  async edit(pData: object): Promise<number> {
+    const affecedId = await super.update<object>(pData, `${this.tableName}`);
     return affecedId;
   }
 

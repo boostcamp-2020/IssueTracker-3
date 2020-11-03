@@ -23,7 +23,7 @@ class MilestoneModel extends Model {
 
   async add(pData: Milestone): Promise<number> {
     this.data = await super.insert(pData, this.tableName);
-    return this.data;
+    return this.data ? 200 : 400;
   }
 
   async edit(pData: Milestone): Promise<number> {

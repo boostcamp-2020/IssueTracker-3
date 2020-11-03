@@ -5,7 +5,7 @@ export interface Issue {
   body: string;
   user_id: number;
   state: boolean;
-  milestone_id: number;
+  milestone_id: number | null;
   created_at: Date;
-  closed_at: Date;
+  closed_at: Date | null;
 }

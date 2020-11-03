@@ -13,12 +13,11 @@ const add = async (req: Request, res: Response): Promise<any> => {
   return res.json(result);
 };
 const edit = async (req: Request, res: Response): Promise<any> => {
-  const label: Label = {
+  const label = {
     id: req.body.id,
     name: req.body.name,
     description: req.body.description,
     color: req.body.color,
-    created_at: new Date(),
   };
   const result = await LabelModel.edit(label);
   return res.json(result);
