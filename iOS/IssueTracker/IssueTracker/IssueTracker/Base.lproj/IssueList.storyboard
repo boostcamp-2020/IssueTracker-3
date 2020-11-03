@@ -161,7 +161,7 @@
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Edit" id="4r2-K3-cbm">
                             <connections>
-                                <action selector="EditButtonTouched:" destination="3gb-xx-251" id="jeY-wM-p1i"/>
+                                <action selector="editButtonTouched:" destination="3gb-xx-251" id="jeY-wM-p1i"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>

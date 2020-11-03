@@ -38,37 +38,9 @@ class IssueListViewController: UIViewController {
         issueListCollectionView.allowsMultipleSelection = editing
     }
     
-    @IBAction func EditButtonTouched(_ sender: UIBarButtonItem) {
+    @IBAction func editButtonTouched(_ sender: UIBarButtonItem) {
         setEditing(true, animated: true)
     }
-    
-    // MARK: Dummy Issue Data
-    
-    private func generateIssues() -> [IssueListViewModel] {
-        var issues = [IssueListViewModel]()
-        issues.append(IssueListViewModel(title: "test1",
-                                         description: "설명",
-                                         milestone: "프로젝트1",
-                                         labels: ["label1, label2"]))
-        issues.append(IssueListViewModel(title: "test2",
-                                         description: "설명",
-                                         milestone: "프로젝트2",
-                                         labels: ["label1, label2"]))
-        issues.append(IssueListViewModel(title: "test3",
-                                         description: "설명",
-                                         milestone: "프로젝트3",
-                                         labels: ["label1, label2"]))
-        issues.append(IssueListViewModel(title: "ha",
-                                         description: "설명",
-                                         milestone: "프로젝트4",
-                                         labels: ["label1, label2"]))
-        issues.append(IssueListViewModel(title: "haha",
-                                         description: "설명",
-                                         milestone: "프로젝트5",
-                                         labels: ["label1, label2"]))
-        return issues
-    }
-    
 }
 
 // MARK: CollectionView DataSource
@@ -120,5 +92,34 @@ extension IssueListViewController: UISearchBarDelegate {
         snapshot.appendSections([.main])
         snapshot.appendItems(issueListItems)
         dataSource.apply(snapshot, animatingDifferences: true)
+    }
+}
+
+// MARK: Dummy Issue Data
+
+extension IssueListViewController {
+    private func generateIssues() -> [IssueListViewModel] {
+        var issues = [IssueListViewModel]()
+        issues.append(IssueListViewModel(title: "test1",
+                                         description: "설명",
+                                         milestone: "프로젝트1",
+                                         labels: ["label1, label2"]))
+        issues.append(IssueListViewModel(title: "test2",
+                                         description: "설명",
+                                         milestone: "프로젝트2",
+                                         labels: ["label1, label2"]))
+        issues.append(IssueListViewModel(title: "test3",
+                                         description: "설명",
+                                         milestone: "프로젝트3",
+                                         labels: ["label1, label2"]))
+        issues.append(IssueListViewModel(title: "ha",
+                                         description: "설명",
+                                         milestone: "프로젝트4",
+                                         labels: ["label1, label2"]))
+        issues.append(IssueListViewModel(title: "haha",
+                                         description: "설명",
+                                         milestone: "프로젝트5",
+                                         labels: ["label1, label2"]))
+        return issues
     }
 }
