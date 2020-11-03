@@ -102,7 +102,7 @@
 		BB91912325500E25007D25B7 /* CreateIssueViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateIssueViewController.swift; sourceTree = "<group>"; };
 		BB91912825500E8F007D25B7 /* EditIssueViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditIssueViewController.swift; sourceTree = "<group>"; };
 		BBBCF95D2550EC0800819773 /* BottomSheetTest.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BottomSheetTest.xib; sourceTree = "<group>"; };
-		BBBCF96525511AE300819773 /* DummyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DummyView.swift; path = IssueTracker/IssueDetail/DummyView.swift; sourceTree = SOURCE_ROOT; };
+		BBBCF96525511AE300819773 /* DummyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DummyView.swift; path = IssueTracker/IssueList/Views/DummyView.swift; sourceTree = SOURCE_ROOT; };
 		BBCC49EC2547E8F300FAB2F4 /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		BBCC49F22547E9FD00FAB2F4 /* UIViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
 		BBCC4A022547FCF800FAB2F4 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
@@ -184,18 +184,10 @@
 		705930BE254FE232003FE49F /* IssueList */ = {
 			isa = PBXGroup;
 			children = (
-				705930BF254FE24B003FE49F /* Views */,
+				BBBCF96925511B3B00819773 /* Views */,
 				BB65A045254FECA300D09DD5 /* IssueListViewController.swift */,
 			);
 			path = IssueList;
-			sourceTree = "<group>";
-		};
-		705930BF254FE24B003FE49F /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				BBBCF96525511AE300819773 /* DummyView.swift */,
-			);
-			path = Views;
 			sourceTree = "<group>";
 		};
 		705930D2254FFF47003FE49F /* IssueFilter */ = {
@@ -320,6 +312,14 @@
 				BB91912825500E8F007D25B7 /* EditIssueViewController.swift */,
 			);
 			path = EditIssue;
+			sourceTree = "<group>";
+		};
+		BBBCF96925511B3B00819773 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				BBBCF96525511AE300819773 /* DummyView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		BBCC4A012547FCD700FAB2F4 /* SignUp */ = {
