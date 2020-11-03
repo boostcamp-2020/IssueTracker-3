@@ -98,6 +98,12 @@ extension IssueListViewController: UICollectionViewDelegate {
         
         navigationController?.pushViewController(storyboard, animated: true)
     }
+    
+    func collectionView(_ collectionView: UICollectionView, didBeginMultipleSelectionInteractionAt indexPath: IndexPath) {
+        // Replace the Select button with Done, and put the
+        // collection view into editing mode.
+        setEditing(true, animated: true)
+    }
 }
 
 // MARK: UISearchBarDelegate
