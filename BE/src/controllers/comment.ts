@@ -3,7 +3,7 @@ import CommentModel from "@models/comment";
 import { Comment } from "@interfaces/comment";
 
 const get = async (req: Request, res: Response): Promise<Response> => {
-  const result = await CommentModel.select(+req.params.issue_id);
+  const result = await CommentModel.select(+req.params.issueid);
   return res.json(result);
 };
 

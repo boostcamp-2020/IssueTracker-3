@@ -12,6 +12,7 @@ import issue from "@routes/issue";
 import event from "@routes/event";
 import tag from "@routes/tag";
 import comment from "@routes/comment";
+import assignee from "@routes/assignee";
 import Passport from "@providers/passport";
 
 import dotenv from "dotenv";
@@ -66,6 +67,7 @@ class App {
     this.app.use("/event", event);
     this.app.use("/tag", tag);
     this.app.use("/comment", comment);
+    this.app.use("/assignee", assignee);
   }
 }
 export default App;

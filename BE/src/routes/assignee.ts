@@ -1,8 +1,8 @@
 import express from "express";
-import CommentController from "@controllers/comment";
+import assigneeController from "@controllers/assignee";
 
 const router = express.Router();
 
-router.get("/:issueid", CommentController.get);
-router.patch("/:issueid", CommentController.edit);
+router.get("/:issueid", assigneeController.get);
+router.patch("/:issueid", assigneeController.edit);
 export = router;
