@@ -21,7 +21,7 @@ final class IssueDetailViewController: UIViewController {
     
     var nextState: BottomSheetState {
         return cardVisible ? .collapsed : .expanded
-    }ㅇ
+    }
     
     // MARK: View Cycle
     
