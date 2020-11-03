@@ -15,6 +15,20 @@ class IssueListCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var firstLabel: UIButton!
     @IBOutlet weak var secondLabel: UIButton!
     
+//    var isInEditingMode: Bool = false {
+//        didSet {
+////            checkmarkLabel.isHidden = !isInEditingMode
+//        }
+//    }
+//
+//    override var isSelected: Bool {
+//        didSet {
+//            if isInEditingMode {
+//                backgroundColor = .systemGray4
+//            }
+//        }
+//    }
+    
     func configureIssueListCell(of item: IssueListViewModel) {
         titleLabel.text = item.title
         issueListDescription.text = item.description

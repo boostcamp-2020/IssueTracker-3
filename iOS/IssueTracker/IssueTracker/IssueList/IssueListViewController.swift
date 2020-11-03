@@ -14,6 +14,7 @@ class IssueListViewController: UIViewController {
     // MARK: Properties
     
     @IBOutlet private weak var issueListCollectionView: UICollectionView!
+    
     private var dataSource: UICollectionViewDiffableDataSource<Section, IssueListViewModel>!
     private var issueListModelController: IssueListModelController!
     
@@ -31,23 +32,44 @@ class IssueListViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.searchController = UISearchController(searchResultsController: nil)
-        navigationItem.hidesSearchBarWhenScrolling = false
-        navigationItem.searchController?.searchBar.delegate = self
+        configureNavigationItems()
         issueListModelController = IssueListModelController()
         configureDataSource()
         performQuery(with: nil)
     }
     
+    // MARK: Configure
+    
+    private func configureNavigationItems() {
+        navigationItem.searchController = UISearchController(searchResultsController: nil)
+        navigationItem.hidesSearchBarWhenScrolling = false
+        navigationItem.searchController?.searchBar.delegate = self
+        navigationItem.rightBarButtonItem = editButtonItem
+    }
+    
     override func setEditing(_ editing: Bool, animated: Bool) {
         super.setEditing(editing, animated: animated)
         issueListCollectionView.allowsMultipleSelection = editing
+        issueListCollectionView.indexPathsForVisibleItems.forEach { indexPath in
+            guard let cell = issueListCollectionView.cellForItem(at: indexPath)
+                    as? IssueListCollectionViewCell
+            else {
+                return
+            }
+            cell.isInEditingMode = editing
+        }
     }
     
     // MARK: Action Functions
     
     @IBAction func editButtonTouched(_ sender: UIBarButtonItem) {
+        if #available(iOS 14.0, *) {
+            issueListCollectionView.allowsMultipleSelectionDuringEditing = true
+        } else {
+            // Fallback on earlier versions
+        }
         setEditing(true, animated: true)
+        print("bbb")
     }
 }
 
@@ -83,6 +105,7 @@ extension IssueListViewController: UICollectionViewDelegate {
         // Replace the Select button with Done, and put the
         // collection view into editing mode.
     }
+    
 }
 
 // MARK: UISearchBarDelegate
