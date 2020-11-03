@@ -11,9 +11,7 @@ import UIKit
 
 class IssueListViewController: UIViewController {
     
-    enum Section: CaseIterable {
-        case main
-    }
+    // MARK: Properties
     
     @IBOutlet private weak var issueListCollectionView: UICollectionView!
     private var dataSource: UICollectionViewDiffableDataSource<Section, IssueListViewModel>!
@@ -22,6 +20,14 @@ class IssueListViewController: UIViewController {
     private lazy var issueList: [IssueListViewModel] = {
         return generateIssues()
     }()
+    
+    // MARK: Enums
+    
+    enum Section: CaseIterable {
+        case main
+    }
+    
+    // MARK: View Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,6 +43,8 @@ class IssueListViewController: UIViewController {
         super.setEditing(editing, animated: animated)
         issueListCollectionView.allowsMultipleSelection = editing
     }
+    
+    // MARK: Action Functions
     
     @IBAction func editButtonTouched(_ sender: UIBarButtonItem) {
         setEditing(true, animated: true)
