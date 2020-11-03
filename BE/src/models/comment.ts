@@ -11,7 +11,11 @@ class CommentModel extends Model {
   }
 
   async select<T>(id: T): Promise<any> {
-    const data = await db.query(`select * from ${this.tableName} where issue_id = ${id}`);
+    const data = await db.query(`
+    SELECT c.id, c.body, c.created_at, c.emoji , u.login_id, u.img 
+    FROM ${this.tableName} c 
+    JOIN USER u on c.user_id = u.id
+    WHERE c.issue_id = ${id}`);
     return data[0];
   }
 
@@ -20,7 +24,7 @@ class CommentModel extends Model {
     return insertId;
   }
 
-  async edit(pData: Comment): Promise<any> {
+  async edit(pData: object): Promise<any> {
     const affectedId = await super.update(pData, this.tableName);
     return affectedId;
   }
