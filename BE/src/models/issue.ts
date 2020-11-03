@@ -37,5 +37,16 @@ class IssueModel extends Model {
     const affectedId = await super.update(pData, this.tableName);
     return affectedId;
   }
+
+  async del(id: number): Promise<number> {
+    const affectedId = await super.delete(id, this.tableName);
+    return affectedId;
+  }
+
+  async changeState(id: number, state: boolean): Promise<number> {
+    const data = { id, state };
+    const affectedId = await super.update(data, this.tableName);
+    return affectedId;
+  }
 }
 export default new IssueModel();

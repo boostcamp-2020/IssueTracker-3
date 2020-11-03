@@ -37,4 +37,14 @@ const edit = async (req: Request, res: Response): Promise<any> => {
   return res.json(result);
 };
 
-export default { get, add, edit };
+const del = async (req: Request, res: Response): Promise<any> => {
+  const result = await IssueModel.del(req.body.id);
+  return res.json(result);
+};
+
+const changeState = async (req: Request, res: Response): Promise<any> => {
+  const result = await IssueModel.changeState(+req.params.id, req.body.state);
+  return res.json(result);
+};
+
+export default { get, add, edit, del, changeState };
