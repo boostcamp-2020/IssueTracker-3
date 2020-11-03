@@ -33,6 +33,11 @@ class IssueListViewController: UIViewController {
         performQuery(with: nil)
     }
     
+    override func setEditing(_ editing: Bool, animated: Bool) {
+        super.setEditing(editing, animated: animated)
+        issueListCollectionView.allowsMultipleSelection = editing
+    }
+    
     // MARK: Dummy Issue Data
 
     private func generateIssues() -> [IssueListViewModel] {
