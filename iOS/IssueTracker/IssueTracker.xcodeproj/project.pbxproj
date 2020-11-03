@@ -30,6 +30,10 @@
 		7059315725513E39003FE49F /* IssueListMakeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7059315625513E39003FE49F /* IssueListMakeTests.swift */; };
 		7059315C25513E82003FE49F /* IssuesMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7059315B25513E82003FE49F /* IssuesMock.swift */; };
 		705931662551460B003FE49F /* IssueListCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 705931652551460B003FE49F /* IssueListCollectionViewCell.swift */; };
+		7059317925516357003FE49F /* IssueListElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7059317825516357003FE49F /* IssueListElement.swift */; };
+		7059317D25516426003FE49F /* MilestoneElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7059317C25516426003FE49F /* MilestoneElement.swift */; };
+		7059318125516458003FE49F /* LabelElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7059318025516458003FE49F /* LabelElement.swift */; };
+		7059318525516506003FE49F /* CommentElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7059318425516506003FE49F /* CommentElement.swift */; };
 		7074DE212547DB9800A64FC2 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 7074DE202547DB9800A64FC2 /* .swiftlint.yml */; };
 		708EFEEE2546DBC9009D9DEC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 708EFEED2546DBC9009D9DEC /* AppDelegate.swift */; };
 		708EFEF02546DBC9009D9DEC /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 708EFEEF2546DBC9009D9DEC /* SceneDelegate.swift */; };
@@ -92,6 +96,10 @@
 		7059315625513E39003FE49F /* IssueListMakeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueListMakeTests.swift; sourceTree = "<group>"; };
 		7059315B25513E82003FE49F /* IssuesMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssuesMock.swift; sourceTree = "<group>"; };
 		705931652551460B003FE49F /* IssueListCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueListCollectionViewCell.swift; sourceTree = "<group>"; };
+		7059317825516357003FE49F /* IssueListElement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueListElement.swift; sourceTree = "<group>"; };
+		7059317C25516426003FE49F /* MilestoneElement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MilestoneElement.swift; sourceTree = "<group>"; };
+		7059318025516458003FE49F /* LabelElement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelElement.swift; sourceTree = "<group>"; };
+		7059318425516506003FE49F /* CommentElement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentElement.swift; sourceTree = "<group>"; };
 		7074DE202547DB9800A64FC2 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		708EFEEA2546DBC9009D9DEC /* IssueTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IssueTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		708EFEED2546DBC9009D9DEC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -168,6 +176,7 @@
 		701343B6254906D30044080A /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				7059317725516331003FE49F /* Models */,
 				701343C025493A160044080A /* NetworkManager.swift */,
 				BB41E026254963FA008245A3 /* APIConfiguration.swift */,
 			);
@@ -246,6 +255,17 @@
 				7059315B25513E82003FE49F /* IssuesMock.swift */,
 			);
 			path = IssueListTests;
+			sourceTree = "<group>";
+		};
+		7059317725516331003FE49F /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				7059317825516357003FE49F /* IssueListElement.swift */,
+				7059317C25516426003FE49F /* MilestoneElement.swift */,
+				7059318025516458003FE49F /* LabelElement.swift */,
+				7059318425516506003FE49F /* CommentElement.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 		708EFEE12546DBC9009D9DEC = {
@@ -552,11 +572,14 @@
 				BB41E02B2549655B008245A3 /* SignInEndPoint.swift in Sources */,
 				705930DB25500126003FE49F /* IssueFilterTableViewCell.swift in Sources */,
 				BBCC49F32547E9FD00FAB2F4 /* UIViewExtension.swift in Sources */,
+				7059317D25516426003FE49F /* MilestoneElement.swift in Sources */,
 				BBE2861125503D8A00A59009 /* SettingViewController.swift in Sources */,
 				BBCC49ED2547E8F300FAB2F4 /* SignInViewController.swift in Sources */,
 				BB65A04C254FED2000D09DD5 /* IssueDetailViewController.swift in Sources */,
 				708EFEF22546DBC9009D9DEC /* ViewController.swift in Sources */,
 				7059311325503E79003FE49F /* IssueDetailCollectionViewCell.swift in Sources */,
+				7059317925516357003FE49F /* IssueListElement.swift in Sources */,
+				7059318525516506003FE49F /* CommentElement.swift in Sources */,
 				BB52171B254A9EAF008455D4 /* OAuthManager.swift in Sources */,
 				BB41E027254963FA008245A3 /* APIConfiguration.swift in Sources */,
 				705930D4254FFF63003FE49F /* IssueFilterViewController.swift in Sources */,
@@ -564,6 +587,7 @@
 				708EFEEE2546DBC9009D9DEC /* AppDelegate.swift in Sources */,
 				7059311E25506294003FE49F /* IssueDetailBottomSheetViewController.swift in Sources */,
 				705931662551460B003FE49F /* IssueListCollectionViewCell.swift in Sources */,
+				7059318125516458003FE49F /* LabelElement.swift in Sources */,
 				702D6C38254AB0DB00E1A706 /* KeychainItem.swift in Sources */,
 				7059315125513C69003FE49F /* IssueListModelController.swift in Sources */,
 				702D6C0B254A8E0100E1A706 /* SignInWithAppleButton.swift in Sources */,
