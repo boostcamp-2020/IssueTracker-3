@@ -220,17 +220,3 @@ extension IssueDetailViewController {
             }
         }
 }
-
-
-/*
- issue 리스트 -> diffable || 일반 collection view or compositional
- filter -> table view => compositional(?)
- issue 디테일 -> collection view 일반
-    bottom sheet -> compositional
- 
- 글 작성 : 만들어놨고
- 글 수정 : 글 작성 <- 재사용
- 
- 라벨 : 컬렉션 뷰 // pop up 재사용
- 마일스톤 : 컬렉션 뷰 // pop up 재사용
-*/
