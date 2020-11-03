@@ -23,7 +23,7 @@
 		7059310625503859003FE49F /* MileStone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7059310425503859003FE49F /* MileStone.storyboard */; };
 		7059310C2550386F003FE49F /* Setting.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7059310B2550386F003FE49F /* Setting.storyboard */; };
 		7059311325503E79003FE49F /* IssueDetailCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7059311225503E79003FE49F /* IssueDetailCollectionViewCell.swift */; };
-		7059311E25506294003FE49F /* IssueManagementViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7059311D25506294003FE49F /* IssueManagementViewController.swift */; };
+		7059311E25506294003FE49F /* IssueDetailBottomSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7059311D25506294003FE49F /* IssueDetailBottomSheetViewController.swift */; };
 		7074DE212547DB9800A64FC2 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 7074DE202547DB9800A64FC2 /* .swiftlint.yml */; };
 		708EFEEE2546DBC9009D9DEC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 708EFEED2546DBC9009D9DEC /* AppDelegate.swift */; };
 		708EFEF02546DBC9009D9DEC /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 708EFEEF2546DBC9009D9DEC /* SceneDelegate.swift */; };
@@ -40,6 +40,7 @@
 		BB65A04C254FED2000D09DD5 /* IssueDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB65A04B254FED2000D09DD5 /* IssueDetailViewController.swift */; };
 		BB91912425500E25007D25B7 /* CreateIssueViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB91912325500E25007D25B7 /* CreateIssueViewController.swift */; };
 		BB91912925500E8F007D25B7 /* EditIssueViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB91912825500E8F007D25B7 /* EditIssueViewController.swift */; };
+		BBBCF95E2550EC0800819773 /* BottomSheetTest.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBBCF95D2550EC0800819773 /* BottomSheetTest.xib */; };
 		BBCC49ED2547E8F300FAB2F4 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBCC49EC2547E8F300FAB2F4 /* SignInViewController.swift */; };
 		BBCC49F32547E9FD00FAB2F4 /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBCC49F22547E9FD00FAB2F4 /* UIViewExtension.swift */; };
 		BBCC4A032547FCF800FAB2F4 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBCC4A022547FCF800FAB2F4 /* SignUpViewController.swift */; };
@@ -77,7 +78,7 @@
 		7059310525503859003FE49F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MileStone.storyboard; sourceTree = "<group>"; };
 		7059310B2550386F003FE49F /* Setting.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Setting.storyboard; sourceTree = SOURCE_ROOT; };
 		7059311225503E79003FE49F /* IssueDetailCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueDetailCollectionViewCell.swift; sourceTree = "<group>"; };
-		7059311D25506294003FE49F /* IssueManagementViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueManagementViewController.swift; sourceTree = "<group>"; };
+		7059311D25506294003FE49F /* IssueDetailBottomSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueDetailBottomSheetViewController.swift; sourceTree = "<group>"; };
 		7074DE202547DB9800A64FC2 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		708EFEEA2546DBC9009D9DEC /* IssueTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IssueTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		708EFEED2546DBC9009D9DEC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -99,6 +100,7 @@
 		BB65A04B254FED2000D09DD5 /* IssueDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueDetailViewController.swift; sourceTree = "<group>"; };
 		BB91912325500E25007D25B7 /* CreateIssueViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateIssueViewController.swift; sourceTree = "<group>"; };
 		BB91912825500E8F007D25B7 /* EditIssueViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditIssueViewController.swift; sourceTree = "<group>"; };
+		BBBCF95D2550EC0800819773 /* BottomSheetTest.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BottomSheetTest.xib; sourceTree = "<group>"; };
 		BBCC49EC2547E8F300FAB2F4 /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		BBCC49F22547E9FD00FAB2F4 /* UIViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
 		BBCC4A022547FCF800FAB2F4 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
@@ -295,7 +297,8 @@
 			children = (
 				7059311125503E52003FE49F /* Views */,
 				BB65A04B254FED2000D09DD5 /* IssueDetailViewController.swift */,
-				7059311D25506294003FE49F /* IssueManagementViewController.swift */,
+				BBBCF95D2550EC0800819773 /* BottomSheetTest.xib */,
+				7059311D25506294003FE49F /* IssueDetailBottomSheetViewController.swift */,
 			);
 			path = IssueDetail;
 			sourceTree = "<group>";
@@ -428,6 +431,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BBBCF95E2550EC0800819773 /* BottomSheetTest.xib in Resources */,
 				7074DE212547DB9800A64FC2 /* .swiftlint.yml in Resources */,
 				7059310625503859003FE49F /* MileStone.storyboard in Resources */,
 				708EFEFA2546DBCA009D9DEC /* LaunchScreen.storyboard in Resources */,
@@ -511,7 +515,7 @@
 				705930D4254FFF63003FE49F /* IssueFilterViewController.swift in Sources */,
 				701343C125493A160044080A /* NetworkManager.swift in Sources */,
 				708EFEEE2546DBC9009D9DEC /* AppDelegate.swift in Sources */,
-				7059311E25506294003FE49F /* IssueManagementViewController.swift in Sources */,
+				7059311E25506294003FE49F /* IssueDetailBottomSheetViewController.swift in Sources */,
 				702D6C38254AB0DB00E1A706 /* KeychainItem.swift in Sources */,
 				702D6C0B254A8E0100E1A706 /* SignInWithAppleButton.swift in Sources */,
 				705930E625502FA4003FE49F /* HeaderView.swift in Sources */,

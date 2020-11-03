@@ -397,10 +397,10 @@ HTML형태로 보여줘야 할까요</string>
             </objects>
             <point key="canvasLocation" x="-936" y="4064"/>
         </scene>
-        <!--Issue Management View Controller-->
+        <!--Issue Detail Bottom Sheet View Controller-->
         <scene sceneID="gpk-5A-NjN">
             <objects>
-                <viewController storyboardIdentifier="IssueManagementViewController" id="6Re-li-5VW" customClass="IssueManagementViewController" customModule="IssueTracker" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="issueDetailBottomSheet" id="6Re-li-5VW" customClass="IssueDetailBottomSheetViewController" customModule="IssueTracker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="t5f-hx-K2G">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
