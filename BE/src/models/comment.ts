@@ -19,6 +19,11 @@ class CommentModel extends Model {
     const insertId = await super.insert(pData, this.tableName);
     return insertId;
   }
+
+  async edit(pData: Comment): Promise<any> {
+    const affectedId = await super.update(pData, this.tableName);
+    return affectedId;
+  }
 }
 
 export default new CommentModel();

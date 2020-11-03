@@ -20,4 +20,18 @@ const add = async (req: Request, res: Response): Promise<Response> => {
   return res.json(result);
 };
 
-export default { get, add };
+const edit = async (req: Request, res: Response): Promise<Response> => {
+  const comment: Comment = {
+    id: req.body.id,
+    issue_id: req.body.issueId,
+    user_id: req.body.userId,
+    body: req.body.body,
+    emoji: req.body.emoji,
+    created_at: req.body.createdAt,
+  };
+  console.log(comment);
+  const result = await CommentModel.edit(comment);
+  return res.json(result);
+};
+
+export default { get, add, edit };
