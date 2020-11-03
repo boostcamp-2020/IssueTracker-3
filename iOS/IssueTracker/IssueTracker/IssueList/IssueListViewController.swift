@@ -29,6 +29,29 @@ class IssueListViewController: UIViewController {
         issueListModelController = IssueListModelController()
         configureDataSource()
         performQuery(with: nil)
+
+        if #available(iOS 14.0, *) {
+            var layoutConfig = UICollectionLayoutListConfiguration(appearance: .insetGrouped)
+            layoutConfig.trailingSwipeActionsConfigurationProvider = { [weak self] (indexPath) in
+                guard let self = self,
+                      let item = self.dataSource.itemIdentifier(for: indexPath)
+                else {
+                    return nil
+                }
+
+                let delete = UIContextualAction(style: .normal, title: "Delete") { (action, view, completion) in
+                    completion(true)
+                }
+
+                delete.backgroundColor = .systemRed
+
+                return UISwipeActionsConfiguration(actions: [delete])
+            }
+            let listLayout = UICollectionViewCompositionalLayout.list(using: layoutConfig)
+            issueListCollectionView.collectionViewLayout = listLayout
+        } else {
+
+        }
     }
 }
 
