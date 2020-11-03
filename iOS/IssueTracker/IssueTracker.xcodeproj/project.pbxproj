@@ -227,6 +227,13 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		70593142255138C8003FE49F /* IssueListTests */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = IssueListTests;
+			sourceTree = "<group>";
+		};
 		708EFEE12546DBC9009D9DEC = {
 			isa = PBXGroup;
 			children = (
@@ -281,6 +288,7 @@
 		708EFF032546DBCB009D9DEC /* IssueTrackerTests */ = {
 			isa = PBXGroup;
 			children = (
+				70593142255138C8003FE49F /* IssueListTests */,
 				7012DC8C2549AD9400EAADD7 /* SignInTests */,
 				701343B9254907890044080A /* NetworkTests */,
 				708EFF042546DBCB009D9DEC /* IssueTrackerTests.swift */,
