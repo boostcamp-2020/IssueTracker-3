@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct IssuesViewModel: Hashable {
+struct IssueListViewModel: Hashable {
     let title: String
     let description: String
     let milestone: String
@@ -29,7 +29,7 @@ struct IssuesViewModel: Hashable {
         hasher.combine(identifier)
     }
 
-    static func == (lhs: IssuesViewModel, rhs: IssuesViewModel) -> Bool {
+    static func == (lhs: IssueListViewModel, rhs: IssueListViewModel) -> Bool {
         return lhs.identifier == rhs.identifier
     }
 }
