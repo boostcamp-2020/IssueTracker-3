@@ -12,7 +12,7 @@ const add = async (req: Request, res: Response): Promise<Response> => {
     id: null,
     name: req.body.name,
     description: req.body.description,
-    due_date: req.body.dueDate,
+    due_date: req.body.due_date,
     created_at: new Date(),
   };
   const result = await MilestoneModel.add(milestone);
@@ -20,12 +20,11 @@ const add = async (req: Request, res: Response): Promise<Response> => {
 };
 
 const edit = async (req: Request, res: Response): Promise<Response> => {
-  const milestone: Milestone = {
+  const milestone = {
     id: req.body.id,
     name: req.body.name,
     description: req.body.description,
-    due_date: req.body.dueDate,
-    created_at: new Date(),
+    due_date: req.body.due_date,
   };
   const result = await MilestoneModel.edit(milestone);
   return res.json(result);

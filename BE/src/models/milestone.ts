@@ -26,7 +26,7 @@ class MilestoneModel extends Model {
     return this.data ? 200 : 400;
   }
 
-  async edit(pData: Milestone): Promise<number> {
+  async edit(pData: object): Promise<number> {
     this.data = await super.update(pData, this.tableName);
     return this.data;
   }

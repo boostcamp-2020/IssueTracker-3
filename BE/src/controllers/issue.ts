@@ -14,24 +14,23 @@ const add = async (req: Request, res: Response): Promise<any> => {
     body: req.body.body,
     user_id: req.body.author,
     created_at: new Date(),
-    closed_at: req.body?.closedAt ?? null,
+    closed_at: req.body?.closed_at ?? null,
     state: true,
-    milestone_id: req.body?.milestoneId ?? null,
+    milestone_id: req.body?.milestone_at ?? null,
   };
   const result = await IssueModel.add(issue);
   return res.json(result);
 };
 
 const edit = async (req: Request, res: Response): Promise<any> => {
-  const issue: Issue = {
+  const issue = {
     id: req.body.id,
     title: req.body.title,
     body: req.body.body,
     user_id: req.body.author,
-    created_at: req.body.createdAt,
-    closed_at: req.body?.closedAt ?? null,
+    closed_at: req.body?.closed_at ?? null,
     state: req.body.state,
-    milestone_id: req.body?.milestoneId ?? null,
+    milestone_id: req.body?.milestone_id ?? null,
   };
   const result = await IssueModel.edit(issue);
   return res.json(result);
