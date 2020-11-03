@@ -323,12 +323,20 @@
 		BB65A044254FEC7200D09DD5 /* IssueDetail */ = {
 			isa = PBXGroup;
 			children = (
+				BB8B6DC12551585B00679316 /* ToBeDeleted */,
 				7059311125503E52003FE49F /* Views */,
 				BB65A04B254FED2000D09DD5 /* IssueDetailViewController.swift */,
-				BBBCF95D2550EC0800819773 /* BottomSheetTest.xib */,
 				7059311D25506294003FE49F /* IssueDetailBottomSheetViewController.swift */,
 			);
 			path = IssueDetail;
+			sourceTree = "<group>";
+		};
+		BB8B6DC12551585B00679316 /* ToBeDeleted */ = {
+			isa = PBXGroup;
+			children = (
+				BBBCF95D2550EC0800819773 /* BottomSheetTest.xib */,
+			);
+			path = ToBeDeleted;
 			sourceTree = "<group>";
 		};
 		BB91912225500D6F007D25B7 /* CreateIssue */ = {
