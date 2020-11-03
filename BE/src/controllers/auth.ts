@@ -22,21 +22,18 @@ function login(req: Request, res: Response): void {
     });
   })(req, res);
 }
-function apple(req: Request, res: Response): Response<JSON> | Response<string> {
-  const userResult = req.body.profile.username;
-  const JWT = jwt.sign(JSON.parse(JSON.stringify(userResult)), String(process.env.JWT_SECRET), { expiresIn: "10m" });
+function githubLogin(req: Request, res: Response): Response<JSON> | Response<string> {
+  const gitUser : any = req.user
+  const userResult = gitUser.profile.username;
+  const JWT = jwt.sign(JSON.parse(JSON.stringify({userResult})), String(process.env.JWT_SECRET), { expiresIn: "10m" });
   return res.json({ state: "success", JWT });
 }
-function githubLogin(req: Request, res: Response): Response<JSON> | Response<string> {
-  const loginUser: any = req.user;
-  console.log(loginUser);
+function apple(req: Request, res: Response): Response<JSON> | Response<string> {
+  const loginUser: any = req.body;
   const decoded: any = jwt.decode(loginUser.identity_token);
-  console.log(decoded);
-  const userEmail: string = decoded.payload.email;
-  console.log(userEmail);
+  const userEmail: string = decoded.email;
   const userResult = userEmail.split("@")[0];
-  console.log(userResult);
-  const JWT = jwt.sign(JSON.parse(JSON.stringify(userResult)), String(process.env.JWT_SECRET), { expiresIn: "10m" });
+  const JWT = jwt.sign(JSON.parse(JSON.stringify({userResult})), String(process.env.JWT_SECRET), { expiresIn: "10m" });
   return res.json({ state: "success", JWT });
 }
 
