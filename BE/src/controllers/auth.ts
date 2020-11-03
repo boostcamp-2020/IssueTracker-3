@@ -26,7 +26,6 @@ function login(req: Request, res: Response): void {
         const JWT = jwt.sign(JSON.parse(JSON.stringify(userResult)), String(process.env.JWT_SECRET), { expiresIn: "10m" });
         return res.json({ state: "success", JWT });
       });
-      return res.json({ state: "fail" });
     }
   })(req, res);
 }

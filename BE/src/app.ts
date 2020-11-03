@@ -14,6 +14,11 @@ import tag from "@routes/tag";
 import comment from "@routes/comment";
 import Passport from "@providers/passport";
 
+import dotenv from "dotenv";
+import path from "path";
+
+dotenv.config({ path: path.join(__dirname, "../../.env") });
+
 class App {
   private app: Application;
 
@@ -43,7 +48,7 @@ class App {
     this.app.use(passport.initialize());
     this.app.use(
       session({
-        secret: `@#@$MYSIGN#@$#$`,
+        secret: process.env.JWT_SECRET as string,
         resave: false,
         saveUninitialized: true,
       })

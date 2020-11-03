@@ -5,12 +5,12 @@ import TagModel from "@models/tag";
 import { Tag } from "@interfaces/tag";
 
 const get = async (req: Request, res: Response): Promise<Response> => {
-  const result = await TagModel.select(+req.params.issue_id);
+  const result = await TagModel.select(+req.params.issueid);
   return res.json(result);
 };
 
 const edit = async (req: Request, res: Response): Promise<Response> => {
-  const data = await TagModel.select(+req.params.issue_id);
+  const data = await TagModel.select(+req.params.issueid);
   const ids = data.map((value) => Number(value.id));
   for (const id of ids) {
     try {
