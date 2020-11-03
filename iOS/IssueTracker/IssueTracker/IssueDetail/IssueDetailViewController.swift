@@ -99,7 +99,12 @@ extension IssueDetailViewController {
             visualEffectView.frame = self.view.frame
             self.view.addSubview(visualEffectView)
             
-            issueDetailBottomSheet = IssueDetailBottomSheetViewController(nibName: "BottomSheetTest", bundle: nil)
+//            issueDetailBottomSheet = IssueDetailBottomSheetViewController(nibName: "BottomSheetTest", bundle: nil)
+            guard let viewController = UIStoryboard(name: "IssueList", bundle: nil)
+                    .instantiateViewController(identifier: "IssueDetailBottomSheet")
+                    as? IssueDetailBottomSheetViewController else { return }
+            issueDetailBottomSheet = viewController
+                
             self.addChild(issueDetailBottomSheet)
             self.view.addSubview(issueDetailBottomSheet.view)
             
@@ -181,6 +186,7 @@ extension IssueDetailViewController {
                     switch state {
                     case .expanded:
                         self.visualEffectView.effect = UIBlurEffect(style: .dark)
+                        self.visualEffectView.alpha = 0.3
                     case .collapsed:
                         self.visualEffectView.effect = nil
                     }
@@ -214,3 +220,17 @@ extension IssueDetailViewController {
             }
         }
 }
+
+
+/*
+ issue 리스트 -> diffable || 일반 collection view or compositional
+ filter -> table view => compositional(?)
+ issue 디테일 -> collection view 일반
+    bottom sheet -> compositional
+ 
+ 글 작성 : 만들어놨고
+ 글 수정 : 글 작성 <- 재사용
+ 
+ 라벨 : 컬렉션 뷰 // pop up 재사용
+ 마일스톤 : 컬렉션 뷰 // pop up 재사용
+*/
