@@ -12,9 +12,8 @@ class ViewController: UIViewController {
     @IBOutlet weak var familyNameLabel: UILabel!
     @IBOutlet weak var givenNameLabel: UILabel!
     @IBOutlet weak var emailLabel: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
     }
-
 }
