@@ -25,6 +25,11 @@
 		7059311325503E79003FE49F /* IssueDetailCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7059311225503E79003FE49F /* IssueDetailCollectionViewCell.swift */; };
 		7059311E25506294003FE49F /* IssueDetailBottomSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7059311D25506294003FE49F /* IssueDetailBottomSheetViewController.swift */; };
 		7059313525512E72003FE49F /* IssueListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7059313425512E72003FE49F /* IssueListViewModel.swift */; };
+		7059314C25513994003FE49F /* IssueListFilterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7059314B25513994003FE49F /* IssueListFilterTests.swift */; };
+		7059315125513C69003FE49F /* IssueListModelController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7059315025513C69003FE49F /* IssueListModelController.swift */; };
+		7059315725513E39003FE49F /* IssueListMakeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7059315625513E39003FE49F /* IssueListMakeTests.swift */; };
+		7059315C25513E82003FE49F /* IssuesMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7059315B25513E82003FE49F /* IssuesMock.swift */; };
+		705931662551460B003FE49F /* IssueListCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 705931652551460B003FE49F /* IssueListCollectionViewCell.swift */; };
 		7074DE212547DB9800A64FC2 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 7074DE202547DB9800A64FC2 /* .swiftlint.yml */; };
 		708EFEEE2546DBC9009D9DEC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 708EFEED2546DBC9009D9DEC /* AppDelegate.swift */; };
 		708EFEF02546DBC9009D9DEC /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 708EFEEF2546DBC9009D9DEC /* SceneDelegate.swift */; };
@@ -82,6 +87,11 @@
 		7059311225503E79003FE49F /* IssueDetailCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueDetailCollectionViewCell.swift; sourceTree = "<group>"; };
 		7059311D25506294003FE49F /* IssueDetailBottomSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueDetailBottomSheetViewController.swift; sourceTree = "<group>"; };
 		7059313425512E72003FE49F /* IssueListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueListViewModel.swift; sourceTree = "<group>"; };
+		7059314B25513994003FE49F /* IssueListFilterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueListFilterTests.swift; sourceTree = "<group>"; };
+		7059315025513C69003FE49F /* IssueListModelController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueListModelController.swift; sourceTree = "<group>"; };
+		7059315625513E39003FE49F /* IssueListMakeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueListMakeTests.swift; sourceTree = "<group>"; };
+		7059315B25513E82003FE49F /* IssuesMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssuesMock.swift; sourceTree = "<group>"; };
+		705931652551460B003FE49F /* IssueListCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueListCollectionViewCell.swift; sourceTree = "<group>"; };
 		7074DE202547DB9800A64FC2 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		708EFEEA2546DBC9009D9DEC /* IssueTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IssueTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		708EFEED2546DBC9009D9DEC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -223,6 +233,7 @@
 			isa = PBXGroup;
 			children = (
 				7059313425512E72003FE49F /* IssueListViewModel.swift */,
+				7059315025513C69003FE49F /* IssueListModelController.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -230,6 +241,9 @@
 		70593142255138C8003FE49F /* IssueListTests */ = {
 			isa = PBXGroup;
 			children = (
+				7059314B25513994003FE49F /* IssueListFilterTests.swift */,
+				7059315625513E39003FE49F /* IssueListMakeTests.swift */,
+				7059315B25513E82003FE49F /* IssuesMock.swift */,
 			);
 			path = IssueListTests;
 			sourceTree = "<group>";
@@ -345,6 +359,7 @@
 			isa = PBXGroup;
 			children = (
 				BBBCF96525511AE300819773 /* DummyView.swift */,
+				705931652551460B003FE49F /* IssueListCollectionViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -548,7 +563,9 @@
 				701343C125493A160044080A /* NetworkManager.swift in Sources */,
 				708EFEEE2546DBC9009D9DEC /* AppDelegate.swift in Sources */,
 				7059311E25506294003FE49F /* IssueDetailBottomSheetViewController.swift in Sources */,
+				705931662551460B003FE49F /* IssueListCollectionViewCell.swift in Sources */,
 				702D6C38254AB0DB00E1A706 /* KeychainItem.swift in Sources */,
+				7059315125513C69003FE49F /* IssueListModelController.swift in Sources */,
 				702D6C0B254A8E0100E1A706 /* SignInWithAppleButton.swift in Sources */,
 				705930E625502FA4003FE49F /* HeaderView.swift in Sources */,
 				BB91912425500E25007D25B7 /* CreateIssueViewController.swift in Sources */,
@@ -563,10 +580,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				7012DC942549AEE500EAADD7 /* EndPointMock.swift in Sources */,
+				7059315725513E39003FE49F /* IssueListMakeTests.swift in Sources */,
 				7012DC8E2549ADC400EAADD7 /* SignInEndPointTest.swift in Sources */,
+				7059314C25513994003FE49F /* IssueListFilterTests.swift in Sources */,
 				701343BB254907AA0044080A /* NetworkManagerTest.swift in Sources */,
 				708EFF052546DBCB009D9DEC /* IssueTrackerTests.swift in Sources */,
 				7012DC982549AF1B00EAADD7 /* SessionManagerStub.swift in Sources */,
+				7059315C25513E82003FE49F /* IssuesMock.swift in Sources */,
 				BB52170F254A81D8008455D4 /* UserTestModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
