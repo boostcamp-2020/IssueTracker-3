@@ -14,6 +14,11 @@ class CommentModel extends Model {
     const data = await db.query(`select * from ${this.tableName} where issue_id = ${id}`);
     return data[0];
   }
+
+  async add(pData: Comment): Promise<any> {
+    const insertId = await super.insert(pData, this.tableName);
+    return insertId;
+  }
 }
 
 export default new CommentModel();
