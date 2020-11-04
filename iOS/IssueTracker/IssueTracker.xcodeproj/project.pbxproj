@@ -51,7 +51,6 @@
 		BB91912425500E25007D25B7 /* CreateIssueViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB91912325500E25007D25B7 /* CreateIssueViewController.swift */; };
 		BB91912925500E8F007D25B7 /* EditIssueViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB91912825500E8F007D25B7 /* EditIssueViewController.swift */; };
 		BBBCF95E2550EC0800819773 /* BottomSheetTest.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBBCF95D2550EC0800819773 /* BottomSheetTest.xib */; };
-		BBBCF96625511AE300819773 /* DummyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBBCF96525511AE300819773 /* DummyView.swift */; };
 		BBCC49ED2547E8F300FAB2F4 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBCC49EC2547E8F300FAB2F4 /* SignInViewController.swift */; };
 		BBCC49F32547E9FD00FAB2F4 /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBCC49F22547E9FD00FAB2F4 /* UIViewExtension.swift */; };
 		BBCC4A032547FCF800FAB2F4 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBCC4A022547FCF800FAB2F4 /* SignUpViewController.swift */; };
@@ -122,7 +121,6 @@
 		BB91912325500E25007D25B7 /* CreateIssueViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateIssueViewController.swift; sourceTree = "<group>"; };
 		BB91912825500E8F007D25B7 /* EditIssueViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditIssueViewController.swift; sourceTree = "<group>"; };
 		BBBCF95D2550EC0800819773 /* BottomSheetTest.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BottomSheetTest.xib; sourceTree = "<group>"; };
-		BBBCF96525511AE300819773 /* DummyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DummyView.swift; path = IssueTracker/IssueList/Views/DummyView.swift; sourceTree = SOURCE_ROOT; };
 		BBCC49EC2547E8F300FAB2F4 /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		BBCC49F22547E9FD00FAB2F4 /* UIViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
 		BBCC4A022547FCF800FAB2F4 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
@@ -378,7 +376,6 @@
 		BBBCF96925511B3B00819773 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				BBBCF96525511AE300819773 /* DummyView.swift */,
 				705931652551460B003FE49F /* IssueListCollectionViewCell.swift */,
 			);
 			path = Views;
@@ -567,7 +564,6 @@
 			files = (
 				7059313525512E72003FE49F /* IssueListViewModel.swift in Sources */,
 				BBCC4A032547FCF800FAB2F4 /* SignUpViewController.swift in Sources */,
-				BBBCF96625511AE300819773 /* DummyView.swift in Sources */,
 				BB91912925500E8F007D25B7 /* EditIssueViewController.swift in Sources */,
 				BB41E02B2549655B008245A3 /* SignInEndPoint.swift in Sources */,
 				705930DB25500126003FE49F /* IssueFilterTableViewCell.swift in Sources */,
@@ -720,7 +716,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.6;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -775,7 +771,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.6;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
