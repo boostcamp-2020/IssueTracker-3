@@ -38,8 +38,8 @@ class IssueListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureNavigationItems()
-        configureCollectionLayoutList()
         configureDataSource()
+        configureCollectionLayoutList()
         
         issueListModelController = IssueListModelController()
         performQuery(with: nil)
@@ -75,7 +75,15 @@ class IssueListViewController: UIViewController {
                     return nil
                 }
                 
-                let delete = UIContextualAction(style: .normal, title: "Delete") { action, view, completion in
+                let delete = UIContextualAction(style: .destructive,
+                                                title: "Delete") { [weak self] action, view, completion in
+                    // TODO: Model -> 해당 indexPath delete
+                    var snapshot = self?.dataSource.snapshot()
+                    snapshot?.deleteItems([item])
+                    guard let snapShot = snapshot else { return }
+                    self?.dataSource.apply(snapShot, animatingDifferences: true)
+                    self?.issueListCollectionView.reloadData()
+                    // TODO: 선택 이슈 삭제 -> 삭제 이슈 Model Update & Server Post
                     completion(true)
                 }
                 
@@ -128,11 +136,11 @@ class IssueListViewController: UIViewController {
         /* 아래의 코드 위로 변경함 - 협업 코드 이해용 - 삭제 예정
          issueListCollectionView.indexPathsForVisibleItems.forEach { indexPath in
          guard let cell = issueListCollectionView.cellForItem(at: indexPath)
-                as? IssueListCollectionViewCell
+         as? IssueListCollectionViewCell
          else {
-            return
+         return
          }
-            cell.isInEditingMode = editing
+         cell.isInEditingMode = editing
          }
          */
     }
@@ -150,7 +158,7 @@ class IssueListViewController: UIViewController {
         //    .assign(to: &)
         issueListCollectionView.reloadData()
     }
-
+    
     @objc private func filterTouched(_ sender: Any) {
         performSegue(withIdentifier: "IssueListFilterSegue", sender: nil)
     }
@@ -198,8 +206,8 @@ extension IssueListViewController: UICollectionViewDelegate {
         /* 아래의 코드 위로 변경함 - 협업 코드 이해용 - 삭제 예정
          guard let storyboard = UIStoryboard(name: "IssueList", bundle: nil)
          .instantiateViewController(identifier: "IssueDetailViewController")
-                as? IssueDetailViewController else {
-            return
+         as? IssueDetailViewController else {
+         return
          }
          navigationController?.pushViewController(storyboard, animated: true)
          */
