@@ -155,13 +155,13 @@
                         <viewLayoutGuide key="safeArea" id="qel-gu-NqZ"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="iD5-I1-ahl" firstAttribute="top" secondItem="gMJ-9A-2wT" secondAttribute="bottom" id="0kV-PQ-de2"/>
-                            <constraint firstItem="iD5-I1-ahl" firstAttribute="top" secondItem="cWt-Qc-OJy" secondAttribute="bottom" constant="18" id="DVi-kK-qVw"/>
                             <constraint firstItem="gMJ-9A-2wT" firstAttribute="trailing" secondItem="qel-gu-NqZ" secondAttribute="trailing" id="HpK-ly-vAT"/>
-                            <constraint firstItem="iD5-I1-ahl" firstAttribute="leading" secondItem="qel-gu-NqZ" secondAttribute="leading" id="Plg-JY-yOa"/>
-                            <constraint firstItem="qel-gu-NqZ" firstAttribute="bottom" secondItem="iD5-I1-ahl" secondAttribute="bottom" id="f10-Kn-ktF"/>
+                            <constraint firstItem="iD5-I1-ahl" firstAttribute="leading" secondItem="qel-gu-NqZ" secondAttribute="leading" id="Jpi-Sj-qnF"/>
+                            <constraint firstItem="iD5-I1-ahl" firstAttribute="top" secondItem="gMJ-9A-2wT" secondAttribute="bottom" id="KPF-be-F1N"/>
+                            <constraint firstItem="iD5-I1-ahl" firstAttribute="top" secondItem="cWt-Qc-OJy" secondAttribute="bottom" constant="18" id="WgZ-Aj-XLL"/>
+                            <constraint firstItem="qel-gu-NqZ" firstAttribute="trailing" secondItem="iD5-I1-ahl" secondAttribute="trailing" id="aoR-HF-3Do"/>
+                            <constraint firstItem="qel-gu-NqZ" firstAttribute="bottom" secondItem="iD5-I1-ahl" secondAttribute="bottom" id="jd7-r3-uvq"/>
                             <constraint firstItem="qel-gu-NqZ" firstAttribute="trailing" secondItem="cWt-Qc-OJy" secondAttribute="trailing" constant="18" id="s6K-f2-giW"/>
-                            <constraint firstItem="qel-gu-NqZ" firstAttribute="trailing" secondItem="iD5-I1-ahl" secondAttribute="trailing" id="wqM-6g-lNh"/>
                             <constraint firstItem="gMJ-9A-2wT" firstAttribute="leading" secondItem="qel-gu-NqZ" secondAttribute="leading" id="xz5-ci-QXU"/>
                             <constraint firstItem="gMJ-9A-2wT" firstAttribute="top" secondItem="qel-gu-NqZ" secondAttribute="top" id="yUd-AO-cAd"/>
                         </constraints>

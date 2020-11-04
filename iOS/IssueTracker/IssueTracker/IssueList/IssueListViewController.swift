@@ -146,10 +146,19 @@ class IssueListViewController: UIViewController {
     }
     
     @IBAction func closeSelectedIssueTouched(_ sender: UIBarButtonItem) {
-        guard let selectedItems = issueListCollectionView.indexPathsForSelectedItems else {
+        //        guard let selectedItems = issueListCollectionView.indexPathsForSelectedItems else {
+        //            return
+        //        }
+        var snapshot = dataSource.snapshot()
+        let selectedItems = issueListCollectionView
+            .indexPathsForSelectedItems?
+            .compactMap { dataSource.itemIdentifier(for: $0) }
+        guard let deleteItems = selectedItems else {
             return
         }
-        issueListCollectionView.deleteItems(at: selectedItems)
+        snapshot.deleteItems(deleteItems)
+        dataSource.apply(snapshot, animatingDifferences: true)
+        
         // TODO: 선택 이슈 닫기 -> 닫은 이슈 Model Update & Server Post
         // selectedItems
         //    .map { issueListCollectionView.cellForItem(at: $0) }
