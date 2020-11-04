@@ -17,18 +17,22 @@ class IssueListViewController: UIViewController {
     var dataSource: UICollectionViewDiffableDataSource<Section, IssueListViewModel>!
     var issueListModelController: IssueListModelController!
 
+    var searchText: String = ""
+
     private lazy var issueList: [IssueListViewModel] = {
         return generateMountains()
     }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
         navigationItem.searchController = UISearchController(searchResultsController: nil)
         navigationItem.hidesSearchBarWhenScrolling = false
         navigationItem.searchController?.searchBar.delegate = self
+
         issueListModelController = IssueListModelController()
         configureDataSource()
-        performQuery(with: nil)
+        performSearchQuery(with: nil)
 
         if #available(iOS 14.0, *) {
             var layoutConfig = UICollectionLayoutListConfiguration(appearance: .insetGrouped)
@@ -39,7 +43,7 @@ class IssueListViewController: UIViewController {
                     return nil
                 }
 
-                let delete = UIContextualAction(style: .normal, title: "Delete") { (action, view, completion) in
+                let delete = UIContextualAction(style: .destructive, title: "Delete") { (action, view, completion) in
                     completion(true)
                 }
 
@@ -55,6 +59,17 @@ class IssueListViewController: UIViewController {
     }
 }
 
+extension IssueListViewController: UISearchBarDelegate {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        performSearchQuery(with: searchText)
+        self.searchText = searchText
+    }
+
+    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+        self.navigationItem.searchController?.searchBar.text = searchText
+    }
+}
+
 extension IssueListViewController {
     func configureDataSource() {
         dataSource = UICollectionViewDiffableDataSource<Section, IssueListViewModel>(
@@ -62,27 +77,32 @@ extension IssueListViewController {
             cellProvider: {(
                 collectionView, indexPath, item
             ) -> UICollectionViewCell? in
-                guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "IssueListCell", for: indexPath) as? IssueListCollectionViewCell else { return UICollectionViewCell() }
+                guard let cell = collectionView.dequeueReusableCell(
+                        withReuseIdentifier: "IssueListCell", for: indexPath
+                ) as? IssueListCollectionViewCell else { return UICollectionViewCell() }
 
                 cell.titleLabel.text = item.title
                 cell.issueListDescription.text = item.description
-                cell.firstLabel.titleLabel?.text = item.labels.first
-                cell.secondLabel.titleLabel?.text = item.labels.last
-                cell.mileStone.titleLabel?.text = item.milestone
+                cell.configureLabelStackView(milestone: item.milestone, labels: item.labels)
+
                 return cell
             })
     }
 }
 
-extension IssueListViewController: UISearchBarDelegate {
-    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        performQuery(with: searchText)
-    }
-
-    func performQuery(with filter: String?) {
+extension IssueListViewController {
+    func performSearchQuery(with filter: String?) {
         let issueListItems = issueListModelController.filtered(with: filter ?? "",
                                                                model: issueList).sorted { $0.title < $1.title }
-        
+
+        var snapshot = NSDiffableDataSourceSnapshot<Section, IssueListViewModel>()
+        snapshot.appendSections([.main])
+        snapshot.appendItems(issueListItems)
+        dataSource.apply(snapshot, animatingDifferences: true)
+    }
+
+    func performAddQuery(with model: IssueListViewModel) {
+        let issueListItems = issueListModelController.add(model: model, to: issueList)
         var snapshot = NSDiffableDataSourceSnapshot<Section, IssueListViewModel>()
         snapshot.appendSections([.main])
         snapshot.appendItems(issueListItems)
@@ -105,22 +125,22 @@ private func generateMountains() -> [IssueListViewModel] {
     issues.append(IssueListViewModel(title: "test1",
                                      description: "설명",
                                      milestone: "프로젝트1",
-                                     labels: ["label1, label2"]))
+                                     labels: ["label1", "label2"]))
     issues.append(IssueListViewModel(title: "test2",
                                      description: "설명",
                                      milestone: "프로젝트2",
-                                     labels: ["label1, label2"]))
+                                     labels: ["label1", "label2"]))
     issues.append(IssueListViewModel(title: "test3",
                                      description: "설명",
                                      milestone: "프로젝트3",
-                                     labels: ["label1, label2"]))
+                                     labels: ["label1", "label2"]))
     issues.append(IssueListViewModel(title: "ha",
                                      description: "설명",
                                      milestone: "프로젝트4",
-                                     labels: ["label1, label2"]))
+                                     labels: ["label1", "label2", "label3", "label3"]))
     issues.append(IssueListViewModel(title: "haha",
                                      description: "설명",
                                      milestone: "프로젝트5",
-                                     labels: ["label1, label2"]))
+                                     labels: ["label1", "label2"]))
     return issues
 }
