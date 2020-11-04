@@ -9,12 +9,35 @@ import UIKit
 
 class CreateIssueViewController: UIViewController {
     @IBOutlet private weak var commentWritingTextView: UITextView!
-    
+    @IBOutlet weak var titleLabel: UITextField!
+    @IBOutlet weak var commentTextView: UITextView!
+    @IBOutlet weak var segmentedControl: UISegmentedControl!
+
     override func viewDidLoad() {
         super.viewDidLoad()
         placeholderSetting()
     }
 
+    @IBAction func makeNewIssueButtonTouched(_ sender: Any) {
+        dismiss(animated: true) { [unowned self] in
+            let title = titleLabel.text
+            let comment = commentTextView.text
+        }
+    }
+
+    @IBAction func cancelButtonTouched(_ sender: Any) {
+        dismiss(animated: true)
+    }
+
+    func placeholderSetting() {
+        commentWritingTextView.delegate = self
+        commentWritingTextView.text = "코멘트는 여기에 작성하세요"
+        commentWritingTextView.textColor = UIColor.lightGray
+    }
+}
+
+// MARK: - UIMenuItem
+extension CreateIssueViewController {
     override func canPerformAction(_ action: Selector, withSender sender: Any!) -> Bool {
         if action == #selector(insertPhotoDidTap) ||
             action == #selector(cut(_ :)) ||
@@ -26,12 +49,6 @@ class CreateIssueViewController: UIViewController {
 
     @objc func insertPhotoDidTap(sender: UIMenuItem) {
         print("image picker")
-    }
-
-    func placeholderSetting() {
-        commentWritingTextView.delegate = self
-        commentWritingTextView.text = "코멘트는 여기에 작성하세요"
-        commentWritingTextView.textColor = UIColor.lightGray
     }
 }
 
