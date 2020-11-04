@@ -107,12 +107,10 @@ class IssueListViewController: UIViewController {
         
         tabBarController?.tabBar.isHidden = editing
         issueListToolBar.isHidden = !editing
-//        navigationItem.leftBarButtonItem = editing ?
-        
+        navigationItem.leftBarButtonItem = editing ? selectAllLeftBarButton : filterLeftBarButton
         if editing {
             navigationItem.rightBarButtonItem?.title = "Cancel"
             navigationItem.rightBarButtonItem?.style = .plain
-//            navigationItem.leftBarButtonItem =
         }
         
         /// collectionView Editing Mode
