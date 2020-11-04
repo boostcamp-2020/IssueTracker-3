@@ -6,10 +6,10 @@
 //
 
 import UIKit
-import Combine
 
 // TODO: Activity Indicators
 // TODO: ios13 이하 버전 Edit 구현
+// FIXME: editMode cell 많을 때 수정
 
 class IssueListViewController: UIViewController {
     
@@ -19,14 +19,7 @@ class IssueListViewController: UIViewController {
     
     private var dataSource: UICollectionViewDiffableDataSource<Section, IssueListViewModel>!
     private var issueListModelController: IssueListModelController!
-    private var selectedIssueListCells = [IssueListCollectionViewCell]()
-    
-    var selectedIssueListCell = IssueListCollectionViewCell() {
-        didSet {
-            selectedIssueListCells.append(selectedIssueListCell)
-            print(selectedIssueListCell.isSelected)
-        }
-    }
+    private var selectedCellIndexPaths = [IndexPath]()
     
     private lazy var issueList: [IssueListViewModel] = {
         return generateIssues()
@@ -97,16 +90,21 @@ class IssueListViewController: UIViewController {
     //        setEditing(true, animated: true)
     //    }
     
+    /// NavigationBar Edit 버튼 -> (UIKit) VC의 Editable View -> setEditing action 함수 호출
     override func setEditing(_ editing: Bool, animated: Bool) {
         super.setEditing(editing, animated: animated)
+        selectedCellIndexPaths.removeAll()
+        
+        /// collectionView Editing Mode
         if #available(iOS 14.0, *) {
             issueListCollectionView.isEditing = editing
             issueListCollectionView.allowsMultipleSelectionDuringEditing = editing
         } else {
-            // TODO: editing flag
+            // TODO: editing Mode flag
             issueListCollectionView.allowsMultipleSelection = editing
         }
         
+        /// 모든 Cell isInEditingMode propery에 넣기 editing(edit mode : true / 끄면 : false)
         issueListCollectionView
             .indexPathsForVisibleItems
             .map { issueListCollectionView.cellForItem(at: $0) }
@@ -121,7 +119,7 @@ class IssueListViewController: UIViewController {
             }
             cell.isInEditingMode = editing
         }
-         */
+        */
     }
 }
 
@@ -163,21 +161,11 @@ extension IssueListViewController: UICollectionViewDelegate {
         }
         navigationController?.pushViewController(storyboard, animated: true)
          */
+        selectedCellIndexPaths.append(indexPath)
     }
     
-    func collectionView(_ collectionView: UICollectionView,
-                        didBeginMultipleSelectionInteractionAt indexPath: IndexPath) {
-        print("멀티셀렉스타투")
-        selectedIssueListCells.removeAll()
-    }
-    
-    func collectionViewDidEndMultipleSelectionInteraction(_ collectionView: UICollectionView) {
-        print("checkit")
-        collectionView
-            .indexPathsForSelectedItems?
-            .compactMap { collectionView.cellForItem(at: $0) as? IssueListCollectionViewCell }
-            .publisher
-            .assign(to: \.selectedIssueListCell, on: self)
+    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
+        selectedCellIndexPaths = selectedCellIndexPaths.filter { $0 != indexPath }
     }
 }
 
@@ -223,6 +211,12 @@ extension IssueListViewController {
                                          description: "설명",
                                          milestone: "프로젝트5",
                                          labels: ["label1, label2"]))
+        (1...10).forEach { _ in
+            issues.append(IssueListViewModel(title: "haha",
+                                             description: "설명",
+                                             milestone: "프로젝트5",
+                                             labels: ["label1, label2"]))
+        }
         return issues
     }
 }
