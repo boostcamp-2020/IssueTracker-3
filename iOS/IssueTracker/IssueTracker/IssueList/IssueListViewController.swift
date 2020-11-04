@@ -22,7 +22,6 @@ class IssueListViewController: UIViewController {
     
     private var dataSource: UICollectionViewDiffableDataSource<Section, IssueListViewModel>!
     private var issueListModelController: IssueListModelController!
-//    private var selectedCellIndexPaths = [IndexPath]()
     
     private lazy var issueList: [IssueListViewModel] = {
         return generateIssues()
@@ -89,15 +88,10 @@ class IssueListViewController: UIViewController {
     
     // MARK: Action Functions
     
-    //    @IBAction func editButtonTouched(_ sender: UIBarButtonItem) {
-    //        setEditing(true, animated: true)
-    //    }
-    
     /// NavigationBar Edit 버튼 -> (UIKit) VC의 Editable View -> setEditing action 함수 호출
     override func setEditing(_ editing: Bool, animated: Bool) {
         super.setEditing(editing, animated: animated)
         
-//        selectedCellIndexPaths.removeAll()
         tabBarController?.tabBar.isHidden.toggle()
         issueListToolBar.isHidden.toggle()
 //        navigationItem.leftBarButtonItem = editing ?
@@ -113,7 +107,6 @@ class IssueListViewController: UIViewController {
             issueListCollectionView.isEditing = editing
             issueListCollectionView.allowsMultipleSelectionDuringEditing = editing
         } else {
-            // TODO: editing Mode flag
             issueListCollectionView.allowsMultipleSelection = editing
         }
         
@@ -196,10 +189,6 @@ extension IssueListViewController: UICollectionViewDelegate {
             cell.isInEditingMode = isEditing
         }
     }
-    
-    //    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
-    //        selectedCellIndexPaths = selectedCellIndexPaths.filter { $0 != indexPath }
-    //    }
 }
 
 // MARK: UISearchBarDelegate
