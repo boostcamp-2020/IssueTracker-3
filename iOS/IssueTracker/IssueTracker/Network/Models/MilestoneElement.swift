@@ -7,7 +7,8 @@
 
 import Foundation
 
-// MARK: - MilestoneElement
+// MARK: MilestoneElement
+
 struct MilestoneElement: Codable {
     let id: Int
     let name, milestoneDescription: String
