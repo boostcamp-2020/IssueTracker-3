@@ -9,7 +9,10 @@ import UIKit
 
 // TODO: Activity Indicators
 // TODO: ios13 이하 버전 Edit 구현
-// FIXME: editMode cell 많을 때 수정
+
+// TODO: navibutton 이름 변경
+// TODO: 나머지 버튼들 추가 + 액션함수 + 기능 (select All / deselectAll / 닫기 + reloadData / cancel)
+// let items = myCollectionView.indexPathsForSelectedItems
 
 class IssueListViewController: UIViewController {
     
@@ -85,7 +88,7 @@ class IssueListViewController: UIViewController {
     }
     
     // MARK: Action Functions
-
+    
     //    @IBAction func editButtonTouched(_ sender: UIBarButtonItem) {
     //        setEditing(true, animated: true)
     //    }
@@ -93,6 +96,7 @@ class IssueListViewController: UIViewController {
     /// NavigationBar Edit 버튼 -> (UIKit) VC의 Editable View -> setEditing action 함수 호출
     override func setEditing(_ editing: Bool, animated: Bool) {
         super.setEditing(editing, animated: animated)
+        
         selectedCellIndexPaths.removeAll()
         
         /// collectionView Editing Mode
@@ -111,15 +115,15 @@ class IssueListViewController: UIViewController {
             .compactMap { $0 as? IssueListCollectionViewCell }
             .forEach { $0.isInEditingMode = editing }
         /* 아래의 코드 위로 변경함 - 협업 코드 이해용 - 삭제 예정
-        issueListCollectionView.indexPathsForVisibleItems.forEach { indexPath in
-            guard let cell = issueListCollectionView.cellForItem(at: indexPath)
-                    as? IssueListCollectionViewCell
-            else {
-                return
-            }
+         issueListCollectionView.indexPathsForVisibleItems.forEach { indexPath in
+         guard let cell = issueListCollectionView.cellForItem(at: indexPath)
+                as? IssueListCollectionViewCell
+         else {
+            return
+         }
             cell.isInEditingMode = editing
-        }
-        */
+         }
+         */
     }
 }
 
@@ -154,19 +158,30 @@ extension IssueListViewController: UICollectionViewDelegate {
             return
         }
         /* 아래의 코드 위로 변경함 - 협업 코드 이해용 - 삭제 예정
-        guard let storyboard = UIStoryboard(name: "IssueList", bundle: nil)
-                .instantiateViewController(identifier: "IssueDetailViewController")
+         guard let storyboard = UIStoryboard(name: "IssueList", bundle: nil)
+         .instantiateViewController(identifier: "IssueDetailViewController")
                 as? IssueDetailViewController else {
             return
-        }
-        navigationController?.pushViewController(storyboard, animated: true)
+         }
+         navigationController?.pushViewController(storyboard, animated: true)
          */
-        selectedCellIndexPaths.append(indexPath)
+        
+        // selectedCellIndexPaths.append(indexPath)
     }
     
-    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
-        selectedCellIndexPaths = selectedCellIndexPaths.filter { $0 != indexPath }
+    func collectionView(_ collectionView: UICollectionView,
+                        willDisplay cell: UICollectionViewCell,
+                        forItemAt indexPath: IndexPath) {
+        guard let cell = cell as? IssueListCollectionViewCell else { return }
+        
+        if isEditing != cell.isInEditingMode {
+            cell.isInEditingMode = isEditing
+        }
     }
+    
+    //    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
+    //        selectedCellIndexPaths = selectedCellIndexPaths.filter { $0 != indexPath }
+    //    }
 }
 
 // MARK: UISearchBarDelegate
