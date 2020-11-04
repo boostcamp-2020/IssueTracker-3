@@ -11,8 +11,6 @@ import Combine
 // TODO: Activity Indicators
 // TODO: ios13 이하 버전 Edit 구현
 
-// TODO: 액션함수 + 기능 (select All / deselectAll)
-
 class IssueListViewController: UIViewController {
     
     // MARK: Properties
@@ -158,7 +156,12 @@ class IssueListViewController: UIViewController {
     }
     
     @objc private func selectAllTouched(_ sender: Any) {
-        
+        // TODO: issue ViewModel List 가지고 있는 객체에서 -> forEach -> isSelect true
+        issueListCollectionView
+            .indexPathsForVisibleItems
+            .map { issueListCollectionView.cellForItem(at: $0) }
+            .compactMap { $0 as? IssueListCollectionViewCell }
+            .forEach { $0.isSelected.toggle() }
     }
 }
 
