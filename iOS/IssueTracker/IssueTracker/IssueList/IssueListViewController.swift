@@ -10,7 +10,7 @@ import UIKit
 // TODO: Activity Indicators
 // TODO: ios13 이하 버전 Edit 구현
 
-// TODO: 나머지 버튼들 추가 + 액션함수 + 기능 (select All / deselectAll / 닫기 + reloadData / cancel)
+// TODO: 나머지 버튼들 추가 + 액션함수 + 기능 (select All / deselectAll / 이슈 닫기 + reloadData)
 // let items = myCollectionView.indexPathsForSelectedItems
 
 class IssueListViewController: UIViewController {
@@ -53,7 +53,6 @@ class IssueListViewController: UIViewController {
         navigationItem.hidesSearchBarWhenScrolling = false
         navigationItem.searchController?.searchBar.delegate = self
         navigationItem.rightBarButtonItem = editButtonItem
-        issueListToolBar.isHidden = true
     }
     
     private func configureCollectionLayoutList() {
@@ -99,8 +98,8 @@ class IssueListViewController: UIViewController {
         super.setEditing(editing, animated: animated)
         
 //        selectedCellIndexPaths.removeAll()
-        issueListToolBar.isHidden = !editing
-        tabBarController?.tabBar.isHidden = editing
+        tabBarController?.tabBar.isHidden.toggle()
+        issueListToolBar.isHidden.toggle()
 //        navigationItem.leftBarButtonItem = editing ?
         
         if editing {
