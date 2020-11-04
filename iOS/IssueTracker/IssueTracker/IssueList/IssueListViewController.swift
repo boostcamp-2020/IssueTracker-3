@@ -10,7 +10,6 @@ import UIKit
 // TODO: Activity Indicators
 // TODO: ios13 이하 버전 Edit 구현
 
-// TODO: navibutton 이름 변경
 // TODO: 나머지 버튼들 추가 + 액션함수 + 기능 (select All / deselectAll / 닫기 + reloadData / cancel)
 // let items = myCollectionView.indexPathsForSelectedItems
 
@@ -98,6 +97,11 @@ class IssueListViewController: UIViewController {
         super.setEditing(editing, animated: animated)
         
         selectedCellIndexPaths.removeAll()
+        
+        if editing {
+            navigationItem.rightBarButtonItem?.title = "Cancel"
+            navigationItem.rightBarButtonItem?.style = .plain
+        }
         
         /// collectionView Editing Mode
         if #available(iOS 14.0, *) {
