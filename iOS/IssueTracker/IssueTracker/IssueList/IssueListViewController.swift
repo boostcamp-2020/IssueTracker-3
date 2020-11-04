@@ -11,6 +11,8 @@ import Combine
 // TODO: Activity Indicators
 // TODO: ios13 이하 버전 Edit 구현
 
+// FIXME: tabBarButton & toolBarButton hidden 오류
+
 class IssueListViewController: UIViewController {
     
     // MARK: Properties
@@ -63,6 +65,7 @@ class IssueListViewController: UIViewController {
                                                  action: #selector(selectAllTouched))
         navigationItem.leftBarButtonItem = filterLeftBarButton
         navigationItem.rightBarButtonItem = editButtonItem
+        issueListToolBar.isHidden = true
     }
     
     private func configureCollectionLayoutList() {
