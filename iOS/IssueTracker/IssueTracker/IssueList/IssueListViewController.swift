@@ -6,12 +6,12 @@
 //
 
 import UIKit
+import Combine
 
 // TODO: Activity Indicators
 // TODO: ios13 이하 버전 Edit 구현
 
-// TODO: 나머지 버튼들 추가 + 액션함수 + 기능 (select All / deselectAll / 이슈 닫기 + reloadData)
-// let items = myCollectionView.indexPathsForSelectedItems
+// TODO: 나머지 버튼들 추가 + 액션함수 + 기능 (select All / deselectAll)
 
 class IssueListViewController: UIViewController {
     
@@ -92,8 +92,8 @@ class IssueListViewController: UIViewController {
     override func setEditing(_ editing: Bool, animated: Bool) {
         super.setEditing(editing, animated: animated)
         
-        tabBarController?.tabBar.isHidden.toggle()
-        issueListToolBar.isHidden.toggle()
+        tabBarController?.tabBar.isHidden = editing
+        issueListToolBar.isHidden = !editing
 //        navigationItem.leftBarButtonItem = editing ?
         
         if editing {
@@ -129,12 +129,17 @@ class IssueListViewController: UIViewController {
     }
     
     @IBAction func closeSelectedIssueTouched(_ sender: UIBarButtonItem) {
-//        issueListCollectionView
-//            .indexPathsForSelectedItems?
-            
-//            .map { issueListCollectionView.cellForItem(at: $0) }
-//            .compactMap { $0 as? IssueListCollectionViewCell }
-//            .forEach { }
+        guard let selectedItems = issueListCollectionView.indexPathsForSelectedItems else {
+            return
+        }
+        issueListCollectionView.deleteItems(at: selectedItems)
+        // TODO: 선택 이슈 닫기 -> 닫은 이슈 Model Update & Server Post
+        // selectedItems
+        //    .map { issueListCollectionView.cellForItem(at: $0) }
+        //    .compactMap { $0 as? IssueListCollectionViewCell }
+        //    .publisher
+        //    .assign(to: &)
+        issueListCollectionView.reloadData()
     }
 }
 
