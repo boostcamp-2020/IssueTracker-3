@@ -19,7 +19,7 @@ class IssueDetailBottomSheetViewController: UIViewController {
     
     private var dataSource: UICollectionViewDiffableDataSource<SectionLayoutType, Int>! = nil
     
-    // MARK: Enum
+    // MARK: Enums
 
     enum SectionLayoutType: Int, CaseIterable {
         case assignee, label, milestone
