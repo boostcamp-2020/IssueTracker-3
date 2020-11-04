@@ -166,17 +166,12 @@
                             <constraint firstItem="gMJ-9A-2wT" firstAttribute="top" secondItem="qel-gu-NqZ" secondAttribute="top" id="yUd-AO-cAd"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="이슈" id="rdD-Ya-dsd">
-                        <barButtonItem key="leftBarButtonItem" title="Filter" id="JRe-cC-ddy">
-                            <connections>
-                                <segue destination="5lT-kN-PTP" kind="presentation" id="oWk-lT-Mwg"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="이슈" id="rdD-Ya-dsd"/>
                     <connections>
                         <outlet property="issueListCollectionView" destination="gMJ-9A-2wT" id="Gb3-Ij-daJ"/>
                         <outlet property="issueListToolBar" destination="iD5-I1-ahl" id="7UG-OP-fsm"/>
                         <segue destination="lMJ-Dn-Q9j" kind="show" identifier="IssueDetailSegue" id="IF2-KY-5Vj"/>
+                        <segue destination="5lT-kN-PTP" kind="presentation" identifier="IssueListFilterSegue" id="9bz-9u-sBs"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zFo-zb-cVf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -262,7 +257,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nxc-sm-oLe" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1746" y="3377"/>
+            <point key="canvasLocation" x="-1730" y="3376"/>
         </scene>
         <!--Issue Detail View Controller-->
         <scene sceneID="S9A-8H-36J">
@@ -422,7 +417,7 @@ HTML형태로 보여줘야 할까요</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="I9L-2x-rC8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-936" y="3377"/>
+            <point key="canvasLocation" x="-972" y="3376"/>
         </scene>
         <!--IssueDetailBottomSheet-->
         <scene sceneID="gpk-5A-NjN">
@@ -661,7 +656,7 @@ HTML형태로 보여줘야 할까요</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ezo-gz-1R1" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-146" y="3376"/>
+            <point key="canvasLocation" x="-225" y="3376"/>
         </scene>
         <!--이슈-->
         <scene sceneID="hki-7S-sUk">

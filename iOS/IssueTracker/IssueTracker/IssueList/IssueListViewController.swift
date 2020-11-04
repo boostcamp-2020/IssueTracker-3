@@ -11,7 +11,7 @@ import Combine
 // TODO: Activity Indicators
 // TODO: ios13 이하 버전 Edit 구현
 
-// TODO: 나머지 버튼들 추가 + 액션함수 + 기능 (select All / deselectAll)
+// TODO: 액션함수 + 기능 (select All / deselectAll)
 
 class IssueListViewController: UIViewController {
     
@@ -22,6 +22,8 @@ class IssueListViewController: UIViewController {
     
     private var dataSource: UICollectionViewDiffableDataSource<Section, IssueListViewModel>!
     private var issueListModelController: IssueListModelController!
+    private var filterLeftBarButton: UIBarButtonItem!
+    private var selectAllLeftBarButton: UIBarButtonItem!
     
     private lazy var issueList: [IssueListViewModel] = {
         return generateIssues()
@@ -51,6 +53,17 @@ class IssueListViewController: UIViewController {
         navigationItem.searchController = UISearchController(searchResultsController: nil)
         navigationItem.hidesSearchBarWhenScrolling = false
         navigationItem.searchController?.searchBar.delegate = self
+        
+        /// Navigation Item BarButton들은 hidden 프로퍼티가 없고 / 두 개를 상황 마다 번갈아가며 써야하기 때문에, 직접 만들었음.
+        filterLeftBarButton = UIBarButtonItem(title: "Filter",
+                                              style: .plain,
+                                              target: self,
+                                              action: #selector(filterTouched))
+        selectAllLeftBarButton = UIBarButtonItem(title: "Select All",
+                                                 style: .plain,
+                                                 target: self,
+                                                 action: #selector(selectAllTouched))
+        navigationItem.leftBarButtonItem = filterLeftBarButton
         navigationItem.rightBarButtonItem = editButtonItem
     }
     
@@ -99,7 +112,7 @@ class IssueListViewController: UIViewController {
         if editing {
             navigationItem.rightBarButtonItem?.title = "Cancel"
             navigationItem.rightBarButtonItem?.style = .plain
-            navigationItem.leftBarButtonItem?.title = "Select All"
+//            navigationItem.leftBarButtonItem =
         }
         
         /// collectionView Editing Mode
@@ -140,6 +153,14 @@ class IssueListViewController: UIViewController {
         //    .publisher
         //    .assign(to: &)
         issueListCollectionView.reloadData()
+    }
+
+    @objc private func filterTouched(_ sender: Any) {
+        performSegue(withIdentifier: "IssueListFilterSegue", sender: nil)
+    }
+    
+    @objc private func selectAllTouched(_ sender: Any) {
+        
     }
 }
 
