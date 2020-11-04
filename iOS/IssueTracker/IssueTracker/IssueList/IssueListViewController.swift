@@ -94,6 +94,7 @@ class IssueListViewController: UIViewController {
             issueListCollectionView.isEditing = editing
             issueListCollectionView.allowsMultipleSelectionDuringEditing = editing
         } else {
+            // TODO: editing flag
             issueListCollectionView.allowsMultipleSelection = editing
         }
         
@@ -126,8 +127,12 @@ extension IssueListViewController {
             ) -> UICollectionViewCell? in
                 guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "IssueListCell", for: indexPath)
                         as? IssueListCollectionViewCell else { return UICollectionViewCell() }
+                
                 cell.configureIssueListCell(of: item)
-                cell.accessories = [.multiselect(displayed: .whenEditing, options: .init())]
+                
+                if #available(iOS 14.0, *) {
+                    cell.accessories = [.multiselect(displayed: .whenEditing, options: .init())]
+                }
                 return cell
             })
     }
