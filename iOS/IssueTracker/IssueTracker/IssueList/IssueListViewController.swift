@@ -8,7 +8,7 @@
 import UIKit
 
 // TODO: Activity Indicators
-// TODO: ios13 이하 버전 Edit
+// TODO: ios13 이하 버전 Edit 구현
 
 class IssueListViewController: UIViewController {
     
@@ -74,19 +74,19 @@ class IssueListViewController: UIViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        guard segue.identifier == "IssueDetailSegue",
-//              let issueDetailVC = segue.destination as? IssueDetailViewController
-//        else {
-//            return
-//        }
+        //        guard segue.identifier == "IssueDetailSegue",
+        //              let issueDetailVC = segue.destination as? IssueDetailViewController
+        //        else {
+        //            return
+        //        }
         // issue 정보 넘기기
     }
     
     // MARK: Action Functions
 
-//    @IBAction func editButtonTouched(_ sender: UIBarButtonItem) {
-//        setEditing(true, animated: true)
-//    }
+    //    @IBAction func editButtonTouched(_ sender: UIBarButtonItem) {
+    //        setEditing(true, animated: true)
+    //    }
     
     override func setEditing(_ editing: Bool, animated: Bool) {
         super.setEditing(editing, animated: animated)
@@ -103,7 +103,7 @@ class IssueListViewController: UIViewController {
             .map { issueListCollectionView.cellForItem(at: $0) }
             .compactMap { $0 as? IssueListCollectionViewCell }
             .forEach { $0.isInEditingMode = editing }
-        /*
+        /* 아래의 코드 위로 변경함 - 협업 코드 이해용 - 삭제 예정
         issueListCollectionView.indexPathsForVisibleItems.forEach { indexPath in
             guard let cell = issueListCollectionView.cellForItem(at: indexPath)
                     as? IssueListCollectionViewCell
@@ -146,7 +146,7 @@ extension IssueListViewController: UICollectionViewDelegate {
             performSegue(withIdentifier: "IssueDetailSegue", sender: nil)
             return
         }
-        /*
+        /* 아래의 코드 위로 변경함 - 협업 코드 이해용 - 삭제 예정
         guard let storyboard = UIStoryboard(name: "IssueList", bundle: nil)
                 .instantiateViewController(identifier: "IssueDetailViewController")
                 as? IssueDetailViewController else {
@@ -171,7 +171,6 @@ extension IssueListViewController: UISearchBarDelegate {
     func performQuery(with filter: String?) {
         let issueListItems = issueListModelController.filtered(with: filter ?? "",
                                                                model: issueList).sorted { $0.title < $1.title }
-        
         var snapshot = NSDiffableDataSourceSnapshot<Section, IssueListViewModel>()
         snapshot.appendSections([.main])
         snapshot.appendItems(issueListItems)
