@@ -18,10 +18,11 @@ class IssueListViewController: UIViewController {
     // MARK: Properties
     
     @IBOutlet private weak var issueListCollectionView: UICollectionView!
+    @IBOutlet private weak var issueListToolBar: UIToolbar!
     
     private var dataSource: UICollectionViewDiffableDataSource<Section, IssueListViewModel>!
     private var issueListModelController: IssueListModelController!
-    private var selectedCellIndexPaths = [IndexPath]()
+//    private var selectedCellIndexPaths = [IndexPath]()
     
     private lazy var issueList: [IssueListViewModel] = {
         return generateIssues()
@@ -52,6 +53,7 @@ class IssueListViewController: UIViewController {
         navigationItem.hidesSearchBarWhenScrolling = false
         navigationItem.searchController?.searchBar.delegate = self
         navigationItem.rightBarButtonItem = editButtonItem
+        issueListToolBar.isHidden = true
     }
     
     private func configureCollectionLayoutList() {
@@ -96,11 +98,15 @@ class IssueListViewController: UIViewController {
     override func setEditing(_ editing: Bool, animated: Bool) {
         super.setEditing(editing, animated: animated)
         
-        selectedCellIndexPaths.removeAll()
+//        selectedCellIndexPaths.removeAll()
+        issueListToolBar.isHidden = !editing
+        tabBarController?.tabBar.isHidden = editing
+//        navigationItem.leftBarButtonItem = editing ?
         
         if editing {
             navigationItem.rightBarButtonItem?.title = "Cancel"
             navigationItem.rightBarButtonItem?.style = .plain
+            navigationItem.leftBarButtonItem?.title = "Select All"
         }
         
         /// collectionView Editing Mode
@@ -128,6 +134,15 @@ class IssueListViewController: UIViewController {
             cell.isInEditingMode = editing
          }
          */
+    }
+    
+    @IBAction func closeSelectedIssueTouched(_ sender: UIBarButtonItem) {
+//        issueListCollectionView
+//            .indexPathsForSelectedItems?
+            
+//            .map { issueListCollectionView.cellForItem(at: $0) }
+//            .compactMap { $0 as? IssueListCollectionViewCell }
+//            .forEach { }
     }
 }
 
