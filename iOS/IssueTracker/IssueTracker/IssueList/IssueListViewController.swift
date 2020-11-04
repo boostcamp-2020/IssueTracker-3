@@ -8,6 +8,7 @@
 import UIKit
 
 // TODO: Activity Indicators
+// TODO: ios13 이하 버전 Edit
 
 class IssueListViewController: UIViewController {
     
@@ -89,8 +90,8 @@ class IssueListViewController: UIViewController {
     
     override func setEditing(_ editing: Bool, animated: Bool) {
         super.setEditing(editing, animated: animated)
-        issueListCollectionView.isEditing = editing
         if #available(iOS 14.0, *) {
+            issueListCollectionView.isEditing = editing
             issueListCollectionView.allowsMultipleSelectionDuringEditing = editing
         } else {
             issueListCollectionView.allowsMultipleSelection = editing
