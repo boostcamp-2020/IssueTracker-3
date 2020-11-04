@@ -33,8 +33,10 @@ class IssueListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureNavigationItems()
-        issueListModelController = IssueListModelController()
+        configureCollectionLayoutList()
         configureDataSource()
+        
+        issueListModelController = IssueListModelController()
         performQuery(with: nil)
     }
     
@@ -47,9 +49,59 @@ class IssueListViewController: UIViewController {
         navigationItem.rightBarButtonItem = editButtonItem
     }
     
+    private func configureCollectionLayoutList() {
+        if #available(iOS 14.0, *) {
+            var layoutConfig = UICollectionLayoutListConfiguration(appearance: .plain)
+            layoutConfig.trailingSwipeActionsConfigurationProvider = { [weak self] indexPath in
+                guard let self = self,
+                      let item = self.dataSource.itemIdentifier(for: indexPath)
+                else {
+                    return nil
+                }
+                
+                let delete = UIContextualAction(style: .normal, title: "Delete") { action, view, completion in
+                    completion(true)
+                }
+                
+                delete.backgroundColor = .systemRed
+                
+                return UISwipeActionsConfiguration(actions: [delete])
+            }
+            let listLayout = UICollectionViewCompositionalLayout.list(using: layoutConfig)
+            issueListCollectionView.collectionViewLayout = listLayout
+        }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        guard segue.identifier == "IssueDetailSegue",
+//              let issueDetailVC = segue.destination as? IssueDetailViewController
+//        else {
+//            return
+//        }
+        // issue 정보 넘기기
+    }
+    
+    // MARK: Action Functions
+
+//    @IBAction func editButtonTouched(_ sender: UIBarButtonItem) {
+//        setEditing(true, animated: true)
+//    }
+    
     override func setEditing(_ editing: Bool, animated: Bool) {
         super.setEditing(editing, animated: animated)
-        issueListCollectionView.allowsMultipleSelection = editing
+        issueListCollectionView.isEditing = editing
+        if #available(iOS 14.0, *) {
+            issueListCollectionView.allowsMultipleSelectionDuringEditing = editing
+        } else {
+            issueListCollectionView.allowsMultipleSelection = editing
+        }
+        
+        issueListCollectionView
+            .indexPathsForVisibleItems
+            .map { issueListCollectionView.cellForItem(at: $0) }
+            .compactMap { $0 as? IssueListCollectionViewCell }
+            .forEach { $0.isInEditingMode = editing }
+        /*
         issueListCollectionView.indexPathsForVisibleItems.forEach { indexPath in
             guard let cell = issueListCollectionView.cellForItem(at: indexPath)
                     as? IssueListCollectionViewCell
@@ -58,18 +110,7 @@ class IssueListViewController: UIViewController {
             }
             cell.isInEditingMode = editing
         }
-    }
-    
-    // MARK: Action Functions
-    
-    @IBAction func editButtonTouched(_ sender: UIBarButtonItem) {
-        if #available(iOS 14.0, *) {
-            issueListCollectionView.allowsMultipleSelectionDuringEditing = true
-        } else {
-            // Fallback on earlier versions
-        }
-        setEditing(true, animated: true)
-        print("bbb")
+         */
     }
 }
 
@@ -85,6 +126,7 @@ extension IssueListViewController {
                 guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "IssueListCell", for: indexPath)
                         as? IssueListCollectionViewCell else { return UICollectionViewCell() }
                 cell.configureIssueListCell(of: item)
+                cell.accessories = [.multiselect(displayed: .whenEditing, options: .init())]
                 return cell
             })
     }
@@ -94,18 +136,23 @@ extension IssueListViewController {
 
 extension IssueListViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard isEditing else {
+            performSegue(withIdentifier: "IssueDetailSegue", sender: nil)
+            return
+        }
+        /*
         guard let storyboard = UIStoryboard(name: "IssueList", bundle: nil)
                 .instantiateViewController(identifier: "IssueDetailViewController")
-                as? IssueDetailViewController else { return }
-        
+                as? IssueDetailViewController else {
+            return
+        }
         navigationController?.pushViewController(storyboard, animated: true)
+         */
     }
     
     func collectionView(_ collectionView: UICollectionView, didBeginMultipleSelectionInteractionAt indexPath: IndexPath) {
-        // Replace the Select button with Done, and put the
-        // collection view into editing mode.
+        
     }
-    
 }
 
 // MARK: UISearchBarDelegate
