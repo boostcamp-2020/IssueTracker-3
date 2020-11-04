@@ -2,7 +2,6 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17126"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -114,8 +113,8 @@
                                             </constraints>
                                         </collectionViewCellContentView>
                                         <connections>
+                                            <outlet property="descriptionLabel" destination="Rz8-SB-ZgW" id="XlZ-bd-421"/>
                                             <outlet property="firstLabel" destination="P2r-dP-hO9" id="rEK-ov-hqD"/>
-                                            <outlet property="issueListDescription" destination="Rz8-SB-ZgW" id="XlZ-bd-421"/>
                                             <outlet property="mileStone" destination="uE8-Jy-7th" id="0TJ-o3-t6e"/>
                                             <outlet property="secondLabel" destination="QbU-m2-Csv" id="Yht-rh-8NL"/>
                                             <outlet property="titleLabel" destination="Lki-kq-UDe" id="zfD-Lo-0m5"/>
@@ -162,6 +161,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="issueListCollectionView" destination="gMJ-9A-2wT" id="Gb3-Ij-daJ"/>
+                        <segue destination="lMJ-Dn-Q9j" kind="show" identifier="IssueDetailSegue" id="IF2-KY-5Vj"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zFo-zb-cVf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -247,7 +247,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nxc-sm-oLe" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1833" y="3376"/>
+            <point key="canvasLocation" x="-1746" y="3377"/>
         </scene>
         <!--Issue Detail View Controller-->
         <scene sceneID="S9A-8H-36J">
@@ -258,7 +258,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Etv-eu-euX">
-                                <rect key="frame" x="0.0" y="44" width="414" height="852"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="808"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="v44-s4-Z1Y">
                                     <size key="itemSize" width="414" height="156"/>
@@ -399,6 +399,7 @@ HTML형태로 보여줘야 할까요</string>
                         </constraints>
                     </view>
                     <toolbarItems/>
+                    <navigationItem key="navigationItem" id="dI5-gL-qvC"/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <segue destination="6Re-li-5VW" kind="presentation" id="AIl-p8-bk6"/>
@@ -406,7 +407,7 @@ HTML형태로 보여줘야 할까요</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="I9L-2x-rC8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-936" y="4064"/>
+            <point key="canvasLocation" x="-936" y="3377"/>
         </scene>
         <!--IssueDetailBottomSheet-->
         <scene sceneID="gpk-5A-NjN">
@@ -555,7 +556,7 @@ HTML형태로 보여줘야 할까요</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ITf-94-2ML" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-936.23188405797111" y="4753.125"/>
+            <point key="canvasLocation" x="-936" y="4089"/>
         </scene>
         <!--Create Issue View Controller-->
         <scene sceneID="5EK-P7-WOP">
@@ -645,7 +646,7 @@ HTML형태로 보여줘야 할까요</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ezo-gz-1R1" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="17" y="3377"/>
+            <point key="canvasLocation" x="-146" y="3376"/>
         </scene>
         <!--이슈-->
         <scene sceneID="hki-7S-sUk">
@@ -664,7 +665,7 @@ HTML형태로 보여줘야 할까요</string>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RSd-cd-4XT" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-937" y="1827"/>
+            <point key="canvasLocation" x="-936" y="1944"/>
         </scene>
     </scenes>
     <resources>
