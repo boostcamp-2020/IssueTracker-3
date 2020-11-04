@@ -12,7 +12,7 @@ const add = async (req: Request, res: Response): Promise<Response<any>> => {
   const event: Event = {
     id: null,
     issue_id: Number(req.params.issueid),
-    user_id: req.body.userId,
+    user_id: req.body.user_id,
     log: req.body.log,
     created_at: new Date(),
   };

@@ -33,7 +33,7 @@ class IssueModel extends Model {
     return insertId;
   }
 
-  async edit(pData: Issue): Promise<number> {
+  async edit(pData: object): Promise<number> {
     const affectedId = await super.update(pData, this.tableName);
     return affectedId;
   }

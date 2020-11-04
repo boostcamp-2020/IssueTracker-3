@@ -23,8 +23,8 @@ const add = async (req: Request, res: Response): Promise<Response> => {
 const edit = async (req: Request, res: Response): Promise<Response> => {
   const comment = {
     id: req.body.id,
-    issue_id: req.body.issueId,
-    user_id: req.body.userId,
+    issue_id: req.body.issue_id,
+    user_id: req.body.user_id,
     body: req.body.body,
     emoji: req.body.emoji,
   };

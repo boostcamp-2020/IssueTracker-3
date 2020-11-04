@@ -14,7 +14,7 @@ class Passport {
     passport.use(
       new LocalStrategy(
         {
-          usernameField: "userID",
+          usernameField: "user_id",
           passwordField: "password",
         },
         async (userId: string, passWord: string, done) => {
