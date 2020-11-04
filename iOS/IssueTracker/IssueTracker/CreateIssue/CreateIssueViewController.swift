@@ -12,7 +12,7 @@ class CreateIssueViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        placeholderSetting()
+        configurePlaceholder()
     }
 
     override func canPerformAction(_ action: Selector, withSender sender: Any!) -> Bool {
@@ -24,14 +24,13 @@ class CreateIssueViewController: UIViewController {
         return false
     }
 
-    @objc func insertPhotoDidTap(sender: UIMenuItem) {
-        print("image picker")
-    }
-
-    func placeholderSetting() {
-        commentWritingTextView.delegate = self
+    private func configurePlaceholder() {
         commentWritingTextView.text = "코멘트는 여기에 작성하세요"
         commentWritingTextView.textColor = UIColor.lightGray
+    }
+    
+    @objc func insertPhotoDidTap(sender: UIMenuItem) {
+        print("image picker")
     }
     
     @IBAction func cancelTouched(_ sender: UIBarButtonItem) {
@@ -54,8 +53,7 @@ extension CreateIssueViewController: UITextViewDelegate {
 
     func textViewDidEndEditing(_ textView: UITextView) {
         if textView.text.isEmpty {
-            textView.text = "코멘트는 여기에 작성하세요"
-            textView.textColor = UIColor.lightGray
+            configurePlaceholder()
         }
     }
 }
