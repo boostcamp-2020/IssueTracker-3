@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Combine
 
 // TODO: Activity Indicators
 // TODO: ios13 이하 버전 Edit 구현
@@ -18,6 +19,14 @@ class IssueListViewController: UIViewController {
     
     private var dataSource: UICollectionViewDiffableDataSource<Section, IssueListViewModel>!
     private var issueListModelController: IssueListModelController!
+    private var selectedIssueListCells = [IssueListCollectionViewCell]()
+    
+    var selectedIssueListCell = IssueListCollectionViewCell() {
+        didSet {
+            selectedIssueListCells.append(selectedIssueListCell)
+            print(selectedIssueListCell.isSelected)
+        }
+    }
     
     private lazy var issueList: [IssueListViewModel] = {
         return generateIssues()
@@ -156,8 +165,19 @@ extension IssueListViewController: UICollectionViewDelegate {
          */
     }
     
-    func collectionView(_ collectionView: UICollectionView, didBeginMultipleSelectionInteractionAt indexPath: IndexPath) {
-        
+    func collectionView(_ collectionView: UICollectionView,
+                        didBeginMultipleSelectionInteractionAt indexPath: IndexPath) {
+        print("멀티셀렉스타투")
+        selectedIssueListCells.removeAll()
+    }
+    
+    func collectionViewDidEndMultipleSelectionInteraction(_ collectionView: UICollectionView) {
+        print("checkit")
+        collectionView
+            .indexPathsForSelectedItems?
+            .compactMap { collectionView.cellForItem(at: $0) as? IssueListCollectionViewCell }
+            .publisher
+            .assign(to: \.selectedIssueListCell, on: self)
     }
 }
 
