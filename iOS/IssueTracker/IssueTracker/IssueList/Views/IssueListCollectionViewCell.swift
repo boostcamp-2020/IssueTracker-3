@@ -7,33 +7,41 @@
 
 import UIKit
 
-class IssueListCollectionViewCell: UICollectionViewCell {
-    @IBOutlet weak var issueListDescription: UILabel!
+final class IssueListCollectionViewCell: UICollectionViewListCell {
+    @IBOutlet private weak var titleLabel: UILabel!
+    @IBOutlet private weak var descriptionLabel: UILabel!
+    @IBOutlet private weak var mileStone: UIButton!
+    @IBOutlet private weak var firstLabel: UIButton!
+    @IBOutlet private weak var secondLabel: UIButton!
     
-    @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var mileStone: UIButton!
-    @IBOutlet weak var firstLabel: UIButton!
-    @IBOutlet weak var secondLabel: UIButton!
-    
-//    var isInEditingMode: Bool = false {
-//        didSet {
-////            checkmarkLabel.isHidden = !isInEditingMode
-//        }
-//    }
-//
-//    override var isSelected: Bool {
-//        didSet {
-//            if isInEditingMode {
-//                backgroundColor = .systemGray4
-//            }
-//        }
-//    }
+    var isInEditingMode: Bool = false {
+        didSet {
+            toggleEditingMode()
+        }
+    }
+
+    override var isSelected: Bool {
+        didSet {
+            if isInEditingMode {
+                backgroundColor = .systemGray4
+            }
+        }
+    }
     
     func configureIssueListCell(of item: IssueListViewModel) {
         titleLabel.text = item.title
-        issueListDescription.text = item.description
+        descriptionLabel.text = item.description
         firstLabel.titleLabel?.text = item.labels.first
         secondLabel.titleLabel?.text = item.labels.last
         mileStone.titleLabel?.text = item.milestone
+    }
+    
+    // TODO: Moving Animation
+    private func toggleEditingMode() {
+        if isInEditingMode {
+            contentView.layer.bounds.origin.x -= 40
+        } else {
+            contentView.layer.bounds.origin.x += 40
+        }
     }
 }
