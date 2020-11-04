@@ -33,6 +33,10 @@ class CreateIssueViewController: UIViewController {
         commentWritingTextView.text = "코멘트는 여기에 작성하세요"
         commentWritingTextView.textColor = UIColor.lightGray
     }
+    
+    @IBAction func cancelTouched(_ sender: UIBarButtonItem) {
+        self.dismiss(animated: true, completion: nil)
+    }
 }
 
 extension CreateIssueViewController: UITextViewDelegate {
