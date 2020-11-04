@@ -1,0 +1,31 @@
+{ 
+  "env": {
+    "node": true
+  },
+  "extends": ["airbnb-base","plugin:prettier/recommended", "react-app"],
+  "plugins" : ["prettier"],
+  "ignorePatterns": ["node_modules/","build/"],
+  "rules": {
+
+      "prettier/prettier": ["error",{ "endOfLine": "auto"}],
+
+      "import/extensions": [
+        "error",
+        "ignorePackages",
+        {
+          "js": "never",
+          "jsx": "never",
+          "ts": "never",
+          "tsx": "never"
+        }
+     ],
+     "import/no-unresolved": "off"
+  },
+  "settings": { 
+    "import/resolver": { 
+      "node": { 
+        "extensions": [".js", ".jsx", ".ts", ".tsx"] 
+        } 
+      } 
+    }
+}
