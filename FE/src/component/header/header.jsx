@@ -4,11 +4,16 @@ import styled from "styled-components";
 
 const StyledHeader = styled.div`
   display: flex;
-  border: 1px dotted black;
-  margin: 5px;
+  background-color: dimgrey;
+  color: white;
+  height: 10%;
+  margin: 0px;
+  font-weight: bold;
+  justify-content: center;
+  align-items: center;
 `;
 function Header() {
-  return <StyledHeader>Header</StyledHeader>;
+  return <StyledHeader>🔥IssueTracker🔥</StyledHeader>;
 }
 
 export default hot(module)(Header);
