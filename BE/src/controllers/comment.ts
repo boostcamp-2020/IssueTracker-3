@@ -1,10 +1,15 @@
 import { Request, Response } from "express";
 import CommentModel from "@models/comment";
 import { Comment } from "@interfaces/comment";
+import HTTPCODE from "@root/magicnumber";
 
 const get = async (req: Request, res: Response): Promise<Response> => {
-  const result = await CommentModel.select(+req.params.issueid);
-  return res.json(result);
+  try {
+    const result = await CommentModel.select(+req.params.issueid);
+    return res.json(result);
+  } catch {
+    return res.sendStatus(HTTPCODE.SERVER_ERR);
+  }
 };
 
 const add = async (req: Request, res: Response): Promise<Response> => {
@@ -17,7 +22,7 @@ const add = async (req: Request, res: Response): Promise<Response> => {
     created_at: new Date(),
   };
   const result = await CommentModel.add(comment);
-  return res.json(result);
+  return res.sendStatus(result);
 };
 
 const edit = async (req: Request, res: Response): Promise<Response> => {
@@ -29,12 +34,12 @@ const edit = async (req: Request, res: Response): Promise<Response> => {
     emoji: req.body.emoji,
   };
   const result = await CommentModel.edit(comment);
-  return res.json(result);
+  return res.sendStatus(result);
 };
 
 const del = async (req: Request, res: Response): Promise<Response> => {
   const result = await CommentModel.del(+req.body.id);
-  return res.json(result);
+  return res.sendStatus(result);
 };
 
 export default { get, add, edit, del };
