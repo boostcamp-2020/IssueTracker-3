@@ -202,6 +202,15 @@ extension IssueListViewController: UISearchBarDelegate {
     func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
         self.navigationItem.searchController?.searchBar.text = searchText
     }
+    
+    func performSearchQuery(with filter: String?) {
+        let issueListItems = issueListModelController.filtered(with: filter ?? "",
+                                                               model: issueList).sorted { $0.title < $1.title }
+        var snapshot = NSDiffableDataSourceSnapshot<Section, IssueListViewModel>()
+        snapshot.appendSections([.main])
+        snapshot.appendItems(issueListItems)
+        dataSource.apply(snapshot, animatingDifferences: true)
+    }
 }
 
 extension IssueListViewController {
@@ -256,23 +265,6 @@ extension IssueListViewController: UICollectionViewDelegate {
         if isEditing != cell.isInEditingMode {
             cell.isInEditingMode = isEditing
         }
-    }
-}
-
-// MARK: UISearchBarDelegate
-
-extension IssueListViewController: UISearchBarDelegate {
-    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        performQuery(with: searchText)
-    }
-    
-    func performQuery(with filter: String?) {
-        let issueListItems = issueListModelController.filtered(with: filter ?? "",
-                                                               model: issueList).sorted { $0.title < $1.title }
-        var snapshot = NSDiffableDataSourceSnapshot<Section, IssueListViewModel>()
-        snapshot.appendSections([.main])
-        snapshot.appendItems(issueListItems)
-        dataSource.apply(snapshot, animatingDifferences: true)
     }
 }
 

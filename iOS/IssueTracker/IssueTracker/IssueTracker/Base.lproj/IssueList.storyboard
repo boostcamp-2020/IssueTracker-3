@@ -67,11 +67,8 @@
                                             </constraints>
                                         </collectionViewCellContentView>
                                         <connections>
-                                            <outlet property="labelStackView" destination="pgy-ki-F4b" id="lyi-I6-WlB"/>
                                             <outlet property="descriptionLabel" destination="Rz8-SB-ZgW" id="XlZ-bd-421"/>
-                                            <outlet property="firstLabel" destination="P2r-dP-hO9" id="rEK-ov-hqD"/>
-                                            <outlet property="mileStone" destination="uE8-Jy-7th" id="0TJ-o3-t6e"/>
-                                            <outlet property="secondLabel" destination="QbU-m2-Csv" id="Yht-rh-8NL"/>
+                                            <outlet property="labelStackView" destination="pgy-ki-F4b" id="lyi-I6-WlB"/>
                                             <outlet property="titleLabel" destination="Lki-kq-UDe" id="zfD-Lo-0m5"/>
                                         </connections>
                                     </collectionViewCell>
