@@ -12,6 +12,7 @@ import Combine
 // TODO: ios13 이하 버전 Edit 구현
 
 // FIXME: tabBarButton & toolBarButton hidden 오류
+
 class IssueListViewController: UIViewController {
     
     // MARK: Properties
@@ -23,8 +24,8 @@ class IssueListViewController: UIViewController {
     private var issueListModelController: IssueListModelController!
     private var filterLeftBarButton: UIBarButtonItem!
     private var selectAllLeftBarButton: UIBarButtonItem!
+    private var isSelectedAll = false
     var searchText: String = ""
-    var isSelectedAll = false
     
     private lazy var issueList: [IssueListViewModel] = {
         return generateIssues()
@@ -40,19 +41,18 @@ class IssueListViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        navigationItem.searchController = UISearchController(searchResultsController: nil)
-        navigationItem.hidesSearchBarWhenScrolling = false
-        navigationItem.searchController?.searchBar.delegate = self
-        
         issueListModelController = IssueListModelController()
+        configureNavigationItems()
         configureDataSource()
+        configureCollectionLayoutList()
         performSearchQuery(with: nil)
         
-        
-        configureNavigationItems()
-        configureCollectionLayoutList()
-        
+        configureCollectionViewFlowLayout()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        issueListToolBar.isHidden = true
     }
     
     // MARK: Configure
@@ -73,7 +73,6 @@ class IssueListViewController: UIViewController {
                                                  action: #selector(selectAllTouched))
         navigationItem.leftBarButtonItem = filterLeftBarButton
         navigationItem.rightBarButtonItem = editButtonItem
-        issueListToolBar.isHidden = true
     }
     
     private func configureCollectionLayoutList() {
@@ -86,7 +85,6 @@ class IssueListViewController: UIViewController {
                     return nil
                 }
                 
-                
                 let delete = UIContextualAction(style: .destructive,
                                                 title: "Delete") { [weak self] action, view, completion in
                     // TODO: Model -> 해당 indexPath delete
@@ -98,9 +96,7 @@ class IssueListViewController: UIViewController {
                     // TODO: 선택 이슈 삭제 -> 삭제 이슈 Model Update & Server Post
                     completion(true)
                 }
-                
                 delete.backgroundColor = .systemRed
-                
                 return UISwipeActionsConfiguration(actions: [delete])
             }
             let listLayout = UICollectionViewCompositionalLayout.list(using: layoutConfig)
@@ -117,7 +113,7 @@ class IssueListViewController: UIViewController {
         // issue 정보 넘기기
     }
     
-    // MARK: Action Functions
+    // MARK: Actions
     
     /// NavigationBar Edit 버튼 -> (UIKit) VC의 Editable View -> setEditing action 함수 호출
     override func setEditing(_ editing: Bool, animated: Bool) {
@@ -145,22 +141,9 @@ class IssueListViewController: UIViewController {
             .map { issueListCollectionView.cellForItem(at: $0) }
             .compactMap { $0 as? IssueListCollectionViewCell }
             .forEach { $0.isInEditingMode = editing }
-        /* 아래의 코드 위로 변경함 - 협업 코드 이해용 - 삭제 예정
-         issueListCollectionView.indexPathsForVisibleItems.forEach { indexPath in
-         guard let cell = issueListCollectionView.cellForItem(at: indexPath)
-         as? IssueListCollectionViewCell
-         else {
-         return
-         }
-         cell.isInEditingMode = editing
-         }
-         */
     }
     
     @IBAction func closeSelectedIssueTouched(_ sender: UIBarButtonItem) {
-        //        guard let selectedItems = issueListCollectionView.indexPathsForSelectedItems else {
-        //            return
-        //        }
         var snapshot = dataSource.snapshot()
         let selectedItems = issueListCollectionView
             .indexPathsForSelectedItems?
@@ -195,6 +178,8 @@ class IssueListViewController: UIViewController {
     }
 }
 
+// MARK: UISearchBarDelegate
+
 extension IssueListViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         performSearchQuery(with: searchText)
@@ -215,21 +200,21 @@ extension IssueListViewController: UISearchBarDelegate {
     }
 }
 
+// MARK: UICollectionView DataSource
+
 extension IssueListViewController {
     func configureDataSource() {
         dataSource = UICollectionViewDiffableDataSource<Section, IssueListViewModel>(
             collectionView: issueListCollectionView,
-            cellProvider: {(
-                collectionView, indexPath, item
-            ) -> UICollectionViewCell? in
+            cellProvider: {(collectionView, indexPath, item) -> UICollectionViewCell? in
                 
-                
-                guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "IssueListCell", for: indexPath)
-                        as? IssueListCollectionViewCell else { return UICollectionViewCell() }
-                
-                cell.configureLabelStackView(milestone: item.milestone, labels: item.labels)
+                guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "IssueListCell",
+                                                                    for: indexPath) as? IssueListCollectionViewCell
+                else {
+                    return UICollectionViewCell()
+                }
                 cell.configureIssueListCell(of: item)
-                
+                cell.configureLabelStackView(milestone: item.milestone, labels: item.labels)
                 if #available(iOS 14.0, *) {
                     cell.accessories = [.multiselect(displayed: .whenEditing, options: .init())]
                 }
@@ -237,7 +222,6 @@ extension IssueListViewController {
             })
     }
 }
-
 
 // MARK: UICollectionViewDelegate
 
@@ -247,16 +231,6 @@ extension IssueListViewController: UICollectionViewDelegate {
             performSegue(withIdentifier: "IssueDetailSegue", sender: nil)
             return
         }
-        /* 아래의 코드 위로 변경함 - 협업 코드 이해용 - 삭제 예정
-         guard let storyboard = UIStoryboard(name: "IssueList", bundle: nil)
-         .instantiateViewController(identifier: "IssueDetailViewController")
-         as? IssueDetailViewController else {
-         return
-         }
-         navigationController?.pushViewController(storyboard, animated: true)
-         */
-        
-        // selectedCellIndexPaths.append(indexPath)
     }
     
     func collectionView(_ collectionView: UICollectionView,
@@ -267,6 +241,24 @@ extension IssueListViewController: UICollectionViewDelegate {
         if isEditing != cell.isInEditingMode {
             cell.isInEditingMode = isEditing
         }
+    }
+}
+
+// MARK: UICollectionView
+
+//extension IssueListViewController: UICollectionViewDelegateFlowLayout {
+//    func collectionView(_ collectionView: UICollectionView,
+//                        layout collectionViewLayout: UICollectionViewLayout,
+//                        sizeForItemAt indexPath: IndexPath) -> CGSize {
+//        CGSize(width: collectionView.bounds.width, height: collectionView.bounds.width/3)
+//    }
+//}
+
+extension IssueListViewController {
+    func configureCollectionViewFlowLayout() {
+        let flowLayout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
+        flowLayout.estimatedItemSize = CGSize(width: view.bounds.width, height: 88)
+        issueListCollectionView.collectionViewLayout = flowLayout
     }
 }
 
@@ -286,7 +278,7 @@ extension IssueListViewController {
         issues.append(IssueListViewModel(title: "test3",
                                          description: "설명",
                                          milestone: "프로젝트3",
-                                         labels: ["label1", "label2"]))
+                                         labels: ["label1"]))
         issues.append(IssueListViewModel(title: "ha",
                                          description: "설명",
                                          milestone: "프로젝트4",
@@ -294,14 +286,13 @@ extension IssueListViewController {
         issues.append(IssueListViewModel(title: "haha",
                                          description: "설명",
                                          milestone: "프로젝트5",
-                                         labels: ["label1", "label2"]))
+                                         labels: []))
         (1...10).forEach { _ in
             issues.append(IssueListViewModel(title: "haha",
                                              description: "설명",
                                              milestone: "프로젝트5",
                                              labels: ["label1", "label2"]))
         }
-        
         return issues
     }
 }
