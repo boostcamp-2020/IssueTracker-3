@@ -45,21 +45,6 @@ class IssueFilterTableViewCell: UITableViewCell {
         
     }
 
-    //    override var isSelected: Bool {
-    //        didSet {
-    //            check.isHidden = isSelected
-    ////            if viewModel.childItem.isEmpty {
-    ////                check.isHidden = viewModel.isChevron
-    ////                right.isHidden = true
-    ////                down.isHidden = true
-    ////            } else { //section1
-    ////                right.isHidden = viewModel.isChevron
-    ////                down.isHidden = !viewModel.isChevron
-    ////                check.isHidden = true
-    ////            }
-    //        }
-    //    }
-
     func changeButton(kind: ChevronDirection) {
         switch kind {
         case .down:
