@@ -100,7 +100,7 @@ class IssueListViewController: UIViewController {
                     var snapshot = self?.dataSource.snapshot()
                     snapshot?.deleteItems([item])
                     guard let snapShot = snapshot else { return }
-                    self?.dataSource.apply(snapShot, animatingDifferences: true)
+                    self?.dataSource.apply(snapShot, animatingDifferences: false)
                     // TODO: 선택 이슈 삭제 -> 삭제 이슈 Model Update & Server Post
                     completion(true)
                 }
