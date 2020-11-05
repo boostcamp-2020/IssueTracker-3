@@ -57,12 +57,12 @@
                                             </subviews>
                                             <constraints>
                                                 <constraint firstAttribute="trailing" secondItem="pgy-ki-F4b" secondAttribute="trailing" constant="12" id="5Qc-CZ-vty"/>
-                                                <constraint firstItem="Rz8-SB-ZgW" firstAttribute="leading" secondItem="1Tf-2r-cwf" secondAttribute="leading" constant="16" id="AYH-3q-6dc"/>
-                                                <constraint firstItem="pgy-ki-F4b" firstAttribute="top" secondItem="1Tf-2r-cwf" secondAttribute="top" constant="11" id="PCw-t9-qOD"/>
                                                 <constraint firstAttribute="bottom" secondItem="Rz8-SB-ZgW" secondAttribute="bottom" constant="10" id="Pux-dl-OyV"/>
-                                                <constraint firstItem="Lki-kq-UDe" firstAttribute="leading" secondItem="1Tf-2r-cwf" secondAttribute="leading" constant="16" id="TnD-N6-vhx"/>
                                                 <constraint firstItem="pgy-ki-F4b" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Lki-kq-UDe" secondAttribute="trailing" constant="45" id="YXs-bb-Njv"/>
                                                 <constraint firstItem="pgy-ki-F4b" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Rz8-SB-ZgW" secondAttribute="trailing" constant="30" id="cvn-NI-KnO"/>
+                                                <constraint firstItem="Rz8-SB-ZgW" firstAttribute="leading" secondItem="fo3-Tu-moA" secondAttribute="leading" constant="16" id="kuM-Ta-WZN"/>
+                                                <constraint firstItem="Lki-kq-UDe" firstAttribute="leading" secondItem="fo3-Tu-moA" secondAttribute="leading" constant="16" id="vj2-td-YKg"/>
+                                                <constraint firstItem="pgy-ki-F4b" firstAttribute="top" secondItem="fo3-Tu-moA" secondAttribute="top" constant="11" id="vx8-h6-IBs"/>
                                                 <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="pgy-ki-F4b" secondAttribute="bottom" priority="750" constant="11" id="w6n-Xc-U3X"/>
                                                 <constraint firstItem="Rz8-SB-ZgW" firstAttribute="top" secondItem="Lki-kq-UDe" secondAttribute="bottom" constant="6" id="wu9-lH-nXU"/>
                                                 <constraint firstItem="Lki-kq-UDe" firstAttribute="top" secondItem="fo3-Tu-moA" secondAttribute="top" constant="10" id="y4v-uB-MpV"/>
