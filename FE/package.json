@@ -28,6 +28,7 @@
     "html-loader": "^1.3.2",
     "html-webpack-plugin": "^4.5.0",
     "prettier": "^2.1.2",
+    "react-router-dom": "^5.2.0",
     "webpack": "^4.44.2",
     "webpack-cli": "^3.3.12",
     "webpack-dev-server": "^3.11.0"
