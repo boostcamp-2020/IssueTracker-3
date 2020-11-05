@@ -10,28 +10,20 @@ class UserModel extends Model {
     this.tableName = "USER";
   }
 
-  async select<T>(pData: T): Promise<User> {
+  async select<T>(pData: T): Promise<boolean> {
     try {
-      const result = await db.query<T>(`SELECT * FROM USER WHERE login_id = ?`, pData);
+      const result = await db.query<T>(`SELECT * FROM USER WHERE login_id = ? AND password = ?`, pData);
       this.data = [...result[0]];
-      return this.data;
+      return true;
     } catch (err) {
       console.error(err);
-      return err;
+      return false;
     }
   }
 
   async addUser(pData: User): Promise<number> {
     this.data = await super.insert(pData, this.tableName);
     return this.data;
-  }
-
-  async findId<T>(pData: T): Promise<boolean> {
-    const result = await db.query<T>(`SELECT * FROM ${this.tableName} WHERE login_id = ? AND password = ?`, pData);
-    if (result) {
-      return true;
-    }
-    return false;
   }
 }
 
