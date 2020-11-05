@@ -10,8 +10,10 @@ import Foundation
 // MARK: - IssueListElement
 struct IssueListElement: Codable {
     let id: Int
-    let title, body: String
-    let userID, state: Int
+    let title: String
+    let body: String
+    let userID: Int
+    let state: Int
     let milestoneID: Int?
     let createdAt: String
     let closedAt: String?
