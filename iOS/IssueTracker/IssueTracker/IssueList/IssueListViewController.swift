@@ -12,6 +12,9 @@ import Combine
 // TODO: ios13 이하 버전 Edit 구현
 
 // FIXME: tabBarButton & toolBarButton hidden 오류
+// FIXME: SelectAll 문제 - 전체 다 안됨 (겉으로 보기에만 됨 / 여러번 하면 오류 + cell 위치 틀리는 문제 / Model data를 변경해야함)
+// FIXME: SelectAll에서 클릭 안되는 문제
+// FIXME: 플로팅 버튼 (shade / 에니메이션 - (스크롤:숨기기 / 끝나면:나오기 / edit mode 없애기)
 
 class IssueListViewController: UIViewController {
     
@@ -25,7 +28,7 @@ class IssueListViewController: UIViewController {
     private var filterLeftBarButton: UIBarButtonItem!
     private var selectAllLeftBarButton: UIBarButtonItem!
     private var isSelectedAll = false
-    var searchText: String = ""
+    private var searchText = ""
     
     private lazy var issueList: [IssueListViewModel] = {
         return generateIssues()
@@ -57,7 +60,6 @@ class IssueListViewController: UIViewController {
     // MARK: Configure
     
     private func configureNavigationItems() {
-        /// Navigation Item BarButton들은 hidden 프로퍼티가 없고 / 두 개를 상황 마다 번갈아가며 써야하기 때문에, 직접 만들었음.
         filterLeftBarButton = UIBarButtonItem(title: "Filter",
                                               style: .plain,
                                               target: self,
@@ -99,16 +101,13 @@ class IssueListViewController: UIViewController {
                     snapshot?.deleteItems([item])
                     guard let snapShot = snapshot else { return }
                     self?.dataSource.apply(snapShot, animatingDifferences: true)
-                    self?.issueListCollectionView.reloadData()
                     // TODO: 선택 이슈 삭제 -> 삭제 이슈 Model Update & Server Post
                     completion(true)
                 }
                 delete.backgroundColor = .systemRed
                 return UISwipeActionsConfiguration(actions: [delete])
             }
-
             let listLayout = UICollectionViewCompositionalLayout.list(using: layoutConfig)
-
             issueListCollectionView.collectionViewLayout = listLayout
         }
     }
@@ -124,7 +123,6 @@ class IssueListViewController: UIViewController {
     
     // MARK: Actions
     
-    /// NavigationBar Edit 버튼 -> (UIKit) VC의 Editable View -> setEditing action 함수 호출
     override func setEditing(_ editing: Bool, animated: Bool) {
         super.setEditing(editing, animated: animated)
         
@@ -136,7 +134,6 @@ class IssueListViewController: UIViewController {
             navigationItem.rightBarButtonItem?.style = .plain
         }
         
-        /// collectionView Editing Mode
         if #available(iOS 14.0, *) {
             issueListCollectionView.isEditing = editing
             issueListCollectionView.allowsMultipleSelectionDuringEditing = editing
@@ -144,7 +141,6 @@ class IssueListViewController: UIViewController {
             issueListCollectionView.allowsMultipleSelection = editing
         }
         
-        /// 모든 Cell isInEditingMode propery에 넣기 editing(edit mode : true / 끄면 : false)
         issueListCollectionView
             .indexPathsForVisibleItems
             .map { issueListCollectionView.cellForItem(at: $0) }
@@ -162,14 +158,12 @@ class IssueListViewController: UIViewController {
         }
         snapshot.deleteItems(deleteItems)
         dataSource.apply(snapshot, animatingDifferences: true)
-        
         // TODO: 선택 이슈 닫기 -> 닫은 이슈 Model Update & Server Post
         // selectedItems
         //    .map { issueListCollectionView.cellForItem(at: $0) }
         //    .compactMap { $0 as? IssueListCollectionViewCell }
         //    .publisher
         //    .assign(to: &)
-        issueListCollectionView.reloadData()
     }
     
     @objc private func filterTouched(_ sender: Any) {
