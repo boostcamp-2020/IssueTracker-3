@@ -31,6 +31,8 @@
 ## IssueTracker 기획
 
 ![](https://i.imgur.com/TqgxK4b.jpg)
+### 배포 주소 
+http://101.101.210.34/
 
 ### 프로젝트 개요
 - **프로젝트 목표**<br>
