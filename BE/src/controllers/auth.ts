@@ -9,25 +9,30 @@ import userController from "@controllers/user";
 dotenv.config({ path: path.join(__dirname, "../../.env") });
 
 function login(req: Request, res: Response): void {
-  passport.authenticate("local", (err, userResult): Response<JSON> | Response<string> | undefined => {
-    if (err || !userResult) {
-      return res.status(400).json({
-        message: "Something is not right",
-      });
+  passport.authenticate(
+    "local",
+    async (err, userResult): Promise<any> => {
+      if (err || !userResult) {
+        return res.status(400).json({
+          message: "Something is not right",
+        });
+      }
+      const loginId = userResult.userID;
+      const rawPassword = userResult.password;
+      const searchResult = await userController.find(loginId, rawPassword);
+      if (searchResult) {
+        req.login(userResult, (error) => {
+          if (error) {
+            return res.send(error);
+          }
+          const JWT = jwt.sign(JSON.parse(JSON.stringify(userResult)), String(process.env.JWT_SECRET), { expiresIn: "10m" });
+          return res.json({ state: "success", JWT });
+        });
+      } else {
+        return res.json({ state: "fail" });
+      }
     }
-    const loginId = userResult.userId;
-    const rawPassword = userResult.password;
-    const searchResult = userController.find(loginId, rawPassword);
-    if (searchResult) {
-      req.login(userResult, (error) => {
-        if (error) {
-          return res.send(error);
-        }
-        const JWT = jwt.sign(JSON.parse(JSON.stringify(userResult)), String(process.env.JWT_SECRET), { expiresIn: "10m" });
-        return res.json({ state: "success", JWT });
-      });
-    }
-  })(req, res);
+  )(req, res);
 }
 function githubLogin(req: Request, res: Response): Response<JSON> | Response<string> {
   const gitUser: any = req.user;
