@@ -7,4 +7,5 @@ router.get("/", Controller.get);
 router.post("/", Controller.add);
 router.patch("/", Controller.edit);
 router.delete("/", Controller.del);
+router.patch("/:id/state/:state", Controller.changeState);
 export = router;

@@ -18,6 +18,7 @@ const add = async (req: Request, res: Response): Promise<Response> => {
     name: req.body.name,
     description: req.body.description,
     due_date: req.body.due_date,
+    state: true,
     created_at: new Date(),
   };
   const result = await MilestoneModel.add(milestone);
@@ -40,4 +41,9 @@ const del = async (req: Request, res: Response): Promise<Response> => {
   const result = await MilestoneModel.del(id);
   return res.sendStatus(result);
 };
-export default { get, add, edit, del };
+
+const changeState = async (req: Request, res: Response): Promise<Response> => {
+  const result = await MilestoneModel.changeState(+req.params.id, !!+req.params.state);
+  return res.json(result);
+};
+export default { get, add, edit, del, changeState };
