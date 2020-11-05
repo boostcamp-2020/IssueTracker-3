@@ -25,7 +25,7 @@ final class IssueListCollectionViewCell: UICollectionViewListCell {
             }
         }
     }
-//
+    
 //    override func prepareForReuse() {
 //        super.prepareForReuse()
 //

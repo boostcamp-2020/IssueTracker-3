@@ -13,10 +13,8 @@ import Combine
 
 // FIXME: 플로팅 버튼 (shade / 에니메이션 - (스크롤:숨기기 / 끝나면:나오기 / edit mode 없애기)
 
-// TODO: label 깍기
 // FIXME: tabBarButton & toolBarButton hidden 오류
 // FIXME: SelectAll 문제 - 전체 다 안됨 (겉으로 보기에만 됨 / 여러번 하면 오류 + cell 위치 틀리는 문제 / Model data를 변경해야함)
-// FIXME: SelectAll에서 클릭 안되는 문제
 
 class IssueListViewController: UIViewController {
     
@@ -159,7 +157,7 @@ class IssueListViewController: UIViewController {
             return
         }
         snapshot.deleteItems(deleteItems)
-        dataSource.apply(snapshot, animatingDifferences: true)
+        dataSource.apply(snapshot, animatingDifferences: false)
         // TODO: 선택 이슈 닫기 -> 닫은 이슈 Model Update & Server Post
         // selectedItems
         //    .map { issueListCollectionView.cellForItem(at: $0) }
@@ -174,12 +172,17 @@ class IssueListViewController: UIViewController {
     
     @objc private func selectAllTouched(_ sender: Any) {
         // TODO: issue ViewModel List 가지고 있는 객체에서 -> forEach -> isSelect true
+        // FIXME: SelectAll에서 클릭 안되는 문제
         isSelectedAll.toggle()
-        issueListCollectionView
-            .indexPathsForVisibleItems
-            .map { issueListCollectionView.cellForItem(at: $0) }
-            .compactMap { $0 as? IssueListCollectionViewCell }
-            .forEach { $0.isSelected = isSelectedAll }
+//        if isSelectedAll {
+//            issueListCollectionView
+//                .indexPathsForVisibleItems
+//                .forEach { issueListCollectionView.selectItem(at: $0, animated: true, scrollPosition: .bottom) }
+//        } else {
+//            issueListCollectionView
+//                .indexPathsForVisibleItems
+//                .forEach { issueListCollectionView.deselectItem(at: $0, animated: true) }
+//        }
     }
 }
 
@@ -248,6 +251,10 @@ extension IssueListViewController: UICollectionViewDelegate {
         if isEditing != cell.isInEditingMode {
             cell.isInEditingMode = isEditing
         }
+        if isSelectedAll {
+            issueListCollectionView.selectItem(at: indexPath, animated: true, scrollPosition: .bottom)
+        }
+        // TODO: deselect
     }
 }
 
