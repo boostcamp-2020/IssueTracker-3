@@ -46,8 +46,6 @@ class IssueListViewController: UIViewController {
         configureDataSource()
         configureCollectionLayoutList()
         performSearchQuery(with: nil)
-        
-        configureCollectionViewFlowLayout()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -239,16 +237,6 @@ extension IssueListViewController: UICollectionViewDelegate {
         if isEditing != cell.isInEditingMode {
             cell.isInEditingMode = isEditing
         }
-    }
-}
-
-// MARK: UICollectionViewFlowLayout
-
-extension IssueListViewController {
-    func configureCollectionViewFlowLayout() {
-        let flowLayout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
-        flowLayout.estimatedItemSize = CGSize(width: view.bounds.width, height: 88)
-        issueListCollectionView.collectionViewLayout = flowLayout
     }
 }
 
