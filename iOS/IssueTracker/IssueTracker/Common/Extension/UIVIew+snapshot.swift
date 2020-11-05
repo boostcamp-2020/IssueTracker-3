@@ -8,7 +8,6 @@
 import UIKit
 
 extension UIView {
-
     /// View를 UIImage로 생성
     ///
     /// 지정한 view를 이미지로 만들어줌

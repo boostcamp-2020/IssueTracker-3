@@ -9,7 +9,7 @@ excluded:
 #line_length:
 #    warning: 150
 identifier_name:
-  min_length: 2
+  min_length: 1
 large_tuple:
     - 3
 #nesting:
