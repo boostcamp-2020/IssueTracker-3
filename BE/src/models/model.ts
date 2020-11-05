@@ -9,12 +9,12 @@ export default abstract class Model {
     this.data = 0;
   }
 
-  async insert<T>(pData: T, pTableName: string): Promise<boolean> {
+  async insert<T>(pData: T, pTableName: string): Promise<number> {
     try {
       const data = await db.query<T>(`INSERT INTO ${pTableName} SET ?`, pData);
       const { insertId } = data[0];
       this.data = insertId;
-      return !!this.data;
+      return this.data;
     } catch (err) {
       console.error(err);
       throw err;
