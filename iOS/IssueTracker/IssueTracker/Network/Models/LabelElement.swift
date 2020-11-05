@@ -10,7 +10,10 @@ import Foundation
 // MARK: LabelElement
 
 struct LabelElement: Codable {
-    let name, labelDescription, color, createdAt: String
+    let name: String
+    let labelDescription: String
+    let color: String
+    let createdAt: String
 
     enum CodingKeys: String, CodingKey {
         case name

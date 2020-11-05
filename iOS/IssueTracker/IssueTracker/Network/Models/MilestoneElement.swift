@@ -11,7 +11,8 @@ import Foundation
 
 struct MilestoneElement: Codable {
     let id: Int
-    let name, milestoneDescription: String
+    let name: String
+    let milestoneDescription: String
     let dueDate: String?
     let createdAt: String
 

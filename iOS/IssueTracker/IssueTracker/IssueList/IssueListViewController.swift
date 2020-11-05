@@ -77,7 +77,7 @@ class IssueListViewController: UIViewController {
                 else {
                     return nil
                 }
-                
+                                                                      
                 let delete = UIContextualAction(style: .destructive,
                                                 title: "Delete") { [weak self] action, view, completion in
                     // TODO: Model -> 해당 indexPath delete
