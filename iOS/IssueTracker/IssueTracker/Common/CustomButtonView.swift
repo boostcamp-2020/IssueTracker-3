@@ -34,11 +34,10 @@ class CustomButtonView: UIButton {
     }
 
     func setting() {
-
         self.setTitle(text, for: .normal)
         self.setTitleColor(.black, for: .normal)
         self.titleLabel?.font = UIFont.systemFont(ofSize: 13)
-
+//        self.translatesAutoresizingMaskIntoConstraints = false
         switch type {
         case .milestone:
             self.backgroundColor = .white
