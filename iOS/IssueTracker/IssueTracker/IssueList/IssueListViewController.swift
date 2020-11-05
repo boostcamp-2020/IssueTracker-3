@@ -242,15 +242,7 @@ extension IssueListViewController: UICollectionViewDelegate {
     }
 }
 
-// MARK: UICollectionView
-
-//extension IssueListViewController: UICollectionViewDelegateFlowLayout {
-//    func collectionView(_ collectionView: UICollectionView,
-//                        layout collectionViewLayout: UICollectionViewLayout,
-//                        sizeForItemAt indexPath: IndexPath) -> CGSize {
-//        CGSize(width: collectionView.bounds.width, height: collectionView.bounds.width/3)
-//    }
-//}
+// MARK: UICollectionViewFlowLayout
 
 extension IssueListViewController {
     func configureCollectionViewFlowLayout() {
