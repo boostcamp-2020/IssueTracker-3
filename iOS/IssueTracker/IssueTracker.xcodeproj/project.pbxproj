@@ -338,10 +338,10 @@
 				7059318E25518495003FE49F /* Common */,
 				708EFEED2546DBC9009D9DEC /* AppDelegate.swift */,
 				708EFEEF2546DBC9009D9DEC /* SceneDelegate.swift */,
-				708EFEF82546DBCA009D9DEC /* LaunchScreen.storyboard */,
-				708EFEFB2546DBCA009D9DEC /* Info.plist */,
 				708EFEF32546DBC9009D9DEC /* Main.storyboard */,
 				708EFEF62546DBCA009D9DEC /* Assets.xcassets */,
+				708EFEF82546DBCA009D9DEC /* LaunchScreen.storyboard */,
+				708EFEFB2546DBCA009D9DEC /* Info.plist */,
 				BBE2860825503C1200A59009 /* Authentication.storyboard */,
 				705930F72550380F003FE49F /* IssueList.storyboard */,
 			);
