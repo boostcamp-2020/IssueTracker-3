@@ -1,5 +1,12 @@
 import React from "react";
 import ReactDom from "react-dom";
-import App from "./app";
+import Header from "./layout/header";
+import Content from "./layout/content";
 
-ReactDom.render(<App />, document.getElementById("root"));
+ReactDom.render(
+  <div>
+    <Header></Header>
+    <Content></Content>
+  </div>,
+  document.getElementById("root")
+);
