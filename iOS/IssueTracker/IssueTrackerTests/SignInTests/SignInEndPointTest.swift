@@ -18,7 +18,7 @@ class SignInEndPointTest: XCTestCase {
         let urlRequest = try? signInEndPoint.asURLRequest()
 
         //Then
-        XCTAssertEqual(try urlRequest?.url?.asURL().absoluteString, "http://api.boostcamp.com/auth/login")
+        XCTAssertEqual(try urlRequest?.url?.asURL().absoluteString, "http://101.101.210.34:3000/auth/login")
         XCTAssertEqual(urlRequest?.method, .get)
 
         guard let data = urlRequest?.httpBody else {
