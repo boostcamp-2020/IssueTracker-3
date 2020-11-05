@@ -17,13 +17,18 @@ class UserModel extends Model {
       return true;
     } catch (err) {
       console.error(err);
-      return false;
+      throw err;
     }
   }
 
-  async addUser(pData: User): Promise<number> {
-    this.data = await super.insert(pData, this.tableName);
-    return this.data;
+  async add(pData: User): Promise<number> {
+    try {
+      this.data = await super.insert(pData, this.tableName);
+      return this.data;
+    } catch (err) {
+      console.error(err);
+      throw err;
+    }
   }
 }
 
