@@ -31,9 +31,9 @@
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="IssueListCell" id="gwF-wj-lmi" customClass="IssueListCollectionViewCell" customModule="IssueTracker" customModuleProvider="target">
                                         <rect key="frame" x="19.5" y="0.0" width="375" height="88"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="1Tf-2r-cwf">
+                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="fo3-Tu-moA">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="88"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="레이블 목록 보기 구현" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lki-kq-UDe">
                                                     <rect key="frame" x="16" y="10" width="145" height="20.5"/>
@@ -57,13 +57,13 @@
                                             <constraints>
                                                 <constraint firstAttribute="bottom" secondItem="pgy-ki-F4b" secondAttribute="bottom" constant="11" id="0ev-Qz-qV3"/>
                                                 <constraint firstAttribute="trailing" secondItem="pgy-ki-F4b" secondAttribute="trailing" constant="12" id="5Qc-CZ-vty"/>
-                                                <constraint firstItem="Rz8-SB-ZgW" firstAttribute="leading" secondItem="1Tf-2r-cwf" secondAttribute="leading" constant="16" id="AYH-3q-6dc"/>
-                                                <constraint firstItem="pgy-ki-F4b" firstAttribute="top" secondItem="1Tf-2r-cwf" secondAttribute="top" constant="11" id="PCw-t9-qOD"/>
-                                                <constraint firstItem="Lki-kq-UDe" firstAttribute="leading" secondItem="1Tf-2r-cwf" secondAttribute="leading" constant="16" id="TnD-N6-vhx"/>
+                                                <constraint firstItem="Rz8-SB-ZgW" firstAttribute="leading" secondItem="fo3-Tu-moA" secondAttribute="leading" constant="16" id="AYH-3q-6dc"/>
+                                                <constraint firstItem="pgy-ki-F4b" firstAttribute="top" secondItem="fo3-Tu-moA" secondAttribute="top" constant="11" id="PCw-t9-qOD"/>
+                                                <constraint firstItem="Lki-kq-UDe" firstAttribute="leading" secondItem="fo3-Tu-moA" secondAttribute="leading" constant="16" id="TnD-N6-vhx"/>
                                                 <constraint firstItem="pgy-ki-F4b" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Lki-kq-UDe" secondAttribute="trailing" constant="45" id="YXs-bb-Njv"/>
                                                 <constraint firstItem="pgy-ki-F4b" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Rz8-SB-ZgW" secondAttribute="trailing" constant="30" id="cvn-NI-KnO"/>
                                                 <constraint firstItem="Rz8-SB-ZgW" firstAttribute="top" secondItem="Lki-kq-UDe" secondAttribute="bottom" constant="6" id="wu9-lH-nXU"/>
-                                                <constraint firstItem="Lki-kq-UDe" firstAttribute="top" secondItem="1Tf-2r-cwf" secondAttribute="top" constant="10" id="y4v-uB-MpV"/>
+                                                <constraint firstItem="Lki-kq-UDe" firstAttribute="top" secondItem="fo3-Tu-moA" secondAttribute="top" constant="10" id="y4v-uB-MpV"/>
                                             </constraints>
                                         </collectionViewCellContentView>
                                         <connections>

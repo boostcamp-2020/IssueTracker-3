@@ -5,19 +5,19 @@
 //  Created by ParkJaeHyun on 2020/11/03.
 //
 
-import Foundation
+import UIKit
 
 struct IssueListViewModel: Hashable {
     let title: String
     let description: String
-    let milestone: String
-    let labels: [String]
+    let milestone: CustomButtonView
+    let labels: [CustomButtonView]
     let identifier = UUID()
 
     init(title: String,
          description: String,
-         milestone: String,
-         labels: [String]
+         milestone: CustomButtonView,
+         labels: [CustomButtonView]
          ) {
         self.title = title
         self.description = description

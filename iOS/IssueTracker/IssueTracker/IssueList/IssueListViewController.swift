@@ -227,7 +227,7 @@ extension IssueListViewController {
                 guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "IssueListCell", for: indexPath)
                         as? IssueListCollectionViewCell else { return UICollectionViewCell() }
                 
-                cell.configureLabelStackView(milestone: item.milestone, labels: item.labels)
+//                cell.configureLabelStackView(milestone: item.milestone, labels: item.labels)
                 cell.configureIssueListCell(of: item)
                 
                 if #available(iOS 14.0, *) {
@@ -275,31 +275,31 @@ extension IssueListViewController: UICollectionViewDelegate {
 extension IssueListViewController {
     private func generateIssues() -> [IssueListViewModel] {
         var issues = [IssueListViewModel]()
-        issues.append(IssueListViewModel(title: "test1",
-                                         description: "설명",
-                                         milestone: "프로젝트1",
-                                         labels: ["label1", "label2"]))
-        issues.append(IssueListViewModel(title: "test2",
-                                         description: "설명",
-                                         milestone: "프로젝트2",
-                                         labels: ["label1", "label2"]))
-        issues.append(IssueListViewModel(title: "test3",
-                                         description: "설명",
-                                         milestone: "프로젝트3",
-                                         labels: ["label1", "label2"]))
-        issues.append(IssueListViewModel(title: "ha",
-                                         description: "설명",
-                                         milestone: "프로젝트4",
-                                         labels: ["label1", "label2", "label3", "label3"]))
-        issues.append(IssueListViewModel(title: "haha",
-                                         description: "설명",
-                                         milestone: "프로젝트5",
-                                         labels: ["label1", "label2"]))
-        (1...10).forEach { _ in
+//        issues.append(IssueListViewModel(title: "test1",
+//                                         description: "설명",
+//                                         milestone: "프로젝트1",
+//                                         labels: ["label1", "label2"]))
+//        issues.append(IssueListViewModel(title: "test2",
+//                                         description: "설명",
+//                                         milestone: "프로젝트2",
+//                                         labels: ["label1", "label2"]))
+//        issues.append(IssueListViewModel(title: "test3",
+//                                         description: "설명",
+//                                         milestone: "프로젝트3",
+//                                         labels: ["label1", "label2"]))
+//        issues.append(IssueListViewModel(title: "ha",
+//                                         description: "설명",
+//                                         milestone: "프로젝트4",
+//                                         labels: ["label1", "label2", "label3", "label3"]))
+//        issues.append(IssueListViewModel(title: "haha",
+//                                         description: "설명",
+//                                         milestone: "프로젝트5",
+//                                         labels: ["label1", "label2"]))
+        (1...100).forEach { _ in
             issues.append(IssueListViewModel(title: "haha",
                                              description: "설명",
-                                             milestone: "프로젝트5",
-                                             labels: ["label1", "label2"]))
+                                             milestone: CustomButtonView(type: .milestone, text: "프로젝트5", color: "#ffffff"),
+                                             labels: [CustomButtonView(type: .label, text: "label1", color: "#ffffff"), CustomButtonView(type: .milestone, text: "label25", color: "#ffffff")]))
         }
         
         return issues

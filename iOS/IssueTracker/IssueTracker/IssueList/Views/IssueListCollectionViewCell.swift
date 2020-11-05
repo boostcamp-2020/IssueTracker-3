@@ -29,6 +29,7 @@ final class IssueListCollectionViewCell: UICollectionViewListCell {
     func configureIssueListCell(of item: IssueListViewModel) {
         titleLabel.text = item.title
         descriptionLabel.text = item.description
+        configureLabelStackView(milestone: item.milestone, labels: item.labels)
     }
     
     // TODO: Moving Animation
@@ -46,13 +47,21 @@ final class IssueListCollectionViewCell: UICollectionViewListCell {
         })
     }
 
-    func configureLabelStackView(milestone: String, labels: [String]) {
-        let button = CustomButtonView(type: .milestone, text: milestone, color: "#000000")
-        labelStackView.addArrangedSubview(button)
+    func configureLabelStackView(milestone: UIButton, labels: [UIButton]) {
+        labelStackView.addArrangedSubview(milestone)
 
         labels.forEach({
-            let button = CustomButtonView(type: .label, text: $0, color: "#BEDBFD")
-            labelStackView.addArrangedSubview(button)
+            labelStackView.addArrangedSubview($0)
         })
     }
+//    func configureLabelStackView(milestone: String, labels: [String]) {
+//        let button = CustomButtonView(type: .milestone, text: milestone, color: "#000000")
+//
+//        labelStackView.addArrangedSubview(button)
+//
+//        labels.forEach({
+//            let button = CustomButtonView(type: .label, text: $0, color: "#BEDBFD")
+//            labelStackView.addArrangedSubview(button)
+//        })
+//    }
 }
