@@ -62,7 +62,7 @@ final class SignInViewController: UIViewController {
                                           email: String?) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         guard let loginViewController = storyboard.instantiateViewController(withIdentifier: "loginViewController")
-                as? ViewController else { return }
+                as? SignInViewController else { return }
 
         loginViewController.modalPresentationStyle = .formSheet
         loginViewController.isModalInPresentation = true

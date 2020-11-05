@@ -46,8 +46,8 @@ class IssueListViewController: UIViewController {
         configureDataSource()
         configureCollectionLayoutList()
         performSearchQuery(with: nil)
-        
-        configureCollectionViewFlowLayout()
+        showSearchBar()
+//        configureCollectionViewFlowLayout()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -58,10 +58,6 @@ class IssueListViewController: UIViewController {
     // MARK: Configure
     
     private func configureNavigationItems() {
-        navigationItem.searchController = UISearchController(searchResultsController: nil)
-        navigationItem.hidesSearchBarWhenScrolling = false
-        navigationItem.searchController?.searchBar.delegate = self
-        
         /// Navigation Item BarButton들은 hidden 프로퍼티가 없고 / 두 개를 상황 마다 번갈아가며 써야하기 때문에, 직접 만들었음.
         filterLeftBarButton = UIBarButtonItem(title: "Filter",
                                               style: .plain,
@@ -74,7 +70,19 @@ class IssueListViewController: UIViewController {
         navigationItem.leftBarButtonItem = filterLeftBarButton
         navigationItem.rightBarButtonItem = editButtonItem
     }
-    
+
+    func showSearchBar() {
+        let searchController = UISearchController(searchResultsController: nil)
+        searchController.searchBar.delegate = self
+        searchController.obscuresBackgroundDuringPresentation = false
+        searchController.hidesNavigationBarDuringPresentation = true
+        navigationItem.hidesSearchBarWhenScrolling = true
+        searchController.searchBar.sizeToFit()
+        searchController.searchBar.returnKeyType = UIReturnKeyType.search
+        searchController.searchBar.placeholder = "Search here"
+        navigationItem.searchController = searchController
+    }
+
     private func configureCollectionLayoutList() {
         if #available(iOS 14.0, *) {
             var layoutConfig = UICollectionLayoutListConfiguration(appearance: .plain)
@@ -99,7 +107,9 @@ class IssueListViewController: UIViewController {
                 delete.backgroundColor = .systemRed
                 return UISwipeActionsConfiguration(actions: [delete])
             }
+
             let listLayout = UICollectionViewCompositionalLayout.list(using: layoutConfig)
+
             issueListCollectionView.collectionViewLayout = listLayout
         }
     }
@@ -196,7 +206,8 @@ extension IssueListViewController: UISearchBarDelegate {
         var snapshot = NSDiffableDataSourceSnapshot<Section, IssueListViewModel>()
         snapshot.appendSections([.main])
         snapshot.appendItems(issueListItems)
-        dataSource.apply(snapshot, animatingDifferences: true)
+
+        dataSource.apply(snapshot, animatingDifferences: false)
     }
 }
 
@@ -212,10 +223,13 @@ extension IssueListViewController {
                 else {
                     return UICollectionViewCell()
                 }
+
                 cell.configureIssueListCell(of: item)
                 if #available(iOS 14.0, *) {
                     cell.accessories = [.multiselect(displayed: .whenEditing, options: .init())]
                 }
+
+                cell.systemLayoutSizeFitting(.init(width: self.view.bounds.width, height: 88))
                 return cell
             })
     }
@@ -251,25 +265,68 @@ extension IssueListViewController: UICollectionViewDelegate {
 //        CGSize(width: collectionView.bounds.width, height: collectionView.bounds.width/3)
 //    }
 //}
-
-extension IssueListViewController {
-    func configureCollectionViewFlowLayout() {
-        let flowLayout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
-        flowLayout.estimatedItemSize = CGSize(width: view.bounds.width, height: 88)
-        issueListCollectionView.collectionViewLayout = flowLayout
-    }
-}
+//
+//extension IssueListViewController {
+//    func configureCollectionViewFlowLayout() {
+//        let flowLayout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
+//        flowLayout.estimatedItemSize = CGSize(width: view.bounds.width, height: 88)
+//        issueListCollectionView.collectionViewLayout = flowLayout
+//    }
+//}
 
 // MARK: Dummy Issue Data
 
 extension IssueListViewController {
     private func generateIssues() -> [IssueListViewModel] {
         var issues = [IssueListViewModel]()
-        (1...10).forEach { _ in
-            issues.append(IssueListViewModel(title: "haha",
-                                             description: "설명",
-                                             milestone: CustomButtonView(type: .milestone, text: "프로젝트5", color: "#ffffff"),
-                                             labels: [CustomButtonView(type: .label, text: "label1", color: "#ffffff"), CustomButtonView(type: .milestone, text: "label25", color: "#ffffff")]))
+
+        issues.append(IssueListViewModel(
+                        title: "test",
+                        description: "설명",
+                        milestone: CustomButtonView(
+                            type: .milestone,
+                            text: "프로젝트",
+                            color: "#ffffff"),
+                        labels: []))
+        issues.append(IssueListViewModel(
+                        title: "test",
+                        description: "설명",
+                        milestone: CustomButtonView(
+                            type: .milestone,
+                            text: "프로젝트",
+                            color: "#ffffff"),
+                        labels: [
+                            CustomButtonView(
+                                type: .label,
+                                text: "프로젝트",
+                                color: "#ffffff"
+                            ),
+                            CustomButtonView(
+                                type: .label,
+                                text: "프로젝트",
+                                color: "#ffffff"),
+                            CustomButtonView(
+                                type: .label,
+                                text: "프로젝트",
+                                color: "#ffffff"),
+                            CustomButtonView(
+                                type: .label,
+                                text: "프로젝트",
+                                color: "#ffffff")]))
+
+        (1...10).forEach { number in
+            issues.append(IssueListViewModel(
+                            title: "haha\(number)",
+                            description: "설명",
+                            milestone: CustomButtonView(type: .milestone,
+                                                        text: "프로젝트",
+                                                        color: "#ffffff"),
+                            labels: [CustomButtonView(type: .label,
+                                                      text: "label\(number)",
+                                                      color: "#ffffff"),
+                                     CustomButtonView(type: .label,
+                                                      text: "labe\(number)",
+                                                      color: "#ffffff")]))
         }
         return issues
     }
