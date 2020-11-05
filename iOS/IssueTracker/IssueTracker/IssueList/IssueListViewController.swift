@@ -11,10 +11,12 @@ import Combine
 // TODO: Activity Indicators
 // TODO: ios13 이하 버전 Edit 구현
 
+// FIXME: 플로팅 버튼 (shade / 에니메이션 - (스크롤:숨기기 / 끝나면:나오기 / edit mode 없애기)
+
+// TODO: label 깍기
 // FIXME: tabBarButton & toolBarButton hidden 오류
 // FIXME: SelectAll 문제 - 전체 다 안됨 (겉으로 보기에만 됨 / 여러번 하면 오류 + cell 위치 틀리는 문제 / Model data를 변경해야함)
 // FIXME: SelectAll에서 클릭 안되는 문제
-// FIXME: 플로팅 버튼 (shade / 에니메이션 - (스크롤:숨기기 / 끝나면:나오기 / edit mode 없애기)
 
 class IssueListViewController: UIViewController {
     

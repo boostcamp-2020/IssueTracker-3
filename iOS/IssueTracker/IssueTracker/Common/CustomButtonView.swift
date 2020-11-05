@@ -46,6 +46,7 @@ class CustomButtonView: UIButton {
             configureContentEdgeInsets(8, 2, 9, 0)
         case .label:
 //            self.backgroundColor = UIColor(hex: color)
+            self.cornerRadius = 3
             self.backgroundColor = UIColor().random()
             configureContentEdgeInsets(7, 2, 7, 2)
         case .none:
