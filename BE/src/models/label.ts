@@ -1,6 +1,7 @@
 import { Label } from "@interfaces/label";
 import Model from "@models/model";
 import db from "@providers/database";
+import HTTPCODE from "@root/magicnumber";
 
 class LabelModel extends Model {
   protected tableName: string;
@@ -11,24 +12,41 @@ class LabelModel extends Model {
   }
 
   async select(): Promise<Array<Label>> {
-    const data = await db.query(`select name, description, color, created_at from ${this.tableName}`);
-    const res: Array<Label> = [...data[0]];
-    return res;
+    try {
+      const data = await db.query(`select name, description, color, created_at from ${this.tableName}`);
+      this.data = [...data[0]];
+      return this.data;
+    } catch (err) {
+      console.error(err);
+      throw err;
+    }
   }
 
   async add(pData: Label): Promise<number> {
-    const insertId = await super.insert<Label>(pData, `${this.tableName}`);
-    return insertId;
+    try {
+      this.data = await super.insert<Label>(pData, `${this.tableName}`);
+      return this.data ? HTTPCODE.SUCCESS : HTTPCODE.FAIL;
+    } catch {
+      return HTTPCODE.SERVER_ERR;
+    }
   }
 
   async edit(pData: object): Promise<number> {
-    const affecedId = await super.update<object>(pData, `${this.tableName}`);
-    return affecedId;
+    try {
+      this.data = await super.update<object>(pData, `${this.tableName}`);
+      return this.data ? HTTPCODE.SUCCESS : HTTPCODE.FAIL;
+    } catch {
+      return HTTPCODE.SERVER_ERR;
+    }
   }
 
   async del(id: number): Promise<number> {
-    const affecedId = await super.delete(id, `${this.tableName}`);
-    return affecedId;
+    try {
+      this.data = await super.delete(id, `${this.tableName}`);
+      return this.data ? HTTPCODE.SUCCESS : HTTPCODE.FAIL;
+    } catch {
+      return HTTPCODE.SERVER_ERR;
+    }
   }
 }
 

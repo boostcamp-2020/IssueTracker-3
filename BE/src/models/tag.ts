@@ -1,6 +1,7 @@
 import db from "@providers/database";
 import { Tag } from "@interfaces/tag";
 import Model from "@models/model";
+import HTTPCODE from "@root/magicnumber";
 
 class TagModel extends Model {
   protected tableName: string;
@@ -24,18 +25,26 @@ class TagModel extends Model {
       return this.data;
     } catch (err) {
       console.error(err);
-      return err;
+      throw err;
     }
   }
 
   async add(pData: Tag): Promise<number> {
-    const result = await super.insert(pData, this.tableName);
-    return result;
+    try {
+      this.data = await super.insert(pData, this.tableName);
+      return this.data ? HTTPCODE.SUCCESS : HTTPCODE.FAIL;
+    } catch {
+      return HTTPCODE.SERVER_ERR;
+    }
   }
 
   async del(id: number): Promise<number> {
-    const result = await super.delete(id, this.tableName);
-    return result;
+    try {
+      this.data = await super.delete(id, this.tableName);
+      return this.data ? HTTPCODE.SUCCESS : HTTPCODE.FAIL;
+    } catch {
+      return HTTPCODE.SERVER_ERR;
+    }
   }
 }
 
