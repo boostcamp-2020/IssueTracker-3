@@ -31,6 +31,9 @@ module.exports = {
       },
     ],
   },
+  resolve: {
+    extensions: [".js", ".jsx"],
+  },
   plugins: [
     new HtmlWebpackPlugin({
       template: "./public/index.html",
@@ -42,5 +45,6 @@ module.exports = {
     host: "localhost",
     port: 5000,
     open: true,
+    historyApiFallback: true,
   },
 };
