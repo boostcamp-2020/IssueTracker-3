@@ -7,7 +7,8 @@
 
 import Foundation
 
-// MARK: - IssueListElement
+// MARK: IssueListElement
+
 struct IssueListElement: Codable {
     let id: Int
     let title: String

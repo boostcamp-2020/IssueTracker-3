@@ -1,5 +1,5 @@
 # IssueTracker-3 Back End
-
+[![Releases](https://img.shields.io/github/v/release/boostcamp-2020/IssueTracker-3)](https://github.com/boostcamp-2020/IssueTracker-3/releases)
 [![build](https://github.com/boostcamp-2020/IssueTracker-3/workflows/Node.js%20CI/badge.svg)](https://github.com/boostcamp-2020/IssueTracker-3/actions)
 
 
