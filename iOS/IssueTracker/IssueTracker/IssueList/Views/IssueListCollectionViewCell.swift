@@ -25,20 +25,27 @@ final class IssueListCollectionViewCell: UICollectionViewListCell {
             }
         }
     }
-    
-    override func prepareForReuse() {
-        labelStackView.subviews.forEach({
-            $0.removeFromSuperview()
-        })
-    }
-    
+//
+//    override func prepareForReuse() {
+//        super.prepareForReuse()
+//
+//        labelStackView.subviews.forEach({
+//            $0.removeFromSuperview()
+//        })
+//    }
+
     func configureIssueListCell(of item: IssueListViewModel) {
         titleLabel.text = item.title
         descriptionLabel.text = item.description
+        
         configureLabelStackView(milestone: item.milestone, labels: item.labels)
     }
     
     func configureLabelStackView(milestone: UIButton, labels: [UIButton]) {
+        labelStackView.subviews.forEach({
+            $0.removeFromSuperview()
+        })
+
         labelStackView.addArrangedSubview(milestone)
         labels.forEach({
             labelStackView.addArrangedSubview($0)
