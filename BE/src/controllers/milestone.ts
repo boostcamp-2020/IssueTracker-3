@@ -1,10 +1,15 @@
 import { Request, Response } from "express";
 import { Milestone } from "@interfaces/milestone";
 import MilestoneModel from "@models/milestone";
+import HTTPCODE from "@root/magicnumber";
 
 const get = async (req: Request, res: Response): Promise<Response<any>> => {
-  const result = await MilestoneModel.select();
-  return res.json(result);
+  try {
+    const result = await MilestoneModel.select();
+    return res.json(result);
+  } catch {
+    return res.sendStatus(HTTPCODE.SERVER_ERR);
+  }
 };
 
 const add = async (req: Request, res: Response): Promise<Response> => {
@@ -16,7 +21,7 @@ const add = async (req: Request, res: Response): Promise<Response> => {
     created_at: new Date(),
   };
   const result = await MilestoneModel.add(milestone);
-  return res.json(result);
+  return res.sendStatus(result);
 };
 
 const edit = async (req: Request, res: Response): Promise<Response> => {
@@ -27,12 +32,12 @@ const edit = async (req: Request, res: Response): Promise<Response> => {
     due_date: req.body.due_date,
   };
   const result = await MilestoneModel.edit(milestone);
-  return res.json(result);
+  return res.sendStatus(result);
 };
 
 const del = async (req: Request, res: Response): Promise<Response> => {
   const { id } = req.body;
   const result = await MilestoneModel.del(id);
-  return res.json(result);
+  return res.sendStatus(result);
 };
 export default { get, add, edit, del };
