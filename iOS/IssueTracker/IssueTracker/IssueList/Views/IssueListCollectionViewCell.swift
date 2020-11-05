@@ -13,7 +13,8 @@ final class IssueListCollectionViewCell: UICollectionViewListCell {
     @IBOutlet private weak var mileStone: UIButton!
     @IBOutlet private weak var firstLabel: UIButton!
     @IBOutlet private weak var secondLabel: UIButton!
-    
+    @IBOutlet weak var labelStackView: UIStackView!
+
     var isInEditingMode: Bool = false {
         didSet {
             toggleEditingMode()
@@ -43,5 +44,21 @@ final class IssueListCollectionViewCell: UICollectionViewListCell {
         } else {
             contentView.layer.bounds.origin.x += 40
         }
+    }
+  
+   override func prepareForReuse() {
+        labelStackView.subviews.forEach({
+            $0.removeFromSuperview()
+        })
+    }
+
+    func configureLabelStackView(milestone: String, labels: [String]) {
+        let button = CustomButtonView(type: .milestone, text: milestone, color: "#000000")
+        labelStackView.addArrangedSubview(button)
+
+        labels.forEach({
+            let button = CustomButtonView(type: .label, text: $0, color: "#BEDBFD")
+            labelStackView.addArrangedSubview(button)
+        })
     }
 }

@@ -7,20 +7,13 @@
 
 import Foundation
 
-struct User: Codable {
-    let userID: String
-    let password: String
-}
-
 protocol SignInInteractorProtocol {
     
 }
 
 final class SignInInteractor: SignInInteractorProtocol {
-    
     // Id pw -> network
     // Id pw 검증 받아서 -> 결과값
-    
 }
 
 /*

@@ -12,7 +12,6 @@ import Combine
 // TODO: ios13 이하 버전 Edit 구현
 
 // FIXME: tabBarButton & toolBarButton hidden 오류
-
 class IssueListViewController: UIViewController {
     
     // MARK: Properties
@@ -24,7 +23,8 @@ class IssueListViewController: UIViewController {
     private var issueListModelController: IssueListModelController!
     private var filterLeftBarButton: UIBarButtonItem!
     private var selectAllLeftBarButton: UIBarButtonItem!
-    
+    var searchText: String = ""
+
     private lazy var issueList: [IssueListViewModel] = {
         return generateIssues()
     }()
@@ -39,12 +39,19 @@ class IssueListViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        configureNavigationItems()
-        configureDataSource()
-        configureCollectionLayoutList()
-        
+
+        navigationItem.searchController = UISearchController(searchResultsController: nil)
+        navigationItem.hidesSearchBarWhenScrolling = false
+        navigationItem.searchController?.searchBar.delegate = self
+
         issueListModelController = IssueListModelController()
-        performQuery(with: nil)
+        configureDataSource()
+        performSearchQuery(with: nil)
+
+
+        configureNavigationItems()
+        configureCollectionLayoutList()
+ 
     }
     
     // MARK: Configure
@@ -77,6 +84,7 @@ class IssueListViewController: UIViewController {
                 else {
                     return nil
                 }
+
                                                                       
                 let delete = UIContextualAction(style: .destructive,
                                                 title: "Delete") { [weak self] action, view, completion in
@@ -185,7 +193,16 @@ class IssueListViewController: UIViewController {
     }
 }
 
-// MARK: CollectionView DataSource
+extension IssueListViewController: UISearchBarDelegate {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        performSearchQuery(with: searchText)
+        self.searchText = searchText
+    }
+
+    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+        self.navigationItem.searchController?.searchBar.text = searchText
+    }
+}
 
 extension IssueListViewController {
     func configureDataSource() {
@@ -194,9 +211,12 @@ extension IssueListViewController {
             cellProvider: {(
                 collectionView, indexPath, item
             ) -> UICollectionViewCell? in
+
+
                 guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "IssueListCell", for: indexPath)
                         as? IssueListCollectionViewCell else { return UICollectionViewCell() }
                 
+                cell.configureLabelStackView(milestone: item.milestone, labels: item.labels)
                 cell.configureIssueListCell(of: item)
                 
                 if #available(iOS 14.0, *) {
@@ -206,6 +226,7 @@ extension IssueListViewController {
             })
     }
 }
+
 
 // MARK: UICollectionViewDelegate
 

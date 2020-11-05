@@ -5,22 +5,49 @@
 //  Created by ParkJaeHyun on 2020/11/04.
 //
 
-import Foundation
+import UIKit
 
-struct IssueFilterViewModel: Hashable {
+class IssueFilterViewModel: Hashable {
     let title: String
-    let hasChildren: Bool
+
+    let chevronDirection: [ChevronDirection] // 지울예정
+
+    var isChevron: Bool
+
+    let childTitle: String = "" // 지울예정
+    let image: UIImage? = nil
+
+    var hasChildren: Bool
+    let childItem: [IssueFilterViewModel]
     let identifier = UUID()
 
-    init(title: String? = nil, hasChildren: Bool = false) {
+    var needsSeparator: Bool = true // 지울예정
+
+    init(title: String,
+         chevronDirection: [ChevronDirection],
+         isChevron: Bool,
+         hasChildren: Bool = false,
+         childItem: [IssueFilterViewModel] = [],
+         childTitle: String = "",
+         image: UIImage? = nil) {
         self.title = title
         self.hasChildren = hasChildren
+        self.childItem = childItem
+        self.isChevron = isChevron
+
+        for child in self.childItem {
+              child.needsSeparator = false
+          }
+
+        self.childItem.last?.needsSeparator = true
+        self.chevronDirection = chevronDirection
     }
+    
     func hash(into hasher: inout Hasher) {
         hasher.combine(identifier)
     }
 
-    static func == (lhs: IssueListViewModel, rhs: IssueListViewModel) -> Bool {
+    static func == (lhs: IssueFilterViewModel, rhs: IssueFilterViewModel) -> Bool {
         return lhs.identifier == rhs.identifier
     }
 }
