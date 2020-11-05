@@ -25,7 +25,7 @@ class LabelModel extends Model {
   async add(pData: Label): Promise<number> {
     try {
       this.data = await super.insert<Label>(pData, `${this.tableName}`);
-      return this.data ? HTTPCODE.SUCCESS : HTTPCODE.FAIL;
+      return this.data ? this.data : HTTPCODE.FAIL;
     } catch {
       return HTTPCODE.SERVER_ERR;
     }

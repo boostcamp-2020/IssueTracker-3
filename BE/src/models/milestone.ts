@@ -53,7 +53,7 @@ class MilestoneModel extends Model {
     const data = { id, state };
     try {
       this.data = await super.update(data, this.tableName);
-      return this.data ? HTTPCODE.SUCCESS : HTTPCODE.FAIL;
+      return this.data ? this.data : HTTPCODE.FAIL;
     } catch {
       return HTTPCODE.SERVER_ERR;
     }
