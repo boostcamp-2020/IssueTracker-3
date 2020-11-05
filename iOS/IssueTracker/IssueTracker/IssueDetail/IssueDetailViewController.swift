@@ -37,7 +37,7 @@ final class IssueDetailViewController: UIViewController {
         super.viewDidDisappear(animated)
         tabBarController?.tabBar.isHidden = false
     }
-    
+
     // MARK: Configure View
     
     private func configureNavigationItem() {
@@ -78,13 +78,13 @@ extension IssueDetailViewController {
         case expanded
         case collapsed
     }
-    
+
     private func configureBottomSheet() {
         visualEffectView = UIVisualEffectView()
         visualEffectView.frame = view.frame
+        visualEffectView.isUserInteractionEnabled = false
         view.addSubview(visualEffectView)
-        
-        // issueDetailBottomSheet = IssueDetailBottomSheetViewController(nibName: "BottomSheetTest", bundle: nil)
+
         guard let viewController = UIStoryboard(name: "IssueList", bundle: nil)
                 .instantiateViewController(identifier: "IssueDetailBottomSheet")
                 as? IssueDetailBottomSheetViewController else { return }
@@ -98,14 +98,11 @@ extension IssueDetailViewController {
                                                    width: view.bounds.width,
                                                    height: cardHeight)
         issueDetailBottomSheet.view.clipsToBounds = true
-        
-        let tapGestureRecognizer = UITapGestureRecognizer(target: self,
-                                                          action: #selector(self.bottomSheetTapped(recognzier:)))
+
         let panGestureRecognizer = UIPanGestureRecognizer(target: self,
                                                           action: #selector(self.bottomSheetPanned(recognizer:)))
         
-        issueDetailBottomSheet.handleArea.addGestureRecognizer(tapGestureRecognizer)
-        issueDetailBottomSheet.handleArea.addGestureRecognizer(panGestureRecognizer)
+        issueDetailBottomSheet.view.addGestureRecognizer(panGestureRecognizer)
     }
     
     private func animateTransitionIfNeeded(state: BottomSheetState, duration: TimeInterval) {
@@ -186,7 +183,7 @@ extension IssueDetailViewController {
             break
         }
     }
-    
+
     @objc func bottomSheetPanned(recognizer: UIPanGestureRecognizer) {
         switch recognizer.state {
         case .began:
@@ -201,23 +198,5 @@ extension IssueDetailViewController {
         default:
             break
         }
-    }
-}
-
-// 옛날꺼 BottomSheet
-extension IssueDetailViewController {
-    func addBottomSheetView() {
-        guard let storyboard = UIStoryboard.init(name: "IssueList", bundle: nil)
-                .instantiateViewController(identifier: "IssueManagementViewController")
-                as? IssueDetailBottomSheetViewController else { return }
-        let bottomSheetVC = storyboard
-        
-        self.addChild(bottomSheetVC)
-        self.view.addSubview(bottomSheetVC.view)
-        bottomSheetVC.didMove(toParent: self)
-        
-        let height = view.frame.height
-        let width  = view.frame.width
-        bottomSheetVC.view.frame = CGRect(x: 0, y: self.view.frame.maxY, width: width, height: height)
     }
 }
