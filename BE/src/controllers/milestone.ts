@@ -44,6 +44,6 @@ const del = async (req: Request, res: Response): Promise<Response> => {
 
 const changeState = async (req: Request, res: Response): Promise<Response> => {
   const result = await MilestoneModel.changeState(+req.params.id, !!+req.params.state);
-  return res.json(result);
+  return res.sendStatus(result);
 };
 export default { get, add, edit, del, changeState };
