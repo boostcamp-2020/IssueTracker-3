@@ -57,6 +57,8 @@
 		BBCC4A132548204200FAB2F4 /* SignInInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBCC4A122548204200FAB2F4 /* SignInInteractor.swift */; };
 		BBE2860A25503C1200A59009 /* Authentication.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BBE2860825503C1200A59009 /* Authentication.storyboard */; };
 		BBE2861125503D8A00A59009 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBE2861025503D8A00A59009 /* SettingViewController.swift */; };
+		BBEDC1E42553C80000393FF6 /* playstore.png in Resources */ = {isa = PBXBuildFile; fileRef = BBEDC1E22553C80000393FF6 /* playstore.png */; };
+		BBEDC1E52553C80000393FF6 /* appstore.png in Resources */ = {isa = PBXBuildFile; fileRef = BBEDC1E32553C80000393FF6 /* appstore.png */; };
 		FB61544F48E987F7556EC50C /* libPods-IssueTracker.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8FB431BFDCDAC5FA1D443DF4 /* libPods-IssueTracker.a */; };
 /* End PBXBuildFile section */
 
@@ -127,6 +129,8 @@
 		BBCC4A122548204200FAB2F4 /* SignInInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInInteractor.swift; sourceTree = "<group>"; };
 		BBE2860925503C1200A59009 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = IssueTracker/Base.lproj/Authentication.storyboard; sourceTree = "<group>"; };
 		BBE2861025503D8A00A59009 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
+		BBEDC1E22553C80000393FF6 /* playstore.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = playstore.png; sourceTree = "<group>"; };
+		BBEDC1E32553C80000393FF6 /* appstore.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = appstore.png; sourceTree = "<group>"; };
 		E3F70225329F0E308853325D /* Pods-IssueTracker.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IssueTracker.release.xcconfig"; path = "Target Support Files/Pods-IssueTracker/Pods-IssueTracker.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -313,6 +317,8 @@
 				705930FE25503840003FE49F /* Label.storyboard */,
 				7059310425503859003FE49F /* MileStone.storyboard */,
 				7059310B2550386F003FE49F /* Setting.storyboard */,
+				BBEDC1E32553C80000393FF6 /* appstore.png */,
+				BBEDC1E22553C80000393FF6 /* playstore.png */,
 			);
 			path = IssueTracker;
 			sourceTree = "<group>";
@@ -494,6 +500,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BBBCF95E2550EC0800819773 /* BottomSheetTest.xib in Resources */,
+				BBEDC1E52553C80000393FF6 /* appstore.png in Resources */,
 				7074DE212547DB9800A64FC2 /* .swiftlint.yml in Resources */,
 				7059310625503859003FE49F /* MileStone.storyboard in Resources */,
 				708EFEFA2546DBCA009D9DEC /* LaunchScreen.storyboard in Resources */,
@@ -502,6 +509,7 @@
 				708EFEF72546DBCA009D9DEC /* Assets.xcassets in Resources */,
 				BBE2860A25503C1200A59009 /* Authentication.storyboard in Resources */,
 				708EFEF52546DBC9009D9DEC /* Main.storyboard in Resources */,
+				BBEDC1E42553C80000393FF6 /* playstore.png in Resources */,
 				7059310C2550386F003FE49F /* Setting.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
