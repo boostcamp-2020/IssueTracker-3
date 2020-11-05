@@ -11,17 +11,21 @@ const add = async (req: Request, res: Response): Promise<Response> => {
     created_at: new Date(),
   };
   try {
-    await UserModel.insert(user, "USER");
-    return res.sendStatus(200);
+    await UserModel.add(user);
+    return res.status(201).json({ status: "success" });
   } catch {
-    return res.sendStatus(400);
+    return res.status(400).json({ status: "fail" });
   }
 };
 
 const find = async (userID: string, password: string): Promise<boolean> => {
   const rawPassword = password;
   const encrpytPassword = rawPassword;
-  const result = await UserModel.select([userID, encrpytPassword]);
-  return result;
+  try {
+    const result = await UserModel.select([userID, encrpytPassword]);
+    return result;
+  } catch (err) {
+    return false;
+  }
 };
 export default { find, add };
