@@ -17,7 +17,18 @@ class IssueListMakeTests: XCTestCase {
 
         let originCount = makedIssues.count
 
-        let addModel = IssueListViewModel(title: "test6", description: "설명", milestone: "마일스톤", labels: [])
+        let addModel = IssueListViewModel(
+            title: "haha",
+            description: "설명",
+            milestone: CustomButtonView(type: .milestone,
+                                        text: "프로젝트",
+                                        color: "#ffffff"),
+            labels: [CustomButtonView(type: .label,
+                                      text: "label",
+                                      color: "#ffffff"),
+                     CustomButtonView(type: .label,
+                                      text: "labe",
+                                      color: "#ffffff")])
 
         // When
         let makedIssueListViewModel = controller.add(model: addModel, to: makedIssues)
