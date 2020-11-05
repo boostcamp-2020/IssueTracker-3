@@ -6,7 +6,6 @@ import App from "./app";
 ReactDom.render(
   <div>
     <Header></Header>
-    {/* <Content></Content> */}
     <App></App>
   </div>,
   document.getElementById("root")
