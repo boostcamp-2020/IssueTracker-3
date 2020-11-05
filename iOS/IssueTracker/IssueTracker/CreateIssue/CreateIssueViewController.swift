@@ -15,7 +15,7 @@ class CreateIssueViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        placeholderSetting()
+        configurePlaceholder()
     }
 
     @IBAction func makeNewIssueButtonTouched(_ sender: Any) {
@@ -47,8 +47,17 @@ extension CreateIssueViewController {
         return false
     }
 
+    private func configurePlaceholder() {
+        commentWritingTextView.text = "코멘트는 여기에 작성하세요"
+        commentWritingTextView.textColor = UIColor.lightGray
+    }
+    
     @objc func insertPhotoDidTap(sender: UIMenuItem) {
         print("image picker")
+    }
+
+    @IBAction func cancelTouched(_ sender: UIBarButtonItem) {
+        self.dismiss(animated: true, completion: nil)
     }
 }
 
@@ -67,8 +76,7 @@ extension CreateIssueViewController: UITextViewDelegate {
 
     func textViewDidEndEditing(_ textView: UITextView) {
         if textView.text.isEmpty {
-            textView.text = "코멘트는 여기에 작성하세요"
-            textView.textColor = UIColor.lightGray
+            configurePlaceholder()
         }
     }
 }

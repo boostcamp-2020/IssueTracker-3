@@ -7,20 +7,46 @@
 
 import UIKit
 
-class IssueListCollectionViewCell: UICollectionViewCell {
-    @IBOutlet weak var issueListDescription: UILabel!
-    @IBOutlet weak var titleLabel: UILabel!
+final class IssueListCollectionViewCell: UICollectionViewListCell {
+    @IBOutlet private weak var titleLabel: UILabel!
+    @IBOutlet private weak var descriptionLabel: UILabel!
+    @IBOutlet private weak var mileStone: UIButton!
+    @IBOutlet private weak var firstLabel: UIButton!
+    @IBOutlet private weak var secondLabel: UIButton!
     @IBOutlet weak var labelStackView: UIStackView!
 
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+    var isInEditingMode: Bool = false {
+        didSet {
+            toggleEditingMode()
+        }
     }
 
-    required init?(coder: NSCoder) {
-        super.init(coder: coder)
+    override var isSelected: Bool {
+        didSet {
+            if isInEditingMode {
+                backgroundColor = .systemGray4
+            }
+        }
     }
-
-    override func prepareForReuse() {
+    
+    func configureIssueListCell(of item: IssueListViewModel) {
+        titleLabel.text = item.title
+        descriptionLabel.text = item.description
+        firstLabel.titleLabel?.text = item.labels.first
+        secondLabel.titleLabel?.text = item.labels.last
+        mileStone.titleLabel?.text = item.milestone
+    }
+    
+    // TODO: Moving Animation
+    private func toggleEditingMode() {
+        if isInEditingMode {
+            contentView.layer.bounds.origin.x -= 40
+        } else {
+            contentView.layer.bounds.origin.x += 40
+        }
+    }
+  
+   override func prepareForReuse() {
         labelStackView.subviews.forEach({
             $0.removeFromSuperview()
         })

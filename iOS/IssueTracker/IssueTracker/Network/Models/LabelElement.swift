@@ -7,7 +7,8 @@
 
 import Foundation
 
-// MARK: - LabelElement
+// MARK: LabelElement
+
 struct LabelElement: Codable {
     let name: String
     let labelDescription: String

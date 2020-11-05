@@ -3,6 +3,7 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17126"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
@@ -18,7 +19,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="gMJ-9A-2wT">
-                                <rect key="frame" x="0.0" y="88" width="414" height="808"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="725"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Ejc-cX-RjK">
                                     <size key="itemSize" width="375" height="88"/>
@@ -66,8 +67,11 @@
                                             </constraints>
                                         </collectionViewCellContentView>
                                         <connections>
-                                            <outlet property="issueListDescription" destination="Rz8-SB-ZgW" id="XlZ-bd-421"/>
                                             <outlet property="labelStackView" destination="pgy-ki-F4b" id="lyi-I6-WlB"/>
+                                            <outlet property="descriptionLabel" destination="Rz8-SB-ZgW" id="XlZ-bd-421"/>
+                                            <outlet property="firstLabel" destination="P2r-dP-hO9" id="rEK-ov-hqD"/>
+                                            <outlet property="mileStone" destination="uE8-Jy-7th" id="0TJ-o3-t6e"/>
+                                            <outlet property="secondLabel" destination="QbU-m2-Csv" id="Yht-rh-8NL"/>
                                             <outlet property="titleLabel" destination="Lki-kq-UDe" id="zfD-Lo-0m5"/>
                                         </connections>
                                     </collectionViewCell>
@@ -77,42 +81,54 @@
                                     <outlet property="delegate" destination="3gb-xx-251" id="ma8-HP-IWF"/>
                                 </connections>
                             </collectionView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="contactAdd" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cWt-Qc-OJy">
-                                <rect key="frame" x="352" y="800" width="44" height="44"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cWt-Qc-OJy">
+                                <rect key="frame" x="352" y="751" width="44" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="44" id="KB5-Wp-t6l"/>
                                     <constraint firstAttribute="height" constant="44" id="kJq-z1-UyL"/>
                                 </constraints>
+                                <color key="tintColor" red="0.28235294117647058" green="0.52156862745098043" blue="0.76470588235294112" alpha="1" colorSpace="calibratedRGB"/>
                                 <size key="titleShadowOffset" width="12" height="12"/>
                                 <state key="normal">
-                                    <color key="titleShadowColor" systemColor="labelColor"/>
+                                    <imageReference key="image" image="plus.circle.fill" catalog="system" symbolScale="large"/>
+                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="medium" weight="semibold"/>
                                 </state>
                                 <connections>
                                     <segue destination="sam-5C-mGZ" kind="presentation" id="CkP-v7-hh3"/>
                                 </connections>
                             </button>
+                            <toolbar hidden="YES" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iD5-I1-ahl">
+                                <rect key="frame" x="0.0" y="813" width="414" height="49"/>
+                                <items>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="Oa2-hU-bYZ"/>
+                                    <barButtonItem title="선택 이슈 닫기" style="plain" id="uxy-Ej-z3D">
+                                        <connections>
+                                            <action selector="closeSelectedIssueTouched:" destination="3gb-xx-251" id="NLo-cC-uoX"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </items>
+                            </toolbar>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="qel-gu-NqZ"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="qel-gu-NqZ" firstAttribute="bottom" secondItem="cWt-Qc-OJy" secondAttribute="bottom" constant="18" id="CyA-g2-MEh"/>
                             <constraint firstItem="gMJ-9A-2wT" firstAttribute="trailing" secondItem="qel-gu-NqZ" secondAttribute="trailing" id="HpK-ly-vAT"/>
-                            <constraint firstAttribute="bottom" secondItem="gMJ-9A-2wT" secondAttribute="bottom" id="jEO-iQ-wxe"/>
+                            <constraint firstItem="iD5-I1-ahl" firstAttribute="leading" secondItem="qel-gu-NqZ" secondAttribute="leading" id="Jpi-Sj-qnF"/>
+                            <constraint firstItem="iD5-I1-ahl" firstAttribute="top" secondItem="gMJ-9A-2wT" secondAttribute="bottom" id="KPF-be-F1N"/>
+                            <constraint firstItem="iD5-I1-ahl" firstAttribute="top" secondItem="cWt-Qc-OJy" secondAttribute="bottom" constant="18" id="WgZ-Aj-XLL"/>
+                            <constraint firstItem="qel-gu-NqZ" firstAttribute="trailing" secondItem="iD5-I1-ahl" secondAttribute="trailing" id="aoR-HF-3Do"/>
+                            <constraint firstItem="qel-gu-NqZ" firstAttribute="bottom" secondItem="iD5-I1-ahl" secondAttribute="bottom" id="jd7-r3-uvq"/>
                             <constraint firstItem="qel-gu-NqZ" firstAttribute="trailing" secondItem="cWt-Qc-OJy" secondAttribute="trailing" constant="18" id="s6K-f2-giW"/>
                             <constraint firstItem="gMJ-9A-2wT" firstAttribute="leading" secondItem="qel-gu-NqZ" secondAttribute="leading" id="xz5-ci-QXU"/>
                             <constraint firstItem="gMJ-9A-2wT" firstAttribute="top" secondItem="qel-gu-NqZ" secondAttribute="top" id="yUd-AO-cAd"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="이슈" id="rdD-Ya-dsd">
-                        <barButtonItem key="leftBarButtonItem" title="Filter" id="JRe-cC-ddy">
-                            <connections>
-                                <segue destination="5lT-kN-PTP" kind="presentation" id="oWk-lT-Mwg"/>
-                            </connections>
-                        </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Edit" id="4r2-K3-cbm"/>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="이슈" id="rdD-Ya-dsd"/>
                     <connections>
                         <outlet property="issueListCollectionView" destination="gMJ-9A-2wT" id="Gb3-Ij-daJ"/>
+                        <outlet property="issueListToolBar" destination="iD5-I1-ahl" id="7UG-OP-fsm"/>
+                        <segue destination="lMJ-Dn-Q9j" kind="show" identifier="IssueDetailSegue" id="IF2-KY-5Vj"/>
+                        <segue destination="5lT-kN-PTP" kind="presentation" identifier="IssueListFilterSegue" id="9bz-9u-sBs"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zFo-zb-cVf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -227,7 +243,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Etv-eu-euX">
-                                <rect key="frame" x="0.0" y="44" width="414" height="852"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="808"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="v44-s4-Z1Y">
                                     <size key="itemSize" width="414" height="156"/>
@@ -368,6 +384,7 @@ HTML형태로 보여줘야 할까요</string>
                         </constraints>
                     </view>
                     <toolbarItems/>
+                    <navigationItem key="navigationItem" id="dI5-gL-qvC"/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <segue destination="6Re-li-5VW" kind="presentation" id="AIl-p8-bk6"/>
@@ -524,7 +541,7 @@ HTML형태로 보여줘야 할까요</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ITf-94-2ML" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-936.23188405797111" y="4753.125"/>
+            <point key="canvasLocation" x="-936" y="4089"/>
         </scene>
         <!--Create Issue View Controller-->
         <scene sceneID="5EK-P7-WOP">
@@ -540,7 +557,7 @@ HTML형태로 보여줘야 할까요</string>
                                     <navigationItem id="OGL-aS-dzZ">
                                         <barButtonItem key="leftBarButtonItem" title="Cancel" id="DIP-EE-fCT">
                                             <connections>
-                                                <action selector="cancelButtonTouched:" destination="sam-5C-mGZ" id="nbw-HE-riI"/>
+                                                <action selector="cancelTouched:" destination="sam-5C-mGZ" id="4HT-rc-HZi"/>
                                             </connections>
                                         </barButtonItem>
                                     </navigationItem>
@@ -578,7 +595,7 @@ HTML형태로 보여줘야 할까요</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                 <connections>
-                                    <outlet property="delegate" destination="sam-5C-mGZ" id="3QP-GH-vHH"/>
+                                    <outlet property="delegate" destination="sam-5C-mGZ" id="c1z-CM-yo4"/>
                                 </connections>
                             </textView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZOF-Iq-VJG">
@@ -713,7 +730,7 @@ HTML형태로 보여줘야 할까요</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ezo-gz-1R1" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="15.942028985507248" y="3376.3392857142858"/>
+            <point key="canvasLocation" x="-225" y="3376"/>
         </scene>
         <!--이슈-->
         <scene sceneID="hki-7S-sUk">
@@ -732,7 +749,7 @@ HTML형태로 보여줘야 할까요</string>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RSd-cd-4XT" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-937" y="1827"/>
+            <point key="canvasLocation" x="-936" y="1944"/>
         </scene>
     </scenes>
     <resources>
@@ -744,6 +761,7 @@ HTML형태로 보여줘야 할까요</string>
         <image name="chevron.up" catalog="system" width="128" height="72"/>
         <image name="ellipsis" catalog="system" width="128" height="37"/>
         <image name="person.fill" catalog="system" width="128" height="120"/>
+        <image name="plus.circle.fill" catalog="system" width="128" height="121"/>
         <image name="smiley" catalog="system" width="128" height="121"/>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

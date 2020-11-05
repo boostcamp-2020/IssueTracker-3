@@ -7,7 +7,8 @@
 
 import Foundation
 
-// MARK: - CommentElement
+// MARK: CommentElement
+
 struct CommentElement: Codable {
     let id: Int
     let body, createdAt: String
