@@ -17,7 +17,7 @@ export default abstract class Model {
       return this.data;
     } catch (err) {
       console.error(err);
-      return err;
+      throw err;
     }
   }
 
@@ -30,7 +30,7 @@ export default abstract class Model {
       return this.data;
     } catch (err) {
       console.error(err);
-      return err;
+      throw err;
     }
   }
 
@@ -42,7 +42,7 @@ export default abstract class Model {
       return this.data;
     } catch (err) {
       console.error(err);
-      return err;
+      throw err;
     }
   }
 
