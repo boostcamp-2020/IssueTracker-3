@@ -10,9 +10,6 @@ import UIKit
 final class IssueListCollectionViewCell: UICollectionViewListCell {
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var descriptionLabel: UILabel!
-    @IBOutlet private weak var mileStone: UIButton!
-    @IBOutlet private weak var firstLabel: UIButton!
-    @IBOutlet private weak var secondLabel: UIButton!
     @IBOutlet weak var labelStackView: UIStackView!
 
     var isInEditingMode: Bool = false {
@@ -32,9 +29,6 @@ final class IssueListCollectionViewCell: UICollectionViewListCell {
     func configureIssueListCell(of item: IssueListViewModel) {
         titleLabel.text = item.title
         descriptionLabel.text = item.description
-        firstLabel.titleLabel?.text = item.labels.first
-        secondLabel.titleLabel?.text = item.labels.last
-        mileStone.titleLabel?.text = item.milestone
     }
     
     // TODO: Moving Animation

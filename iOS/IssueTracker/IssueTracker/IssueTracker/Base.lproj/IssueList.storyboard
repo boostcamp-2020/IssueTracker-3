@@ -229,7 +229,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nxc-sm-oLe" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1833.3333333333335" y="3375.6696428571427"/>
+            <point key="canvasLocation" x="-1742" y="3376"/>
         </scene>
         <!--Issue Detail View Controller-->
         <scene sceneID="S9A-8H-36J">
@@ -389,7 +389,7 @@ HTML형태로 보여줘야 할까요</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="I9L-2x-rC8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-936.23188405797111" y="4063.3928571428569"/>
+            <point key="canvasLocation" x="-971" y="3376"/>
         </scene>
         <!--IssueDetailBottomSheet-->
         <scene sceneID="gpk-5A-NjN">
@@ -538,7 +538,7 @@ HTML형태로 보여줘야 할까요</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ITf-94-2ML" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-936" y="4089"/>
+            <point key="canvasLocation" x="-971" y="4078"/>
         </scene>
         <!--Create Issue View Controller-->
         <scene sceneID="5EK-P7-WOP">

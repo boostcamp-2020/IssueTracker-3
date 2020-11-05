@@ -24,7 +24,8 @@ class IssueListViewController: UIViewController {
     private var filterLeftBarButton: UIBarButtonItem!
     private var selectAllLeftBarButton: UIBarButtonItem!
     var searchText: String = ""
-
+    var isSelectedAll = false
+    
     private lazy var issueList: [IssueListViewModel] = {
         return generateIssues()
     }()
@@ -39,19 +40,19 @@ class IssueListViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         navigationItem.searchController = UISearchController(searchResultsController: nil)
         navigationItem.hidesSearchBarWhenScrolling = false
         navigationItem.searchController?.searchBar.delegate = self
-
+        
         issueListModelController = IssueListModelController()
         configureDataSource()
         performSearchQuery(with: nil)
-
-
+        
+        
         configureNavigationItems()
         configureCollectionLayoutList()
- 
+        
     }
     
     // MARK: Configure
@@ -84,8 +85,8 @@ class IssueListViewController: UIViewController {
                 else {
                     return nil
                 }
-
-                                                                      
+                
+                
                 let delete = UIContextualAction(style: .destructive,
                                                 title: "Delete") { [weak self] action, view, completion in
                     // TODO: Model -> 해당 indexPath delete
@@ -185,11 +186,12 @@ class IssueListViewController: UIViewController {
     
     @objc private func selectAllTouched(_ sender: Any) {
         // TODO: issue ViewModel List 가지고 있는 객체에서 -> forEach -> isSelect true
+        isSelectedAll.toggle()
         issueListCollectionView
             .indexPathsForVisibleItems
             .map { issueListCollectionView.cellForItem(at: $0) }
             .compactMap { $0 as? IssueListCollectionViewCell }
-            .forEach { $0.isSelected.toggle() }
+            .forEach { $0.isSelected = isSelectedAll }
     }
 }
 
@@ -198,7 +200,7 @@ extension IssueListViewController: UISearchBarDelegate {
         performSearchQuery(with: searchText)
         self.searchText = searchText
     }
-
+    
     func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
         self.navigationItem.searchController?.searchBar.text = searchText
     }
@@ -220,8 +222,8 @@ extension IssueListViewController {
             cellProvider: {(
                 collectionView, indexPath, item
             ) -> UICollectionViewCell? in
-
-
+                
+                
                 guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "IssueListCell", for: indexPath)
                         as? IssueListCollectionViewCell else { return UICollectionViewCell() }
                 
@@ -276,29 +278,30 @@ extension IssueListViewController {
         issues.append(IssueListViewModel(title: "test1",
                                          description: "설명",
                                          milestone: "프로젝트1",
-                                         labels: ["label1, label2"]))
+                                         labels: ["label1", "label2"]))
         issues.append(IssueListViewModel(title: "test2",
                                          description: "설명",
                                          milestone: "프로젝트2",
-                                         labels: ["label1, label2"]))
+                                         labels: ["label1", "label2"]))
         issues.append(IssueListViewModel(title: "test3",
                                          description: "설명",
                                          milestone: "프로젝트3",
-                                         labels: ["label1, label2"]))
+                                         labels: ["label1", "label2"]))
         issues.append(IssueListViewModel(title: "ha",
                                          description: "설명",
                                          milestone: "프로젝트4",
-                                         labels: ["label1, label2"]))
+                                         labels: ["label1", "label2", "label3", "label3"]))
         issues.append(IssueListViewModel(title: "haha",
                                          description: "설명",
                                          milestone: "프로젝트5",
-                                         labels: ["label1, label2"]))
+                                         labels: ["label1", "label2"]))
         (1...10).forEach { _ in
             issues.append(IssueListViewModel(title: "haha",
                                              description: "설명",
                                              milestone: "프로젝트5",
-                                             labels: ["label1, label2"]))
+                                             labels: ["label1", "label2"]))
         }
+        
         return issues
     }
 }
