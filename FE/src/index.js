@@ -1,12 +1,13 @@
 import React from "react";
 import ReactDom from "react-dom";
-import Header from "./layout/header";
-import Content from "./layout/content";
+import Header from "./component/header/header";
+import App from "./app";
 
 ReactDom.render(
   <div>
     <Header></Header>
-    <Content></Content>
+    {/* <Content></Content> */}
+    <App></App>
   </div>,
   document.getElementById("root")
 );
