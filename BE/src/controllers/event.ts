@@ -1,11 +1,16 @@
 import { Request, Response } from "express";
 import { Event } from "@interfaces/event";
 import EventModel from "@models/event";
+import HTTPCODE from "@root/magicnumber";
 
 const get = async (req: Request, res: Response): Promise<Response<any>> => {
   const { issueid } = req.params;
-  const result = await EventModel.select(Number(issueid));
-  return res.json(result);
+  try {
+    const result = await EventModel.select(Number(issueid));
+    return res.json(result);
+  } catch {
+    return res.sendStatus(HTTPCODE.SERVER_ERR);
+  }
 };
 
 const add = async (req: Request, res: Response): Promise<Response<any>> => {
@@ -17,7 +22,7 @@ const add = async (req: Request, res: Response): Promise<Response<any>> => {
     created_at: new Date(),
   };
   const result = await EventModel.add(event);
-  return res.json(result);
+  return res.sendStatus(result);
 };
 
 export default { get, add };

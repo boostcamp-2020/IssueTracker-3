@@ -1,6 +1,7 @@
 import db from "@providers/database";
 import Model from "@models/model";
 import { Event } from "@interfaces/event";
+import HTTPCODE from "@root/magicnumber";
 
 class EventModel extends Model {
   protected tableName: string;
@@ -17,13 +18,17 @@ class EventModel extends Model {
       return this.data;
     } catch (err) {
       console.error(err);
-      return err;
+      throw err;
     }
   }
 
   async add(pData: Event): Promise<number> {
-    this.data = await super.insert(pData, this.tableName);
-    return this.data;
+    try {
+      this.data = await super.insert(pData, this.tableName);
+      return this.data ? HTTPCODE.SUCCESS : HTTPCODE.FAIL;
+    } catch {
+      return HTTPCODE.SERVER_ERR;
+    }
   }
 }
 
