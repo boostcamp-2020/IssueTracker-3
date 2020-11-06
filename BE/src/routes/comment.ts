@@ -1,17 +1,10 @@
-import express, { Request, Response, NextFunction } from "express";
+import express from "express";
+import CommentController from "@controllers/comment";
 
 const router = express.Router();
 
-router.get("/:id", (req: Request, res: Response, next: NextFunction) => {
-  res.send("comment get");
-});
-router.post("/", (req: Request, res: Response, next: NextFunction) => {
-  res.send("comment post");
-});
-router.patch("/", (req: Request, res: Response, next: NextFunction) => {
-  res.send("comment patch");
-});
-router.delete("/", (req: Request, res: Response, next: NextFunction) => {
-  res.send("comment delete");
-});
+router.get("/:issueid", CommentController.get);
+router.post("/", CommentController.add);
+router.patch("/", CommentController.edit);
+router.delete("/", CommentController.del);
 export = router;

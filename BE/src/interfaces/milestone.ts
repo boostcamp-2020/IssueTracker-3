@@ -1,7 +1,8 @@
+/* eslint-disable camelcase */
 export interface Milestone {
-  id: number;
+  id: number | null;
   name: string;
   description: string;
-  dueDate: Date;
-  createdAt: Date;
+  due_date: Date | null;
+  created_at: Date;
 }
