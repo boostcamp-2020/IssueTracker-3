@@ -18,7 +18,6 @@ const add = async (req: Request, res: Response): Promise<Response> => {
     name: req.body.name,
     description: req.body.description,
     due_date: req.body.due_date,
-    state: true,
     created_at: new Date(),
   };
   const result = await MilestoneModel.add(milestone);

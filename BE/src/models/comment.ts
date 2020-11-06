@@ -29,7 +29,7 @@ class CommentModel extends Model {
   async add(pData: Comment): Promise<any> {
     try {
       this.data = await super.insert(pData, this.tableName);
-      return this.data ? this.data : HTTPCODE.FAIL;
+      return this.data ? HTTPCODE.SUCCESS : HTTPCODE.FAIL;
     } catch {
       return HTTPCODE.SERVER_ERR;
     }

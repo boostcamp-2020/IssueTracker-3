@@ -4,6 +4,5 @@ export interface Milestone {
   name: string;
   description: string;
   due_date: Date | null;
-  state: boolean;
   created_at: Date;
 }
