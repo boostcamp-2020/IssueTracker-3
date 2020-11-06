@@ -3,7 +3,7 @@
 //  IssueTracker
 //
 //  Created by ParkJaeHyun on 2020/10/29.
-//
+// test
 
 import UIKit
 import AuthenticationServices
@@ -110,11 +110,11 @@ extension AppleSignInButton: ASAuthorizationControllerDelegate {
                                  didCompleteWithAuthorization authorization: ASAuthorization) {
         switch authorization.credential {
         case let credentials as ASAuthorizationAppleIDCredential:
-//            guard let authorization = credentials.authorizationCode else { break }
-//            guard let jwt = credentials.identityToken  else { break }
-//
-//            let data = String(data: authorization, encoding: .utf8)
-//            let data2 = String(data: jwt, encoding: .utf8)
+            guard let authorization = credentials.authorizationCode else { break }
+            guard let jwt = credentials.identityToken  else { break }
+
+            let data = String(data: authorization, encoding: .utf8)
+            let data2 = String(data: jwt, encoding: .utf8)
 
             didCompletedSignIn?(AppleUser(credentials.user,
                                           credentials.fullName?.givenName,

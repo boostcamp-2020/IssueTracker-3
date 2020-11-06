@@ -27,6 +27,7 @@ struct SignInEndPoint: APIConfiguration {
 
     func asURLRequest() throws -> URLRequest {
         let url = try APIServer.baseURL.asURL()
+
         var urlRequest: URLRequest = {
             var urlRequest = URLRequest(url: url.appendingPathComponent(path))
             urlRequest.httpMethod = method.rawValue

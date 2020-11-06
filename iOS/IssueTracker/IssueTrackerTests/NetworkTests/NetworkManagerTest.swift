@@ -4,6 +4,7 @@
 //
 //  Created by ParkJaeHyun on 2020/10/28.
 //
+
 import XCTest
 @testable import Alamofire
 @testable import IssueTracker
@@ -28,7 +29,7 @@ final class NetworkManagerTest: XCTestCase {
 
         XCTAssertEqual(
             try userData?.path?.asURL().absoluteString,
-            "http://api.boostcamp.com/test"
+            "http://101.101.210.34:3000/test"
         )
 
         guard let data = userData?.body else {
