@@ -34,9 +34,13 @@ final class IssueListCollectionViewCell: UICollectionViewListCell {
 //        })
 //    }
 
-    func configureIssueListCell(of item: IssueListViewModel) {
+    fileprivate func extractedFunc(_ item: IssueListViewModel) {
         titleLabel.text = item.title
         descriptionLabel.text = item.description
+    }
+    
+    func configureIssueListCell(of item: IssueListViewModel) {
+        extractedFunc(item)
         
         configureLabelStackView(milestone: item.milestone, labels: item.labels)
     }

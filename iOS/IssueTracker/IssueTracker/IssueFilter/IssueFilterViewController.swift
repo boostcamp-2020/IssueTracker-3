@@ -53,7 +53,11 @@ class IssueFilterViewController: UIViewController {
     
     @IBAction func doneButtonTouched(_ sender: UIBarButtonItem) {
         var issueFilter = issueTopFilter + issueBottomFilter
-        issueFilter = issueFilter.filter({$0.isChevron}).map({$0})
+        issueFilter = issueFilter
+            .filter({$0.chevronDirection.contains(.check)})
+            .filter({!$0.isChevron}).map({$0})
+
+        print(issueFilter)
         dismiss(animated: true)
     }
 }

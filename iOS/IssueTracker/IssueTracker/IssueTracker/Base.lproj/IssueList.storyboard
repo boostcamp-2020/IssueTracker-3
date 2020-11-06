@@ -19,7 +19,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="gMJ-9A-2wT">
-                                <rect key="frame" x="0.0" y="88" width="414" height="725"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Ejc-cX-RjK">
                                     <size key="itemSize" width="375" height="88"/>
@@ -112,15 +112,15 @@
                         <viewLayoutGuide key="safeArea" id="qel-gu-NqZ"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="iD5-I1-ahl" firstAttribute="bottom" secondItem="qel-gu-NqZ" secondAttribute="bottom" id="91b-tA-N7e"/>
+                            <constraint firstItem="iD5-I1-ahl" firstAttribute="top" secondItem="cWt-Qc-OJy" secondAttribute="bottom" constant="18" id="HJG-Hg-PCB"/>
                             <constraint firstItem="gMJ-9A-2wT" firstAttribute="trailing" secondItem="qel-gu-NqZ" secondAttribute="trailing" id="HpK-ly-vAT"/>
                             <constraint firstItem="iD5-I1-ahl" firstAttribute="leading" secondItem="qel-gu-NqZ" secondAttribute="leading" id="Jpi-Sj-qnF"/>
-                            <constraint firstItem="iD5-I1-ahl" firstAttribute="top" secondItem="gMJ-9A-2wT" secondAttribute="bottom" id="KPF-be-F1N"/>
-                            <constraint firstItem="iD5-I1-ahl" firstAttribute="top" secondItem="cWt-Qc-OJy" secondAttribute="bottom" constant="18" id="WgZ-Aj-XLL"/>
+                            <constraint firstItem="qel-gu-NqZ" firstAttribute="trailing" secondItem="cWt-Qc-OJy" secondAttribute="trailing" constant="18" id="YV7-C7-YHb"/>
                             <constraint firstItem="qel-gu-NqZ" firstAttribute="trailing" secondItem="iD5-I1-ahl" secondAttribute="trailing" id="aoR-HF-3Do"/>
-                            <constraint firstItem="qel-gu-NqZ" firstAttribute="bottom" secondItem="iD5-I1-ahl" secondAttribute="bottom" id="jd7-r3-uvq"/>
-                            <constraint firstItem="qel-gu-NqZ" firstAttribute="trailing" secondItem="cWt-Qc-OJy" secondAttribute="trailing" constant="18" id="s6K-f2-giW"/>
                             <constraint firstItem="gMJ-9A-2wT" firstAttribute="leading" secondItem="qel-gu-NqZ" secondAttribute="leading" id="xz5-ci-QXU"/>
                             <constraint firstItem="gMJ-9A-2wT" firstAttribute="top" secondItem="qel-gu-NqZ" secondAttribute="top" id="yUd-AO-cAd"/>
+                            <constraint firstItem="gMJ-9A-2wT" firstAttribute="bottom" secondItem="qel-gu-NqZ" secondAttribute="bottom" id="zlg-eH-fvh"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="이슈" id="rdD-Ya-dsd"/>
@@ -240,10 +240,10 @@
                 <viewController storyboardIdentifier="IssueDetailViewController" id="lMJ-Dn-Q9j" customClass="IssueDetailViewController" customModule="IssueTracker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="UDn-aR-Nou">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" heightSizable="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Etv-eu-euX">
-                                <rect key="frame" x="0.0" y="88" width="414" height="808"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="725"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="v44-s4-Z1Y">
                                     <size key="itemSize" width="414" height="156"/>
@@ -273,7 +273,7 @@
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="godrm" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5xy-gt-HT7">
                                                             <rect key="frame" x="60" y="15" width="48" height="21"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                            <nil key="textColor"/>
+                                                            <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="16 minutes ago" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NOn-dv-LpW">
@@ -293,11 +293,11 @@
 마크다운 문법을 지원하고 
 HTML형태로 보여줘야 할까요</string>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                            <nil key="textColor"/>
+                                                            <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="von-ji-blo">
-                                                            <rect key="frame" x="15" y="109" width="22" height="22"/>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="von-ji-blo">
+                                                            <rect key="frame" x="15" y="95" width="30" height="30"/>
                                                             <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="30" id="E3h-pi-Pnu"/>
@@ -313,8 +313,8 @@ HTML형태로 보여줘야 할까요</string>
                                                                 </userDefinedRuntimeAttribute>
                                                             </userDefinedRuntimeAttributes>
                                                         </button>
-                                                        <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4lh-jj-IJK">
-                                                            <rect key="frame" x="375" y="14" width="24" height="23"/>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4lh-jj-IJK">
+                                                            <rect key="frame" x="377" y="14.5" width="22" height="22"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" secondItem="4lh-jj-IJK" secondAttribute="height" multiplier="1:1" id="uHe-FX-8ks"/>
                                                             </constraints>
@@ -344,8 +344,8 @@ HTML형태로 보여줘야 할까요</string>
                                                         <constraint firstItem="NOn-dv-LpW" firstAttribute="top" secondItem="5xy-gt-HT7" secondAttribute="bottom" constant="2" id="rdm-gR-fI1"/>
                                                     </constraints>
                                                 </view>
-                                                <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="B1H-ZL-bvu">
-                                                    <rect key="frame" x="25.5" y="140" width="1" height="16"/>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="B1H-ZL-bvu">
+                                                    <rect key="frame" x="29.5" y="140" width="1" height="16"/>
                                                     <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="1" id="bJY-7X-o05"/>
@@ -379,8 +379,8 @@ HTML형태로 보여줘야 할까요</string>
                         <constraints>
                             <constraint firstItem="Etv-eu-euX" firstAttribute="leading" secondItem="1Xg-HL-rZo" secondAttribute="leading" id="8e8-N3-xG6"/>
                             <constraint firstItem="Etv-eu-euX" firstAttribute="trailing" secondItem="1Xg-HL-rZo" secondAttribute="trailing" id="GRv-bV-7ib"/>
-                            <constraint firstAttribute="bottom" secondItem="Etv-eu-euX" secondAttribute="bottom" id="Mc1-Ss-MoU"/>
                             <constraint firstItem="Etv-eu-euX" firstAttribute="top" secondItem="1Xg-HL-rZo" secondAttribute="top" id="gC6-nN-iBH"/>
+                            <constraint firstItem="Etv-eu-euX" firstAttribute="bottom" secondItem="1Xg-HL-rZo" secondAttribute="bottom" id="gre-Ax-5eS"/>
                         </constraints>
                     </view>
                     <toolbarItems/>
@@ -392,7 +392,7 @@ HTML형태로 보여줘야 할까요</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="I9L-2x-rC8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-971" y="3376"/>
+            <point key="canvasLocation" x="-971.01449275362324" y="3375.6696428571427"/>
         </scene>
         <!--IssueDetailBottomSheet-->
         <scene sceneID="gpk-5A-NjN">

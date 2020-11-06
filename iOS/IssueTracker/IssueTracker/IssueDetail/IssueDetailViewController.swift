@@ -11,7 +11,7 @@ final class IssueDetailViewController: UIViewController {
     
     // MARK: Properties
     
-    private var issueDetailBottomSheet: IssueDetailBottomSheetViewController!
+    private weak var issueDetailBottomSheet: IssueDetailBottomSheetViewController!
     private var visualEffectView: UIVisualEffectView!
     private var cardVisible = false
     private var runningAnimations = [UIViewPropertyAnimator]()
@@ -33,7 +33,7 @@ final class IssueDetailViewController: UIViewController {
         tabBarController?.tabBar.isHidden = true
     }
     
-    override func viewDidDisappear(_ animated: Bool) {
+    override func viewWillDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         tabBarController?.tabBar.isHidden = false
     }

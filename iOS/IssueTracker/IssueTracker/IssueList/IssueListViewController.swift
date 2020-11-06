@@ -7,7 +7,7 @@
 
 import UIKit
 import Combine
-
+import WebKit
 // TODO: Activity Indicators
 // TODO: ios13 이하 버전 Edit 구현
 
@@ -80,7 +80,7 @@ class IssueListViewController: UIViewController {
         navigationItem.hidesSearchBarWhenScrolling = true
         searchController.searchBar.sizeToFit()
         searchController.searchBar.returnKeyType = UIReturnKeyType.search
-        searchController.searchBar.placeholder = "Search here"
+        searchController.searchBar.placeholder = "Search"
         navigationItem.searchController = searchController
     }
 
@@ -128,6 +128,7 @@ class IssueListViewController: UIViewController {
         
         tabBarController?.tabBar.isHidden = editing
         issueListToolBar.isHidden = !editing
+
         navigationItem.leftBarButtonItem = editing ? selectAllLeftBarButton : filterLeftBarButton
         if editing {
             navigationItem.rightBarButtonItem?.title = "Cancel"

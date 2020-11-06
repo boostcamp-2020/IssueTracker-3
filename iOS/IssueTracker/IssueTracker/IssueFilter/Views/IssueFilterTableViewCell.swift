@@ -64,7 +64,7 @@ class IssueFilterTableViewCell: UITableViewCell {
 
     func configure(withViewModel viewModel: IssueFilterViewModel) {
         titleLabel.text = viewModel.title
-
+        
         if viewModel.childItem.isEmpty {
             check.isHidden = viewModel.isChevron
             right.isHidden = true
