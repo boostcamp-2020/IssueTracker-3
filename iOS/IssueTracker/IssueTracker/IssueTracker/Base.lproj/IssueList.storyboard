@@ -81,8 +81,19 @@
                                     <outlet property="delegate" destination="3gb-xx-251" id="ma8-HP-IWF"/>
                                 </connections>
                             </collectionView>
+                            <toolbar hidden="YES" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iD5-I1-ahl">
+                                <rect key="frame" x="0.0" y="862" width="414" height="49"/>
+                                <items>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="Oa2-hU-bYZ"/>
+                                    <barButtonItem title="선택 이슈 닫기" style="plain" id="uxy-Ej-z3D">
+                                        <connections>
+                                            <action selector="closeSelectedIssueTouched:" destination="3gb-xx-251" id="NLo-cC-uoX"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </items>
+                            </toolbar>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cWt-Qc-OJy">
-                                <rect key="frame" x="352" y="751" width="44" height="44"/>
+                                <rect key="frame" x="350" y="800" width="44" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="44" id="KB5-Wp-t6l"/>
                                     <constraint firstAttribute="height" constant="44" id="kJq-z1-UyL"/>
@@ -97,26 +108,15 @@
                                     <segue destination="sam-5C-mGZ" kind="presentation" id="CkP-v7-hh3"/>
                                 </connections>
                             </button>
-                            <toolbar hidden="YES" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iD5-I1-ahl">
-                                <rect key="frame" x="0.0" y="813" width="414" height="49"/>
-                                <items>
-                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="Oa2-hU-bYZ"/>
-                                    <barButtonItem title="선택 이슈 닫기" style="plain" id="uxy-Ej-z3D">
-                                        <connections>
-                                            <action selector="closeSelectedIssueTouched:" destination="3gb-xx-251" id="NLo-cC-uoX"/>
-                                        </connections>
-                                    </barButtonItem>
-                                </items>
-                            </toolbar>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="qel-gu-NqZ"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="iD5-I1-ahl" firstAttribute="bottom" secondItem="qel-gu-NqZ" secondAttribute="bottom" id="91b-tA-N7e"/>
+                            <constraint firstItem="iD5-I1-ahl" firstAttribute="bottom" secondItem="qel-gu-NqZ" secondAttribute="bottom" constant="49" id="91b-tA-N7e"/>
                             <constraint firstItem="iD5-I1-ahl" firstAttribute="top" secondItem="cWt-Qc-OJy" secondAttribute="bottom" constant="18" id="HJG-Hg-PCB"/>
                             <constraint firstItem="gMJ-9A-2wT" firstAttribute="trailing" secondItem="qel-gu-NqZ" secondAttribute="trailing" id="HpK-ly-vAT"/>
                             <constraint firstItem="iD5-I1-ahl" firstAttribute="leading" secondItem="qel-gu-NqZ" secondAttribute="leading" id="Jpi-Sj-qnF"/>
-                            <constraint firstItem="qel-gu-NqZ" firstAttribute="trailing" secondItem="cWt-Qc-OJy" secondAttribute="trailing" constant="18" id="YV7-C7-YHb"/>
+                            <constraint firstItem="qel-gu-NqZ" firstAttribute="trailing" secondItem="cWt-Qc-OJy" secondAttribute="trailing" constant="20" id="YV7-C7-YHb"/>
                             <constraint firstItem="qel-gu-NqZ" firstAttribute="trailing" secondItem="iD5-I1-ahl" secondAttribute="trailing" id="aoR-HF-3Do"/>
                             <constraint firstItem="gMJ-9A-2wT" firstAttribute="leading" secondItem="qel-gu-NqZ" secondAttribute="leading" id="xz5-ci-QXU"/>
                             <constraint firstItem="gMJ-9A-2wT" firstAttribute="top" secondItem="qel-gu-NqZ" secondAttribute="top" id="yUd-AO-cAd"/>
