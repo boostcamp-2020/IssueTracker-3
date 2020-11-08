@@ -603,7 +603,7 @@ HTML형태로 보여줘야 할까요</string>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="arrow.up" catalog="system"/>
                                 <connections>
-                                    <action selector="makeNewIssueButtonTouched:" destination="sam-5C-mGZ" eventType="touchUpInside" id="kLd-kr-f5T"/>
+                                    <action selector="uploadIssueTouched:" destination="sam-5C-mGZ" eventType="touchUpInside" id="kLd-kr-f5T"/>
                                 </connections>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="gPh-1v-dK3">
