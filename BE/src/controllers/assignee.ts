@@ -3,7 +3,7 @@
 import { Request, Response } from "express";
 import AssigneeModel from "@models/assignee";
 import { Assignee } from "@interfaces/assignee";
-import HTTPCODE from "@root/magicnumber";
+import HTTPCODE from "@utils/magicnumber";
 
 const get = async (req: Request, res: Response): Promise<Response> => {
   try {

@@ -1,7 +1,7 @@
 import db from "@providers/database";
 import Model from "@models/model";
 import { Milestone } from "@interfaces/milestone";
-import HTTPCODE from "@root/magicnumber";
+import HTTPCODE from "@utils/magicnumber";
 
 class MilestoneModel extends Model {
   protected tableName: string;

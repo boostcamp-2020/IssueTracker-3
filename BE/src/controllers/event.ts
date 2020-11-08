@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import { Event } from "@interfaces/event";
 import EventModel from "@models/event";
-import HTTPCODE from "@root/magicnumber";
+import HTTPCODE from "@utils/magicnumber";
 
 const get = async (req: Request, res: Response): Promise<Response<any>> => {
   const { issueid } = req.params;

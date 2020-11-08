@@ -1,7 +1,7 @@
 import db from "@providers/database";
 import Model from "@models/model";
 import { Comment } from "@interfaces/comment";
-import HTTPCODE from "@root/magicnumber";
+import HTTPCODE from "@utils/magicnumber";
 
 class CommentModel extends Model {
   protected tableName: string;

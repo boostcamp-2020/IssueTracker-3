@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import IssueModel from "@models/issue";
 import { Issue } from "@interfaces/issue";
-import HTTPCODE from "@root/magicnumber";
+import HTTPCODE from "@utils/magicnumber";
 
 const get = async (req: Request, res: Response): Promise<any> => {
   try {

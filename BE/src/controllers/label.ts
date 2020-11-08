@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import LabelModel from "@models/label";
 import { Label } from "@interfaces/label";
-import HTTPCODE from "@root/magicnumber";
+import HTTPCODE from "@utils/magicnumber";
 
 const get = async (req: Request, res: Response): Promise<any> => {
   try {

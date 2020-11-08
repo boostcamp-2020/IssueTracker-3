@@ -4,7 +4,7 @@
 import db from "@providers/database";
 import Model from "@models/model";
 import { Issue } from "@interfaces/issue";
-import HTTPCODE from "@root/magicnumber";
+import HTTPCODE from "@utils/magicnumber";
 
 class IssueModel extends Model {
   protected tableName: string;

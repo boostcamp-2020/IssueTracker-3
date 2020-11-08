@@ -1,7 +1,7 @@
 import { Label } from "@interfaces/label";
 import Model from "@models/model";
 import db from "@providers/database";
-import HTTPCODE from "@root/magicnumber";
+import HTTPCODE from "@utils/magicnumber";
 
 class LabelModel extends Model {
   protected tableName: string;

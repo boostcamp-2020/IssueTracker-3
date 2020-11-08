@@ -1,7 +1,7 @@
 import db from "@providers/database";
 import { Tag } from "@interfaces/tag";
 import Model from "@models/model";
-import HTTPCODE from "@root/magicnumber";
+import HTTPCODE from "@utils/magicnumber";
 
 class TagModel extends Model {
   protected tableName: string;
