@@ -37,12 +37,7 @@ final class IssueListCollectionViewCell: UICollectionViewListCell {
     }
     
     private func configureAccessories() {
-        accessories = [
-            .multiselect(displayed: .whenEditing, options: .init())
-        ]
-        separatorLayoutGuide
-            .trailingAnchor
-            .constraint(equalTo: titleLabel.leadingAnchor)
-            .isActive = true
+        accessories = [.multiselect(displayed: .whenEditing, options: .init())]
+        separatorLayoutGuide.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor).isActive = true
     }
 }
