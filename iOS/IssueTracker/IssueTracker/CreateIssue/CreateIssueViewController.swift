@@ -18,25 +18,20 @@ class CreateIssueViewController: UIViewController {
         configurePlaceholder()
     }
 
-    @IBAction func makeNewIssueButtonTouched(_ sender: Any) {
+    @IBAction func uploadIssueTouched(_ sender: Any) {
         dismiss(animated: true) { [unowned self] in
             let title = titleLabel.text
             let comment = commentTextView.text
         }
     }
 
-    @IBAction func cancelButtonTouched(_ sender: Any) {
-        dismiss(animated: true)
-    }
-
-    func placeholderSetting() {
-        commentWritingTextView.delegate = self
-        commentWritingTextView.text = "코멘트는 여기에 작성하세요"
-        commentWritingTextView.textColor = UIColor.lightGray
+    @IBAction func cancelTouched(_ sender: UIBarButtonItem) {
+        dismiss(animated: true, completion: nil)
     }
 }
 
-// MARK: - UIMenuItem
+// MARK: UIMenuItem
+
 extension CreateIssueViewController {
     override func canPerformAction(_ action: Selector, withSender sender: Any!) -> Bool {
         if action == #selector(insertPhotoDidTap) ||
@@ -55,11 +50,9 @@ extension CreateIssueViewController {
     @objc func insertPhotoDidTap(sender: UIMenuItem) {
         print("image picker")
     }
-
-    @IBAction func cancelTouched(_ sender: UIBarButtonItem) {
-        self.dismiss(animated: true, completion: nil)
-    }
 }
+
+// MARK: UITextViewDelegate
 
 extension CreateIssueViewController: UITextViewDelegate {
     func textViewDidBeginEditing(_ textView: UITextView) {

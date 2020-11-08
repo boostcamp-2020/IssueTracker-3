@@ -60,7 +60,7 @@
                                                 <constraint firstAttribute="bottom" secondItem="Rz8-SB-ZgW" secondAttribute="bottom" constant="10" id="Pux-dl-OyV"/>
                                                 <constraint firstItem="pgy-ki-F4b" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Lki-kq-UDe" secondAttribute="trailing" constant="45" id="YXs-bb-Njv"/>
                                                 <constraint firstItem="pgy-ki-F4b" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Rz8-SB-ZgW" secondAttribute="trailing" constant="30" id="cvn-NI-KnO"/>
-                                                <constraint firstItem="Rz8-SB-ZgW" firstAttribute="leading" secondItem="fo3-Tu-moA" secondAttribute="leading" constant="16" id="kuM-Ta-WZN"/>
+                                                <constraint firstItem="Rz8-SB-ZgW" firstAttribute="leading" secondItem="Lki-kq-UDe" secondAttribute="leading" id="t7k-yw-nf8"/>
                                                 <constraint firstItem="Lki-kq-UDe" firstAttribute="leading" secondItem="fo3-Tu-moA" secondAttribute="leading" constant="16" id="vj2-td-YKg"/>
                                                 <constraint firstItem="pgy-ki-F4b" firstAttribute="top" secondItem="fo3-Tu-moA" secondAttribute="top" constant="11" id="vx8-h6-IBs"/>
                                                 <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="pgy-ki-F4b" secondAttribute="bottom" priority="750" constant="11" id="w6n-Xc-U3X"/>
@@ -603,7 +603,7 @@ HTML형태로 보여줘야 할까요</string>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="arrow.up" catalog="system"/>
                                 <connections>
-                                    <action selector="makeNewIssueButtonTouched:" destination="sam-5C-mGZ" eventType="touchUpInside" id="kLd-kr-f5T"/>
+                                    <action selector="uploadIssueTouched:" destination="sam-5C-mGZ" eventType="touchUpInside" id="kLd-kr-f5T"/>
                                 </connections>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="gPh-1v-dK3">
