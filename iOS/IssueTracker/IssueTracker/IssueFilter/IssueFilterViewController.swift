@@ -57,7 +57,8 @@ class IssueFilterViewController: UIViewController {
             .filter({$0.chevronDirection.contains(.check)})
             .filter({!$0.isChevron}).map({$0})
 
-        print(issueFilter)
+//        NotificationCenter().post(name: "name", object: nil, userInfo: nil)
+        print(issueFilter.map({$0.title}))
         dismiss(animated: true)
     }
 }
@@ -126,23 +127,23 @@ extension IssueFilterViewController {
 
 private func generateTopFilters() -> [IssueFilterViewModel] {
     var filters = [IssueFilterViewModel]()
-    filters.append(IssueFilterViewModel(title: Filter.openIssue.description,
+    filters.append(IssueFilterViewModel(title: .openIssue,
                                         chevronDirection: [.check],
                                         isChevron: true,
                                         hasChildren: false))
-    filters.append(IssueFilterViewModel(title: Filter.write.description,
+    filters.append(IssueFilterViewModel(title: .write,
                                         chevronDirection: [.check],
                                         isChevron: true,
                                         hasChildren: false))
-    filters.append(IssueFilterViewModel(title: Filter.assignment.description,
+    filters.append(IssueFilterViewModel(title: .assignment,
                                         chevronDirection: [.check],
                                         isChevron: true,
                                         hasChildren: false))
-    filters.append(IssueFilterViewModel(title: Filter.comment.description,
+    filters.append(IssueFilterViewModel(title: .comment,
                                         chevronDirection: [.check],
                                         isChevron: true,
                                         hasChildren: false))
-    filters.append(IssueFilterViewModel(title: Filter.closeIssue.description,
+    filters.append(IssueFilterViewModel(title: .closeIssue,
                                         chevronDirection: [.check],
                                         isChevron: true,
                                         hasChildren: false))
@@ -152,57 +153,57 @@ private func generateTopFilters() -> [IssueFilterViewModel] {
 private func generateBottomFilters() -> [IssueFilterViewModel] {
     var filters = [IssueFilterViewModel]()
 
-    filters.append(IssueFilterViewModel(title: Filter.author.description,
+    filters.append(IssueFilterViewModel(title: .author,
                                         chevronDirection: [.right, .down],
                                         isChevron: false,
                                         hasChildren: true,
                                         childItem: [
-                                            IssueFilterViewModel(title: "author1",
+                                            IssueFilterViewModel(title: .child("author1"),
                                                                  chevronDirection: [.check],
                                                                  isChevron: true),
-                                            IssueFilterViewModel(title: "author2",
+                                            IssueFilterViewModel(title: .child("author1"),
                                                                  chevronDirection: [.check],
                                                                  isChevron: true)
                                         ]))
-    filters.append(IssueFilterViewModel(title: Filter.label.description,
+    filters.append(IssueFilterViewModel(title: .label,
                                         chevronDirection: [.right, .down],
                                         isChevron: false,
                                         hasChildren: true,
                                         childItem: [
-                                            IssueFilterViewModel(title: "label1",
+                                            IssueFilterViewModel(title: .child("label1"),
                                                                  chevronDirection: [.check],
                                                                  isChevron: true),
-                                            IssueFilterViewModel(title: "label2",
+                                            IssueFilterViewModel(title: .child("label2"),
                                                                  chevronDirection: [.check],
                                                                  isChevron: true)
                                         ]))
-    filters.append(IssueFilterViewModel(title: Filter.milestone.description,
+    filters.append(IssueFilterViewModel(title: .milestone,
                                         chevronDirection: [.right, .down],
                                         isChevron: false,
                                         hasChildren: true,
                                         childItem: [
-                                            IssueFilterViewModel(title: "milestone1",
+                                            IssueFilterViewModel(title: .child("milestone1"),
                                                                  chevronDirection: [.check],
                                                                  isChevron: true),
-                                            IssueFilterViewModel(title: "milestone2",
+                                            IssueFilterViewModel(title: .child("milestone2"),
                                                                  chevronDirection: [.check],
                                                                  isChevron: true)
                                         ]))
-    filters.append(IssueFilterViewModel(title: Filter.assignee.description,
+    filters.append(IssueFilterViewModel(title: .assignee,
                                         chevronDirection: [.right, .down],
                                         isChevron: false,
                                         hasChildren: true,
                                         childItem: [
-                                            IssueFilterViewModel(title: "assignee1",
+                                            IssueFilterViewModel(title: .child("assignee1"),
                                                                  chevronDirection: [.check],
                                                                  isChevron: true),
-                                            IssueFilterViewModel(title: "assignee2",
+                                            IssueFilterViewModel(title: .child("assignee2"),
                                                                  chevronDirection: [.check],
                                                                  isChevron: true),
-                                            IssueFilterViewModel(title: "assignee3",
+                                            IssueFilterViewModel(title: .child("assignee3"),
                                                                  chevronDirection: [.check],
                                                                  isChevron: true),
-                                            IssueFilterViewModel(title: "assignee4",
+                                            IssueFilterViewModel(title: .child("assignee4"),
                                                                  chevronDirection: [.check],
                                                                  isChevron: true)
                                         ]))
@@ -212,6 +213,7 @@ private func generateBottomFilters() -> [IssueFilterViewModel] {
 enum Filter: Hashable, CustomStringConvertible {
     case openIssue, write, assignment, comment, closeIssue
     case author, label, milestone, assignee
+    case child(String)
 
     var description: String {
         switch self {
@@ -225,6 +227,8 @@ enum Filter: Hashable, CustomStringConvertible {
         case .label: return "레이블"
         case .milestone: return "마일스톤"
         case .assignee: return "담당자"
+
+        case .child(let title): return title
         }
     }
 }

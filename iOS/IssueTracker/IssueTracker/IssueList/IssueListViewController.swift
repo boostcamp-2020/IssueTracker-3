@@ -45,6 +45,7 @@ class IssueListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         issueListModelController = IssueListModelController()
+
         configureNavigationItems()
         configureDataSource()
         configureCollectionLayoutList()
@@ -200,8 +201,9 @@ extension IssueListViewController: UISearchBarDelegate {
     }
     
     func performSearchQuery(with filter: String?) {
-        let issueListItems = issueListModelController.filtered(with: filter ?? "",
-                                                               model: issueList).sorted { $0.title < $1.title }
+        let issueListItems = issueListModelController
+            .filteredBasedOnTitle(with: filter ?? "",
+                                  model: issueList).sorted { $0.title < $1.title }
         var snapshot = NSDiffableDataSourceSnapshot<Section, IssueListViewModel>()
         snapshot.appendSections([.main])
         snapshot.appendItems(issueListItems)

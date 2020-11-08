@@ -9,11 +9,9 @@ import Foundation
 import Alamofire
 
 protocol APIConfiguration: URLRequestConvertible {
-    associatedtype Data: Codable
-    
     var method: HTTPMethod { get }
     var path: String { get }
-    var parameters: RequestParams<Data> { get }
+    var parameters: RequestParams { get }
 }
 
 struct APIServer {
@@ -35,7 +33,7 @@ enum ContentType: String {
     case formEncode = "application/x-www-form-urlencoded"
 }
 
-enum RequestParams<Data: Codable> {
-    case body(_: Data)
-    case url(_: URL)
+enum RequestParams {
+//    case body(Data?)
+    case body(Parameters)
 }

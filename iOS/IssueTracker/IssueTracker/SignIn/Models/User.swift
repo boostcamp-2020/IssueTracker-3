@@ -7,7 +7,14 @@
 
 import Foundation
 
-struct User: Codable {
+struct User {
     let userID: String
     let password: String
+
+    func toJson() -> [String: Any] {
+        return [
+            "user_id" : userID,
+            "password" : password
+        ]
+    }
 }

@@ -12,17 +12,23 @@ struct IssueListViewModel: Hashable {
     let description: String
     let milestone: CustomButtonView
     let labels: [CustomButtonView]
+    let isOpen: Bool
+//    let author: String
     let identifier = UUID()
 
     init(title: String,
          description: String,
          milestone: CustomButtonView,
-         labels: [CustomButtonView]
+         labels: [CustomButtonView],
+         isOpen: Bool = false
+//         author: String
          ) {
         self.title = title
         self.description = description
         self.milestone = milestone
         self.labels = labels
+        self.isOpen = isOpen
+//        self.author = author
     }
 
     func hash(into hasher: inout Hasher) {

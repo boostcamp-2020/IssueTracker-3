@@ -12,7 +12,7 @@ class SignInEndPointTest: XCTestCase {
     func test_asURLRequest_with_userMock_success() {
         //Given
         let userMock = User(userID: "test", password: "1234")
-        let signInEndPoint = SignInEndPoint(user: userMock)
+        let signInEndPoint = SignInEndPoint.user(userMock)
 
         //When
         let urlRequest = try? signInEndPoint.asURLRequest()
