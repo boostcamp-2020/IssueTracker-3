@@ -1,7 +1,7 @@
 import React from "react";
 import { hot } from "react-hot-loader";
 import styled from "styled-components";
-import { Switch, Route, withRouter, type, BrowserRouter, ContextRouter, Router, Link } from "react-router-dom";
+import { Switch, Route, BrowserRouter } from "react-router-dom";
 
 import LoginPage from "./pages/loginPage";
 import IssueListPage from "./pages/issueListPage";

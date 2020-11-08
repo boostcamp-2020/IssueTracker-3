@@ -5,13 +5,30 @@ import { Link } from "react-router-dom";
 
 const StyledMoveToLabelButton = styled.button`
   display: flex;
-  border: 1px dotted black;
-  margin: 5px;
+  border: 1px solid gray;
+  background-color: white;
+  font-weight: bold;
+  margin: 5px 0px;
+  border-top-left-radius: 4px;
+  border-bottom-left-radius: 4px;
+
+  &:hover {
+    background-color: aquamarine;
+  }
+`;
+const StyledNumber = styled.span`
+  border: 1px solid gray;
+  border-radius: 1px;
+  background-color: gray;
+  font-weight: bold;
+  margin: 0px 3px;
 `;
 function MoveToLabelButton() {
   return (
-    <Link to="./labellist">
-      <StyledMoveToLabelButton> 라벨 </StyledMoveToLabelButton>
+    <Link to="./labellist" style={{ textDecoration: "none" }}>
+      <StyledMoveToLabelButton>
+        라벨<StyledNumber>10</StyledNumber>
+      </StyledMoveToLabelButton>
     </Link>
   );
 }
