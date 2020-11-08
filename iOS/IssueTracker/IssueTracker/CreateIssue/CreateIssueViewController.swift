@@ -9,9 +9,9 @@ import UIKit
 
 class CreateIssueViewController: UIViewController {
     @IBOutlet private weak var commentWritingTextView: UITextView!
-    @IBOutlet weak var titleLabel: UITextField!
-    @IBOutlet weak var commentTextView: UITextView!
-    @IBOutlet weak var segmentedControl: UISegmentedControl!
+    @IBOutlet private weak var titleLabel: UITextField!
+    @IBOutlet private weak var commentTextView: UITextView!
+    @IBOutlet private weak var segmentedControl: UISegmentedControl!
 
     override func viewDidLoad() {
         super.viewDidLoad()
