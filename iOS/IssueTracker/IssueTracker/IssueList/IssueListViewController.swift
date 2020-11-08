@@ -222,12 +222,7 @@ extension IssueListViewController {
                 else {
                     return UICollectionViewCell()
                 }
-
                 cell.configureIssueListCell(of: item)
-                if #available(iOS 14.0, *) {
-                    cell.accessories = [.multiselect(displayed: .whenEditing, options: .init())]
-                }
-
                 cell.systemLayoutSizeFitting(.init(width: self.view.bounds.width, height: 88))
                 return cell
             })
