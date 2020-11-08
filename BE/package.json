@@ -54,6 +54,7 @@
     "@interfaces": "build/interfaces",
     "@models": "build/models",
     "@providers": "build/providers",
-    "@routes": "build/routes"
+    "@routes": "build/routes",
+    "@utils": "build/utils"
   }
 }
