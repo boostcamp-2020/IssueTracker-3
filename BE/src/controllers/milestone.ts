@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import { Milestone } from "@interfaces/milestone";
 import MilestoneModel from "@models/milestone";
-import HTTPCODE from "@root/magicnumber";
+import HTTPCODE from "@utils/magicnumber";
 
 const get = async (req: Request, res: Response): Promise<Response<any>> => {
   try {
@@ -17,6 +17,7 @@ const add = async (req: Request, res: Response): Promise<Response> => {
     id: null,
     name: req.body.name,
     description: req.body.description,
+    state: true,
     due_date: req.body.due_date,
     created_at: new Date(),
   };
