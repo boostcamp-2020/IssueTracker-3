@@ -56,6 +56,7 @@
 		BB65A046254FECA300D09DD5 /* IssueListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB65A045254FECA300D09DD5 /* IssueListViewController.swift */; };
 		BB65A04C254FED2000D09DD5 /* IssueDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB65A04B254FED2000D09DD5 /* IssueDetailViewController.swift */; };
 		BB91912425500E25007D25B7 /* CreateIssueViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB91912325500E25007D25B7 /* CreateIssueViewController.swift */; };
+		BBB321F32556DE42000F6CF3 /* EditIssueViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBB321F22556DE42000F6CF3 /* EditIssueViewController.swift */; };
 		BBCC49ED2547E8F300FAB2F4 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBCC49EC2547E8F300FAB2F4 /* SignInViewController.swift */; };
 		BBCC49F32547E9FD00FAB2F4 /* UIView+IBInspectable.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBCC49F22547E9FD00FAB2F4 /* UIView+IBInspectable.swift */; };
 		BBCC4A032547FCF800FAB2F4 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBCC4A022547FCF800FAB2F4 /* SignUpViewController.swift */; };
@@ -131,6 +132,7 @@
 		BB65A045254FECA300D09DD5 /* IssueListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueListViewController.swift; sourceTree = "<group>"; };
 		BB65A04B254FED2000D09DD5 /* IssueDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueDetailViewController.swift; sourceTree = "<group>"; };
 		BB91912325500E25007D25B7 /* CreateIssueViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateIssueViewController.swift; sourceTree = "<group>"; };
+		BBB321F22556DE42000F6CF3 /* EditIssueViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditIssueViewController.swift; sourceTree = "<group>"; };
 		BBCC49EC2547E8F300FAB2F4 /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		BBCC49F22547E9FD00FAB2F4 /* UIView+IBInspectable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+IBInspectable.swift"; sourceTree = "<group>"; };
 		BBCC4A022547FCF800FAB2F4 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
@@ -332,6 +334,7 @@
 				705930D2254FFF47003FE49F /* IssueFilter */,
 				BB65A044254FEC7200D09DD5 /* IssueDetail */,
 				BB91912225500D6F007D25B7 /* CreateIssue */,
+				BBB321F12556DE1C000F6CF3 /* EditIssue */,
 				BB51962A2553F3000052882D /* Label */,
 				BB51962B2553F3110052882D /* Milestone */,
 				BBE2860F25503D6400A59009 /* Setting */,
@@ -417,6 +420,14 @@
 				BB91912325500E25007D25B7 /* CreateIssueViewController.swift */,
 			);
 			path = CreateIssue;
+			sourceTree = "<group>";
+		};
+		BBB321F12556DE1C000F6CF3 /* EditIssue */ = {
+			isa = PBXGroup;
+			children = (
+				BBB321F22556DE42000F6CF3 /* EditIssueViewController.swift */,
+			);
+			path = EditIssue;
 			sourceTree = "<group>";
 		};
 		BBBCF96925511B3B00819773 /* Views */ = {
@@ -641,6 +652,7 @@
 				702D6C0B254A8E0100E1A706 /* SignInWithAppleButton.swift in Sources */,
 				705930E625502FA4003FE49F /* HeaderView.swift in Sources */,
 				BB91912425500E25007D25B7 /* CreateIssueViewController.swift in Sources */,
+				BBB321F32556DE42000F6CF3 /* EditIssueViewController.swift in Sources */,
 				BB65A046254FECA300D09DD5 /* IssueListViewController.swift in Sources */,
 				BBCC4A132548204200FAB2F4 /* SignInInteractor.swift in Sources */,
 				708EFEF02546DBC9009D9DEC /* SceneDelegate.swift in Sources */,
