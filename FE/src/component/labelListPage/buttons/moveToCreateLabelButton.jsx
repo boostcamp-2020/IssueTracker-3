@@ -1,0 +1,22 @@
+import React from "react";
+import { hot } from "react-hot-loader";
+import styled from "styled-components";
+import { Link } from "react-router-dom";
+
+const StyledMoveToCreateLabelButton = styled.button`
+  display: flex;
+  border: 1px solid forestgreen;
+  margin: 5px;
+  color: white;
+  border-radius: 5px;
+  background-color: #33cc33;
+`;
+function MoveToCreateLabelButton() {
+  return (
+    <Link to="./milestonecreate" style={{ textDecoration: "none" }}>
+      <StyledMoveToCreateLabelButton> New Label </StyledMoveToCreateLabelButton>
+    </Link>
+  );
+}
+
+export default hot(module)(MoveToCreateLabelButton);
