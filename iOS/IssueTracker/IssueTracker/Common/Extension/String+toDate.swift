@@ -10,10 +10,10 @@ import Foundation
 extension String {
     /// Date 타입으로 변경
     ///
-    ///   ```
-    ///  let str = "2020-11-01T15:00:00.000Z"
-    ///  str.toDate()
-    ///  ```
+    ///```
+    ///let str = "2020-11-01T15:00:00.000Z"
+    ///str.toDate()
+    ///```
     ///
     /// - Returns: "yyyy-MM-dd'T'HH:mm:ss.SSSZ" 형식의 Date 타입
   func toDate() -> Date? {
