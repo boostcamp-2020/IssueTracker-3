@@ -6,3 +6,8 @@
 //
 
 import Foundation
+
+struct IssueComment: Codable {
+    let comments: [Comment]
+    let counts: Int
+}
