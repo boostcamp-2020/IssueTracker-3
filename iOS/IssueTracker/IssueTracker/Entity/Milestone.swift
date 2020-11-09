@@ -7,9 +7,9 @@
 
 import Foundation
 
-//typealias Milestone = [MilestoneElement]
+typealias MilestoneList = [MileStone]
 
-struct MileStone: Codable {
+struct Milestone: Codable {
     let id: Int
     let name: String
     let description: String

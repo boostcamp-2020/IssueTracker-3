@@ -7,6 +7,8 @@
 
 import Foundation
 
+typealias LabelList = [Label]
+
 struct Label: Codable {
     let id: Int?
     let issueID: Int?
