@@ -25,5 +25,3 @@ enum SignInEndPoint: APIConfiguration {
     }
   }
 }
-
-

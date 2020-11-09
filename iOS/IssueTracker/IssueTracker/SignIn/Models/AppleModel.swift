@@ -11,10 +11,10 @@ struct AppleModel: Codable {
     let authorizationCode: String
     let identityToken: String
 
-    func toJson() -> [String: Any]{
+    func toJson() -> [String: Any] {
         return [
-            "authorization_code" : authorizationCode,
-            "identity_token" : identityToken
+            "authorization_code": authorizationCode,
+            "identity_token": identityToken
         ]
     }
 }
