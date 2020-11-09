@@ -196,10 +196,10 @@ extension IssueListViewController: UISearchBarDelegate {
     }
     
     func performSearchQuery(with filter: String?) {
-        let issueListItems = issueListModelController
-            .filteredBasedOnTitle(with: filter ?? "",
-                                  model: issueList).sorted { $0.title < $1.title }
-        updateDataSource(items: issueListItems, type: .append)
+//        let issueListItems = issueListModelController
+//            .filteredBasedOnTitle(with: filter ?? "",
+//                                  model: issueList).sorted { $0.title < $1.title }
+//        updateDataSource(items: issueListItems, type: .append)
     }
 }
 
@@ -227,9 +227,9 @@ extension IssueListViewController {
     
     private func updateDataSource(items: [IssueListViewModel], type: UpdateDataSourceType) {
         var snapshot = dataSource.snapshot()
-        snapshot.appendSections([.main])
         switch type {
         case .append:
+            snapshot.appendSections([.main])
             snapshot.appendItems(items)
         case .delete:
             snapshot.deleteItems(items)
