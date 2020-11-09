@@ -13,9 +13,12 @@ class CreateIssueViewController: UIViewController {
     @IBOutlet private weak var segmentedControl: UISegmentedControl!
     @IBOutlet private weak var doneLeftBarButton: UIBarButtonItem!
     
+//    private var createIssueManager: CreateIssueManager!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         configurePlaceholder()
+//        createIssueManager = CreateIssueManager()
     }
     
     @IBAction func doneTouched(_ sender: UIBarButtonItem) {
@@ -23,6 +26,8 @@ class CreateIssueViewController: UIViewController {
     }
     
     @IBAction func uploadIssueTouched(_ sender: Any) {
+        // Alert -> 성공 / 실패 시
+        
         dismiss(animated: true) { [unowned self] in
             let title = titleLabel.text
             let comment = commentTextView.text
