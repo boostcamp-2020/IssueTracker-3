@@ -1,7 +1,7 @@
 import React from "react";
 import { hot } from "react-hot-loader";
 import styled from "styled-components";
-import { Switch, Route, withRouter, type, BrowserRouter, ContextRouter, Router, Link } from "react-router-dom";
+import { Switch, Route, BrowserRouter } from "react-router-dom";
 
 import LoginPage from "./pages/loginPage";
 import IssueListPage from "./pages/issueListPage";
@@ -16,6 +16,8 @@ const StyledContent = styled.div`
   display: flex;
   border: 1px dotted black;
   margin: 5px;
+  justify-content: center;
+  align-items: center;
 `;
 const App = () => {
   return (

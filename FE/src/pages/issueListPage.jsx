@@ -11,7 +11,14 @@ const StyledIssueListPage = styled.div`
   margin: 5px;
 `;
 function IssueListPage() {
-  return <StyledIssueListPage>IssueListPage<MoveToCreateIssueButton/><MoveToLabelButton/></StyledIssueListPage>;
+  return (
+    <StyledIssueListPage>
+      IssueListPage
+      <MoveToLabelButton />
+      <MoveToMilestoneButton />
+      <MoveToCreateIssueButton />
+    </StyledIssueListPage>
+  );
 }
 
 export default hot(module)(IssueListPage);
