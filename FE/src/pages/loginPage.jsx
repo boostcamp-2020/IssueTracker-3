@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { hot } from "react-hot-loader";
 import styled from "styled-components";
 import LoginSubmitButton from "../component/loginPage/buttons/loginSubmitButton";
@@ -10,12 +10,13 @@ const StyledLoginPage = styled.div`
   border: 1px dotted black;
   margin: 5px;
 `;
-function LoginPage() {
+function LoginPage(props) {
+  const [input, setInput] = useState({ name: "", password: "" });
   return (
     <StyledLoginPage>
       LoginPage
-      <LoginFrom />
-      <LoginSubmitButton />
+      <LoginFrom inputData={input} setInput={setInput} />
+      <LoginSubmitButton inputData={input} setUser={props.setUser} />
       <LoginGithubButton />
     </StyledLoginPage>
   );
