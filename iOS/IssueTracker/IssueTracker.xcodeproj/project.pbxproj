@@ -180,7 +180,6 @@
 			isa = PBXGroup;
 			children = (
 				702D6C43254AB9C300E1A706 /* Views */,
-				70B0A15225531C9800E0E130 /* Models */,
 				BBCC49EC2547E8F300FAB2F4 /* SignInViewController.swift */,
 				BBCC4A122548204200FAB2F4 /* SignInInteractor.swift */,
 				BB41E02A2549655B008245A3 /* SignInEndPoint.swift */,
@@ -374,13 +373,6 @@
 			isa = PBXGroup;
 			children = (
 				70B0A13D2552850500E0E130 /* IssueFilterViewModel.swift */,
-			);
-			path = Models;
-			sourceTree = "<group>";
-		};
-		70B0A15225531C9800E0E130 /* Models */ = {
-			isa = PBXGroup;
-			children = (
 			);
 			path = Models;
 			sourceTree = "<group>";
