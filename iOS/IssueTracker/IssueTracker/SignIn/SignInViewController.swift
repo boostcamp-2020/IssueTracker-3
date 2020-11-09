@@ -24,9 +24,6 @@ final class SignInViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureSignInWithAppleView()
-        NetworkManager(sessionManager: Session()).request(endPoint: SignInEndPoint.user(User(userID: "sada", password: "dads")), handler: {_ in
-
-        })
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -43,7 +40,6 @@ final class SignInViewController: UIViewController {
         signInWithAppleView.didCompletedSignIn = { [weak self] (user) in
             // user.identityToken = JWT 토큰을 풀어서 name, email 가져오기, 서버로 보내기
             // user.authorizationCode = 서버로 보낼 코드 // 5분만
-
 
             self?.showResultViewController(userIdentifier: user.id,
                                            givenName: user.firstName,

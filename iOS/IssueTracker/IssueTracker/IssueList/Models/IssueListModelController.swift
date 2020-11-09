@@ -8,6 +8,7 @@
 import Foundation
 
 class IssueListModelController {
+
     func filteredBasedOnILeftCommentOn() {
 
     }

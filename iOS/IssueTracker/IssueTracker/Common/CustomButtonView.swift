@@ -21,6 +21,11 @@ class CustomButtonView: UIButton {
         super.init(frame: frame)
     }
 
+    /// 라벨, 마일스톤 버튼 생성
+    /// - Parameters:
+    ///   - type: .milestone, .label
+    ///   - text: Button Text
+    ///   - color: Button Backgroun Color
     convenience init(type: LabelType, text: String, color: String) {
         self.init(frame: .zero)
         self.type = type
@@ -35,10 +40,12 @@ class CustomButtonView: UIButton {
 
     func setting() {
         guard text != "" else { return }
+        let uiColor = UIColor(hex: color)
+        
         self.setTitle(text, for: .normal)
-        self.setTitleColor(.black, for: .normal)
+        self.setTitleColor(uiColor?.visibleTextColor, for: .normal)
         self.titleLabel?.font = UIFont.systemFont(ofSize: 13)
-//        self.translatesAutoresizingMaskIntoConstraints = false
+
         switch type {
         case .milestone:
             self.backgroundColor = .white
@@ -46,9 +53,8 @@ class CustomButtonView: UIButton {
             self.borderWidth = 1
             configureContentEdgeInsets(8, 2, 9, 0)
         case .label:
-//            self.backgroundColor = UIColor(hex: color)
+            self.backgroundColor = uiColor
             self.cornerRadius = 3
-            self.backgroundColor = UIColor().random()
             configureContentEdgeInsets(7, 2, 7, 2)
         case .none:
             self.backgroundColor = .none

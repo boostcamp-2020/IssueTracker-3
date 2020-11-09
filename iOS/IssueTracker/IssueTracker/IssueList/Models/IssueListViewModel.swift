@@ -30,6 +30,14 @@ struct IssueListViewModel: Hashable {
         self.isOpen = isOpen
 //        self.author = author
     }
+    
+    init(issue: Issue) {
+        title = issue.title
+        description = issue.body
+        isOpen = issue.state == 1 ? true : false
+        milestone = CustomButtonView(type: .milestone, text: issue.milestone.first?.name ?? "", color: "#ffffff")
+        labels = issue.labels.map { CustomButtonView(type: .label, text: $0.description, color: $0.color) }
+    }
 
     func hash(into hasher: inout Hasher) {
         hasher.combine(identifier)

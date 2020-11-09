@@ -560,13 +560,18 @@ HTML형태로 보여줘야 할까요</string>
                                                 <action selector="cancelTouched:" destination="sam-5C-mGZ" id="4HT-rc-HZi"/>
                                             </connections>
                                         </barButtonItem>
+                                        <barButtonItem key="rightBarButtonItem" style="plain" systemItem="done" id="wWv-af-xp6">
+                                            <connections>
+                                                <action selector="doneTouched:" destination="sam-5C-mGZ" id="V2S-yG-cLb"/>
+                                            </connections>
+                                        </barButtonItem>
                                     </navigationItem>
                                 </items>
                             </navigationBar>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="새 이슈" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oWw-TA-c4U">
                                 <rect key="frame" x="12" y="63" width="95.5" height="41"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="34"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" red="0.99416512250900269" green="0.97194200754165649" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="제목" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="d7M-AP-djI">
@@ -723,7 +728,7 @@ HTML형태로 보여줘야 할까요</string>
                     <navigationItem key="navigationItem" id="0Hh-mG-PqR"/>
                     <connections>
                         <outlet property="commentTextView" destination="7Qm-3i-rgo" id="8Il-OV-zug"/>
-                        <outlet property="commentWritingTextView" destination="7Qm-3i-rgo" id="awc-eo-4uL"/>
+                        <outlet property="doneLeftBarButton" destination="wWv-af-xp6" id="Tdg-st-9he"/>
                         <outlet property="segmentedControl" destination="fl3-aF-M7a" id="w65-UL-cf2"/>
                         <outlet property="titleLabel" destination="d7M-AP-djI" id="8JJ-hZ-Spn"/>
                     </connections>
@@ -741,6 +746,7 @@ HTML형태로 보여줘야 할까요</string>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="plI-a0-IEk">
                         <rect key="frame" x="0.0" y="44" width="414" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" red="1" green="0.14901960784313725" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
