@@ -7,6 +7,10 @@ const StyledMoveToCreateLabelButton = styled.button`
   display: flex;
   border: 1px solid forestgreen;
   margin: 5px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  margin-left: 400px;
+  margin-right: 5px;
   color: white;
   border-radius: 5px;
   background-color: #33cc33;

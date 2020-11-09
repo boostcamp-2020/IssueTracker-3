@@ -16,6 +16,7 @@ const StyledLabelListPage = styled.div`
 const Header = styled.div`
   display: flex;
   flex-direction: row;
+  flex: 2 3 5;
 `;
 const Combination = styled.div`
   display: flex;

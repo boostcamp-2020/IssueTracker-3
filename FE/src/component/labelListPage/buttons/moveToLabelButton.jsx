@@ -12,10 +12,6 @@ const StyledMoveToLabelButton = styled.button`
   margin: 5px 0px;
   border-top-left-radius: 4px;
   border-bottom-left-radius: 4px;
-
-  &:hover {
-    background-color: aquamarine;
-  }
 `;
 function MoveToLabelButton() {
   return (
