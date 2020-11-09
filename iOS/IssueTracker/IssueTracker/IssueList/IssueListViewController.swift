@@ -17,7 +17,7 @@ import WebKit
 // FIXME: SelectAll 문제 - 전체 다 안됨 (겉으로 보기에만 됨 / 여러번 하면 오류 + cell 위치 틀리는 문제 / Model data를 변경해야함)
 
 protocol IssueListDisplayLogic: class {
-  func displayFetchedIssues(viewModel: [IssueListViewModel])
+    func displayFetchedIssues(viewModel: [IssueListViewModel])
 }
 
 class IssueListViewController: UIViewController, IssueListDisplayLogic {
@@ -28,8 +28,7 @@ class IssueListViewController: UIViewController, IssueListDisplayLogic {
     @IBOutlet private weak var issueListToolBar: UIToolbar!
     
     private var dataSource: UICollectionViewDiffableDataSource<Section, IssueListViewModel>!
-    
-    //
+
     private var issueListModelController: IssueListModelController!
     
     private var filterLeftBarButton: UIBarButtonItem!
@@ -37,11 +36,7 @@ class IssueListViewController: UIViewController, IssueListDisplayLogic {
     private var isSelectedAll = false
     private var searchText = ""
     private var interactor: IssueListBusinessLogic!
-    
-    private lazy var issueList: [IssueListViewModel] = {
-        return generateIssues()
-    }()
-    
+
     // MARK: Enums
     
     enum Section: CaseIterable {
@@ -67,14 +62,17 @@ class IssueListViewController: UIViewController, IssueListDisplayLogic {
         issueListToolBar.isHidden = true
         interactor.fetchIssues()
     }
-    
+
+    private var displayedStore = [IssueListViewModel]()
+
     func displayFetchedIssues(viewModel: [IssueListViewModel]) {
+        displayedStore = viewModel
         var snapshot = NSDiffableDataSourceSnapshot<Section, IssueListViewModel>()
         snapshot.appendSections([.main])
-        snapshot.appendItems(viewModel)
+        snapshot.appendItems(displayedStore)
         dataSource.apply(snapshot, animatingDifferences: false)
     }
-    
+
     // MARK: Setup
     private func setup() {
         let viewController = self
@@ -123,7 +121,7 @@ class IssueListViewController: UIViewController, IssueListDisplayLogic {
                 }
                 
                 let delete = UIContextualAction(style: .destructive,
-                                                title: "Delete") { [weak self] action, view, completion in
+                                                title: "Delete") { [weak self] _, _, completion in
                     // TODO: Model -> 해당 indexPath delete
                     var snapshot = self?.dataSource.snapshot()
                     snapshot?.deleteItems([item])
@@ -138,15 +136,6 @@ class IssueListViewController: UIViewController, IssueListDisplayLogic {
             let listLayout = UICollectionViewCompositionalLayout.list(using: layoutConfig)
             issueListCollectionView.collectionViewLayout = listLayout
         }
-    }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        //        guard segue.identifier == "IssueDetailSegue",
-        //              let issueDetailVC = segue.destination as? IssueDetailViewController
-        //        else {
-        //            return
-        //        }
-        // issue 정보 넘기기
     }
     
     // MARK: Actions
@@ -230,7 +219,7 @@ extension IssueListViewController: UISearchBarDelegate {
     func performSearchQuery(with filter: String?) {
         let issueListItems = issueListModelController
             .filteredBasedOnTitle(with: filter ?? "",
-                                  model: issueList).sorted { $0.title < $1.title }
+                                  model: displayedStore).sorted { $0.title < $1.title }
         var snapshot = NSDiffableDataSourceSnapshot<Section, IssueListViewModel>()
         snapshot.appendSections([.main])
         snapshot.appendItems(issueListItems)
@@ -263,7 +252,14 @@ extension IssueListViewController {
 extension IssueListViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard isEditing else {
-            performSegue(withIdentifier: "IssueDetailSegue", sender: nil)
+            let sender = displayedStore[indexPath.row].id
+            guard let issueDetailViewController = self.storyboard?.instantiateViewController(
+                    identifier: IssueDetailViewController.identifier,
+                    creator: { coder -> IssueDetailViewController? in
+                        return IssueDetailViewController(coder: coder, id: sender)
+                    }) else { return }
+
+            navigationController?.pushViewController(issueDetailViewController, animated: true)
             return
         }
     }
@@ -280,46 +276,5 @@ extension IssueListViewController: UICollectionViewDelegate {
             issueListCollectionView.selectItem(at: indexPath, animated: true, scrollPosition: .bottom)
         }
         // TODO: deselect
-    }
-}
-
-// MARK: Dummy Issue Data
-
-extension IssueListViewController {
-    private func generateIssues() -> [IssueListViewModel] {
-        var issues = [IssueListViewModel]()
-        
-        issues.append(IssueListViewModel(
-                        title: "test",
-                        description: "설명",
-                        milestone: CustomButtonView(
-                            type: .milestone,
-                            text: "프로젝트",
-                            color: "#ffffff"),
-                        labels: []))
-        issues.append(IssueListViewModel(
-                        title: "test",
-                        description: "설명",
-                        milestone: CustomButtonView(type: .milestone,
-                                                     text: "",
-                                                     color: "#ffffff"),
-                        labels: [
-                           ]))
-
-        (1...10).forEach { number in
-            issues.append(IssueListViewModel(
-                            title: "haha\(number)",
-                            description: "설명",
-                            milestone: CustomButtonView(type: .milestone,
-                                                        text: "프로젝트",
-                                                        color: "#ffffff"),
-                            labels: [CustomButtonView(type: .label,
-                                                      text: "label\(number)",
-                                                      color: "#ffffff"),
-                                     CustomButtonView(type: .label,
-                                                      text: "labe\(number)",
-                                                      color: "#ffffff")]))
-        }
-        return issues
     }
 }
