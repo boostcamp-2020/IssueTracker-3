@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { hot } from "react-hot-loader";
 import styled from "styled-components";
 import { Switch, Route, withRouter, type, BrowserRouter, ContextRouter, Router, Link } from "react-router-dom";
@@ -18,12 +18,23 @@ const StyledContent = styled.div`
   margin: 5px;
 `;
 const App = () => {
+  const [user, setUser] = useState({
+    id: 0,
+    name: "",
+    url: "",
+  });
   return (
     <StyledContent>
       Content
       <BrowserRouter>
         <Switch>
-          <Route exact path="/(|login)" component={LoginPage} />
+          <Route
+            exact
+            path="/"
+            render={() => {
+              return user.id === 0 ? <LoginPage User={user} setUser={setUser} /> : <IssueListPage />;
+            }}
+          />
           <Route exact path="/issuelist" component={IssueListPage} />
           <Route exact path="/issuedetail/:id" component={IssueDetailPage} />
           <Route exact path="/issuecreate" component={IssueCreatePage} />
