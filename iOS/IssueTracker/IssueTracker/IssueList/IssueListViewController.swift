@@ -16,7 +16,11 @@ import WebKit
 // FIXME: tabBarButton & toolBarButton hidden 오류
 // FIXME: SelectAll 문제 - 전체 다 안됨 (겉으로 보기에만 됨 / 여러번 하면 오류 + cell 위치 틀리는 문제 / Model data를 변경해야함)
 
-class IssueListViewController: UIViewController {
+protocol IssueListDisplayLogic: class {
+  func displayFetchedIssues(viewModel: [IssueListViewModel])
+}
+
+class IssueListViewController: UIViewController, IssueListDisplayLogic {
     
     // MARK: Properties
     
@@ -24,11 +28,15 @@ class IssueListViewController: UIViewController {
     @IBOutlet private weak var issueListToolBar: UIToolbar!
     
     private var dataSource: UICollectionViewDiffableDataSource<Section, IssueListViewModel>!
+    
+    //
     private var issueListModelController: IssueListModelController!
+    
     private var filterLeftBarButton: UIBarButtonItem!
     private var selectAllLeftBarButton: UIBarButtonItem!
     private var isSelectedAll = false
     private var searchText = ""
+    private var interactor: IssueListBusinessLogic!
     
     private lazy var issueList: [IssueListViewModel] = {
         return generateIssues()
@@ -50,11 +58,30 @@ class IssueListViewController: UIViewController {
         configureCollectionLayoutList()
         performSearchQuery(with: nil)
         showSearchBar()
+        setup()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         issueListToolBar.isHidden = true
+        interactor.fetchIssues()
+    }
+    
+    func displayFetchedIssues(viewModel: [IssueListViewModel]) {
+        var snapshot = NSDiffableDataSourceSnapshot<Section, IssueListViewModel>()
+        snapshot.appendSections([.main])
+        snapshot.appendItems(viewModel)
+        dataSource.apply(snapshot, animatingDifferences: false)
+    }
+    
+    // MARK: Setup
+    private func setup() {
+        let viewController = self
+        let interactor = IssueListInteractor()
+        let presenter = IssueListPresenter()
+        self.interactor = interactor
+        interactor.presenter = presenter
+        presenter.viewController = viewController
     }
     
     // MARK: Configure
@@ -71,7 +98,7 @@ class IssueListViewController: UIViewController {
         navigationItem.leftBarButtonItem = filterLeftBarButton
         navigationItem.rightBarButtonItem = editButtonItem
     }
-
+    
     func showSearchBar() {
         let searchController = UISearchController(searchResultsController: nil)
         searchController.searchBar.delegate = self
@@ -83,7 +110,7 @@ class IssueListViewController: UIViewController {
         searchController.searchBar.placeholder = "Search"
         navigationItem.searchController = searchController
     }
-
+    
     private func configureCollectionLayoutList() {
         if #available(iOS 14.0, *) {
             var layoutConfig = UICollectionLayoutListConfiguration(appearance: .plain)
@@ -128,7 +155,7 @@ class IssueListViewController: UIViewController {
         
         tabBarController?.tabBar.isHidden = editing
         issueListToolBar.isHidden = !editing
-
+        
         navigationItem.leftBarButtonItem = editing ? selectAllLeftBarButton : filterLeftBarButton
         if editing {
             navigationItem.rightBarButtonItem?.title = "Cancel"
@@ -175,15 +202,15 @@ class IssueListViewController: UIViewController {
         // TODO: issue ViewModel List 가지고 있는 객체에서 -> forEach -> isSelect true
         // FIXME: SelectAll에서 클릭 안되는 문제
         isSelectedAll.toggle()
-//        if isSelectedAll {
-//            issueListCollectionView
-//                .indexPathsForVisibleItems
-//                .forEach { issueListCollectionView.selectItem(at: $0, animated: true, scrollPosition: .bottom) }
-//        } else {
-//            issueListCollectionView
-//                .indexPathsForVisibleItems
-//                .forEach { issueListCollectionView.deselectItem(at: $0, animated: true) }
-//        }
+        //        if isSelectedAll {
+        //            issueListCollectionView
+        //                .indexPathsForVisibleItems
+        //                .forEach { issueListCollectionView.selectItem(at: $0, animated: true, scrollPosition: .bottom) }
+        //        } else {
+        //            issueListCollectionView
+        //                .indexPathsForVisibleItems
+        //                .forEach { issueListCollectionView.deselectItem(at: $0, animated: true) }
+        //        }
     }
 }
 
@@ -200,13 +227,13 @@ extension IssueListViewController: UISearchBarDelegate {
     }
     
     func performSearchQuery(with filter: String?) {
-        let issueListItems = issueListModelController.filtered(with: filter ?? "",
-                                                               model: issueList).sorted { $0.title < $1.title }
-        var snapshot = NSDiffableDataSourceSnapshot<Section, IssueListViewModel>()
-        snapshot.appendSections([.main])
-        snapshot.appendItems(issueListItems)
-
-        dataSource.apply(snapshot, animatingDifferences: false)
+//        let issueListItems = issueListModelController.filtered(with: filter ?? "",
+//                                                               model: issueList).sorted { $0.title < $1.title }
+//        var snapshot = NSDiffableDataSourceSnapshot<Section, IssueListViewModel>()
+//        snapshot.appendSections([.main])
+//        snapshot.appendItems(issueListItems)
+        
+//        dataSource.apply(snapshot, animatingDifferences: false)
     }
 }
 
@@ -259,7 +286,7 @@ extension IssueListViewController: UICollectionViewDelegate {
 extension IssueListViewController {
     private func generateIssues() -> [IssueListViewModel] {
         var issues = [IssueListViewModel]()
-
+        
         issues.append(IssueListViewModel(
                         title: "test",
                         description: "설명",
@@ -293,7 +320,7 @@ extension IssueListViewController {
                                 type: .label,
                                 text: "프로젝트",
                                 color: "#ffffff")]))
-
+        
         (1...10).forEach { number in
             issues.append(IssueListViewModel(
                             title: "haha\(number)",

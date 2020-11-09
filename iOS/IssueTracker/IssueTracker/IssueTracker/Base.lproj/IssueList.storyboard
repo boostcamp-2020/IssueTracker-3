@@ -560,6 +560,11 @@ HTML형태로 보여줘야 할까요</string>
                                                 <action selector="cancelTouched:" destination="sam-5C-mGZ" id="4HT-rc-HZi"/>
                                             </connections>
                                         </barButtonItem>
+                                        <barButtonItem key="rightBarButtonItem" style="plain" systemItem="done" id="wWv-af-xp6">
+                                            <connections>
+                                                <action selector="doneTouched:" destination="sam-5C-mGZ" id="V2S-yG-cLb"/>
+                                            </connections>
+                                        </barButtonItem>
                                     </navigationItem>
                                 </items>
                             </navigationBar>
@@ -723,7 +728,7 @@ HTML형태로 보여줘야 할까요</string>
                     <navigationItem key="navigationItem" id="0Hh-mG-PqR"/>
                     <connections>
                         <outlet property="commentTextView" destination="7Qm-3i-rgo" id="8Il-OV-zug"/>
-                        <outlet property="commentWritingTextView" destination="7Qm-3i-rgo" id="awc-eo-4uL"/>
+                        <outlet property="doneLeftBarButton" destination="wWv-af-xp6" id="Tdg-st-9he"/>
                         <outlet property="segmentedControl" destination="fl3-aF-M7a" id="w65-UL-cf2"/>
                         <outlet property="titleLabel" destination="d7M-AP-djI" id="8JJ-hZ-Spn"/>
                     </connections>

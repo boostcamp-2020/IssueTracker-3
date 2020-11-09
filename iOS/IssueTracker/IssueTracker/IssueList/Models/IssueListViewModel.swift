@@ -24,6 +24,13 @@ struct IssueListViewModel: Hashable {
         self.milestone = milestone
         self.labels = labels
     }
+    
+    init(issue: Issue) {
+        title = issue.title
+        description = issue.body
+        milestone = CustomButtonView(type: .milestone, text: issue.milestone.first?.name ?? "", color: "#ffffff")
+        labels = issue.labels.map { CustomButtonView(type: .label, text: $0.description, color: $0.color) }
+    }
 
     func hash(into hasher: inout Hasher) {
         hasher.combine(identifier)

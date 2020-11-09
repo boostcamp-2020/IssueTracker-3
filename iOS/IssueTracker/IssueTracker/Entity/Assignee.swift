@@ -1,27 +1,26 @@
 //
-//  EventElement.swift
+//  Assignee.swift
 //  IssueTracker
 //
-//  Created by ParkJaeHyun on 2020/11/04.
+//  Created by 송민관 on 2020/11/08.
 //
 
 import Foundation
 
-// MARK: - EventElement
-struct EventElement: Codable {
+struct Assignee: Codable {
     let id: Int
     let issueID: Int
     let userID: Int
-    let log: String
+    let loginID: String
+    let password: String
+    let img: String
     let createdAt: String
 
     enum CodingKeys: String, CodingKey {
-        case id
+        case id, password, img
         case issueID = "issue_id"
         case userID = "user_id"
-        case log
+        case loginID = "login_id"
         case createdAt = "created_at"
     }
 }
-
-typealias Event = [EventElement]

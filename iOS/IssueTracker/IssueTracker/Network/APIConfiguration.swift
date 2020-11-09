@@ -6,36 +6,59 @@
 //
 
 import Foundation
-import Alamofire
 
-protocol APIConfiguration: URLRequestConvertible {
-    associatedtype Data: Codable
-    
+protocol APIConfiguration {
     var method: HTTPMethod { get }
     var path: String { get }
-    var parameters: RequestParams<Data> { get }
+    var body: Data? { get }
 }
 
 struct APIServer {
-//    static let baseURL = "http://api.boostcamp.com"
     static let baseURL = "http://101.101.210.34:3000"
 }
 
-// TODO: API명세서 맞추기
-enum HTTPHeader: String {
-    case authentication = "Authorization"
-    case contentType = "Content-Type"
-    case acceptType = "Accept"
-    case acceptEncoding = "Accept-Encoding"
-    case string = "String"
+enum HTTPMethod: CustomStringConvertible {
+    case get
+    case post
+    case patch
+    case delete
+    
+    var description: String {
+        switch self {
+        case .get: return "GET"
+        case .post: return "POST"
+        case .patch: return "PATCH"
+        case .delete: return "DELETE"
+        }
+    }
 }
 
-enum ContentType: String {
-    case json = "Application/json"
-    case formEncode = "application/x-www-form-urlencoded"
+enum HTTPHeader: CustomStringConvertible {
+    case authentication
+    case contentType
+    case acceptType
+//    case acceptEncoding
+//    case string
+    
+    var description: String {
+        switch self {
+        case .authentication: return "Authorization"
+        case .contentType: return "Accept-Encoding"
+        case .acceptType: return "Content-Type"
+//        case .acceptEncoding: return "Accept"
+//        case .string: return "String"
+        }
+    }
 }
 
-enum RequestParams<Data: Codable> {
-    case body(_: Data)
-    case url(_: URL)
+enum ContentType: CustomStringConvertible {
+    case json
+    case formEncode
+    
+    var description: String {
+        switch self {
+        case .formEncode: return "Application/json"
+        case .json: return "application/x-www-form-urlencoded"
+        }
+    }
 }
