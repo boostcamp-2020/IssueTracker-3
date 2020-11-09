@@ -4,7 +4,9 @@
 import db from "@providers/database";
 import Model from "@models/model";
 import { Issue } from "@interfaces/issue";
-import HTTPCODE from "@root/magicnumber";
+import HTTPCODE from "@utils/magicnumber";
+import filter from "@utils/filter";
+import makeResponse from "@utils/response";
 
 class IssueModel extends Model {
   protected tableName: string;
@@ -16,17 +18,24 @@ class IssueModel extends Model {
 
   async select<T>(): Promise<any> {
     try {
-      const data = await db.query(`select * from ${this.tableName}`);
+      const data = await db.query(`SELECT * from ${this.tableName}`);
       const issues = [...data[0]];
       for (const idx in issues) {
         const element = issues[idx];
-        const tags = await db.query(`select * from TAG t join LABEL l on t.label_id = l.id where t.issue_id = ${element.id}`);
-        issues[idx].labels = [...tags[0]];
-        const assignees = await db.query(`select * from ASSIGNEE a join USER u on a.user_id = u.id where  a.issue_id= ${element.id}`);
-        issues[idx].assignee = [...assignees[0]];
-        const milestones = await db.query(`select * from MILESTONE m where m.id = ${element.milestone_id}`);
-        issues[idx].milestone = [...milestones[0]];
+        const tags = await db.query(`SELECT * from TAG t JOIN LABEL l ON t.label_id = l.id WHERE t.issue_id = ${element.id}`);
+        issues[idx].labels = [...tags[0].map(filter.nullFilter)];
+        const assignees = await db.query(`SELECT * from ASSIGNEE a JOIN USER u ON a.user_id = u.id where  a.issue_id= ${element.id}`);
+        issues[idx].assignee = [...assignees[0].map(filter.nullFilter)];
+        const milestones = await db.query(`SELECT * from MILESTONE m WHERE m.id = ${element.milestone_id}`);
+        issues[idx].milestone = [...milestones[0].map(filter.nullFilter)];
+        const comments = await db.query(`SELECT * from COMMENT c JOIN ISSUE i ON i.id = c.issue_id WHERE i.id = ${element.id}`);
+        const comment = {
+          comments: [...comments[0].map(filter.nullFilter)],
+          counts: comments[0].length,
+        };
+        issues[idx].comment = comment;
       }
+      issues.map(filter.nullFilter);
       return issues;
     } catch (err) {
       console.error(err);
@@ -34,12 +43,12 @@ class IssueModel extends Model {
     }
   }
 
-  async add(pData: Issue): Promise<number> {
+  async add(pData: Issue): Promise<any> {
     try {
       this.data = await super.insert(pData, this.tableName);
-      return this.data ? HTTPCODE.SUCCESS : HTTPCODE.FAIL;
+      return this.data ? makeResponse(HTTPCODE.SUCCESS, this.data) : makeResponse(HTTPCODE.SUCCESS, `fail insert`);
     } catch {
-      return HTTPCODE.SERVER_ERR;
+      return makeResponse(HTTPCODE.SUCCESS, `internal server error`);
     }
   }
 

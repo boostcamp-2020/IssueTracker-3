@@ -8,4 +8,6 @@ router.post("/", IssueController.add);
 router.patch("/", IssueController.edit);
 router.delete("/", IssueController.del);
 router.patch("/:id/state/:state", IssueController.changeState);
+
+router.get("/filter", IssueController.getFilter);
 export = router;

@@ -1,7 +1,9 @@
 import db from "@providers/database";
 import Model from "@models/model";
 import { Milestone } from "@interfaces/milestone";
-import HTTPCODE from "@root/magicnumber";
+import HTTPCODE from "@utils/magicnumber";
+import filter from "@utils/filter";
+import makeResponse from "@utils/response";
 
 class MilestoneModel extends Model {
   protected tableName: string;
@@ -14,7 +16,7 @@ class MilestoneModel extends Model {
   async select(): Promise<Array<Milestone>> {
     try {
       const result = await db.query<Milestone>(`SELECT * FROM MILESTONE`);
-      this.data = [...result[0]];
+      this.data = [...result[0].map(filter.nullFilter)];
       return this.data;
     } catch (err) {
       console.error(err);
@@ -22,12 +24,12 @@ class MilestoneModel extends Model {
     }
   }
 
-  async add(pData: Milestone): Promise<number> {
+  async add(pData: Milestone): Promise<any> {
     try {
       this.data = await super.insert(pData, this.tableName);
-      return this.data ? HTTPCODE.SUCCESS : HTTPCODE.FAIL;
+      return this.data ? makeResponse(HTTPCODE.SUCCESS, this.data) : makeResponse(HTTPCODE.FAIL, `fail insert`);
     } catch {
-      return HTTPCODE.SERVER_ERR;
+      return makeResponse(HTTPCODE.SERVER_ERR, `internal server error`);
     }
   }
 
