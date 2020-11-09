@@ -14,7 +14,7 @@ class UserModel extends Model {
     try {
       const result = await db.query<T>(`SELECT * FROM USER WHERE login_id = ? AND password = ?`, pData);
       this.data = [...result[0]];
-      return !!this.data.length;
+      return this.data.id;
     } catch (err) {
       console.error(err);
       throw err;
