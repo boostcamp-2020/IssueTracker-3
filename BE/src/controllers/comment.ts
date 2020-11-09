@@ -3,7 +3,7 @@ import CommentModel from "@models/comment";
 import { Comment } from "@interfaces/comment";
 import HTTPCODE from "@utils/magicnumber";
 
-const getIssueComment = async (req: Request, res: Response): Promise<Response> => {
+const get = async (req: Request, res: Response): Promise<Response> => {
   try {
     const result = await CommentModel.select(+req.params.issueid);
     return res.json(result);
@@ -42,4 +42,4 @@ const del = async (req: Request, res: Response): Promise<Response> => {
   return res.sendStatus(result);
 };
 
-export default { getIssueComment, add, edit, del };
+export default { get, add, edit, del };
