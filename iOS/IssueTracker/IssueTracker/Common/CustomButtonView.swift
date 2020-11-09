@@ -9,7 +9,7 @@ import UIKit
 
 class CustomButtonView: UIButton {
     var type: LabelType!
-    var text: String!
+    var text: String?
     var color: String!
 
     enum LabelType {
@@ -34,6 +34,7 @@ class CustomButtonView: UIButton {
     }
 
     func setting() {
+        guard text != "" else { return }
         self.setTitle(text, for: .normal)
         self.setTitleColor(.black, for: .normal)
         self.titleLabel?.font = UIFont.systemFont(ofSize: 13)
