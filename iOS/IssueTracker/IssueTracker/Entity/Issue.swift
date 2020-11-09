@@ -18,9 +18,9 @@ struct Issue: Codable {
     let milestoneID: String?
     let createdAt: String
     let closedAt: String?
-    let labels: [Label]
-    let assignee: [Assignee]
-    let milestone: [MileStone]
+    let labels: LabelList
+    let assignee: AssigneeList
+    let milestone: MilestoneList
     let comment: IssueComment
 
     enum CodingKeys: String, CodingKey {
@@ -30,10 +30,4 @@ struct Issue: Codable {
         case createdAt = "created_at"
         case closedAt = "closed_at"
     }
-}
-
-// MARK: - IssueComment
-struct IssueComment: Codable {
-    let comments: [Comment]
-    let counts: Int
 }

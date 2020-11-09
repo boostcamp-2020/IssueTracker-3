@@ -7,6 +7,8 @@
 
 import Foundation
 
+typealias AssigneeList = [Assignee]
+
 struct Assignee: Codable {
     let id: Int
     let issueID: Int

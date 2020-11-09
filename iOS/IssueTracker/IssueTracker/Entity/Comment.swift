@@ -7,7 +7,6 @@
 
 import Foundation
 
-// MARK: - CommentElement
 struct Comment: Codable {
     let id: Int
     let userID: Int
@@ -21,12 +20,10 @@ struct Comment: Codable {
     let closedAt: String
 
     enum CodingKeys: String, CodingKey {
-        case id
+        case id, body, emoji, title, state
         case userID = "user_id"
-        case body, emoji
         case createdAt = "created_at"
         case issueID = "issue_id"
-        case title, state
         case milestoneID = "milestone_id"
         case closedAt = "closed_at"
     }

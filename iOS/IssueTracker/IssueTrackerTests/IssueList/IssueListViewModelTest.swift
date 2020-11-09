@@ -49,7 +49,6 @@ class IssueListViewModelTest: XCTestCase {
         XCTAssertEqual(viewModel.labels.last?.currentTitleColor, .white)
 
         XCTAssertEqual(viewModel.labels.first?.isUserInteractionEnabled, true)
-
     }
 
 }
