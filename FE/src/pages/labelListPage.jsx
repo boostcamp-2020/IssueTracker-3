@@ -11,21 +11,33 @@ const StyledLabelListPage = styled.div`
   display: flex;
   border: 1px dotted black;
   margin: 5px;
+  flex-direction: column;
+`;
+const Header = styled.div`
+  display: flex;
+  flex-direction: row;
+`;
+const Combination = styled.div`
+  display: flex;
+  flex-direction: row;
+`;
+const Body = styled.div`
+  display: flex;
 `;
 function LabelListPage() {
   return (
     <StyledLabelListPage>
-      <div>
-        <LabelFilter />
-        <MoveToCreateLabelButton />
-        <div>
+      <Header>
+        <Combination>
           <MoveToLabelButton />
           <MoveToMaileStoneButton />
-        </div>
-      </div>
-      <div>
+        </Combination>
+        <LabelFilter />
+        <MoveToCreateLabelButton />
+      </Header>
+      <Body>
         <LabelList />
-      </div>
+      </Body>
     </StyledLabelListPage>
   );
 }

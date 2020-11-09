@@ -9,8 +9,8 @@ const StyledMoveToMaileStoneButton = styled.button`
   background-color: white;
   font-weight: bold;
   margin: 5px 0px;
-  border-top-left-radius: 4px;
-  border-bottom-left-radius: 4px;
+  border-top-right-radius: 4px;
+  border-bottom-right-radius: 4px;
 
   &:hover {
     background-color: aquamarine;
