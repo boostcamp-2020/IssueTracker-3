@@ -6,26 +6,25 @@
 //
 
 import Foundation
-import Alamofire
 
 enum SignInEndPoint: APIConfiguration {
-    case user(User)
-    case apple(AppleModel)
+    case user(Data)
+    case apple(Data)
 
     var method: HTTPMethod {
         return .get
     }
-
-    var parameters: RequestParams {
-        switch self {
-        case .apple(let data):
-            return .body(data.toJson())
-        case .user(let data):
-            return .body(data.toJson())
-        }
-    }
-
+    
     var path: String {
         return "/auth/login"
+    }
+
+    var body: Data? {
+        switch self {
+        case .user(let data):
+            return data
+        case .apple(let data):
+            return data
+        }
     }
 }
