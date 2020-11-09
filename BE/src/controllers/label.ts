@@ -16,18 +16,18 @@ const add = async (req: Request, res: Response): Promise<any> => {
   const label: Label = {
     id: null,
     name: req.body.name,
-    description: req.body.description,
+    description: req.body?.description ?? null,
     color: req.body.color,
     created_at: new Date(),
   };
   const result = await LabelModel.add(label);
-  return res.sendStatus(result);
+  return res.status(result.httpcode).json(result.message);
 };
 const edit = async (req: Request, res: Response): Promise<any> => {
   const label = {
     id: req.body.id,
     name: req.body.name,
-    description: req.body.description,
+    description: req.body?.description ?? null,
     color: req.body.color,
   };
   const result = await LabelModel.edit(label);
