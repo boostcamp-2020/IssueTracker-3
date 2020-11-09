@@ -19,7 +19,7 @@ protocol IssueListDisplayLogic: class {
   func displayFetchedIssues(viewModel: [IssueListViewModel])
 }
 
-class IssueListViewController: UIViewController {
+final class IssueListViewController: UIViewController {
     
     // MARK: Properties
     
