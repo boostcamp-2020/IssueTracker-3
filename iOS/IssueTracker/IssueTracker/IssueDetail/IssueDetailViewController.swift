@@ -8,7 +8,7 @@
 import UIKit
 
 final class IssueDetailViewController: UIViewController {
-    
+    static let identifier = "IssueDetailViewController"
     // MARK: Properties
     
     private weak var issueDetailBottomSheet: IssueDetailBottomSheetViewController!
@@ -22,7 +22,19 @@ final class IssueDetailViewController: UIViewController {
     var nextState: BottomSheetState {
         return cardVisible ? .collapsed : .expanded
     }
-    
+
+    private let id: Int?
+
+    init?(coder: NSCoder, id: Int) {
+        self.id = id
+        super.init(coder: coder)
+    }
+
+    required init?(coder: NSCoder) {
+        self.id = nil
+        super.init(coder: coder)
+    }
+
     // MARK: View Cycle
     
     override func viewDidLoad() {
@@ -37,6 +49,7 @@ final class IssueDetailViewController: UIViewController {
         super.viewDidDisappear(animated)
         tabBarController?.tabBar.isHidden = false
     }
+
 
     // MARK: Configure View
     
