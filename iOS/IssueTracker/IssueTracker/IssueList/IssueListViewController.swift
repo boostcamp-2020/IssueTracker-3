@@ -53,6 +53,7 @@ class IssueListViewController: UIViewController, IssueListDisplayLogic {
     override func viewDidLoad() {
         super.viewDidLoad()
         issueListModelController = IssueListModelController()
+
         configureNavigationItems()
         configureDataSource()
         configureCollectionLayoutList()
@@ -227,13 +228,14 @@ extension IssueListViewController: UISearchBarDelegate {
     }
     
     func performSearchQuery(with filter: String?) {
-//        let issueListItems = issueListModelController.filtered(with: filter ?? "",
-//                                                               model: issueList).sorted { $0.title < $1.title }
-//        var snapshot = NSDiffableDataSourceSnapshot<Section, IssueListViewModel>()
-//        snapshot.appendSections([.main])
-//        snapshot.appendItems(issueListItems)
-        
-//        dataSource.apply(snapshot, animatingDifferences: false)
+        let issueListItems = issueListModelController
+            .filteredBasedOnTitle(with: filter ?? "",
+                                  model: issueList).sorted { $0.title < $1.title }
+        var snapshot = NSDiffableDataSourceSnapshot<Section, IssueListViewModel>()
+        snapshot.appendSections([.main])
+        snapshot.appendItems(issueListItems)
+
+        dataSource.apply(snapshot, animatingDifferences: false)
     }
 }
 
@@ -298,29 +300,12 @@ extension IssueListViewController {
         issues.append(IssueListViewModel(
                         title: "test",
                         description: "설명",
-                        milestone: CustomButtonView(
-                            type: .milestone,
-                            text: "프로젝트",
-                            color: "#ffffff"),
+                        milestone: CustomButtonView(type: .milestone,
+                                                     text: "",
+                                                     color: "#ffffff"),
                         labels: [
-                            CustomButtonView(
-                                type: .label,
-                                text: "프로젝트",
-                                color: "#ffffff"
-                            ),
-                            CustomButtonView(
-                                type: .label,
-                                text: "프로젝트",
-                                color: "#ffffff"),
-                            CustomButtonView(
-                                type: .label,
-                                text: "프로젝트",
-                                color: "#ffffff"),
-                            CustomButtonView(
-                                type: .label,
-                                text: "프로젝트",
-                                color: "#ffffff")]))
-        
+                           ]))
+
         (1...10).forEach { number in
             issues.append(IssueListViewModel(
                             title: "haha\(number)",

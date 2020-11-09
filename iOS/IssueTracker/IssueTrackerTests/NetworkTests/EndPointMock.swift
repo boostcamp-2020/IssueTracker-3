@@ -10,14 +10,10 @@ import Foundation
 @testable import IssueTracker
 
 class EndPointMock: APIConfiguration {
-    typealias Data = UserTestModel
-    
+    let body = UserTestModel(park: "jaehyun", song: "minkwan")
+
     var method: HTTPMethod {
         .get
-    }
-    
-    var parameters: RequestParams<Data> {
-        .body(UserTestModel(park: "jaehyun", song: "minkwan"))
     }
 
     var path: String {
@@ -30,9 +26,7 @@ class EndPointMock: APIConfiguration {
 
         urlRequest.httpMethod = method.rawValue
 
-        if case let .body(params) = parameters {
-            urlRequest.httpBody = try JSONEncoder().encode(params)
-        }
+        urlRequest.httpBody = try JSONEncoder().encode(body)
 
         return urlRequest
     }

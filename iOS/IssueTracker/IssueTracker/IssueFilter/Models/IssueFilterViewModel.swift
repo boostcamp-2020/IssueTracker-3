@@ -8,7 +8,7 @@
 import UIKit
 
 class IssueFilterViewModel: Hashable {
-    let title: String
+    let title: Filter
 
     let chevronDirection: [ChevronDirection] // 지울예정
 
@@ -23,7 +23,7 @@ class IssueFilterViewModel: Hashable {
 
     var needsSeparator: Bool = true // 지울예정
 
-    init(title: String,
+    init(title: Filter,
          chevronDirection: [ChevronDirection],
          isChevron: Bool,
          hasChildren: Bool = false,

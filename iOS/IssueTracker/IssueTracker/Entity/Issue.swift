@@ -15,18 +15,25 @@ struct Issue: Codable {
     let body: String
     let userID: Int
     let state: Int
-    let milestoneID: Int?
+    let milestoneID: String?
     let createdAt: String
     let closedAt: String?
     let labels: [Label]
     let assignee: [Assignee]
     let milestone: [MileStone]
+    let comment: IssueComment
 
     enum CodingKeys: String, CodingKey {
-        case id, title, body, state, labels, assignee, milestone
+        case id, title, body, state, labels, assignee, milestone, comment
         case userID = "user_id"
         case milestoneID = "milestone_id"
         case createdAt = "created_at"
         case closedAt = "closed_at"
     }
+}
+
+// MARK: - IssueComment
+struct IssueComment: Codable {
+    let comments: [Comment]
+    let counts: Int
 }

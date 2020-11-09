@@ -12,22 +12,29 @@ struct IssueListViewModel: Hashable {
     let description: String
     let milestone: CustomButtonView
     let labels: [CustomButtonView]
+    let isOpen: Bool
+//    let author: String
     let identifier = UUID()
 
     init(title: String,
          description: String,
          milestone: CustomButtonView,
-         labels: [CustomButtonView]
+         labels: [CustomButtonView],
+         isOpen: Bool = false
+//         author: String
          ) {
         self.title = title
         self.description = description
         self.milestone = milestone
         self.labels = labels
+        self.isOpen = isOpen
+//        self.author = author
     }
     
     init(issue: Issue) {
         title = issue.title
         description = issue.body
+        isOpen = issue.state == 1 ? true : false
         milestone = CustomButtonView(type: .milestone, text: issue.milestone.first?.name ?? "", color: "#ffffff")
         labels = issue.labels.map { CustomButtonView(type: .label, text: $0.description, color: $0.color) }
     }
