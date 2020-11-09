@@ -52,6 +52,7 @@
 		BB52171B254A9EAF008455D4 /* OAuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB52171A254A9EAF008455D4 /* OAuthManager.swift */; };
 		BB65A046254FECA300D09DD5 /* IssueListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB65A045254FECA300D09DD5 /* IssueListViewController.swift */; };
 		BB65A04C254FED2000D09DD5 /* IssueDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB65A04B254FED2000D09DD5 /* IssueDetailViewController.swift */; };
+		BB74C2DE2559BFE700B0D3CE /* Encodable+encoded.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB74C2DD2559BFE700B0D3CE /* Encodable+encoded.swift */; };
 		BB91912425500E25007D25B7 /* CreateIssueViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB91912325500E25007D25B7 /* CreateIssueViewController.swift */; };
 		BBB2B6BE25595E3C001871D8 /* UserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBB2B6BD25595E3C001871D8 /* UserInfo.swift */; };
 		BBB2B6D325596078001871D8 /* Data+decoded.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBB2B6D225596078001871D8 /* Data+decoded.swift */; };
@@ -145,6 +146,7 @@
 		BB52171A254A9EAF008455D4 /* OAuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OAuthManager.swift; sourceTree = "<group>"; };
 		BB65A045254FECA300D09DD5 /* IssueListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueListViewController.swift; sourceTree = "<group>"; };
 		BB65A04B254FED2000D09DD5 /* IssueDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueDetailViewController.swift; sourceTree = "<group>"; };
+		BB74C2DD2559BFE700B0D3CE /* Encodable+encoded.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Encodable+encoded.swift"; sourceTree = "<group>"; };
 		BB91912325500E25007D25B7 /* CreateIssueViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateIssueViewController.swift; sourceTree = "<group>"; };
 		BBB2B6BD25595E3C001871D8 /* UserInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfo.swift; sourceTree = "<group>"; };
 		BBB2B6D225596078001871D8 /* Data+decoded.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data+decoded.swift"; sourceTree = "<group>"; };
@@ -329,6 +331,7 @@
 				70EE428625594A10007E0C5D /* UIColor+visibleTextColor.swift */,
 				70EE428B25594FAE007E0C5D /* UIColor+hexString.swift */,
 				BBB2B6D225596078001871D8 /* Data+decoded.swift */,
+				BB74C2DD2559BFE700B0D3CE /* Encodable+encoded.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -685,6 +688,7 @@
 				705931A625523F0A003FE49F /* String+toDate.swift in Sources */,
 				BBB3229825580B5D000F6CF3 /* Assignee.swift in Sources */,
 				BBE2861125503D8A00A59009 /* SettingViewController.swift in Sources */,
+				BB74C2DE2559BFE700B0D3CE /* Encodable+encoded.swift in Sources */,
 				BBCC49ED2547E8F300FAB2F4 /* SignInViewController.swift in Sources */,
 				BBB529582559777D001B708E /* SignInEndPoint.swift in Sources */,
 				BB65A04C254FED2000D09DD5 /* IssueDetailViewController.swift in Sources */,
