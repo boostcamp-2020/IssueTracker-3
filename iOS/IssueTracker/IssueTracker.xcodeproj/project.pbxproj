@@ -12,7 +12,7 @@
 		7012DC982549AF1B00EAADD7 /* SessionManagerStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7012DC972549AF1B00EAADD7 /* SessionManagerStub.swift */; };
 		701343B32549061B0044080A /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 701343B22549061B0044080A /* Alamofire */; };
 		701343BB254907AA0044080A /* NetworkManagerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 701343BA254907AA0044080A /* NetworkManagerTest.swift */; };
-		701343C125493A160044080A /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 701343C025493A160044080A /* NetworkManager.swift */; };
+		701343C125493A160044080A /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 701343C025493A160044080A /* NetworkService.swift */; };
 		7014F08F2557032D0059A8F3 /* AppleModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7014F08E2557032D0059A8F3 /* AppleModel.swift */; };
 		702D6C0B254A8E0100E1A706 /* SignInWithAppleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 702D6C0A254A8E0100E1A706 /* SignInWithAppleButton.swift */; };
 		702D6C38254AB0DB00E1A706 /* KeychainItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 702D6C37254AB0DB00E1A706 /* KeychainItem.swift */; };
@@ -97,7 +97,7 @@
 		7012DC932549AEE500EAADD7 /* EndPointMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndPointMock.swift; sourceTree = "<group>"; };
 		7012DC972549AF1B00EAADD7 /* SessionManagerStub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionManagerStub.swift; sourceTree = "<group>"; };
 		701343BA254907AA0044080A /* NetworkManagerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManagerTest.swift; sourceTree = "<group>"; };
-		701343C025493A160044080A /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		701343C025493A160044080A /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		7014F08E2557032D0059A8F3 /* AppleModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleModel.swift; sourceTree = "<group>"; };
 		702D6C0A254A8E0100E1A706 /* SignInWithAppleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInWithAppleButton.swift; sourceTree = "<group>"; };
 		702D6C1A254A937300E1A706 /* IssueTracker.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = IssueTracker.entitlements; sourceTree = "<group>"; };
@@ -216,7 +216,7 @@
 		701343B6254906D30044080A /* Network */ = {
 			isa = PBXGroup;
 			children = (
-				701343C025493A160044080A /* NetworkManager.swift */,
+				701343C025493A160044080A /* NetworkService.swift */,
 				BB41E026254963FA008245A3 /* APIConfiguration.swift */,
 				BB0D52742558E4FE009DEB8F /* NetworkError.swift */,
 			);
@@ -704,7 +704,7 @@
 				BBDDCBFA25591B3C008B8CBD /* IssueListInteractor.swift in Sources */,
 				70EE428725594A10007E0C5D /* UIColor+visibleTextColor.swift in Sources */,
 				705930D4254FFF63003FE49F /* IssueFilterViewController.swift in Sources */,
-				701343C125493A160044080A /* NetworkManager.swift in Sources */,
+				701343C125493A160044080A /* NetworkService.swift in Sources */,
 				BBB3229425580B00000F6CF3 /* Milestone.swift in Sources */,
 				708EFEEE2546DBC9009D9DEC /* AppDelegate.swift in Sources */,
 				BBB2B6CA25595FDF001871D8 /* SignInEndPoint.swift in Sources */,
