@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { hot } from "react-hot-loader";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
@@ -24,10 +24,12 @@ const StyledNumber = styled.span`
   margin: 0px 3px;
 `;
 function MoveToLabelButton() {
+  const numbers = 0;
+
   return (
     <Link to="./labellist" style={{ textDecoration: "none" }}>
       <StyledMoveToLabelButton>
-        라벨<StyledNumber>10</StyledNumber>
+        라벨<StyledNumber>{numbers}</StyledNumber>
       </StyledMoveToLabelButton>
     </Link>
   );
