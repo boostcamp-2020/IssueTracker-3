@@ -41,10 +41,13 @@ function LabelList() {
 }
 
 function Label({ name, color, description }) {
+  const Combination = styled.span`
+    border: 1px dotted black;
+    background-color: ${color || "RED"};
+  `;
   return (
     <StyledLabel>
-      <span>{name}</span>
-      <span>{color}</span>
+      <Combination>{name}</Combination>
       <span>{description}</span>
     </StyledLabel>
   );
