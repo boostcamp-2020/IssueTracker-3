@@ -127,7 +127,6 @@
                     <connections>
                         <outlet property="issueListCollectionView" destination="gMJ-9A-2wT" id="Gb3-Ij-daJ"/>
                         <outlet property="issueListToolBar" destination="iD5-I1-ahl" id="7UG-OP-fsm"/>
-                        <segue destination="lMJ-Dn-Q9j" kind="show" identifier="IssueDetailSegue" id="IF2-KY-5Vj"/>
                         <segue destination="5lT-kN-PTP" kind="presentation" identifier="IssueListFilterSegue" id="9bz-9u-sBs"/>
                     </connections>
                 </viewController>
@@ -243,7 +242,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" heightSizable="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Etv-eu-euX">
-                                <rect key="frame" x="0.0" y="88" width="414" height="725"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="769"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="v44-s4-Z1Y">
                                     <size key="itemSize" width="414" height="156"/>

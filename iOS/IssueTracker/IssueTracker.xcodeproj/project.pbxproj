@@ -308,8 +308,8 @@
 		7059318E25518495003FE49F /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				70ECC5BF25599457003C2AA0 /* Views */,
 				705931932551855C003FE49F /* Extension */,
-				7059319425518603003FE49F /* CustomButtonView.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -408,6 +408,14 @@
 				70ECC59F25597354003C2AA0 /* IssueListViewModelTest.swift */,
 			);
 			path = IssueList;
+			sourceTree = "<group>";
+		};
+		70ECC5BF25599457003C2AA0 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				7059319425518603003FE49F /* CustomButtonView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		70EE4291255953E2007E0C5D /* Models */ = {
