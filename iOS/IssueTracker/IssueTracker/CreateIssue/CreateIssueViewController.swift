@@ -7,21 +7,30 @@
 
 import UIKit
 
-class CreateIssueViewController: UIViewController {
+protocol CreateIssueDisplayLogic: class {
+  
+}
+
+final class CreateIssueViewController: UIViewController {
+    
+    // MARK: Properties
+    
     @IBOutlet private weak var titleLabel: UITextField!
     @IBOutlet private weak var commentTextView: UITextView!
     @IBOutlet private weak var segmentedControl: UISegmentedControl!
     @IBOutlet private weak var doneLeftBarButton: UIBarButtonItem!
     
-//    private var createIssueManager: CreateIssueManager!
+    // MARK: View Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         configurePlaceholder()
-//        createIssueManager = CreateIssueManager()
+        configureMenuItems()
     }
     
-    @IBAction func doneTouched(_ sender: UIBarButtonItem) {
+    // MARK: Actions
+    
+    @IBAction func writingDoneTouched(_ sender: UIBarButtonItem) {
         commentTextView.resignFirstResponder()
     }
     
@@ -42,16 +51,16 @@ class CreateIssueViewController: UIViewController {
 // MARK: UITextViewDelegate
 
 extension CreateIssueViewController: UITextViewDelegate {
+    private func configurePlaceholder() {
+        commentTextView.text = "코멘트는 여기에 작성하세요"
+        commentTextView.textColor = UIColor.lightGray
+    }
+    
     func textViewDidBeginEditing(_ textView: UITextView) {
         if textView.textColor == UIColor.lightGray {
             textView.text = nil
             textView.textColor = UIColor.black
         }
-        
-        let menuController = UIMenuController.shared
-        let imagePicker = UIMenuItem(title: "Insert Photo", action: #selector(insertPhotoDidTap))
-
-        menuController.menuItems = [imagePicker]
     }
 
     func textViewDidEndEditing(_ textView: UITextView) {
@@ -60,16 +69,17 @@ extension CreateIssueViewController: UITextViewDelegate {
         }
         commentTextView.resignFirstResponder()
     }
-    
-    private func configurePlaceholder() {
-        commentTextView.text = "코멘트는 여기에 작성하세요"
-        commentTextView.textColor = UIColor.lightGray
-    }
 }
 
 // MARK: UIMenuItem
 
 extension CreateIssueViewController {
+    private func configureMenuItems() {
+        let menuController = UIMenuController.shared
+        let imagePicker = UIMenuItem(title: "Insert Photo", action: #selector(insertPhotoDidTap))
+        menuController.menuItems = [imagePicker]
+    }
+    
     override func canPerformAction(_ action: Selector, withSender sender: Any!) -> Bool {
         if action == #selector(insertPhotoDidTap) ||
             action == #selector(cut(_ :)) ||

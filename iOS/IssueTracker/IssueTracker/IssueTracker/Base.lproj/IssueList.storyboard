@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17126"/>
         <capability name="Image references" minToolsVersion="12.0"/>
@@ -15,11 +14,11 @@
             <objects>
                 <viewController storyboardIdentifier="IssueListViewController" id="3gb-xx-251" customClass="IssueListViewController" customModule="IssueTracker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="LRX-0S-xiC">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="gMJ-9A-2wT">
-                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
+                                <rect key="frame" x="0.0" y="44" width="600" height="556"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Ejc-cX-RjK">
                                     <size key="itemSize" width="375" height="88"/>
@@ -29,7 +28,7 @@
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="IssueListCell" id="gwF-wj-lmi" customClass="IssueListCollectionViewCell" customModule="IssueTracker" customModuleProvider="target">
-                                        <rect key="frame" x="19.5" y="0.0" width="375" height="88"/>
+                                        <rect key="frame" x="112.5" y="0.0" width="375" height="88"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="fo3-Tu-moA">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="88"/>
@@ -82,7 +81,7 @@
                                 </connections>
                             </collectionView>
                             <toolbar hidden="YES" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iD5-I1-ahl">
-                                <rect key="frame" x="0.0" y="862" width="414" height="49"/>
+                                <rect key="frame" x="0.0" y="605" width="600" height="44"/>
                                 <items>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="Oa2-hU-bYZ"/>
                                     <barButtonItem title="선택 이슈 닫기" style="plain" id="uxy-Ej-z3D">
@@ -93,7 +92,7 @@
                                 </items>
                             </toolbar>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cWt-Qc-OJy">
-                                <rect key="frame" x="350" y="800" width="44" height="44"/>
+                                <rect key="frame" x="536" y="543" width="44" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="44" id="KB5-Wp-t6l"/>
                                     <constraint firstAttribute="height" constant="44" id="kJq-z1-UyL"/>
@@ -140,11 +139,11 @@
             <objects>
                 <viewController id="5lT-kN-PTP" customClass="IssueFilterViewController" customModule="IssueTracker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="HaT-do-bD0">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zQQ-ry-YoI">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="56"/>
                                 <items>
                                     <navigationItem largeTitleDisplayMode="always" id="wvP-Cz-i0S">
                                         <barButtonItem key="leftBarButtonItem" title="Cancel" id="qy8-sc-I8x">
@@ -161,22 +160,22 @@
                                 </items>
                             </navigationBar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="insetGrouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="ee0-7A-Cls">
-                                <rect key="frame" x="0.0" y="56" width="414" height="786"/>
+                                <rect key="frame" x="0.0" y="56" width="600" height="524"/>
                                 <color key="backgroundColor" systemColor="systemGray5Color"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="IssueFilterTableViewCell" id="P8O-bc-yAG" customClass="IssueFilterTableViewCell" customModule="IssueTracker" customModuleProvider="target">
-                                        <rect key="frame" x="20" y="55.5" width="374" height="43.5"/>
+                                        <rect key="frame" x="16" y="55.5" width="568" height="43.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="P8O-bc-yAG" id="hDq-xK-vcc" customClass="IssueFilterTableViewCell" customModule="IssueTracker" customModuleProvider="target">
-                                            <rect key="frame" x="0.0" y="0.0" width="374" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="568" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxY="YES"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" id="32p-ro-k0q">
-                                                    <rect key="frame" x="20" y="11" width="334" height="22"/>
+                                                    <rect key="frame" x="20" y="11" width="722" height="22"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="gSs-Sv-6YB">
-                                                            <rect key="frame" x="0.0" y="0.0" width="334" height="22"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="342" height="22"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
@@ -239,11 +238,11 @@
             <objects>
                 <viewController storyboardIdentifier="IssueDetailViewController" id="lMJ-Dn-Q9j" customClass="IssueDetailViewController" customModule="IssueTracker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="UDn-aR-Nou">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" heightSizable="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Etv-eu-euX">
-                                <rect key="frame" x="0.0" y="88" width="414" height="725"/>
+                                <rect key="frame" x="0.0" y="44" width="600" height="507"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="v44-s4-Z1Y">
                                     <size key="itemSize" width="414" height="156"/>
@@ -253,7 +252,7 @@
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="IssueDetailCell" id="i7D-p5-9yn" customClass="IssueDetailCollectionViewCell" customModule="IssueTracker" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="156"/>
+                                        <rect key="frame" x="93" y="0.0" width="414" height="156"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinY="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="2Wg-L9-NAK">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="156"/>
@@ -399,11 +398,11 @@ HTML형태로 보여줘야 할까요</string>
             <objects>
                 <viewController storyboardIdentifier="IssueDetailBottomSheet" title="IssueDetailBottomSheet" id="6Re-li-5VW" customClass="IssueDetailBottomSheetViewController" customModule="IssueTracker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="t5f-hx-K2G">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fig-JY-iaM">
-                                <rect key="frame" x="20" y="29" width="286" height="34"/>
+                                <rect key="frame" x="20" y="29" width="472" height="34"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
                                 <state key="normal" title="댓글 추가">
@@ -419,7 +418,7 @@ HTML형태로 보여줘야 할까요</string>
                                 </userDefinedRuntimeAttributes>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="e4T-jP-hwT">
-                                <rect key="frame" x="326" y="29" width="68" height="34"/>
+                                <rect key="frame" x="512" y="29" width="68" height="34"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tq7-kJ-FY0">
                                         <rect key="frame" x="0.0" y="0.0" width="34" height="34"/>
@@ -457,7 +456,7 @@ HTML형태로 보여줘야 할까요</string>
                                 </userDefinedRuntimeAttributes>
                             </stackView>
                             <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LAl-yU-t4E">
-                                <rect key="frame" x="182" y="8" width="50" height="5"/>
+                                <rect key="frame" x="275" y="8" width="50" height="5"/>
                                 <color key="backgroundColor" systemColor="systemGray4Color"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="5" id="Kuw-9T-nkB"/>
@@ -470,7 +469,7 @@ HTML형태로 보여줘야 할까요</string>
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EGf-yt-2Ys">
-                                <rect key="frame" x="20" y="754" width="374" height="34"/>
+                                <rect key="frame" x="20" y="526" width="560" height="34"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
                                 <state key="normal" title="Close Issue">
@@ -486,7 +485,7 @@ HTML형태로 보여줘야 할까요</string>
                                 </userDefinedRuntimeAttributes>
                             </button>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="NOz-qD-4cp">
-                                <rect key="frame" x="20" y="113" width="374" height="621"/>
+                                <rect key="frame" x="20" y="113" width="560" height="393"/>
                                 <color key="backgroundColor" systemColor="systemGray6Color"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="eTx-oD-F7W">
                                     <size key="itemSize" width="374" height="128"/>
@@ -496,7 +495,7 @@ HTML형태로 보여줘야 할까요</string>
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="XSJ-to-Dhg">
-                                        <rect key="frame" x="0.0" y="0.0" width="374" height="128"/>
+                                        <rect key="frame" x="93" y="0.0" width="374" height="128"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="BAV-q7-xJp">
                                             <rect key="frame" x="0.0" y="0.0" width="374" height="128"/>
@@ -548,11 +547,11 @@ HTML형태로 보여줘야 할까요</string>
             <objects>
                 <viewController id="sam-5C-mGZ" customClass="CreateIssueViewController" customModule="IssueTracker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Fi7-tt-66z">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9Oh-4V-DOR">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="56"/>
                                 <items>
                                     <navigationItem id="OGL-aS-dzZ">
                                         <barButtonItem key="leftBarButtonItem" title="Cancel" id="DIP-EE-fCT">
@@ -562,7 +561,7 @@ HTML형태로 보여줘야 할까요</string>
                                         </barButtonItem>
                                         <barButtonItem key="rightBarButtonItem" style="plain" systemItem="done" id="wWv-af-xp6">
                                             <connections>
-                                                <action selector="doneTouched:" destination="sam-5C-mGZ" id="V2S-yG-cLb"/>
+                                                <action selector="writingDoneTouched:" destination="sam-5C-mGZ" id="V2S-yG-cLb"/>
                                             </connections>
                                         </barButtonItem>
                                     </navigationItem>
@@ -575,26 +574,26 @@ HTML형태로 보여줘야 할까요</string>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="제목" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="d7M-AP-djI">
-                                <rect key="frame" x="12" y="133" width="390" height="22"/>
+                                <rect key="frame" x="12" y="133" width="576" height="22"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7Hw-mv-mKy" userLabel="Line View">
-                                <rect key="frame" x="12" y="163" width="390" height="1"/>
+                                <rect key="frame" x="12" y="163" width="576" height="1"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="1" id="thD-1L-Ku7"/>
                                 </constraints>
                             </view>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="fl3-aF-M7a">
-                                <rect key="frame" x="16" y="185" width="382" height="32"/>
+                                <rect key="frame" x="16" y="185" width="568" height="32"/>
                                 <segments>
                                     <segment title="마크다운"/>
                                     <segment title="미리보기"/>
                                 </segments>
                             </segmentedControl>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="코멘트는 여기에" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="7Qm-3i-rgo">
-                                <rect key="frame" x="20" y="223" width="374" height="416"/>
+                                <rect key="frame" x="20" y="223" width="560" height="188"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <color key="textColor" systemColor="labelColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -612,10 +611,10 @@ HTML형태로 보여줘야 할까요</string>
                                 </connections>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="gPh-1v-dK3">
-                                <rect key="frame" x="16" y="649" width="382" height="159"/>
+                                <rect key="frame" x="16" y="421" width="568" height="159"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nxX-92-7Ut">
-                                        <rect key="frame" x="0.0" y="0.0" width="382" height="53"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="568" height="53"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ULZ-I9-PsE">
                                                 <rect key="frame" x="0.0" y="0.0" width="41.5" height="53"/>
@@ -628,7 +627,7 @@ HTML형태로 보여줘야 할까요</string>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             </stackView>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xdb-fl-Av9">
-                                                <rect key="frame" x="336" y="0.0" width="46" height="53"/>
+                                                <rect key="frame" x="522" y="0.0" width="46" height="53"/>
                                                 <state key="normal" title="Button"/>
                                             </button>
                                         </subviews>
@@ -643,7 +642,7 @@ HTML형태로 보여줘야 할까요</string>
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8d7-Mb-0LY">
-                                        <rect key="frame" x="0.0" y="53" width="382" height="53"/>
+                                        <rect key="frame" x="0.0" y="53" width="568" height="53"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u2W-oX-p15">
                                                 <rect key="frame" x="0.0" y="0.0" width="41.5" height="53"/>
@@ -652,7 +651,7 @@ HTML형태로 보여줘야 할까요</string>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MwM-rk-z1b">
-                                                <rect key="frame" x="336" y="0.0" width="46" height="53"/>
+                                                <rect key="frame" x="522" y="0.0" width="46" height="53"/>
                                                 <state key="normal" title="Button"/>
                                             </button>
                                         </subviews>
@@ -667,7 +666,7 @@ HTML형태로 보여줘야 할까요</string>
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dVW-3w-QL5">
-                                        <rect key="frame" x="0.0" y="106" width="382" height="53"/>
+                                        <rect key="frame" x="0.0" y="106" width="568" height="53"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jeP-zT-j3L">
                                                 <rect key="frame" x="0.0" y="0.0" width="41.5" height="53"/>
@@ -676,7 +675,7 @@ HTML형태로 보여줘야 할까요</string>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fel-ZD-BkK">
-                                                <rect key="frame" x="336" y="0.0" width="46" height="53"/>
+                                                <rect key="frame" x="522" y="0.0" width="46" height="53"/>
                                                 <state key="normal" title="Button"/>
                                             </button>
                                         </subviews>
