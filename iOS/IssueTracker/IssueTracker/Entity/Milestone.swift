@@ -7,7 +7,7 @@
 
 import Foundation
 
-typealias MilestoneList = [MileStone]
+typealias MilestoneList = [Milestone]
 
 struct Milestone: Codable {
     let id: Int
