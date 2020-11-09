@@ -15,7 +15,7 @@ class LabelModel extends Model {
 
   async select(): Promise<Array<Label>> {
     try {
-      const data = await db.query(`select name, description, color, created_at from ${this.tableName}`);
+      const data = await db.query(`select * from ${this.tableName}`);
       this.data = [...data[0].map(filter.nullFilter)];
       return this.data;
     } catch (err) {
