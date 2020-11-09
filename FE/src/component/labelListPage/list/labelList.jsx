@@ -5,18 +5,19 @@ import useRequest from "../../../util/useRequest";
 
 const StyledLabelList = styled.div`
   display: flex;
-  border: 1px dotted black;
+  width: 100%;
+  border: 1px solid gray;
   margin: 5px;
   flex-direction: column;
 `;
 const StyledLabelHeader = styled.div`
   display: flex;
-  border: 1px dotted black;
+  border: 1px solid gray;
   margin: 5px;
 `;
 const StyledLabel = styled.div`
   display: flex;
-  border: 1px dotted black;
+  border: 1px solid gray;
   margin: 5px;
 `;
 function LabelList() {
@@ -42,13 +43,21 @@ function LabelList() {
 
 function Label({ name, color, description }) {
   const Combination = styled.span`
-    border: 1px dotted black;
+    width: 25%;
     background-color: ${color || "RED"};
+  `;
+  const Separate = styled.span`
+    width: 25%;
   `;
   return (
     <StyledLabel>
       <Combination>{name}</Combination>
-      <span>{description}</span>
+      <Separate>{description}</Separate>
+      <Separate />
+      <Separate>
+        <span>edit </span>
+        <span> delete</span>
+      </Separate>
     </StyledLabel>
   );
 }
