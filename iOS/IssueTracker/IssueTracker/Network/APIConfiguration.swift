@@ -7,7 +7,6 @@
 
 import Foundation
 
-
 protocol APIConfiguration {
     var method: HTTPMethod { get }
     var path: String { get }
@@ -51,7 +50,6 @@ enum HTTPHeader: CustomStringConvertible {
         }
     }
 }
-
 
 enum ContentType: CustomStringConvertible {
     case json
