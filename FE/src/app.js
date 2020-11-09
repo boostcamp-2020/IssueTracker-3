@@ -3,14 +3,14 @@ import { hot } from "react-hot-loader";
 import styled from "styled-components";
 import { Switch, Route, withRouter, type, BrowserRouter, ContextRouter, Router, Link } from "react-router-dom";
 
-import LoginPage from "./pages/loginPage";
-import IssueListPage from "./pages/issueListPage";
-import IssueDetailPage from "./pages/issueDetailPage";
-import IssueCreatePage from "./pages/issueCreatePage";
-import LabelListPage from "./pages/labelListPage";
-import MilestoneCreatePage from "./pages/milestoneCreatePage";
-import MilestoneListPage from "./pages/milestoneListPage";
-import RegisterPage from "./pages/registerPage";
+import LoginPage from "@pages/loginPage";
+import IssueListPage from "@pages/issueListPage";
+import IssueDetailPage from "@pages/issueDetailPage";
+import IssueCreatePage from "@pages/issueCreatePage";
+import LabelListPage from "@pages/labelListPage";
+import MilestoneCreatePage from "@pages/milestoneCreatePage";
+import MilestoneListPage from "@pages/milestoneListPage";
+import RegisterPage from "@pages/registerPage";
 
 const StyledContent = styled.div`
   display: flex;

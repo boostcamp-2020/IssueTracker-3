@@ -8,26 +8,23 @@ function useRequest(url, method, data = null) {
   const [response, setResponse] = useState(null);
   const [error, setError] = useState(null);
 
-  useEffect(
-    async () => {
-      setError(null); 
-      try {
-        setLoading(true); 
-        const res = await axios({
-          baseURL: HOST_ADDRESS,
-          method,
-          url,
-          data,
-        });
-        setResponse(res); 
-      } catch (e) {
-        setError(e); 
-      }
-      setLoading(false); 
-    },
-    [url] 
-  );
-  return [response, loading, error]; 
+  useEffect(async () => {
+    setError(null);
+    try {
+      setLoading(true);
+      const res = await axios({
+        baseURL: HOST_ADDRESS,
+        method,
+        url,
+        data,
+      });
+      setResponse(res);
+    } catch (e) {
+      setError(e);
+    }
+    setLoading(false);
+  }, [url]);
+  return [response, loading, error];
 }
 
 export default useRequest;

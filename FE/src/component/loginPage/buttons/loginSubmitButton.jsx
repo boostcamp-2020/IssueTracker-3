@@ -2,7 +2,7 @@ import React from "react";
 import { hot } from "react-hot-loader";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-import axiosApi from "../../../util/axiosApi";
+import axiosApi from "@util/axiosApi";
 
 const StyledSubmitButton = styled.button`
   display: flex;
