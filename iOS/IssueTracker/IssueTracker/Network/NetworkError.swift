@@ -13,4 +13,9 @@ enum NetworkError: Error {
     case requestFailure(message: String)
     case invalidResponse(message: String)
     case invalidData(message: String)
+
+    case informational(message: String)
+    case redirection(message: String)
+    case clientError(message: String)
+    case serverError(message: String)
 }
