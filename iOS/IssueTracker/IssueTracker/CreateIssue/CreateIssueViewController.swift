@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import MarkdownView
 
 protocol CreateIssueDisplayLogic: class {
   
@@ -17,8 +18,9 @@ final class CreateIssueViewController: UIViewController {
     
     @IBOutlet private weak var titleLabel: UITextField!
     @IBOutlet private weak var commentTextView: UITextView!
-    @IBOutlet private weak var segmentedControl: UISegmentedControl!
     @IBOutlet private weak var doneLeftBarButton: UIBarButtonItem!
+    
+    private var markdownPreview: MarkdownView?
     
     // MARK: View Cycle
     
@@ -29,6 +31,19 @@ final class CreateIssueViewController: UIViewController {
     }
     
     // MARK: Actions
+    
+    @IBAction func markdownSegmentedControlChanged(_ sender: UISegmentedControl) {
+        switch sender.selectedSegmentIndex {
+        case 0:
+          // markdown
+            return
+        case 1:
+          // preview
+            return
+        default:
+          return
+        }
+    }
     
     @IBAction func writingDoneTouched(_ sender: UIBarButtonItem) {
         commentTextView.resignFirstResponder()
@@ -45,6 +60,15 @@ final class CreateIssueViewController: UIViewController {
 
     @IBAction func cancelTouched(_ sender: UIBarButtonItem) {
         dismiss(animated: true, completion: nil)
+    }
+}
+
+// MARK: MarkdownPreview
+
+extension CreateIssueViewController {
+    private func configureMarkdownPreview() {
+        markdownPreview = MarkdownView()
+        
     }
 }
 
