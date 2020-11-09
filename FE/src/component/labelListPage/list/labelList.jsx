@@ -7,7 +7,6 @@ const StyledLabelList = styled.div`
   display: flex;
   width: 100%;
   border: 1px solid gray;
-  margin: 5px;
   flex-direction: column;
 `;
 const StyledLabelHeader = styled.div`

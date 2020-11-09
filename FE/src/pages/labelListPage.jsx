@@ -6,6 +6,7 @@ import MoveToLabelButton from "../component/labelListPage/buttons/moveToLabelBut
 import MoveToMaileStoneButton from "../component/labelListPage/buttons/moveToMilestoneButton";
 import LabelFilter from "../component/labelListPage/filter/labelFilter";
 import LabelList from "../component/labelListPage/list/labelList";
+import Dropdown from "../component/labelListPage/dropdown/createLabelDropdown";
 
 const StyledLabelListPage = styled.div`
   display: flex;
@@ -24,6 +25,7 @@ const Combination = styled.div`
 `;
 const Body = styled.div`
   display: flex;
+  flex-direction: column;
 `;
 function LabelListPage() {
   return (
@@ -37,6 +39,7 @@ function LabelListPage() {
         <MoveToCreateLabelButton />
       </Header>
       <Body>
+        <Dropdown />
         <LabelList />
       </Body>
     </StyledLabelListPage>
