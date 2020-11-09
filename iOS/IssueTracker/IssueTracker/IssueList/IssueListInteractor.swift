@@ -7,15 +7,15 @@
 
 import Foundation
 
+protocol IssueListDataStore {
+    var issues: IssueList { get set }
+}
+
 protocol IssueListBusinessLogic {
     func fetchIssues()
     func changeIssueState()
     //
     func filtered(with filter: String, model: [IssueListViewModel])
-}
-
-protocol IssueListDataStore {
-    var issues: IssueList { get set }
 }
 
 final class IssueListInteractor: IssueListDataStore {
@@ -50,7 +50,7 @@ extension IssueListInteractor: IssueListBusinessLogic {
     //
     func filtered(with filter: String, model: [IssueListViewModel]) {
         let filtered = model.filter { $0.contains(filter) }
-//        return filtered
+        // return filtered
     }
 
     //
