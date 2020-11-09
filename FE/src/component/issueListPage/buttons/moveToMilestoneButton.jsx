@@ -25,7 +25,7 @@ const StyledNumber = styled.span`
   margin: 0px 3px;
 `;
 function MoveToMilestoneButton() {
-  const [response, loading, error] = useRequest("http://101.101.210.34:3000/label");
+  const [response, loading, error] = useRequest("http://101.101.210.34:3000/milestone");
   if (loading) {
     return <div>로딩중..</div>;
   }
