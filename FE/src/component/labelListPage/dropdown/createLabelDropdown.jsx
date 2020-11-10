@@ -18,6 +18,9 @@ function CreateLabelDropdown() {
   const newLableColor = "#bfdadc";
 
   const Dropdown = "flex";
+  function DropdownHidden() {
+    this.Dropdown = "hidden";
+  }
   const StyledCreateLabelDropdown = styled.div`
     display: ${Dropdown};
     border: 1px dotted black;
@@ -46,7 +49,7 @@ function CreateLabelDropdown() {
         </Vertical>
         <Horizontal>
           <button>만들기</button>
-          <button>취소</button>
+          <button onClick={this.DropdownHidden()}>취소</button>
         </Horizontal>
       </Horizontal>
     </StyledCreateLabelDropdown>
