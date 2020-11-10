@@ -39,14 +39,26 @@ final class CreateIssueViewController: UIViewController {
     @IBOutlet private weak var commentTextView: UITextView!
     @IBOutlet private weak var doneLeftBarButton: UIBarButtonItem!
     
+    private var interactor: CreateIssueBusinessLogic!
     private var markdownPreview: MarkdownView?
     
     // MARK: View Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setup()
         configurePlaceholder()
         configureMenuItems()
+    }
+    
+    // MARK: Setup
+    
+    private func setup() {
+        let interactor = CreateIssueInteractor()
+        let presenter = CreateIssuePresenter()
+        self.interactor = interactor
+        interactor.presenter = presenter
+        presenter.viewController = self
     }
     
     // MARK: Actions
