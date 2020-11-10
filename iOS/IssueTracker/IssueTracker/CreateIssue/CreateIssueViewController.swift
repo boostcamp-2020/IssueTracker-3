@@ -24,11 +24,13 @@ protocol CreateIssueDisplayLogic: class {
 // TODO: 키보드 -> view 전체 올리기
 // TODO: 타이핑 중 아무곳 터치 -> 키보드 내리기
 
+// TODO: 이미지 링크
+// TODO: 링크 터치 구현
+
 // Details
 // TODO: 글 없어지면 placeholder 다시 뜨게 수정
 // TODO: UIMenuController 손 보기
 // TODO: refactoring -> 코드 최적화
-
 
 final class CreateIssueViewController: UIViewController {
     
