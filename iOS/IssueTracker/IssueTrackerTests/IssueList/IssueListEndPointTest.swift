@@ -11,7 +11,6 @@ import XCTest
 final class IssueListEndPointTest: XCTestCase {
 
     class NetworkServiceMock: NetworkServiceProvider {
-        var token: String = ""
         var request: (
             method: HTTPMethod,
             path: String,
