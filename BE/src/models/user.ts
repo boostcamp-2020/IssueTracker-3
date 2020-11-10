@@ -21,6 +21,17 @@ class UserModel extends Model {
     }
   }
 
+  async selectAll<T>(): Promise<boolean> {
+    try {
+      const result = await db.query<T>("SELECT * FROM USER");
+      this.data = [...result[0]];
+      return this.data;
+    } catch (err) {
+      console.error(err);
+      throw err;
+    }
+  }
+
   async add(pData: User): Promise<number> {
     try {
       this.data = await super.insert(pData, this.tableName);

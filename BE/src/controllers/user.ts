@@ -28,4 +28,12 @@ const find = async (userID: string, password: string): Promise<boolean> => {
     return false;
   }
 };
-export default { find, add };
+const getAll = async (): Promise<boolean> => {
+  try {
+    const result = await UserModel.selectAll();
+    return result;
+  } catch (err) {
+    return false;
+  }
+};
+export default { find, add, getAll };

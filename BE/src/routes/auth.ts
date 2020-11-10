@@ -7,6 +7,7 @@ const router = express.Router();
 router.post("/login", authController.login);
 
 router.get("/github", authController.github);
+router.get("/alluser", authController.getAllUser);
 router.get("/github/callback", authController.github, authController.githubLogin);
 router.get("/github/loginFail", authController.githubLoginFail);
 
