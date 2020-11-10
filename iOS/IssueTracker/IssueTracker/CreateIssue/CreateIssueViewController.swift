@@ -12,11 +12,29 @@ protocol CreateIssueDisplayLogic: class {
   
 }
 
+// Must
+// TODO: markdown preview
+// TODO: image link
+// TODO: upload logic (데이터 저장 + upload)
+// TODO: 밑에 3개 patch logic
+// TODO: 밑에 3개 view / vc 구현
+// TODO: VIP 구성
+// TODO: upload 후 alert or toast
+// TODO: 키보드 엔터 -> resign
+// TODO: 키보드 -> view 전체 올리기
+// TODO: 타이핑 중 아무곳 터치 -> 키보드 내리기
+
+// Details
+// TODO: 글 없어지면 placeholder 다시 뜨게 수정
+// TODO: UIMenuController 손 보기
+// TODO: refactoring -> 코드 최적화
+
+
 final class CreateIssueViewController: UIViewController {
     
     // MARK: Properties
     
-    @IBOutlet private weak var titleLabel: UITextField!
+    @IBOutlet private weak var titleTextField: UITextField!
     @IBOutlet private weak var commentTextView: UITextView!
     @IBOutlet private weak var doneLeftBarButton: UIBarButtonItem!
     
@@ -28,6 +46,7 @@ final class CreateIssueViewController: UIViewController {
         super.viewDidLoad()
         configurePlaceholder()
         configureMenuItems()
+        configureMarkdownPreview()
     }
     
     // MARK: Actions
@@ -35,11 +54,10 @@ final class CreateIssueViewController: UIViewController {
     @IBAction func markdownSegmentedControlChanged(_ sender: UISegmentedControl) {
         switch sender.selectedSegmentIndex {
         case 0:
-          // markdown
-            return
+            concealMarkdownPreview()
         case 1:
-          // preview
-            return
+            revealMarkdownPreview()
+            loadMarkdownPreview()
         default:
           return
         }
@@ -53,7 +71,7 @@ final class CreateIssueViewController: UIViewController {
         // Alert -> 성공 / 실패 시
         
         dismiss(animated: true) { [unowned self] in
-            let title = titleLabel.text
+            let title = titleTextField.text
             let comment = commentTextView.text
         }
     }
@@ -68,7 +86,43 @@ final class CreateIssueViewController: UIViewController {
 extension CreateIssueViewController {
     private func configureMarkdownPreview() {
         markdownPreview = MarkdownView()
+        guard let markdownPreview = markdownPreview else { return }
+        view.addSubview(markdownPreview)
+        markdownPreview.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            markdownPreview.topAnchor.constraint(equalTo: commentTextView.topAnchor),
+            markdownPreview.bottomAnchor.constraint(equalTo: commentTextView.bottomAnchor),
+            markdownPreview.leadingAnchor.constraint(equalTo: commentTextView.leadingAnchor),
+            markdownPreview.trailingAnchor.constraint(equalTo: commentTextView.trailingAnchor)
+        ])
+        concealMarkdownPreview()
+    }
+    
+    private func concealMarkdownPreview() {
+        markdownPreview?.isHidden = true
+        markdownPreview?.resignFirstResponder()
+        commentTextView.isHidden = false
+    }
+    
+    private func revealMarkdownPreview() {
+        commentTextView.isHidden = true
+        markdownPreview?.isHidden = false
+        markdownPreview?.becomeFirstResponder()
+    }
+    
+    private func loadMarkdownPreview() {
         
+        markdownPreview?.load(markdown: commentTextView.text)
+    }
+}
+
+// MARK: UITextFieldDelegate
+
+extension CreateIssueViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        commentTextView.becomeFirstResponder()
+        return true
     }
 }
 
