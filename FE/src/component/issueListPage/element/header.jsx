@@ -2,18 +2,12 @@ import React, { useEffect, useState } from "react";
 import { hot } from "react-hot-loader";
 import "react-dropdown/style.css";
 import LabelDropdown from "./labelDropdown";
+import MilestoneDropdown from "./milestoneDropdown";
 
 function IssueHeader(props) {
   const { setIssues, labels, milestones, originIssues } = props;
   const [condition, setCondition] = useState({ label: null, milestone: null });
-  const labelOption = labels.map((label) => {
-    return { value: label.name, label: label.name };
-  });
-  labelOption.unshift({ label: "issue with no label", value: null });
-  const milestoneOption = milestones.map((milestone) => {
-    return { value: milestone.name, label: milestone.name };
-  });
-  milestoneOption.unshift({ label: "issue with no milestone", value: null });
+
   useEffect(() => {
     const filtered = originIssues
       .filter((issue) => {
@@ -33,7 +27,8 @@ function IssueHeader(props) {
   }, [condition]);
   return (
     <>
-      <LabelDropdown labelOption={labelOption} setCondition={setCondition} condition={condition} />
+      <LabelDropdown labels={labels} setCondition={setCondition} condition={condition} />
+      <MilestoneDropdown milestones={milestones} setCondition={setCondition} condition={condition} />
     </>
   );
 }

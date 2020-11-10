@@ -4,7 +4,11 @@ import Dropdown from "react-dropdown";
 import "react-dropdown/style.css";
 
 function LabelDropdown(props) {
-  const { labelOption, setCondition, condition } = props;
+  const { labels, setCondition, condition } = props;
+  const labelOption = labels.map((label) => {
+    return { value: label.name, label: label.name };
+  });
+  labelOption.unshift({ label: "issue with no label", value: null });
   const onLabelHandler = (event) => {
     setCondition({ label: event.value, milestone: condition.milestone });
   };
