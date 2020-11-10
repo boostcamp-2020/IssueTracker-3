@@ -8,5 +8,8 @@
 import UIKit
 
 class MilestoneCollectionViewCell: UICollectionViewCell {
-    
+
+    func configure(viewModel: MilestoneViewModel) {
+       
+    }
 }
