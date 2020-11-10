@@ -18,7 +18,6 @@ final class SignInViewController: UIViewController {
 
     // MARK: View Cycle
 
-
     var text: String?
 
     override func viewDidLoad() {
@@ -38,12 +37,17 @@ final class SignInViewController: UIViewController {
 
     @IBAction func loginTouched(_ sender: Any) {
         let networkService = NetworkService()
-        networkService.request(apiConfiguration: SignInEndPoint.signIn) { result in
+        let user = User(userID: idTextField.text, password: pwTextField.text)
+
+        guard let encodedData = try? JSONEncoder().encode(user) else { return }
+
+        networkService.request(apiConfiguration: SignInEndPoint.signIn(encodedData)) { result in
             switch result {
             case .failure(let error):
                 debugPrint(error)
             case .success(let data):
-                debugPrint(data)
+                guard let data: RequestLogin = try? data.decoded() else { return }
+                self.viewControllerChange(jwt: data.jwt)
             }
         }
     }
@@ -59,18 +63,15 @@ final class SignInViewController: UIViewController {
                 return
             }
 
-            self.appleLoginNetworkService(authorizationCode: code, identityToken: token) {
-                self.showResultViewController(userIdentifier: user.id,
-                                              givenName: user.firstName,
-                                              familyName: user.lastName,
-                                              email: user.email)
+            self.appleLoginNetworkService(authorizationCode: code, identityToken: token) { jwt in
+                self.viewControllerChange(jwt: jwt)
             }
         }
     }
 
     private func appleLoginNetworkService(authorizationCode code: String,
                                           identityToken token: String,
-                                          handler: @escaping () -> Void) {
+                                          handler: @escaping (String?) -> Void) {
         let appleModel = AppleLogin(authorizationCode: code, identityToken: token)
         let networkService = NetworkService()
         let jsonEncoder = JSONEncoder()
@@ -87,8 +88,7 @@ final class SignInViewController: UIViewController {
                 guard let decodedData: RequestLogin = try? data.decoded() else {
                     return
                 }
-//                NetworkService.token = decodedData.jwt
-                handler()
+                handler(decodedData.jwt)
             }
         }
     }
@@ -99,10 +99,9 @@ final class SignInViewController: UIViewController {
 
     }
 
-    private func showResultViewController(userIdentifier: String?,
-                                          givenName: String?,
-                                          familyName: String?,
-                                          email: String?) {
+    private func viewControllerChange(jwt: String?) {
+        guard let jwt = jwt else { return }
+        NetworkService.token = jwt
         DispatchQueue.main.async {
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
 

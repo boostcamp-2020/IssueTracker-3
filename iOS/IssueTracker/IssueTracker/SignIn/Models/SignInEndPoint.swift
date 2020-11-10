@@ -8,7 +8,7 @@
 import Foundation
 
 enum SignInEndPoint: APIConfiguration {
-    case signIn
+    case signIn(Data)
     case signUp(Data)
     case apple(Data)
     case github
@@ -34,7 +34,7 @@ enum SignInEndPoint: APIConfiguration {
 
     var body: Data? {
         switch self {
-        case .signIn: return nil
+        case .signIn(let data): return data
         case .signUp(let data): return data
         case .apple(let data): return data
         case .github: return nil

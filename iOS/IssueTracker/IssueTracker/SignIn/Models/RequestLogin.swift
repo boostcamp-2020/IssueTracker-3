@@ -8,7 +8,8 @@
 import Foundation
 
 struct RequestLogin: Codable {
-    let state, jwt: String
+    let state: String
+    let jwt: String?
 
      enum CodingKeys: String, CodingKey {
          case state
