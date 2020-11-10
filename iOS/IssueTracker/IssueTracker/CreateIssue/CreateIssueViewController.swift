@@ -92,6 +92,10 @@ final class CreateIssueViewController: UIViewController {
     }
 }
 
+extension CreateIssueViewController: CreateIssueDisplayLogic {
+    
+}
+
 // MARK: MarkdownPreview
 
 extension CreateIssueViewController {
