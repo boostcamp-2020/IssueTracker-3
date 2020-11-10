@@ -42,7 +42,6 @@ class IssueListViewModelTest: XCTestCase {
 
         //Then
         XCTAssertEqual(viewModel.isOpen, true)
-        XCTAssertEqual(viewModel.milestone.type, .milestone)
         XCTAssertEqual(viewModel.labels.count, 2)
 
         XCTAssertEqual(viewModel.labels.first?.currentTitleColor, .black)
