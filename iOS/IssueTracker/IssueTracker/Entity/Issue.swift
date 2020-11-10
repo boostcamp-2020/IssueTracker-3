@@ -16,12 +16,27 @@ struct Issue: Codable {
     let userID: Int
     let state: Int
     let milestoneID: String?
-    let createdAt: String
+    let createdAt: String?
     let closedAt: String?
     let labels: LabelList?
     let assignee: AssigneeList?
     let milestone: MilestoneList?
     let comment: IssueComment?
+    
+    init(title issueTitle: String, body issueComment: String) {
+        id = 0
+        title = issueTitle
+        body = issueComment
+        userID = 0
+        state = 0
+        milestoneID = nil
+        createdAt = nil
+        closedAt = nil
+        labels = nil
+        assignee = nil
+        milestone = nil
+        comment = nil
+    }
 
     enum CodingKeys: String, CodingKey {
         case id, title, body, state, labels, assignee, milestone, comment
