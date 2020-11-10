@@ -35,8 +35,9 @@ struct IssueListViewModel: Hashable {
         title = issue.title
         description = issue.body
         isOpen = issue.state == 1 ? true : false
-        milestone = CustomButtonView(type: .milestone, text: issue.milestone.first?.name ?? "", color: "#ffffff")
-        labels = issue.labels.map { CustomButtonView(type: .label, text: $0.description, color: $0.color) }
+        milestone = CustomButtonView(type: .milestone, text: issue.milestone?.first?.name ?? "", color: "#ffffff")
+        labels = issue.labels?
+            .compactMap { CustomButtonView(type: .label, text: $0.description, color: $0.color) } ?? [CustomButtonView()]
     }
 
     func hash(into hasher: inout Hasher) {
