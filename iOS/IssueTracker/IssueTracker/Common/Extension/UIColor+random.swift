@@ -24,5 +24,4 @@ extension UIColor {
                        blue: .random(in: 0...1),
                        alpha: 1)
     }
-
 }

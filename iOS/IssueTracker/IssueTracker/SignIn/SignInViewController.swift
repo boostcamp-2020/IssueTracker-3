@@ -113,10 +113,6 @@ final class SignInViewController: UIViewController {
             print(token)
         }
     }
-    
-    @IBAction func signInWithAppleTouched(_ sender: UIButton) {
-        // TODO: 애플 로그인 검증
-    }
 }
 
 extension SignInViewController: ASWebAuthenticationPresentationContextProviding {

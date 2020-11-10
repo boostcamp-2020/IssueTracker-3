@@ -14,4 +14,6 @@ class SettingViewController: UIViewController {
 
     }
     
+    // 로그아웃
+    // 팀원 소개 + 깃허브 링크
 }

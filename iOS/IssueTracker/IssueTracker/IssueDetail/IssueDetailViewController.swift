@@ -13,6 +13,7 @@ protocol IssueDetailDisplayLogic: class {
 
 final class IssueDetailViewController: UIViewController, IssueDetailDisplayLogic {
     static let identifier = "IssueDetailViewController"
+    
     // MARK: Properties
     
     @IBOutlet weak var issueDetailCollectionView: UICollectionView!

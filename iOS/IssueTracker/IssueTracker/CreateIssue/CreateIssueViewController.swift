@@ -19,7 +19,6 @@ protocol CreateIssueDisplayLogic: class {
 // TODO: 밑에 3개 view / vc 구현
 // TODO: VIP 구성
 // TODO: upload 후 alert or toast
-// TODO: 키보드 엔터 -> resign
 // TODO: 키보드 -> view 전체 올리기
 // TODO: 타이핑 중 아무곳 터치 -> 키보드 내리기
 

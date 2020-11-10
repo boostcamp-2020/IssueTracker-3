@@ -8,7 +8,6 @@
 import Foundation
 
 extension String {
-
     /// String 타입 url을 URL타입으로 변환
     ///```
     ///let url = "http://asURL.com"

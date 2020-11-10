@@ -3,7 +3,7 @@
 //  IssueTracker
 //
 //  Created by ParkJaeHyun on 2020/10/29.
-// test
+//  
 
 import UIKit
 import AuthenticationServices
@@ -87,14 +87,16 @@ class AppleSignInButton: UIView {
     }
 }
 
-// MARK: - Presentation Context Provider Delegate
+// MARK: Presentation Context Provider Delegate
+
 extension AppleSignInButton: ASAuthorizationControllerPresentationContextProviding {
     func presentationAnchor(for controller: ASAuthorizationController) -> ASPresentationAnchor {
         return self.window!
     }
 }
 
-// MARK: - ASAuthorizationController Delegate
+// MARK: ASAuthorizationController Delegate
+
 extension AppleSignInButton: ASAuthorizationControllerDelegate {
     func authorizationController(controller: ASAuthorizationController, didCompleteWithError error: Error) {
         let alertBox = UIAlertController.init(title: AppSignInStrings.appleSignInFailedTitle.localized,
