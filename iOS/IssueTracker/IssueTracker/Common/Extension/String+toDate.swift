@@ -18,6 +18,7 @@ extension String {
     /// - Returns: "yyyy-MM-dd'T'HH:mm:ss.SSSZ" 형식의 Date 타입
   func toDate() -> Date? {
     let dateFormatter = DateFormatter()
+    dateFormatter.timeZone = TimeZone(secondsFromGMT: 0)
     dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
     //"yyyy-MM-dd'T'HH:mm:ssZ"
     let date: Date? = dateFormatter.date(from: self)
