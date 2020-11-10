@@ -41,6 +41,7 @@
 		708EFEFA2546DBCA009D9DEC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 708EFEF82546DBCA009D9DEC /* LaunchScreen.storyboard */; };
 		708EFF052546DBCB009D9DEC /* IssueTrackerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 708EFF042546DBCB009D9DEC /* IssueTrackerTests.swift */; };
 		709E018B255AAE1300503654 /* String+asURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 709E018A255AAE1300503654 /* String+asURL.swift */; };
+		709E0193255AB73C00503654 /* KeychainAccess.swift in Sources */ = {isa = PBXBuildFile; fileRef = 709E0192255AB73C00503654 /* KeychainAccess.swift */; };
 		70B0A13E2552850600E0E130 /* IssueFilterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70B0A13D2552850500E0E130 /* IssueFilterViewModel.swift */; };
 		70ECC5A025597354003C2AA0 /* IssueListViewModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70ECC59F25597354003C2AA0 /* IssueListViewModelTest.swift */; };
 		70ECC5C325599983003C2AA0 /* IssueDetailInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70ECC5C225599983003C2AA0 /* IssueDetailInteractor.swift */; };
@@ -147,6 +148,7 @@
 		708EFF042546DBCB009D9DEC /* IssueTrackerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueTrackerTests.swift; sourceTree = "<group>"; };
 		708EFF062546DBCB009D9DEC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		709E018A255AAE1300503654 /* String+asURL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+asURL.swift"; sourceTree = "<group>"; };
+		709E0192255AB73C00503654 /* KeychainAccess.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainAccess.swift; sourceTree = "<group>"; };
 		70B0A13D2552850500E0E130 /* IssueFilterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueFilterViewModel.swift; sourceTree = "<group>"; };
 		70ECC59F25597354003C2AA0 /* IssueListViewModelTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueListViewModelTest.swift; sourceTree = "<group>"; };
 		70ECC5C225599983003C2AA0 /* IssueDetailInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueDetailInteractor.swift; sourceTree = "<group>"; };
@@ -330,6 +332,7 @@
 			children = (
 				70ECC5BF25599457003C2AA0 /* Views */,
 				705931932551855C003FE49F /* Extension */,
+				709E0192255AB73C00503654 /* KeychainAccess.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -754,6 +757,7 @@
 				70ECC5DE255A5328003C2AA0 /* LabelViewModel.swift in Sources */,
 				70EE429A25595545007E0C5D /* IssueDetailEndPoint.swift in Sources */,
 				7059319025518527003FE49F /* UIVIew+snapshot.swift in Sources */,
+				709E0193255AB73C00503654 /* KeychainAccess.swift in Sources */,
 				70ECC5D9255A5287003C2AA0 /* LabelViewController.swift in Sources */,
 				BB0D52752558E4FF009DEB8F /* NetworkError.swift in Sources */,
 				BBCC49F32547E9FD00FAB2F4 /* UIView+IBInspectable.swift in Sources */,

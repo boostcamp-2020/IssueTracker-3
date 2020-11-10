@@ -12,7 +12,7 @@ protocol NetworkServiceProvider {
 }
 
 class NetworkService: NetworkServiceProvider {
-    @KeyChain("token", defaultValue: "") static var token: String
+    @KeyChain(key: "token") static var token: String
     private let session: URLSession
     
     init(with urlSession: URLSession = .init(configuration: .default)) {
