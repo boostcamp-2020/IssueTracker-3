@@ -63,13 +63,13 @@ class IssueListViewController: UIViewController, IssueListDisplayLogic {
         interactor.fetchIssues()
     }
 
-    private var displayedStore = [IssueListViewModel]()
+    private var displayedIssue = [IssueListViewModel]()
 
     func displayFetchedIssues(viewModel: [IssueListViewModel]) {
-        displayedStore = viewModel
+        displayedIssue = viewModel
         var snapshot = NSDiffableDataSourceSnapshot<Section, IssueListViewModel>()
         snapshot.appendSections([.main])
-        snapshot.appendItems(displayedStore)
+        snapshot.appendItems(displayedIssue)
         dataSource.apply(snapshot, animatingDifferences: false)
     }
 
@@ -219,7 +219,7 @@ extension IssueListViewController: UISearchBarDelegate {
     func performSearchQuery(with filter: String?) {
         let issueListItems = issueListModelController
             .filteredBasedOnTitle(with: filter ?? "",
-                                  model: displayedStore).sorted { $0.title < $1.title }
+                                  model: displayedIssue).sorted { $0.title < $1.title }
         var snapshot = NSDiffableDataSourceSnapshot<Section, IssueListViewModel>()
         snapshot.appendSections([.main])
         snapshot.appendItems(issueListItems)
@@ -252,7 +252,7 @@ extension IssueListViewController {
 extension IssueListViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard isEditing else {
-            let sender = displayedStore[indexPath.row]
+            let sender = displayedIssue[indexPath.row]
             guard let issueDetailViewController = self.storyboard?.instantiateViewController(
                         identifier: IssueDetailViewController.identifier,
                         creator: { coder -> IssueDetailViewController? in

@@ -8,9 +8,9 @@
 import UIKit
 
 class CustomButtonView: UIButton {
-    var type: LabelType!
-    var text: String?
-    var color: String!
+    private var type: LabelType!
+    private var title: String?
+    private var color: String!
 
     enum LabelType {
         case milestone
@@ -29,7 +29,7 @@ class CustomButtonView: UIButton {
     convenience init(type: LabelType, text: String?, color: String) {
         self.init(frame: .zero)
         self.type = type
-        self.text = text
+        title = text
         self.color = color
         setting()
     }
@@ -39,8 +39,8 @@ class CustomButtonView: UIButton {
     }
 
     func setting() {
-        self.isHidden = text == nil
-        guard let text = text else {
+        self.isHidden = (title == nil)
+        guard let text = title else {
             return
         }
         let uiColor = UIColor(hex: color)
