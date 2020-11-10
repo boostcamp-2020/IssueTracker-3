@@ -8,6 +8,6 @@
 import Foundation
 
 struct IssueComment: Codable {
-    let comments: [Comment]
+    let comments: CommentList
     let counts: Int
 }

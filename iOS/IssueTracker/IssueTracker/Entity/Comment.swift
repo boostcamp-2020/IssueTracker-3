@@ -7,17 +7,41 @@
 
 import Foundation
 
+typealias DetailCommentList = [DetailComment]
+
+import Foundation
+
+// MARK: - IssueElement
+struct DetailComment: Codable {
+    let id: Int
+    let body: String
+    let createdAt: String
+    let emoji: String
+    let loginID: String
+    let img: String
+
+    enum CodingKeys: String, CodingKey {
+        case id, body
+        case createdAt = "created_at"
+        case emoji
+        case loginID = "login_id"
+        case img
+    }
+}
+
+typealias CommentList = [Comment]
+
 struct Comment: Codable {
     let id: Int
-    let userID: Int
+    let userID: Int?
     let body: String
     let emoji: String
-    let issueID: Int
+    let issueID: Int?
     let createdAt: String
-    let title: String
-    let state: Int
-    let milestoneID: String
-    let closedAt: String
+    let title: String?
+    let state: Int?
+    let milestoneID: String?
+    let closedAt: String?
 
     enum CodingKeys: String, CodingKey {
         case id, body, emoji, title, state
