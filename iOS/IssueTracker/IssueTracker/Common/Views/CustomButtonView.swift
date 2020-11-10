@@ -39,7 +39,7 @@ class CustomButtonView: UIButton {
     }
 
     func setting() {
-        self.isHidden = (title == nil)
+        self.isHidden = (title == "")
         guard let text = title else {
             return
         }

@@ -8,7 +8,6 @@
 import Foundation
 
 protocol NetworkServiceProvider {
-    static var token: String { get set }
     func request(apiConfiguration: APIConfiguration, handler: @escaping (Result<Data, NetworkError>) -> Void)
 }
 

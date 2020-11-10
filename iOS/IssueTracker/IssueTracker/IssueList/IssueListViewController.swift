@@ -51,10 +51,10 @@ final class IssueListViewController: UIViewController {
         configureDataSource()
         configureCollectionLayoutList()
         configureNavigationItems()
+        issueListModelController = IssueListModelController()
         performSearchQuery(with: nil)
         showSearchBar()
         //
-        issueListModelController = IssueListModelController()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -235,8 +235,7 @@ extension IssueListViewController {
         var snapshot = dataSource.snapshot()
         switch type {
         case .append:
-            snapshot.appendSections([.main])
-            snapshot.appendItems(items)
+            snapshot.appendItems(items, toSection: .main)
         case .delete:
             snapshot.deleteItems(items)
         }
