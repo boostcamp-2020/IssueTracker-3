@@ -581,6 +581,9 @@ HTML형태로 보여줘야 할까요</string>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="sam-5C-mGZ" id="CbZ-cl-L2g"/>
+                                </connections>
                             </textField>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7Hw-mv-mKy" userLabel="Line View">
                                 <rect key="frame" x="12" y="163.5" width="390" height="1"/>
@@ -806,6 +809,7 @@ HTML형태로 보여줘야 할까요</string>
                     <connections>
                         <outlet property="commentTextView" destination="7Qm-3i-rgo" id="8Il-OV-zug"/>
                         <outlet property="doneLeftBarButton" destination="wWv-af-xp6" id="Tdg-st-9he"/>
+                        <outlet property="titleTextField" destination="pVE-zb-SvA" id="TON-7D-hMl"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ezo-gz-1R1" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
