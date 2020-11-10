@@ -12,29 +12,48 @@ protocol CreateIssueDataStore {
 }
 
 protocol CreateIssueBusinessLogic {
-    func uploadIssue()
+    func uploadIssue(title: String, comment: String)
 }
 
 final class CreateIssueInteractor: CreateIssueDataStore {
     let networkService: NetworkServiceProvider = NetworkService()
     var presenter: IssueListPresentationLogic?
     var createdIssue: Issue?
+    var issueID: Int?
+    
+    private func createIssue(title: String, comment: String) -> Issue {
+        return Issue(id: 0,
+                     title: title,
+                     body: comment,
+                     userID: 0, // self UserID
+                     state: 1,
+                     milestoneID: nil,
+                     createdAt: DateFormatter().string(from: Date()),
+                     closedAt: nil,
+                     labels: nil,
+                     assignee: nil,
+                     milestone: nil,
+                     comment: nil)
+    }
 }
 
 extension CreateIssueInteractor: CreateIssueBusinessLogic {
-    func uploadIssue() {
+    func uploadIssue(title: String, comment: String) {
         guard let data = try? createdIssue?.encoded() else {
             // Error 처리
             return
         }
-        // post
         networkService.request(apiConfiguration: CreateIssueEndPoint.upload(data)) { [weak self] result in
             switch result {
             case .failure(_):
                 print("create issue 실패")
                 // Error 처리
                 return
-            case .success(let _):
+            case .success(let data):
+                guard let decodedData: Int = try? data.decoded() else {
+                    print("upload response decode 실패")
+                    return
+                }
                 // 성공 처리
                 return
             }
