@@ -7,23 +7,88 @@
 
 import UIKit
 
-class MilestoneViewController: UIViewController {
+protocol MilestoneDisplayLogic: class {
+    func displayFetchedMilestones(viewModel: [MilestoneViewModel])
+}
+
+final class MilestoneViewController: UIViewController {
+    
+    // MARK: Properties
+    
+    @IBOutlet private weak var milestoneCollectionView: UICollectionView!
+    
+    private var dataSource: UICollectionViewDiffableDataSource<Section, MilestoneViewModel>!
+    private var interactor: MilestoneBusinessLogic!
+    private var displayedMilestones = [MilestoneViewModel]()
+    
+    // MARK: Enums
+    
+    enum Section {
+        case main
+    }
+    
+    // MARK: View Cycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        configureDataSource()
+        setup()
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        interactor.fetchMilestones()
     }
-    */
+    
+    // MARK: Setup
+    
+    private func setup() {
+        let interactor = MilestoneInteractor()
+        let presenter = MilestonePresenter()
+        self.interactor = interactor
+        interactor.presenter = presenter
+        presenter.viewController = self
+    }
+    
+    // MARK: Actions
+}
 
+// MARK: MilestoneDisplayLogic
+
+extension MilestoneViewController: MilestoneDisplayLogic {
+    func displayFetchedMilestones(viewModel: [MilestoneViewModel]) {
+        displayedMilestones = viewModel
+        var snapshot = NSDiffableDataSourceSnapshot<Section, MilestoneViewModel>()
+        snapshot.appendSections([.main])
+        snapshot.appendItems(displayedMilestones)
+        dataSource.apply(snapshot, animatingDifferences: false)
+    }
+}
+
+// MARK: UICollectionView DataSource
+
+extension MilestoneViewController {
+    func configureDataSource() {
+        dataSource = UICollectionViewDiffableDataSource<Section, MilestoneViewModel>(
+            collectionView: milestoneCollectionView,
+            cellProvider: {(collectionView, indexPath, item) -> UICollectionViewCell? in
+                guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MilestoneCollectionViewCell",
+                                                                    for: indexPath) as? MilestoneCollectionViewCell
+                else {
+                    return UICollectionViewCell()
+                }
+                cell.configure(viewModel: item)
+                return cell
+            })
+    }
+}
+
+// MARK: UICollectionViewDelegateFlowLayout
+
+extension MilestoneViewController: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return .init(width: self.view.bounds.width, height: 90)
+    }
 }
