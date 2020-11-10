@@ -104,7 +104,9 @@ final class SignInViewController: UIViewController {
     // MARK: Action Functions
     
     @IBAction func signInWithGitHubTouched(_ sender: UIButton) {
-        OAuthManager.init(provider: self).reqeustToken(url: SignInEndPoint.github.path) { token in
+        let baseURL = APIServer.baseURL
+        let url = baseURL + SignInEndPoint.github.path
+        OAuthManager.init(provider: self).reqeustToken(url: url) { token in
             guard token != "" else {
                 print("nilnil닐닐")
                 return
