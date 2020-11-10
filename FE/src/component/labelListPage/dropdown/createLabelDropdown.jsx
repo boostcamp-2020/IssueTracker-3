@@ -49,7 +49,6 @@ function CreateLabelDropdown(props) {
   const debouncedColorHander = debounce(onColorHander, 1000);
 
   const newLabel = async () => {
-    console.log(data);
     if (data.name.length === 0) {
       alert("이름을 입력하세요 !");
       return;

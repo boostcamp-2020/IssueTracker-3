@@ -56,7 +56,7 @@ function LabelListPage() {
       </Header>
       <Body>
         <CreateLabelDropdown visible={visible} event={Dropdown} setLabels={setLabels} />
-        <LabelList labels={labels} />
+        <LabelList labels={labels} setLabels={setLabels} />
       </Body>
     </StyledLabelListPage>
   );

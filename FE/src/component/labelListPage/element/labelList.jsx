@@ -17,12 +17,12 @@ const StyledLabelHeader = styled.div`
 `;
 
 function LabelList(props) {
-  const { labels } = props;
+  const { labels, setLabels } = props;
   return (
     <StyledLabelList>
       <StyledLabelHeader>Label List header</StyledLabelHeader>
       {labels?.map((label, index) => (
-        <Label key={index} name={label.name} color={label.color} description={label.description} />
+        <Label key={index} labelid={label.id} name={label.name} color={label.color} description={label.description} setLabels={setLabels} />
       ))}
     </StyledLabelList>
   );
