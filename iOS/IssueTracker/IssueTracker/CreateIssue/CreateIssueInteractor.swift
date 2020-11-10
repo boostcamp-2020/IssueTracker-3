@@ -19,7 +19,7 @@ final class CreateIssueInteractor: CreateIssueDataStore {
     let networkService: NetworkServiceProvider = NetworkService()
     var presenter: IssueListPresentationLogic?
     var createdIssue: Issue?
-    var issueID: Int?
+    private var issueID: Int?
     
     private func createIssue(title: String, comment: String) -> Issue {
         return Issue(title: title, body: comment)
@@ -28,6 +28,7 @@ final class CreateIssueInteractor: CreateIssueDataStore {
 
 extension CreateIssueInteractor: CreateIssueBusinessLogic {
     func uploadIssue(title: String, comment: String) {
+        createdIssue = createIssue(title: title, comment: comment)
         guard let data = try? createdIssue?.encoded() else {
             // Error 처리
             return
@@ -44,11 +45,10 @@ extension CreateIssueInteractor: CreateIssueBusinessLogic {
                     return
                 }
                 self?.issueID = decodedData
-                
+                // patch - label 등 나머지
                 return
             }
         }
-        // patch - label 등 나머지
     }
     
     func uploadIssueComponents() {
