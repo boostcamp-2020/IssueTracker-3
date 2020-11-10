@@ -59,5 +59,9 @@ function logout(req: Request, res: Response): Response<JSON> {
 function githubLoginFail(req: Request, res: Response): Response<JSON> {
   return res.json({ state: "fail" });
 }
+async function getAllUser(req: Request, res: Response): Promise<Response<JSON>> {
+  const result = await userController.getAll();
+  return res.json(result);
+}
 const github = passport.authenticate("github", { failureRedirect: "/auth/github/loginFail" });
-export default { login, logout, githubLogin, githubLoginFail, github, apple };
+export default { login, logout, githubLogin, githubLoginFail, github, apple, getAllUser };
