@@ -22,33 +22,33 @@
                                 <rect key="frame" x="0.0" y="88" width="414" height="774"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="SNs-KK-CzQ">
-                                    <size key="itemSize" width="401" height="90"/>
+                                    <size key="itemSize" width="401" height="88"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="MilestoneCollectionViewCell" id="Qkf-sb-QRX">
-                                        <rect key="frame" x="6.5" y="0.0" width="401" height="90"/>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="MilestoneCollectionViewCell" id="Qkf-sb-QRX" customClass="MilestoneCollectionViewCell" customModule="IssueTracker" customModuleProvider="target">
+                                        <rect key="frame" x="6.5" y="0.0" width="401" height="88"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="GaA-4y-ypW" customClass="MilestoneCollectionViewCell" customModule="IssueTracker" customModuleProvider="target">
-                                            <rect key="frame" x="0.0" y="0.0" width="401" height="90"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="401" height="88"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="nsi-YL-BbN">
-                                                    <rect key="frame" x="20" y="11" width="121" height="41"/>
+                                                    <rect key="frame" x="20" y="11" width="121" height="39"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" priority="250" constant="121" id="hop-3P-eYe"/>
                                                     </constraints>
                                                 </stackView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="이번 배포를 위한 스프린트" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zhk-6P-1FN">
-                                                    <rect key="frame" x="20" y="62" width="154.5" height="18"/>
+                                                    <rect key="frame" x="20" y="60" width="154.5" height="18"/>
                                                     <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
                                                     <color key="textColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.84999999999999998" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2020년 6월 19일까지" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dfL-mA-312">
-                                                    <rect key="frame" x="156" y="23.5" width="118" height="16"/>
+                                                    <rect key="frame" x="156" y="22.5" width="118" height="16"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                     <color key="textColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.84999999999999998" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -87,9 +87,9 @@
                                                 <constraint firstAttribute="trailing" secondItem="iw7-mc-X02" secondAttribute="trailing" constant="15" id="L6J-cE-aOz"/>
                                                 <constraint firstItem="dfL-mA-312" firstAttribute="leading" secondItem="nsi-YL-BbN" secondAttribute="trailing" constant="15" id="M7l-BQ-DMh"/>
                                                 <constraint firstItem="llz-hk-2W5" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="zhk-6P-1FN" secondAttribute="trailing" constant="10" id="ehb-3r-2yu"/>
+                                                <constraint firstAttribute="bottom" secondItem="iw7-mc-X02" secondAttribute="bottom" priority="750" constant="8" id="h2w-2G-qiR"/>
                                                 <constraint firstItem="nsi-YL-BbN" firstAttribute="centerY" secondItem="dfL-mA-312" secondAttribute="centerY" id="hby-1x-fFn"/>
                                                 <constraint firstItem="iw7-mc-X02" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="dfL-mA-312" secondAttribute="trailing" constant="10" id="k8c-9g-eeH"/>
-                                                <constraint firstAttribute="bottom" secondItem="iw7-mc-X02" secondAttribute="bottom" constant="10" id="oDa-KN-3Mn"/>
                                                 <constraint firstItem="tGc-Op-YDK" firstAttribute="top" secondItem="GaA-4y-ypW" secondAttribute="top" constant="14" id="ote-WR-YbX"/>
                                                 <constraint firstAttribute="trailing" secondItem="tGc-Op-YDK" secondAttribute="trailing" constant="15" id="pYw-tB-Vko"/>
                                                 <constraint firstItem="tGc-Op-YDK" firstAttribute="trailing" secondItem="llz-hk-2W5" secondAttribute="trailing" id="qYq-dV-jk6"/>
@@ -97,7 +97,15 @@
                                                 <constraint firstItem="tGc-Op-YDK" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="zhk-6P-1FN" secondAttribute="trailing" constant="10" id="wA1-dl-Boc"/>
                                             </constraints>
                                         </collectionViewCellContentView>
-                                        <size key="customSize" width="401" height="90"/>
+                                        <size key="customSize" width="401" height="88"/>
+                                        <connections>
+                                            <outlet property="closedIssuesCountLabel" destination="iw7-mc-X02" id="hek-a2-RiT"/>
+                                            <outlet property="descriptionLabel" destination="zhk-6P-1FN" id="Koj-Nj-t3x"/>
+                                            <outlet property="dueDateLabel" destination="dfL-mA-312" id="ahc-dn-pmW"/>
+                                            <outlet property="milestoneStackView" destination="nsi-YL-BbN" id="XjF-OD-RtK"/>
+                                            <outlet property="openIssuesCountLabel" destination="llz-hk-2W5" id="nca-Cv-40o"/>
+                                            <outlet property="percentageLabel" destination="tGc-Op-YDK" id="6WL-pQ-dOW"/>
+                                        </connections>
                                     </collectionViewCell>
                                 </cells>
                                 <connections>
