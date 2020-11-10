@@ -18,6 +18,7 @@ function IssueListPage() {
   const [labels, setLabels] = useState([]);
   const [milestones, setMilestones] = useState([]);
   const [issues, setIssues] = useState([]);
+  const [originIssues, setoriginIssues] = useState([]);
   useEffect(async () => {
     const response = await axiosApi("/label", "GET");
     setLabels(response.data);
@@ -30,6 +31,7 @@ function IssueListPage() {
   useEffect(async () => {
     const response = await axiosApi("/issue", "GET");
     setIssues(response.data);
+    setoriginIssues(response.data);
   }, []);
   return (
     <StyledIssueListPage>
@@ -37,7 +39,7 @@ function IssueListPage() {
       <MoveToLabelButton labels={labels} setLabels={setLabels} />
       <MoveToMilestoneButton milestones={milestones} />
       <MoveToCreateIssueButton />
-      <Header />
+      <Header labels={labels} milestones={milestones} setIssues={setIssues} originIssues={originIssues} issues={issues} />
       <Issuelist issues={issues} setIssues={setIssues} />
     </StyledIssueListPage>
   );
