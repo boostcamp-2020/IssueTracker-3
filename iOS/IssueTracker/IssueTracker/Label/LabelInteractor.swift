@@ -25,12 +25,12 @@ class LabelInteractor: LabelBusinessLogic, LabelDataStore {
         networkService.request(apiConfiguration: LabelEndPoint.getLebels) { [weak self] result in
             guard let self = self else { return }
             switch result {
-            case .failure(_):
-                print("실패 ")
+            case .failure(let error):
+                debugPrint(error)
                 return
             case .success(let data):
                 guard let decodedData: LabelList = try? data.decoded() else {
-                    print("decode 실패")
+                    debugPrint("decode 실패")
                     return
                 }
                 self.labels = decodedData

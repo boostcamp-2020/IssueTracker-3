@@ -134,12 +134,15 @@ extension IssueDetailViewController {
             guard kind == UICollectionView.elementKindSectionHeader else {
                 return UICollectionReusableView()
             }
-
-            guard let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: IssueDetailCollectionReusableView.identifier, for: indexPath)
+            
+            guard let headerView = collectionView
+                    .dequeueReusableSupplementaryView(ofKind: kind,
+                                                      withReuseIdentifier: IssueDetailCollectionReusableView.identifier,
+                                                      for: indexPath)
                     as? IssueDetailCollectionReusableView else { return  UICollectionReusableView() }
-
+            
             headerView.configure(item: self.firstComment)
-
+            
             return headerView
         }
     }

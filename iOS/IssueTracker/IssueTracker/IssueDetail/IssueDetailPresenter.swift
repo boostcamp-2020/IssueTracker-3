@@ -15,7 +15,7 @@ final class IssueDetailPresenter: IssueDetailPresentationLogic {
     weak var viewController: IssueDetailDisplayLogic?
 
     func presentFetchedComments(issues: CommentList) {
-            let viewModel = issues.map{ IssueDetailViewModel(commentList: $0) }
+            let viewModel = issues.map({ IssueDetailViewModel(commentList: $0) })
             viewController?.displayFetchedComments(viewModel: viewModel)
     }
 

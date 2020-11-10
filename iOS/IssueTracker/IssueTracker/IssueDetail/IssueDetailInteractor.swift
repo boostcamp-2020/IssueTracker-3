@@ -26,12 +26,12 @@ extension IssueDetailInteractor: IssueDetailBusinessLogic {
         networkService.request(apiConfiguration: IssueDetailEndPoint.getComments(id)) { [weak self] result in
             guard let self = self else { return }
             switch result {
-            case .failure(_):
-                print("실패 ")
+            case .failure(let error):
+                debugPrint(error)
                 return
             case .success(let data):
                 guard let decodedData: CommentList = try? data.decoded() else {
-                    print("decode 실패")
+                    debugPrint("decode 실패")
                     return
                 }
                 self.presenter?.presentFetchedComments(issues: decodedData)

@@ -9,8 +9,6 @@ import Foundation
 
 typealias DetailCommentList = [DetailComment]
 
-import Foundation
-
 // MARK: - IssueElement
 struct DetailComment: Codable {
     let id: Int

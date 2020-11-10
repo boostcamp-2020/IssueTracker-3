@@ -35,13 +35,13 @@ extension CreateIssueInteractor: CreateIssueBusinessLogic {
         }
         networkService.request(apiConfiguration: CreateIssueEndPoint.upload(data)) { [weak self] result in
             switch result {
-            case .failure(_):
-                print("create issue 실패")
+            case .failure(let error):
+                debugPrint(error)
                 // Error 처리
                 return
             case .success(let data):
                 guard let decodedData: Int = try? data.decoded() else {
-                    print("upload response decode 실패")
+                    debugPrint("upload response decode 실패")
                     return
                 }
                 self?.issueID = decodedData

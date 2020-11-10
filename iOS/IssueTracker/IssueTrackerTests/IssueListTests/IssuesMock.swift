@@ -69,6 +69,6 @@ class IssuesMock {
                                      CustomButtonView(type: .label,
                                                       text: "labe\(number)",
                                                       color: "#ffffff")]))
-    }
+        }
     }
 }

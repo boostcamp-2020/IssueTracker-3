@@ -303,7 +303,7 @@ HTML형태로 보여줘야 할까요</string>
                                                                 <constraint firstAttribute="width" secondItem="von-ji-blo" secondAttribute="height" multiplier="1:1" id="Feq-K0-Lvb"/>
                                                             </constraints>
                                                             <color key="tintColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                            <state key="normal" image="smiley" catalog="system">
+                                                            <state key="normal" image="face.smiling" catalog="system">
                                                                 <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             </state>
                                                             <userDefinedRuntimeAttributes>
@@ -426,7 +426,7 @@ HTML형태로 보여줘야 할까요</string>
                                                     <rect key="frame" x="15" y="97" width="50" height="20"/>
                                                     <color key="backgroundColor" systemColor="systemGreenColor"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="50" id="NZC-Pz-zMW"/>
+                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="50" id="NZC-Pz-zMW"/>
                                                         <constraint firstAttribute="height" constant="20" id="sZO-le-jHx"/>
                                                     </constraints>
                                                     <color key="tintColor" red="0.61574684790133216" green="0.99705451726913452" blue="0.5669428804351111" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -437,6 +437,7 @@ HTML형태로 보여줘야 할까요</string>
                                             <constraints>
                                                 <constraint firstItem="cJg-vm-KDE" firstAttribute="top" secondItem="cId-Vn-1Ct" secondAttribute="top" constant="15" id="3BJ-VE-iLR"/>
                                                 <constraint firstItem="ycA-e4-qNf" firstAttribute="leading" secondItem="cId-Vn-1Ct" secondAttribute="leading" constant="15" id="Jyw-zR-UwX"/>
+                                                <constraint firstAttribute="trailing" relation="lessThanOrEqual" secondItem="ycA-e4-qNf" secondAttribute="trailing" constant="349" id="KUy-jm-IGi"/>
                                                 <constraint firstItem="gqF-qc-zaS" firstAttribute="width" secondItem="gqF-qc-zaS" secondAttribute="height" multiplier="1:1" id="LcM-zi-AJh"/>
                                                 <constraint firstItem="ycA-e4-qNf" firstAttribute="top" secondItem="8wo-D7-kbo" secondAttribute="bottom" constant="8" id="LjT-6I-4nx"/>
                                                 <constraint firstAttribute="trailing" secondItem="YCY-zv-3sQ" secondAttribute="trailing" constant="15" id="N84-76-oo3"/>
@@ -449,6 +450,7 @@ HTML형태로 보여줘야 할까요</string>
                                                 <constraint firstItem="YCY-zv-3sQ" firstAttribute="centerY" secondItem="cJg-vm-KDE" secondAttribute="centerY" id="kMC-3z-c45"/>
                                                 <constraint firstItem="cJg-vm-KDE" firstAttribute="leading" secondItem="gqF-qc-zaS" secondAttribute="trailing" constant="7" id="lhS-cB-uhF"/>
                                                 <constraint firstItem="Z91-6z-LkO" firstAttribute="top" secondItem="cId-Vn-1Ct" secondAttribute="top" constant="15" id="moK-8u-ITF"/>
+                                                <constraint firstItem="YCY-zv-3sQ" firstAttribute="leading" relation="lessThanOrEqual" secondItem="Z91-6z-LkO" secondAttribute="trailing" constant="216" id="r1B-gz-WyJ"/>
                                                 <constraint firstAttribute="bottom" secondItem="ycA-e4-qNf" secondAttribute="bottom" constant="11" id="r5A-2W-Zob"/>
                                                 <constraint firstItem="YCY-zv-3sQ" firstAttribute="top" secondItem="cId-Vn-1Ct" secondAttribute="top" constant="15" id="tnk-f4-bea"/>
                                                 <constraint firstItem="gqF-qc-zaS" firstAttribute="leading" secondItem="cId-Vn-1Ct" secondAttribute="leading" constant="15" id="zbX-X1-jf2"/>
@@ -663,7 +665,7 @@ HTML형태로 보여줘야 할까요</string>
                                                 <action selector="cancelTouched:" destination="sam-5C-mGZ" id="4HT-rc-HZi"/>
                                             </connections>
                                         </barButtonItem>
-                                        <barButtonItem key="rightBarButtonItem" style="plain" systemItem="done" id="wWv-af-xp6">
+                                        <barButtonItem key="rightBarButtonItem" style="done" systemItem="done" id="wWv-af-xp6">
                                             <connections>
                                                 <action selector="writingDoneTouched:" destination="sam-5C-mGZ" id="V2S-yG-cLb"/>
                                             </connections>
@@ -947,9 +949,9 @@ HTML형태로 보여줘야 할까요</string>
         <image name="chevron.right" catalog="system" width="96" height="128"/>
         <image name="chevron.up" catalog="system" width="128" height="72"/>
         <image name="ellipsis" catalog="system" width="128" height="37"/>
+        <image name="face.smiling" catalog="system" width="128" height="121"/>
         <image name="person.fill" catalog="system" width="128" height="120"/>
         <image name="plus.circle.fill" catalog="system" width="128" height="121"/>
-        <image name="smiley" catalog="system" width="128" height="121"/>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

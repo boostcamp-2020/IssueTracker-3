@@ -48,8 +48,7 @@ class IssueDetailBottomSheetViewController: UIViewController {
     }
     
     func createLayout() -> UICollectionViewLayout {
-        let layout = UICollectionViewCompositionalLayout { (sectionIndex: Int,
-                                                            layoutEnvironment: NSCollectionLayoutEnvironment) -> NSCollectionLayoutSection? in
+        let layout = UICollectionViewCompositionalLayout { (sectionIndex: Int, _) -> NSCollectionLayoutSection? in
 
             guard let sectionLayoutType = SectionLayoutType(rawValue: sectionIndex) else { return nil }
             let columns = sectionLayoutType.columnCount
@@ -76,7 +75,7 @@ class IssueDetailBottomSheetViewController: UIViewController {
     @available(iOS 14.0, *)
     func configureDataSource() {
         
-        let listCellRegistration = UICollectionView.CellRegistration<ListCell, Int> { (cell, indexPath, identifier) in
+        let listCellRegistration = UICollectionView.CellRegistration<ListCell, Int> { (cell, _, identifier) in
             cell.label.text = "\(identifier)"
         }
         
@@ -89,11 +88,15 @@ class IssueDetailBottomSheetViewController: UIViewController {
             cell.label.font = UIFont.preferredFont(forTextStyle: .title1)
         }
         
-        dataSource = UICollectionViewDiffableDataSource<SectionLayoutType, Int>(collectionView: issueBottomSheetCollectionView) {
-            (collectionView: UICollectionView, indexPath: IndexPath, identifier: Int) -> UICollectionViewCell? in
+        dataSource = UICollectionViewDiffableDataSource<SectionLayoutType, Int>(
+            collectionView: issueBottomSheetCollectionView
+        ) { (collectionView: UICollectionView, indexPath: IndexPath, identifier: Int)
+             -> UICollectionViewCell? in
             return SectionLayoutType(rawValue: indexPath.section)! == .milestone ?
-                collectionView.dequeueConfiguredReusableCell(using: listCellRegistration, for: indexPath, item: identifier) :
-                collectionView.dequeueConfiguredReusableCell(using: textCellRegistration, for: indexPath, item: identifier)
+                collectionView.dequeueConfiguredReusableCell(using: listCellRegistration,
+                                                             for: indexPath, item: identifier) :
+                collectionView.dequeueConfiguredReusableCell(using: textCellRegistration,
+                                                             for: indexPath, item: identifier)
         }
 
         let itemsPerSection = 10
@@ -201,7 +204,6 @@ extension ListCell {
         ])
     }
 }
-
 
 // Bottom Sheet 옛날 ver
 /*

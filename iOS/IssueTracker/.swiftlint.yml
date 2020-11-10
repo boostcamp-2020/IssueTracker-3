@@ -12,6 +12,8 @@ identifier_name:
   min_length: 1
 large_tuple:
     - 3
+function_body_length: 200
+
 #nesting:
 #  type_level: 3
 
