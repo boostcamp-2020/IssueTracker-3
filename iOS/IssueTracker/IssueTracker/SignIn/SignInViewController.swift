@@ -75,6 +75,7 @@ final class SignInViewController: UIViewController {
                 guard let decodedData: RequestLogin = try? data.decoded() else {
                     return
                 }
+                NetworkService.token = decodedData.jwt
                 handler()
             }
         }

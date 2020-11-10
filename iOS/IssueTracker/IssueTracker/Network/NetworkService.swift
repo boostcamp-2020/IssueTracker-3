@@ -8,12 +8,12 @@
 import Foundation
 
 protocol NetworkServiceProvider {
-    var token: String { get set }
+    static var token: String { get set }
     func request(apiConfiguration: APIConfiguration, handler: @escaping (Result<Data, NetworkError>) -> Void)
 }
 
 class NetworkService: NetworkServiceProvider {
-    @KeyChain("token", defaultValue: "") var token: String
+    @KeyChain("token", defaultValue: "") static var token: String
     private let session: URLSession
     
     init(with urlSession: URLSession = .init(configuration: .default)) {
