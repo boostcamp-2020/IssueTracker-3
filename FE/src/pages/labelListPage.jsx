@@ -1,11 +1,12 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { hot } from "react-hot-loader";
 import styled from "styled-components";
+import LabelList from "@component/labelListPage/element/labelList";
 import MoveToCreateLabelButton from "../component/labelListPage/buttons/moveToCreateLabelButton";
 import MoveToLabelButton from "../component/labelListPage/buttons/moveToLabelButton";
 import MoveToMaileStoneButton from "../component/labelListPage/buttons/moveToMilestoneButton";
 import LabelFilter from "../component/labelListPage/filter/labelFilter";
-import LabelList from "../component/labelListPage/list/labelList";
+import axiosApi from "../util/axiosApi";
 
 const StyledLabelListPage = styled.div`
   display: flex;
@@ -26,6 +27,11 @@ const Body = styled.div`
   display: flex;
 `;
 function LabelListPage() {
+  const [labels, setLabels] = useState([]);
+  useEffect(async () => {
+    const response = await axiosApi("/label", "GET");
+    setLabels(response.data);
+  }, []);
   return (
     <StyledLabelListPage>
       <Header>
@@ -37,7 +43,7 @@ function LabelListPage() {
         <MoveToCreateLabelButton />
       </Header>
       <Body>
-        <LabelList />
+        <LabelList labels={labels} />
       </Body>
     </StyledLabelListPage>
   );
