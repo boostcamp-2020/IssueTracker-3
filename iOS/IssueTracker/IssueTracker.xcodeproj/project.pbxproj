@@ -13,6 +13,7 @@
 		701343C125493A160044080A /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 701343C025493A160044080A /* NetworkService.swift */; };
 		702D6C0B254A8E0100E1A706 /* SignInWithAppleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 702D6C0A254A8E0100E1A706 /* SignInWithAppleButton.swift */; };
 		702D6C38254AB0DB00E1A706 /* KeychainItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 702D6C37254AB0DB00E1A706 /* KeychainItem.swift */; };
+		704CDE43255A871800232D54 /* RequestLogin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 704CDE42255A871800232D54 /* RequestLogin.swift */; };
 		705930D4254FFF63003FE49F /* IssueFilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 705930D3254FFF63003FE49F /* IssueFilterViewController.swift */; };
 		705930DB25500126003FE49F /* IssueFilterTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 705930DA25500126003FE49F /* IssueFilterTableViewCell.swift */; };
 		705930E625502FA4003FE49F /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 705930E525502FA4003FE49F /* HeaderView.swift */; };
@@ -110,6 +111,7 @@
 		702D6C0A254A8E0100E1A706 /* SignInWithAppleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInWithAppleButton.swift; sourceTree = "<group>"; };
 		702D6C1A254A937300E1A706 /* IssueTracker.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = IssueTracker.entitlements; sourceTree = "<group>"; };
 		702D6C37254AB0DB00E1A706 /* KeychainItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainItem.swift; sourceTree = "<group>"; };
+		704CDE42255A871800232D54 /* RequestLogin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestLogin.swift; sourceTree = "<group>"; };
 		705930D3254FFF63003FE49F /* IssueFilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueFilterViewController.swift; sourceTree = "<group>"; };
 		705930DA25500126003FE49F /* IssueFilterTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueFilterTableViewCell.swift; sourceTree = "<group>"; };
 		705930E525502FA4003FE49F /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
@@ -247,13 +249,6 @@
 				BB0D52742558E4FE009DEB8F /* NetworkError.swift */,
 			);
 			path = Network;
-			sourceTree = "<group>";
-		};
-		701343B9254907890044080A /* NetworkTests */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = NetworkTests;
 			sourceTree = "<group>";
 		};
 		702D6C43254AB9C300E1A706 /* Views */ = {
@@ -403,7 +398,6 @@
 			isa = PBXGroup;
 			children = (
 				70ECC59E25597323003C2AA0 /* IssueList */,
-				701343B9254907890044080A /* NetworkTests */,
 				7012DC8C2549AD9400EAADD7 /* SignInTests */,
 				70593142255138C8003FE49F /* IssueListTests */,
 				708EFF042546DBCB009D9DEC /* IssueTrackerTests.swift */,
@@ -521,6 +515,7 @@
 			children = (
 				BBB5295325597778001B708E /* AppleModel.swift */,
 				BBB529572559777D001B708E /* SignInEndPoint.swift */,
+				704CDE42255A871800232D54 /* RequestLogin.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -764,6 +759,7 @@
 				BBB322A825581032000F6CF3 /* User.swift in Sources */,
 				BBB322742557E4C7000F6CF3 /* CreateIssueInteractor.swift in Sources */,
 				BBB322782557E5A4000F6CF3 /* CreateIssueEndPoint.swift in Sources */,
+				704CDE43255A871800232D54 /* RequestLogin.swift in Sources */,
 				BBB2B6F125596CFE001871D8 /* ContentType.swift in Sources */,
 				BB52171B254A9EAF008455D4 /* OAuthManager.swift in Sources */,
 				BBB2B6DB255963BE001871D8 /* IssueComment.swift in Sources */,
