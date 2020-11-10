@@ -15,12 +15,8 @@ const StyledMoveToCreateLabelButton = styled.button`
   border-radius: 5px;
   background-color: #33cc33;
 `;
-function MoveToCreateLabelButton() {
-  return (
-    <Link to="./milestonecreate" style={{ textDecoration: "none" }}>
-      <StyledMoveToCreateLabelButton> New Label </StyledMoveToCreateLabelButton>
-    </Link>
-  );
+function MoveToCreateLabelButton(prop) {
+  return <StyledMoveToCreateLabelButton onClick={prop.event}> New Label </StyledMoveToCreateLabelButton>;
 }
 
 export default hot(module)(MoveToCreateLabelButton);

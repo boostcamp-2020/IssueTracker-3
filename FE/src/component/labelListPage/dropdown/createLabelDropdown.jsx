@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import { hot } from "react-hot-loader";
 import styled from "styled-components";
+import axiosApi from "../../../util/axiosApi";
 
 const Horizontal = styled.div`
   display: flex;
@@ -12,17 +13,11 @@ const Vertical = styled.div`
   border: 1px dotted black;
   flex-direction: column;
 `;
-function CreateLabelDropdown() {
+function CreateLabelDropdown(props) {
   const newLabelName = "LabelName";
 
-  const newLableColor = "#bfdadc";
-
-  const Dropdown = "flex";
-  function DropdownHidden() {
-    this.Dropdown = "hidden";
-  }
   const StyledCreateLabelDropdown = styled.div`
-    display: ${Dropdown};
+    display: ${props.visible};
     border: 1px dotted black;
     margin: 5px;
     flex-direction: column;
@@ -31,25 +26,56 @@ function CreateLabelDropdown() {
   const StyledPreview = styled.span`
     display: flex;
   `;
+  const [data, setData] = useState({ name: "", description: "", color: "" });
+  const onNameHandler = (event) => {
+    const inputName = event.target.value;
+    // props.setData({ name: event.target.value, description: "", color: "" });
+    setData({ name: inputName, description: data.description, color: data.color });
+  };
+  const onDescriptionHandler = (event) => {
+    const inputDescription = event.target.value;
+    setData({ name: data.name, description: inputDescription, color: data.color });
+  };
+  const onColorHander = (event) => {
+    const inputColor = event.target.value;
+    setData({ name: data.name, description: data.description, color: inputColor });
+  };
+
+  const newLabel = async () => {
+    console.log(data);
+    if (data.name.length === 0) {
+      alert("이름을 입력하세요 !");
+      return;
+    }
+    if (data.color.length === 0) {
+      alert("색상을 입력하세요 !");
+      return;
+    }
+    const result = await axiosApi("/label", "POST", data);
+    if (result.status === 200) {
+      const response = await axiosApi("/label", "GET");
+      props.setLabels(response.data);
+    }
+  };
   return (
     <StyledCreateLabelDropdown>
       <StyledPreview>{newLabelName}</StyledPreview>
       <Horizontal>
         <Vertical>
           <span>이름</span>
-          <input></input>
+          <input type="text" name="name" value={data.name} onChange={onNameHandler}></input>
         </Vertical>
         <Vertical>
           <span>설명</span>
-          <input></input>
+          <input type="text" name="description" value={data.description} onChange={onDescriptionHandler}></input>
         </Vertical>
         <Vertical>
           <span>색상</span>
-          <input></input>
+          <input type="text" name="color" value={data.color} onChange={onColorHander}></input>
         </Vertical>
         <Horizontal>
-          <button>만들기</button>
-          <button onClick={this.DropdownHidden()}>취소</button>
+          <button onClick={newLabel}>만들기</button>
+          <button onClick={props.event}>취소</button>
         </Horizontal>
       </Horizontal>
     </StyledCreateLabelDropdown>
