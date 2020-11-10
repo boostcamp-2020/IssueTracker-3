@@ -24,21 +24,12 @@ const StyledNumber = styled.span`
   font-weight: bold;
   margin: 0px 3px;
 `;
-function MoveToMilestoneButton() {
-  const [response, loading, error] = useRequest("http://101.101.210.34:3000/milestone");
-  if (loading) {
-    return <div>로딩중..</div>;
-  }
-  if (error) {
-    return <div>에러 발생!</div>;
-  }
-  if (!response) return null;
-
-  const numbers = response.data.length;
+function MoveToMilestoneButton(props) {
+  const { milestones } = props;
   return (
     <Link to="./milestonelist" style={{ textDecoration: "none" }}>
       <StyledMoveToMilestoneButton>
-        마일스톤<StyledNumber>{numbers}</StyledNumber>
+        마일스톤<StyledNumber>{milestones.length}</StyledNumber>
       </StyledMoveToMilestoneButton>
     </Link>
   );
