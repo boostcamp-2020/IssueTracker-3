@@ -40,7 +40,7 @@ struct Comment: Codable {
     let createdAt: String
     let title: String?
     let state: Int?
-    let milestoneID: String?
+    let milestoneID: Int?
     let closedAt: String?
 
     enum CodingKeys: String, CodingKey {
