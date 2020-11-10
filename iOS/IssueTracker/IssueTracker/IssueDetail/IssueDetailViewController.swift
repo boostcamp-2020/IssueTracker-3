@@ -28,7 +28,7 @@ final class IssueDetailViewController: UIViewController, IssueDetailDisplayLogic
 
     // MARK: Enums
 
-    enum Section: CaseIterable {
+    enum Section: Hashable {
         case main
     }
 
@@ -39,14 +39,17 @@ final class IssueDetailViewController: UIViewController, IssueDetailDisplayLogic
     }
 
     private let id: Int!
+    private let firstComment: IssueListViewModel!
 
-    init?(coder: NSCoder, id: Int) {
+    init?(coder: NSCoder, id: Int, firstComment: IssueListViewModel) {
         self.id = id
+        self.firstComment = firstComment
         super.init(coder: coder)
     }
 
     required init?(coder: NSCoder) {
         self.id = nil
+        self.firstComment = nil
         super.init(coder: coder)
     }
 
@@ -60,6 +63,7 @@ final class IssueDetailViewController: UIViewController, IssueDetailDisplayLogic
 
         configureBottomSheet()
         setup()
+
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -90,6 +94,7 @@ final class IssueDetailViewController: UIViewController, IssueDetailDisplayLogic
         var snapshot = NSDiffableDataSourceSnapshot<Section, IssueDetailViewModel>()
         snapshot.appendSections([.main])
         snapshot.appendItems(displayedStore)
+
         dataSource.apply(snapshot, animatingDifferences: false)
     }
 
@@ -104,12 +109,8 @@ final class IssueDetailViewController: UIViewController, IssueDetailDisplayLogic
     }
     
     @objc func editButtonTouched() {
-        
-    }
-}
 
-extension IssueDetailViewController: UICollectionViewDelegate {
-    
+    }
 }
 
 // MARK: UICollectionView DataSource
@@ -125,26 +126,24 @@ extension IssueDetailViewController {
                     return UICollectionViewCell()
                 }
                 cell.configure(of: item)
-//                cell.systemLayoutSizeFitting(.init(width: self.view.bounds.width, height: 88))
+                // cell.systemLayoutSizeFitting(.init(width: self.view.bounds.width, height: 88))
                 return cell
             })
+
+        dataSource.supplementaryViewProvider = { collectionView, kind, indexPath in
+            guard kind == UICollectionView.elementKindSectionHeader else {
+                return UICollectionReusableView()
+            }
+
+            guard let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: IssueDetailCollectionReusableView.identifier, for: indexPath)
+                    as? IssueDetailCollectionReusableView else { return  UICollectionReusableView() }
+
+            headerView.configure(item: self.firstComment)
+
+            return headerView
+        }
     }
 }
-
-//extension IssueDetailViewController: UICollectionViewDataSource {
-//    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-//        10
-//    }
-//    func numberOfSections(in collectionView: UICollectionView) -> Int {
-//        2
-//    }
-//
-//    func collectionView(_ collectionView: UICollectionView,
-//                        cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-//        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "IssueDetailCell", for: indexPath)
-//        return cell
-//    }
-//}
 
 // BottomSheet 수정 ver
 extension IssueDetailViewController {

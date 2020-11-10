@@ -1,5 +1,5 @@
 //
-//  SectionHeaderReusableView.swift
+//  IssueDetailCollectionReusableView.swift
 //  IssueTracker
 //
 //  Created by ParkJaeHyun on 2020/11/10.
@@ -22,4 +22,21 @@ class IssueDetailCollectionReusableView: UICollectionReusableView {
   required init?(coder: NSCoder) {
     super.init(coder: coder)
   }
+
+    func configure(item: IssueListViewModel) {
+        authorLabel.text = item.title
+        issueNumberLabel.text = "#\(item.id)"
+        bodyLabel.text = item.description
+        if item.isOpen {
+            stateButton.titleLabel?.text = "Open"
+            stateButton.backgroundColor = .systemGreen
+            stateButton.titleLabel?.textColor = .black
+        } else {
+            stateButton.titleLabel?.text = "Close"
+            stateButton.backgroundColor = .systemRed
+            stateButton.titleLabel?.textColor = .black
+
+        }
+
+    }
 }
