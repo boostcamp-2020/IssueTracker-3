@@ -22,18 +22,7 @@ final class CreateIssueInteractor: CreateIssueDataStore {
     var issueID: Int?
     
     private func createIssue(title: String, comment: String) -> Issue {
-        return Issue(id: 0,
-                     title: title,
-                     body: comment,
-                     userID: 0, // self UserID
-                     state: 1,
-                     milestoneID: nil,
-                     createdAt: DateFormatter().string(from: Date()),
-                     closedAt: nil,
-                     labels: nil,
-                     assignee: nil,
-                     milestone: nil,
-                     comment: nil)
+        return Issue(title: title, body: comment)
     }
 }
 
@@ -54,11 +43,16 @@ extension CreateIssueInteractor: CreateIssueBusinessLogic {
                     print("upload response decode 실패")
                     return
                 }
-                // 성공 처리
+                self?.issueID = decodedData
+                
                 return
             }
         }
         // patch - label 등 나머지
+    }
+    
+    func uploadIssueComponents() {
+        
     }
 }
 
