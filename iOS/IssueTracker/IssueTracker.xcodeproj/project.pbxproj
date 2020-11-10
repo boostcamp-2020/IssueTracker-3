@@ -44,6 +44,7 @@
 		70ECC5A025597354003C2AA0 /* IssueListViewModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70ECC59F25597354003C2AA0 /* IssueListViewModelTest.swift */; };
 		70ECC5C325599983003C2AA0 /* IssueDetailInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70ECC5C225599983003C2AA0 /* IssueDetailInteractor.swift */; };
 		70ECC5C7255999A2003C2AA0 /* IssueDetailPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70ECC5C6255999A2003C2AA0 /* IssueDetailPresenter.swift */; };
+		70ECC5CF255A32ED003C2AA0 /* IssueDetailCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70ECC5CE255A32ED003C2AA0 /* IssueDetailCollectionReusableView.swift */; };
 		70EE428725594A10007E0C5D /* UIColor+visibleTextColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70EE428625594A10007E0C5D /* UIColor+visibleTextColor.swift */; };
 		70EE428C25594FAE007E0C5D /* UIColor+hexString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70EE428B25594FAE007E0C5D /* UIColor+hexString.swift */; };
 		70EE4293255953F5007E0C5D /* IssueDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70EE4292255953F5007E0C5D /* IssueDetailViewModel.swift */; };
@@ -138,6 +139,7 @@
 		70ECC59F25597354003C2AA0 /* IssueListViewModelTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueListViewModelTest.swift; sourceTree = "<group>"; };
 		70ECC5C225599983003C2AA0 /* IssueDetailInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueDetailInteractor.swift; sourceTree = "<group>"; };
 		70ECC5C6255999A2003C2AA0 /* IssueDetailPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueDetailPresenter.swift; sourceTree = "<group>"; };
+		70ECC5CE255A32ED003C2AA0 /* IssueDetailCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueDetailCollectionReusableView.swift; sourceTree = "<group>"; };
 		70EE428625594A10007E0C5D /* UIColor+visibleTextColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+visibleTextColor.swift"; sourceTree = "<group>"; };
 		70EE428B25594FAE007E0C5D /* UIColor+hexString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+hexString.swift"; sourceTree = "<group>"; };
 		70EE4292255953F5007E0C5D /* IssueDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueDetailViewModel.swift; sourceTree = "<group>"; };
@@ -285,6 +287,7 @@
 			isa = PBXGroup;
 			children = (
 				7059311225503E79003FE49F /* IssueDetailCollectionViewCell.swift */,
+				70ECC5CE255A32ED003C2AA0 /* IssueDetailCollectionReusableView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -755,6 +758,7 @@
 				BB0D52792558E68A009DEB8F /* KeyChain.swift in Sources */,
 				BBDDCC0225592715008B8CBD /* IssueListPresenter.swift in Sources */,
 				BB65A046254FECA300D09DD5 /* IssueListViewController.swift in Sources */,
+				70ECC5CF255A32ED003C2AA0 /* IssueDetailCollectionReusableView.swift in Sources */,
 				70ECC5C7255999A2003C2AA0 /* IssueDetailPresenter.swift in Sources */,
 				BBCC4A132548204200FAB2F4 /* SignInInteractor.swift in Sources */,
 				708EFEF02546DBC9009D9DEC /* SceneDelegate.swift in Sources */,
