@@ -365,6 +365,12 @@ HTML형태로 보여줘야 할까요</string>
                                         </collectionViewCellContentView>
                                         <color key="backgroundColor" red="0.93786627050000004" green="0.94068664310000005" blue="0.9606447816" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <size key="customSize" width="414" height="156"/>
+                                        <connections>
+                                            <outlet property="authorImage" destination="AMu-Bp-DZr" id="wPc-jl-L7A"/>
+                                            <outlet property="authorLabel" destination="5xy-gt-HT7" id="BHN-tw-rF8"/>
+                                            <outlet property="descriptionLabel" destination="0Zb-gv-gZ8" id="o5J-gh-p6p"/>
+                                            <outlet property="timeLabel" destination="NOn-dv-LpW" id="kPO-EW-7p6"/>
+                                        </connections>
                                     </collectionViewCell>
                                 </cells>
                                 <connections>
@@ -386,6 +392,7 @@ HTML형태로 보여줘야 할까요</string>
                     <navigationItem key="navigationItem" id="dI5-gL-qvC"/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="issueDetailCollectionView" destination="Etv-eu-euX" id="w57-CQ-ZIJ"/>
                         <segue destination="6Re-li-5VW" kind="presentation" id="AIl-p8-bk6"/>
                     </connections>
                 </viewController>
@@ -570,7 +577,7 @@ HTML형태로 보여줘야 할까요</string>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="새 이슈" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oWw-TA-c4U">
                                 <rect key="frame" x="12" y="63" width="95.5" height="41"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="34"/>
-                                <color key="textColor" red="0.99416512250900269" green="0.97194200754165649" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="제목" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="d7M-AP-djI">
