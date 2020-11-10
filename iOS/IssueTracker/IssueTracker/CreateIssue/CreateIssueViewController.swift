@@ -13,7 +13,6 @@ protocol CreateIssueDisplayLogic: class {
 }
 
 // Must
-// TODO: markdown preview
 // TODO: image link
 // TODO: upload logic (데이터 저장 + upload)
 // TODO: 밑에 3개 patch logic
@@ -48,7 +47,6 @@ final class CreateIssueViewController: UIViewController {
         super.viewDidLoad()
         configurePlaceholder()
         configureMenuItems()
-        configureMarkdownPreview()
     }
     
     // MARK: Actions
@@ -56,9 +54,8 @@ final class CreateIssueViewController: UIViewController {
     @IBAction func markdownSegmentedControlChanged(_ sender: UISegmentedControl) {
         switch sender.selectedSegmentIndex {
         case 0:
-            concealMarkdownPreview()
+            removeMarkdownPreview()
         case 1:
-            revealMarkdownPreview()
             loadMarkdownPreview()
         default:
           return
@@ -97,24 +94,18 @@ extension CreateIssueViewController {
             markdownPreview.leadingAnchor.constraint(equalTo: commentTextView.leadingAnchor),
             markdownPreview.trailingAnchor.constraint(equalTo: commentTextView.trailingAnchor)
         ])
-        concealMarkdownPreview()
-    }
-    
-    private func concealMarkdownPreview() {
-        markdownPreview?.isHidden = true
-        markdownPreview?.resignFirstResponder()
-        commentTextView.isHidden = false
-    }
-    
-    private func revealMarkdownPreview() {
-        commentTextView.isHidden = true
-        markdownPreview?.isHidden = false
-        markdownPreview?.becomeFirstResponder()
     }
     
     private func loadMarkdownPreview() {
-        
+        configureMarkdownPreview()
+        commentTextView.isHidden = true
         markdownPreview?.load(markdown: commentTextView.text)
+    }
+    
+    private func removeMarkdownPreview() {
+        markdownPreview?.removeFromSuperview()
+        markdownPreview = nil
+        commentTextView.isHidden = false
     }
 }
 
