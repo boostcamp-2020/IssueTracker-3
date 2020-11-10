@@ -6,20 +6,22 @@
 //
 
 import Foundation
-import Alamofire
 
-//enum CreateIssueEndPoint: APIConfiguration {
-//    case upload(data: Data)
-//
-//    var method: HTTPMethod {
-//        return .post
-//    }
-//
-//    var data: Data {
-//        return .body(data)
-//    }
-//
-//    var path: String {
-//        return "/auth/login"
-//    }
-//}
+enum CreateIssueEndPoint: APIConfiguration {
+    case upload(Data)
+    
+    var method: HTTPMethod {
+        return .post
+    }
+    
+    var path: String {
+        return "/issue"
+    }
+    
+    var body: Data? {
+        switch self {
+        case .upload(let data):
+            return data
+        }
+    }
+}

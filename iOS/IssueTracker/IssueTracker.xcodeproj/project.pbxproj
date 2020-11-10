@@ -62,6 +62,9 @@
 		BB52171B254A9EAF008455D4 /* OAuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB52171A254A9EAF008455D4 /* OAuthManager.swift */; };
 		BB65A046254FECA300D09DD5 /* IssueListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB65A045254FECA300D09DD5 /* IssueListViewController.swift */; };
 		BB65A04C254FED2000D09DD5 /* IssueDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB65A04B254FED2000D09DD5 /* IssueDetailViewController.swift */; };
+		BB74C2DE2559BFE700B0D3CE /* Encodable+encoded.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB74C2DD2559BFE700B0D3CE /* Encodable+encoded.swift */; };
+		BB74C2E22559C89D00B0D3CE /* CreateIssuePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB74C2E12559C89D00B0D3CE /* CreateIssuePresenter.swift */; };
+		BB74C2EF2559CF5F00B0D3CE /* MarkdownView in Frameworks */ = {isa = PBXBuildFile; productRef = BB74C2EE2559CF5F00B0D3CE /* MarkdownView */; };
 		BB91912425500E25007D25B7 /* CreateIssueViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB91912325500E25007D25B7 /* CreateIssueViewController.swift */; };
 		BBB2B6BE25595E3C001871D8 /* UserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBB2B6BD25595E3C001871D8 /* UserInfo.swift */; };
 		BBB2B6D325596078001871D8 /* Data+decoded.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBB2B6D225596078001871D8 /* Data+decoded.swift */; };
@@ -165,6 +168,8 @@
 		BB52171A254A9EAF008455D4 /* OAuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OAuthManager.swift; sourceTree = "<group>"; };
 		BB65A045254FECA300D09DD5 /* IssueListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueListViewController.swift; sourceTree = "<group>"; };
 		BB65A04B254FED2000D09DD5 /* IssueDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueDetailViewController.swift; sourceTree = "<group>"; };
+		BB74C2DD2559BFE700B0D3CE /* Encodable+encoded.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Encodable+encoded.swift"; sourceTree = "<group>"; };
+		BB74C2E12559C89D00B0D3CE /* CreateIssuePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateIssuePresenter.swift; sourceTree = "<group>"; };
 		BB91912325500E25007D25B7 /* CreateIssueViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateIssueViewController.swift; sourceTree = "<group>"; };
 		BBB2B6BD25595E3C001871D8 /* UserInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfo.swift; sourceTree = "<group>"; };
 		BBB2B6D225596078001871D8 /* Data+decoded.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data+decoded.swift"; sourceTree = "<group>"; };
@@ -203,6 +208,7 @@
 			files = (
 				FB61544F48E987F7556EC50C /* libPods-IssueTracker.a in Frameworks */,
 				701343B32549061B0044080A /* Alamofire in Frameworks */,
+				BB74C2EF2559CF5F00B0D3CE /* MarkdownView in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -339,6 +345,7 @@
 				70EE428625594A10007E0C5D /* UIColor+visibleTextColor.swift */,
 				70EE428B25594FAE007E0C5D /* UIColor+hexString.swift */,
 				BBB2B6D225596078001871D8 /* Data+decoded.swift */,
+				BB74C2DD2559BFE700B0D3CE /* Encodable+encoded.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -505,6 +512,7 @@
 			children = (
 				BB91912325500E25007D25B7 /* CreateIssueViewController.swift */,
 				BBB322732557E4C7000F6CF3 /* CreateIssueInteractor.swift */,
+				BB74C2E12559C89D00B0D3CE /* CreateIssuePresenter.swift */,
 				BBB322772557E5A4000F6CF3 /* CreateIssueEndPoint.swift */,
 			);
 			path = CreateIssue;
@@ -596,6 +604,7 @@
 			name = IssueTracker;
 			packageProductDependencies = (
 				701343B22549061B0044080A /* Alamofire */,
+				BB74C2EE2559CF5F00B0D3CE /* MarkdownView */,
 			);
 			productName = IssueTracker;
 			productReference = 708EFEEA2546DBC9009D9DEC /* IssueTracker.app */;
@@ -648,6 +657,7 @@
 			mainGroup = 708EFEE12546DBC9009D9DEC;
 			packageReferences = (
 				701343B12549061B0044080A /* XCRemoteSwiftPackageReference "Alamofire" */,
+				BB74C2ED2559CF5F00B0D3CE /* XCRemoteSwiftPackageReference "MarkdownView" */,
 			);
 			productRefGroup = 708EFEEB2546DBC9009D9DEC /* Products */;
 			projectDirPath = "";
@@ -751,6 +761,7 @@
 				705931A625523F0A003FE49F /* String+toDate.swift in Sources */,
 				BBB3229825580B5D000F6CF3 /* Assignee.swift in Sources */,
 				BBE2861125503D8A00A59009 /* SettingViewController.swift in Sources */,
+				BB74C2DE2559BFE700B0D3CE /* Encodable+encoded.swift in Sources */,
 				BBCC49ED2547E8F300FAB2F4 /* SignInViewController.swift in Sources */,
 				BBB529582559777D001B708E /* SignInEndPoint.swift in Sources */,
 				BB65A04C254FED2000D09DD5 /* IssueDetailViewController.swift in Sources */,
@@ -791,6 +802,7 @@
 				BB91912425500E25007D25B7 /* CreateIssueViewController.swift in Sources */,
 				70ECC5E7255A5735003C2AA0 /* LabelInteractor.swift in Sources */,
 				BBB321F32556DE42000F6CF3 /* EditIssueViewController.swift in Sources */,
+				BB74C2E22559C89D00B0D3CE /* CreateIssuePresenter.swift in Sources */,
 				BB0D52792558E68A009DEB8F /* KeyChain.swift in Sources */,
 				BBDDCC0225592715008B8CBD /* IssueListPresenter.swift in Sources */,
 				BB65A046254FECA300D09DD5 /* IssueListViewController.swift in Sources */,
@@ -1114,6 +1126,14 @@
 				minimumVersion = 5.3.0;
 			};
 		};
+		BB74C2ED2559CF5F00B0D3CE /* XCRemoteSwiftPackageReference "MarkdownView" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/keitaoouchi/MarkdownView.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.7.1;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1121,6 +1141,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 701343B12549061B0044080A /* XCRemoteSwiftPackageReference "Alamofire" */;
 			productName = Alamofire;
+		};
+		BB74C2EE2559CF5F00B0D3CE /* MarkdownView */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BB74C2ED2559CF5F00B0D3CE /* XCRemoteSwiftPackageReference "MarkdownView" */;
+			productName = MarkdownView;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
