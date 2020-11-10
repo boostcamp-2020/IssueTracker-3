@@ -8,27 +8,23 @@
 import Foundation
 
 enum IssueDetailEndPoint: APIConfiguration {
-    case getIssues
-    case changeState(Int, Int)
+    case getComments(Int)
 
     var method: HTTPMethod {
         switch self {
-        case .getIssues: return .get
-        case .changeState: return .patch
+        case .getComments: return .get
         }
     }
 
     var path: String {
         switch self {
-        case .getIssues: return "/issue"
-        case .changeState(let id, let state): return "/issue/\(id)/state/\(state)"
+        case .getComments(let id): return "/comment/\(id)"
         }
     }
 
     var body: Data? {
         switch self {
-        case .getIssues: return nil
-        case .changeState: return nil
+        case .getComments: return nil
         }
     }
 }

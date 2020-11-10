@@ -18,6 +18,7 @@ class IssueListMakeTests: XCTestCase {
         let originCount = makedIssues.count
 
         let addModel = IssueListViewModel(
+            id: 1,
             title: "haha",
             description: "설명",
             milestone: CustomButtonView(type: .milestone,

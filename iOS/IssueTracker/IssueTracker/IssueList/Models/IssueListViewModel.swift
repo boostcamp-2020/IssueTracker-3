@@ -8,6 +8,7 @@
 import UIKit
 
 struct IssueListViewModel: Hashable {
+    let id: Int
     let title: String
     let description: String
     let milestone: CustomButtonView
@@ -16,13 +17,15 @@ struct IssueListViewModel: Hashable {
 //    let author: String
     let identifier = UUID()
 
-    init(title: String,
+    init(id: Int,
+         title: String,
          description: String,
          milestone: CustomButtonView,
          labels: [CustomButtonView],
          isOpen: Bool = false
 //         author: String
          ) {
+        self.id = id
         self.title = title
         self.description = description
         self.milestone = milestone
@@ -32,10 +35,11 @@ struct IssueListViewModel: Hashable {
     }
     
     init(issue: Issue) {
+        id = issue.id
         title = issue.title
         description = issue.body
         isOpen = issue.state == 1 ? true : false
-        milestone = CustomButtonView(type: .milestone, text: issue.milestone.first?.name ?? "", color: "#ffffff")
+        milestone = CustomButtonView(type: .milestone, text: issue.milestone.first?.name, color: "#ffffff")
         labels = issue.labels.map { CustomButtonView(type: .label, text: $0.description, color: $0.color) }
     }
 
