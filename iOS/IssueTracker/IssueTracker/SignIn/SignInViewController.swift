@@ -7,7 +7,6 @@
 
 import UIKit
 import AuthenticationServices
-import Alamofire
 
 final class SignInViewController: UIViewController {
     

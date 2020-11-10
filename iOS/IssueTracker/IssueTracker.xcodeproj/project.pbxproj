@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		7012DC8E2549ADC400EAADD7 /* SignInEndPointTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7012DC8D2549ADC400EAADD7 /* SignInEndPointTest.swift */; };
-		701343B32549061B0044080A /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 701343B22549061B0044080A /* Alamofire */; };
 		701343BB254907AA0044080A /* IssueListEndPointTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 701343BA254907AA0044080A /* IssueListEndPointTest.swift */; };
 		701343C125493A160044080A /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 701343C025493A160044080A /* NetworkService.swift */; };
 		702D6C0B254A8E0100E1A706 /* SignInWithAppleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 702D6C0A254A8E0100E1A706 /* SignInWithAppleButton.swift */; };
@@ -41,6 +40,7 @@
 		708EFEF72546DBCA009D9DEC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 708EFEF62546DBCA009D9DEC /* Assets.xcassets */; };
 		708EFEFA2546DBCA009D9DEC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 708EFEF82546DBCA009D9DEC /* LaunchScreen.storyboard */; };
 		708EFF052546DBCB009D9DEC /* IssueTrackerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 708EFF042546DBCB009D9DEC /* IssueTrackerTests.swift */; };
+		709E018B255AAE1300503654 /* String+asURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 709E018A255AAE1300503654 /* String+asURL.swift */; };
 		70B0A13E2552850600E0E130 /* IssueFilterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70B0A13D2552850500E0E130 /* IssueFilterViewModel.swift */; };
 		70ECC5A025597354003C2AA0 /* IssueListViewModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70ECC59F25597354003C2AA0 /* IssueListViewModelTest.swift */; };
 		70ECC5C325599983003C2AA0 /* IssueDetailInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70ECC5C225599983003C2AA0 /* IssueDetailInteractor.swift */; };
@@ -146,6 +146,7 @@
 		708EFF002546DBCB009D9DEC /* IssueTrackerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = IssueTrackerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		708EFF042546DBCB009D9DEC /* IssueTrackerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueTrackerTests.swift; sourceTree = "<group>"; };
 		708EFF062546DBCB009D9DEC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		709E018A255AAE1300503654 /* String+asURL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+asURL.swift"; sourceTree = "<group>"; };
 		70B0A13D2552850500E0E130 /* IssueFilterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueFilterViewModel.swift; sourceTree = "<group>"; };
 		70ECC59F25597354003C2AA0 /* IssueListViewModelTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueListViewModelTest.swift; sourceTree = "<group>"; };
 		70ECC5C225599983003C2AA0 /* IssueDetailInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueDetailInteractor.swift; sourceTree = "<group>"; };
@@ -207,7 +208,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				FB61544F48E987F7556EC50C /* libPods-IssueTracker.a in Frameworks */,
-				701343B32549061B0044080A /* Alamofire in Frameworks */,
 				BB74C2EF2559CF5F00B0D3CE /* MarkdownView in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -339,8 +339,9 @@
 			children = (
 				BBCC49F22547E9FD00FAB2F4 /* UIView+IBInspectable.swift */,
 				7059318F25518527003FE49F /* UIVIew+snapshot.swift */,
-				7059319825518A8A003FE49F /* UIColor+random.swift */,
 				705931A525523F0A003FE49F /* String+toDate.swift */,
+				709E018A255AAE1300503654 /* String+asURL.swift */,
+				7059319825518A8A003FE49F /* UIColor+random.swift */,
 				705931B225523FE0003FE49F /* UIColor+hex.swift */,
 				70EE428625594A10007E0C5D /* UIColor+visibleTextColor.swift */,
 				70EE428B25594FAE007E0C5D /* UIColor+hexString.swift */,
@@ -603,7 +604,6 @@
 			);
 			name = IssueTracker;
 			packageProductDependencies = (
-				701343B22549061B0044080A /* Alamofire */,
 				BB74C2EE2559CF5F00B0D3CE /* MarkdownView */,
 			);
 			productName = IssueTracker;
@@ -656,7 +656,6 @@
 			);
 			mainGroup = 708EFEE12546DBC9009D9DEC;
 			packageReferences = (
-				701343B12549061B0044080A /* XCRemoteSwiftPackageReference "Alamofire" */,
 				BB74C2ED2559CF5F00B0D3CE /* XCRemoteSwiftPackageReference "MarkdownView" */,
 			);
 			productRefGroup = 708EFEEB2546DBC9009D9DEC /* Products */;
@@ -763,6 +762,7 @@
 				BBE2861125503D8A00A59009 /* SettingViewController.swift in Sources */,
 				BB74C2DE2559BFE700B0D3CE /* Encodable+encoded.swift in Sources */,
 				BBCC49ED2547E8F300FAB2F4 /* SignInViewController.swift in Sources */,
+				709E018B255AAE1300503654 /* String+asURL.swift in Sources */,
 				BBB529582559777D001B708E /* SignInEndPoint.swift in Sources */,
 				BB65A04C254FED2000D09DD5 /* IssueDetailViewController.swift in Sources */,
 				BBDDCBF4255917F4008B8CBD /* IssueListEndPoint.swift in Sources */,
@@ -1118,14 +1118,6 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		701343B12549061B0044080A /* XCRemoteSwiftPackageReference "Alamofire" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 5.3.0;
-			};
-		};
 		BB74C2ED2559CF5F00B0D3CE /* XCRemoteSwiftPackageReference "MarkdownView" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/keitaoouchi/MarkdownView.git";
@@ -1137,11 +1129,6 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		701343B22549061B0044080A /* Alamofire */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 701343B12549061B0044080A /* XCRemoteSwiftPackageReference "Alamofire" */;
-			productName = Alamofire;
-		};
 		BB74C2EE2559CF5F00B0D3CE /* MarkdownView */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = BB74C2ED2559CF5F00B0D3CE /* XCRemoteSwiftPackageReference "MarkdownView" */;
