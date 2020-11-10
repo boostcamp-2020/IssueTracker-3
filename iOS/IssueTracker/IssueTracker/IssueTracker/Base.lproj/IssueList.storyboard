@@ -108,6 +108,10 @@
                                     <segue destination="sam-5C-mGZ" kind="presentation" id="CkP-v7-hh3"/>
                                 </connections>
                             </button>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" id="m1C-gy-0QN">
+                                <rect key="frame" x="0.0" y="61" width="414" height="774"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </activityIndicatorView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="qel-gu-NqZ"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -125,6 +129,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="이슈" id="rdD-Ya-dsd"/>
                     <connections>
+                        <outlet property="indicatorView" destination="m1C-gy-0QN" id="ZkP-fX-UuQ"/>
                         <outlet property="issueListCollectionView" destination="gMJ-9A-2wT" id="Gb3-Ij-daJ"/>
                         <outlet property="issueListToolBar" destination="iD5-I1-ahl" id="7UG-OP-fsm"/>
                         <segue destination="5lT-kN-PTP" kind="presentation" identifier="IssueListFilterSegue" id="9bz-9u-sBs"/>

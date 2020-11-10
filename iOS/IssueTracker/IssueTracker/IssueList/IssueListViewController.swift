@@ -28,11 +28,11 @@ final class IssueListViewController: UIViewController {
     
     private var interactor: IssueListBusinessLogic!
     private var dataSource: UICollectionViewDiffableDataSource<Section, IssueListViewModel>!
-    private var displayedStore = [IssueListViewModel]()
     private var issueListModelController: IssueListModelController!
     //
     private var isSelectedAll = false
     
+    @IBOutlet weak var indicatorView: UIActivityIndicatorView!
     private var filterLeftBarButton: UIBarButtonItem!
     private var selectAllLeftBarButton: UIBarButtonItem!
     private var searchText = ""
@@ -61,6 +61,7 @@ final class IssueListViewController: UIViewController {
         super.viewWillAppear(animated)
         issueListToolBar.isHidden = true
         interactor.fetchIssues()
+        indicatorView.startAnimating()
     }
 
     private var displayedIssue = [IssueListViewModel]()
@@ -181,8 +182,10 @@ final class IssueListViewController: UIViewController {
 
 extension IssueListViewController: IssueListDisplayLogic {
     func displayFetchedIssues(viewModel: [IssueListViewModel]) {
-        displayedStore = viewModel
-        updateDataSource(items: displayedStore, type: .append)
+        displayedIssue = viewModel
+        updateDataSource(items: displayedIssue, type: .append)
+        indicatorView.stopAnimating()
+        indicatorView.isHidden = true
     }    
 }
 
