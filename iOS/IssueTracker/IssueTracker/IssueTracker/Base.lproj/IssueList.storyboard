@@ -574,33 +574,42 @@ HTML형태로 보여줘야 할까요</string>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="제목" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="d7M-AP-djI">
-                                <rect key="frame" x="12" y="133" width="390" height="22"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="제목" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pVE-zb-SvA">
+                                <rect key="frame" x="16" y="130" width="382" height="25.5"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" relation="lessThanOrEqual" constant="30" id="6DK-eh-5vP"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7Hw-mv-mKy" userLabel="Line View">
-                                <rect key="frame" x="12" y="163" width="390" height="1"/>
+                                <rect key="frame" x="12" y="163.5" width="390" height="1"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="1" id="thD-1L-Ku7"/>
                                 </constraints>
                             </view>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="fl3-aF-M7a">
-                                <rect key="frame" x="16" y="185" width="382" height="32"/>
+                                <rect key="frame" x="16" y="180.5" width="382" height="32"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" relation="lessThanOrEqual" constant="35" id="HTr-VY-xNy"/>
+                                </constraints>
                                 <segments>
                                     <segment title="마크다운"/>
                                     <segment title="미리보기"/>
                                 </segments>
                                 <connections>
-                                    <action selector="markdownSegmentedControl:" destination="sam-5C-mGZ" eventType="valueChanged" id="I5B-PX-Q8p"/>
+                                    <action selector="markdownSegmentedControlChanged:" destination="sam-5C-mGZ" eventType="valueChanged" id="M6y-6G-2li"/>
                                 </connections>
                             </segmentedControl>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="코멘트는 여기에" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="7Qm-3i-rgo">
-                                <rect key="frame" x="16" y="223" width="382" height="413"/>
+                                <rect key="frame" x="16" y="219.5" width="382" height="414.5"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="200" id="7ij-8Z-oND"/>
+                                </constraints>
                                 <color key="textColor" systemColor="labelColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                 <connections>
                                     <outlet property="delegate" destination="sam-5C-mGZ" id="c1z-CM-yo4"/>
@@ -765,23 +774,23 @@ HTML형태로 보여줘야 할까요</string>
                         <constraints>
                             <constraint firstItem="gPh-1v-dK3" firstAttribute="leading" secondItem="HUB-5B-J3a" secondAttribute="leading" constant="16" id="0PT-XI-NzW"/>
                             <constraint firstItem="gPh-1v-dK3" firstAttribute="top" secondItem="gYs-3K-uGQ" secondAttribute="bottom" constant="3" id="9Vq-nu-SOb"/>
+                            <constraint firstItem="HUB-5B-J3a" firstAttribute="trailing" secondItem="pVE-zb-SvA" secondAttribute="trailing" constant="16" id="C4i-De-vtG"/>
                             <constraint firstItem="HUB-5B-J3a" firstAttribute="trailing" secondItem="fl3-aF-M7a" secondAttribute="trailing" constant="16" id="DuF-ek-x4O"/>
+                            <constraint firstItem="pVE-zb-SvA" firstAttribute="leading" secondItem="HUB-5B-J3a" secondAttribute="leading" constant="16" id="EIV-SU-RZf"/>
                             <constraint firstItem="9Oh-4V-DOR" firstAttribute="leading" secondItem="HUB-5B-J3a" secondAttribute="leading" id="HTw-J0-2ej"/>
-                            <constraint firstItem="d7M-AP-djI" firstAttribute="top" secondItem="oWw-TA-c4U" secondAttribute="bottom" constant="29" id="Hgb-n7-mEb"/>
+                            <constraint firstItem="7Hw-mv-mKy" firstAttribute="top" secondItem="pVE-zb-SvA" secondAttribute="bottom" constant="8" id="HYG-aK-O9g"/>
                             <constraint firstItem="gPh-1v-dK3" firstAttribute="bottom" secondItem="HUB-5B-J3a" secondAttribute="bottom" id="JDR-wa-A0O"/>
                             <constraint firstItem="HUB-5B-J3a" firstAttribute="trailing" secondItem="gPh-1v-dK3" secondAttribute="trailing" constant="16" id="K0X-z3-FHX"/>
                             <constraint firstItem="oWw-TA-c4U" firstAttribute="leading" secondItem="HUB-5B-J3a" secondAttribute="leading" constant="12" id="KOw-30-qGL"/>
                             <constraint firstItem="ZOF-Iq-VJG" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="oWw-TA-c4U" secondAttribute="trailing" constant="150" id="LBt-zH-APY"/>
+                            <constraint firstItem="fl3-aF-M7a" firstAttribute="top" secondItem="7Hw-mv-mKy" secondAttribute="bottom" constant="16" id="LSK-BK-KJ9"/>
                             <constraint firstItem="9Oh-4V-DOR" firstAttribute="trailing" secondItem="HUB-5B-J3a" secondAttribute="trailing" id="Ocv-Sg-ZLi"/>
                             <constraint firstItem="oWw-TA-c4U" firstAttribute="top" secondItem="9Oh-4V-DOR" secondAttribute="bottom" constant="7" id="RWq-h9-bIG"/>
-                            <constraint firstItem="gYs-3K-uGQ" firstAttribute="top" secondItem="7Qm-3i-rgo" secondAttribute="bottom" constant="6" id="V4Y-29-zHe"/>
-                            <constraint firstItem="fl3-aF-M7a" firstAttribute="top" secondItem="d7M-AP-djI" secondAttribute="bottom" constant="30" id="VD8-0g-p0K"/>
+                            <constraint firstItem="pVE-zb-SvA" firstAttribute="top" secondItem="oWw-TA-c4U" secondAttribute="bottom" constant="26" id="Ucv-eh-xVL"/>
+                            <constraint firstItem="gYs-3K-uGQ" firstAttribute="top" secondItem="7Qm-3i-rgo" secondAttribute="bottom" constant="8" id="V4Y-29-zHe"/>
                             <constraint firstItem="gYs-3K-uGQ" firstAttribute="leading" secondItem="HUB-5B-J3a" secondAttribute="leading" constant="12" id="XAO-iu-lUb"/>
-                            <constraint firstItem="d7M-AP-djI" firstAttribute="leading" secondItem="HUB-5B-J3a" secondAttribute="leading" constant="12" id="XWO-t7-132"/>
                             <constraint firstItem="HUB-5B-J3a" firstAttribute="trailing" secondItem="7Hw-mv-mKy" secondAttribute="trailing" constant="12" id="YI5-7s-ciC"/>
-                            <constraint firstItem="7Hw-mv-mKy" firstAttribute="top" secondItem="d7M-AP-djI" secondAttribute="bottom" constant="8" symbolic="YES" id="YY3-S8-ZoA"/>
-                            <constraint firstItem="HUB-5B-J3a" firstAttribute="trailing" secondItem="d7M-AP-djI" secondAttribute="trailing" constant="12" id="cff-2Y-TQZ"/>
-                            <constraint firstItem="7Qm-3i-rgo" firstAttribute="top" secondItem="fl3-aF-M7a" secondAttribute="bottom" constant="7" id="dJT-Kd-uj5"/>
+                            <constraint firstItem="7Qm-3i-rgo" firstAttribute="top" secondItem="fl3-aF-M7a" secondAttribute="bottom" constant="8" id="dJT-Kd-uj5"/>
                             <constraint firstItem="7Hw-mv-mKy" firstAttribute="leading" secondItem="HUB-5B-J3a" secondAttribute="leading" constant="12" id="g3L-Jd-zzW"/>
                             <constraint firstItem="oWw-TA-c4U" firstAttribute="centerY" secondItem="ZOF-Iq-VJG" secondAttribute="centerY" id="hhp-G3-fwS"/>
                             <constraint firstItem="7Qm-3i-rgo" firstAttribute="leading" secondItem="HUB-5B-J3a" secondAttribute="leading" constant="16" id="l2Y-Sq-IFL"/>
@@ -797,7 +806,6 @@ HTML형태로 보여줘야 할까요</string>
                     <connections>
                         <outlet property="commentTextView" destination="7Qm-3i-rgo" id="8Il-OV-zug"/>
                         <outlet property="doneLeftBarButton" destination="wWv-af-xp6" id="Tdg-st-9he"/>
-                        <outlet property="titleLabel" destination="d7M-AP-djI" id="8JJ-hZ-Spn"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ezo-gz-1R1" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
