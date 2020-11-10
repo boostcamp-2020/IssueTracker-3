@@ -12,6 +12,8 @@ function IssueHeader(props) {
     const filtered = originIssues
       .filter((issue) => {
         if (condition.label === null) return true;
+        if (condition.label === "empty" && issue.labels.length === 0) return true;
+        if (condition.label === "empty" && issue.labels.length !== 0) return false;
         let isIn = false;
         issue.labels.forEach((l) => {
           if (l.name === condition.label) isIn = true;
@@ -20,7 +22,9 @@ function IssueHeader(props) {
       })
       .filter((issue) => {
         if (condition.milestone === null) return true;
-        if (issue.milestone.name === condition.milestone) return true;
+        if (condition.milestone === "empty" && issue.milestone.length === 0) return true;
+        if (condition.milestone === "empty" && issue.milestone.length !== 0) return false;
+        if (issue.milestone?.[0]?.name === condition.milestone) return true;
         return false;
       });
     setIssues(filtered);

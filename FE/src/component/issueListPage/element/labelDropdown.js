@@ -8,7 +8,8 @@ function LabelDropdown(props) {
   const labelOption = labels.map((label) => {
     return { value: label.name, label: label.name };
   });
-  labelOption.unshift({ label: "issue with no label", value: null });
+  labelOption.unshift({ label: "issue with no label", value: "empty" });
+  labelOption.unshift({ label: "label", value: null });
   const onLabelHandler = (event) => {
     setCondition({ label: event.value, milestone: condition.milestone });
   };

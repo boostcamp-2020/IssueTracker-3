@@ -8,7 +8,8 @@ function MilestoneDropdown(props) {
   const milestoneOption = milestones.map((milestone) => {
     return { value: milestone.name, label: milestone.name };
   });
-  milestoneOption.unshift({ label: "issue with no milestone", value: null });
+  milestoneOption.unshift({ label: "issue with no milestone", value: "empty" });
+  milestoneOption.unshift({ label: "milestone", value: null });
   const onMilestoneHandler = (event) => {
     setCondition({ label: condition.label, milestone: event.value });
   };
