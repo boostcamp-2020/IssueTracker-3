@@ -17,7 +17,7 @@ import WebKit
 // FIXME: SelectAll 문제 - 전체 다 안됨 (겉으로 보기에만 됨 / 여러번 하면 오류 + cell 위치 틀리는 문제 / Model data를 변경해야함)
 
 protocol IssueListDisplayLogic: class {
-    func displayFetchedIssues(viewModel: [IssueListViewModel])
+  func displayFetchedIssues(viewModel: [IssueListViewModel])
 }
 
 class IssueListViewController: UIViewController, IssueListDisplayLogic {
@@ -240,7 +240,7 @@ extension IssueListViewController {
                 else {
                     return UICollectionViewCell()
                 }
-                cell.configureIssueListCell(of: item)
+                cell.configure(of: item)
                 cell.systemLayoutSizeFitting(.init(width: self.view.bounds.width, height: 88))
                 return cell
             })
@@ -254,10 +254,10 @@ extension IssueListViewController: UICollectionViewDelegate {
         guard isEditing else {
             let sender = displayedStore[indexPath.row].id
             guard let issueDetailViewController = self.storyboard?.instantiateViewController(
-                    identifier: IssueDetailViewController.identifier,
-                    creator: { coder -> IssueDetailViewController? in
-                        return IssueDetailViewController(coder: coder, id: sender)
-                    }) else { return }
+                        identifier: IssueDetailViewController.identifier,
+                        creator: { coder -> IssueDetailViewController? in
+                            return IssueDetailViewController(coder: coder, id: sender)
+                        }) else { return }
 
             navigationController?.pushViewController(issueDetailViewController, animated: true)
             return
