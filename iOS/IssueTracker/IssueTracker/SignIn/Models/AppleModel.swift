@@ -7,14 +7,7 @@
 
 import Foundation
 
-struct AppleModel: Codable {
+struct AppleLogin: Codable {
     let authorizationCode: String
     let identityToken: String
-
-    func toJson() -> [String: Any] {
-        return [
-            "authorization_code": authorizationCode,
-            "identity_token": identityToken
-        ]
-    }
 }

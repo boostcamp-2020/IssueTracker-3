@@ -41,50 +41,69 @@ final class SignInViewController: UIViewController {
             // user.identityToken = JWT 토큰을 풀어서 name, email 가져오기, 서버로 보내기
             // user.authorizationCode = 서버로 보낼 코드 // 5분만
 
-            self?.showResultViewController(userIdentifier: user.id,
-                                           givenName: user.firstName,
-                                           familyName: user.lastName,
-                                           email: user.email)
+            guard let self = self,
+                  let code = user.authorizationCode,
+                  let token = user.identityToken else {
+                return
+            }
+
+            self.appleLoginNetworkService(authorizationCode: code, identityToken: token) {
+                self.showResultViewController(userIdentifier: user.id,
+                                              givenName: user.firstName,
+                                              familyName: user.lastName,
+                                              email: user.email)
+            }
+        }
+    }
+
+    private func appleLoginNetworkService(authorizationCode code: String,
+                                          identityToken token: String,
+                                          handler: @escaping () -> Void) {
+        let appleModel = AppleLogin(authorizationCode: code, identityToken: token)
+        let networkService = NetworkService()
+        let jsonEncoder = JSONEncoder()
+        jsonEncoder.keyEncodingStrategy = .convertToSnakeCase
+
+        guard let encodedData = try? jsonEncoder.encode(appleModel) else { return }
+
+        networkService.request(apiConfiguration: SignInEndPoint.apple(encodedData)) { result in
+            switch result {
+            case .failure(let error):
+                print(error)
+                return
+            case .success(let data):
+                guard let decodedData: RequestLogin = try? data.decoded() else {
+                    return
+                }
+                handler()
+            }
         }
     }
 
     private func saveUserInKeychain(_ userIdentifier: String) {
-        do {
-            try KeychainItem(service: "com.example.apple-samplecode.juice",
-                             account: "userIdentifier").saveItem(userIdentifier)
-        } catch {
-            print("Unable to save userIdentifier to keychain.")
-        }
+        try? KeychainItem(service: "com.example.apple-samplecode.juice",
+                          account: "userIdentifier").saveItem(userIdentifier)
+
     }
 
     private func showResultViewController(userIdentifier: String?,
                                           givenName: String?,
                                           familyName: String?,
                                           email: String?) {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        guard let loginViewController = storyboard.instantiateViewController(withIdentifier: "loginViewController")
-                as? SignInViewController else { return }
-
-        loginViewController.modalPresentationStyle = .formSheet
-        loginViewController.isModalInPresentation = true
-        self.present(loginViewController, animated: true, completion: nil)
-
         DispatchQueue.main.async {
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+
+            guard let tabBarController = storyboard.instantiateViewController(withIdentifier: "UITabBarController")
+                    as? UITabBarController else { return }
+
+            self.view.window?.rootViewController = tabBarController
         }
     }
-  
+
     // MARK: Action Functions
     
-    @IBAction func signInTouched(_ sender: UIButton) {
-        // TODO: idTextField.text / pwTextField.text => 인터렉터(검증)
-    }
-    
-    // TODO: 로그인 실패/성공 : toast
-    
     @IBAction func signInWithGitHubTouched(_ sender: UIButton) {
-        let path = "http://101.101.210.34:3000/auth/github"
-//        let path = "https://github.com/login/oauth/authorize"
-        OAuthManager.init(provider: self).reqeustToken(url: path) { token in
+        OAuthManager.init(provider: self).reqeustToken(url: SignInEndPoint.github.path) { token in
             guard token != "" else {
                 print("nilnil닐닐")
                 return

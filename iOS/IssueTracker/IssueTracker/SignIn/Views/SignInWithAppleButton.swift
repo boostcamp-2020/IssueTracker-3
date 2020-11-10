@@ -113,16 +113,16 @@ extension AppleSignInButton: ASAuthorizationControllerDelegate {
             guard let authorization = credentials.authorizationCode else { break }
             guard let jwt = credentials.identityToken  else { break }
 
-            let data = String(data: authorization, encoding: .utf8)
-            let data2 = String(data: jwt, encoding: .utf8)
+            let authorizationCode = String(data: authorization, encoding: .utf8)
+            let identityToken = String(data: jwt, encoding: .utf8)
 
             didCompletedSignIn?(AppleUser(credentials.user,
                                           credentials.fullName?.givenName,
                                           credentials.fullName?.familyName,
                                           credentials.email,
                                           nil,
-                                          credentials.authorizationCode,
-                                          credentials.identityToken))
+                                          authorizationCode,
+                                          identityToken))
         case let passwordCredential as ASPasswordCredential:
             didCompletedSignIn?(AppleUser(passwordCredential.user,
                                           nil,
@@ -153,16 +153,16 @@ class AppleUser {
     var lastName: String?
     var email: String?
     var password: String?
-    var authorizationCode: Data?
-    var identityToken: Data?
+    var authorizationCode: String?
+    var identityToken: String?
 
     init(_ id: String?,
          _ firstName: String?,
          _ lastName: String?,
          _ email: String?,
          _ password: String?,
-         _ authorizationCode: Data?,
-         _ identityToken: Data?) {
+         _ authorizationCode: String?,
+         _ identityToken: String?) {
         self.id = id
         self.firstName = firstName
         self.lastName = lastName
