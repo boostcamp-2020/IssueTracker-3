@@ -22,7 +22,7 @@ final class OAuthManager {
     
     func reqeustToken(url: String, handler: @escaping (String) -> Void) {
         guard let url = try? url.asURL() else { return }
-        
+
         session = ASWebAuthenticationSession(url: url, callbackURLScheme: callbackScheme) { callBackURL, error in
             guard let callBackURL = callBackURL, error == nil else {
                 print(String(describing: error?.localizedDescription))

@@ -34,7 +34,6 @@ class IssueFilterTableViewCell: UITableViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -43,6 +42,16 @@ class IssueFilterTableViewCell: UITableViewCell {
 
     override func prepareForReuse() {
         
+    }
+
+    override func updateConfiguration(using state: UICellConfigurationState) {
+        var back = UIBackgroundConfiguration.listPlainCell().updated(for: state)
+    
+        if state.isSelected {
+            back.backgroundColor = .systemYellow
+        }
+
+        self.backgroundConfiguration = back
     }
 
     func changeButton(kind: ChevronDirection) {

@@ -18,6 +18,7 @@ final class SignInViewController: UIViewController {
 
     // MARK: View Cycle
 
+
     var text: String?
 
     override func viewDidLoad() {
@@ -33,6 +34,18 @@ final class SignInViewController: UIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillAppear(true)
         navigationController?.navigationBar.isHidden = false
+    }
+
+    @IBAction func loginTouched(_ sender: Any) {
+        let networkService = NetworkService()
+        networkService.request(apiConfiguration: SignInEndPoint.signIn) { result in
+            switch result {
+            case .failure(let error):
+                debugPrint(error)
+            case .success(let data):
+                debugPrint(data)
+            }
+        }
     }
 
     func configureSignInWithAppleView() {
@@ -74,7 +87,7 @@ final class SignInViewController: UIViewController {
                 guard let decodedData: RequestLogin = try? data.decoded() else {
                     return
                 }
-                NetworkService.token = decodedData.jwt
+//                NetworkService.token = decodedData.jwt
                 handler()
             }
         }

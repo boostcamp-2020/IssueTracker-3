@@ -24,7 +24,7 @@ final class IssueListCollectionViewCell: UICollectionViewListCell {
         titleLabel.text = item.title
         descriptionLabel.text = item.description
     }
-    
+
     // TODO: milestone, labels가 nil 이라면?
     private func configureLabelStackView(milestone: UIButton, labels: [UIButton]) {
         labelStackView.subviews.forEach({
