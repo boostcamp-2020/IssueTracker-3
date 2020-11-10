@@ -6,3 +6,12 @@
 //
 
 import Foundation
+
+struct RequestLogin: Codable {
+    let state, jwt: String
+
+     enum CodingKeys: String, CodingKey {
+         case state
+         case jwt = "JWT"
+     }
+}
