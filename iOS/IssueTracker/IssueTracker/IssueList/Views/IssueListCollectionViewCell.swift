@@ -30,6 +30,7 @@ final class IssueListCollectionViewCell: UICollectionViewListCell {
         labelStackView.subviews.forEach({
             $0.removeFromSuperview()
         })
+
         labelStackView.addArrangedSubview(milestone)
         labels.forEach({
             labelStackView.addArrangedSubview($0)

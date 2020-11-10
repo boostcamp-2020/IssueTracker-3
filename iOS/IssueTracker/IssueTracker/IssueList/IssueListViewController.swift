@@ -252,11 +252,11 @@ extension IssueListViewController {
 extension IssueListViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard isEditing else {
-            let sender = displayedStore[indexPath.row].id
+            let sender = displayedStore[indexPath.row]
             guard let issueDetailViewController = self.storyboard?.instantiateViewController(
                         identifier: IssueDetailViewController.identifier,
                         creator: { coder -> IssueDetailViewController? in
-                            return IssueDetailViewController(coder: coder, id: sender)
+                            return IssueDetailViewController(coder: coder, id: sender.id, firstComment: sender)
                         }) else { return }
 
             navigationController?.pushViewController(issueDetailViewController, animated: true)
