@@ -7,35 +7,35 @@
 
 import UIKit
 import Combine
-import WebKit
+
 // TODO: Activity Indicators
 // TODO: ios13 이하 버전 Edit 구현
 
 // FIXME: 플로팅 버튼 (shade / 에니메이션 - (스크롤:숨기기 / 끝나면:나오기 / edit mode 없애기)
-
-// FIXME: tabBarButton & toolBarButton hidden 오류
+// FIXME: ToolBar Editing Mode에서 저~~~~ 밑으로 내려가는 문제 해결
 // FIXME: SelectAll 문제 - 전체 다 안됨 (겉으로 보기에만 됨 / 여러번 하면 오류 + cell 위치 틀리는 문제 / Model data를 변경해야함)
 
 protocol IssueListDisplayLogic: class {
   func displayFetchedIssues(viewModel: [IssueListViewModel])
 }
 
-class IssueListViewController: UIViewController, IssueListDisplayLogic {
+final class IssueListViewController: UIViewController {
     
     // MARK: Properties
     
     @IBOutlet private weak var issueListCollectionView: UICollectionView!
     @IBOutlet private weak var issueListToolBar: UIToolbar!
     
+    private var interactor: IssueListBusinessLogic!
     private var dataSource: UICollectionViewDiffableDataSource<Section, IssueListViewModel>!
-
+    private var displayedStore = [IssueListViewModel]()
     private var issueListModelController: IssueListModelController!
+    //
+    private var isSelectedAll = false
     
     private var filterLeftBarButton: UIBarButtonItem!
     private var selectAllLeftBarButton: UIBarButtonItem!
-    private var isSelectedAll = false
     private var searchText = ""
-    private var interactor: IssueListBusinessLogic!
 
     // MARK: Enums
     
@@ -47,14 +47,14 @@ class IssueListViewController: UIViewController, IssueListDisplayLogic {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        issueListModelController = IssueListModelController()
-
-        configureNavigationItems()
+        setup()
         configureDataSource()
         configureCollectionLayoutList()
+        configureNavigationItems()
         performSearchQuery(with: nil)
         showSearchBar()
-        setup()
+        //
+        issueListModelController = IssueListModelController()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -63,24 +63,14 @@ class IssueListViewController: UIViewController, IssueListDisplayLogic {
         interactor.fetchIssues()
     }
 
-    private var displayedStore = [IssueListViewModel]()
-
-    func displayFetchedIssues(viewModel: [IssueListViewModel]) {
-        displayedStore = viewModel
-        var snapshot = NSDiffableDataSourceSnapshot<Section, IssueListViewModel>()
-        snapshot.appendSections([.main])
-        snapshot.appendItems(displayedStore)
-        dataSource.apply(snapshot, animatingDifferences: false)
-    }
-
     // MARK: Setup
+    
     private func setup() {
-        let viewController = self
         let interactor = IssueListInteractor()
         let presenter = IssueListPresenter()
         self.interactor = interactor
         interactor.presenter = presenter
-        presenter.viewController = viewController
+        presenter.viewController = self
     }
     
     // MARK: Configure
@@ -114,24 +104,19 @@ class IssueListViewController: UIViewController, IssueListDisplayLogic {
         if #available(iOS 14.0, *) {
             var layoutConfig = UICollectionLayoutListConfiguration(appearance: .plain)
             layoutConfig.trailingSwipeActionsConfigurationProvider = { [weak self] indexPath in
-                guard let self = self,
-                      let item = self.dataSource.itemIdentifier(for: indexPath)
-                else {
+                guard let item = self?.dataSource.itemIdentifier(for: indexPath) else {
                     return nil
                 }
                 
-                let delete = UIContextualAction(style: .destructive,
-                                                title: "Delete") { [weak self] _, _, completion in
+                let close = UIContextualAction(style: .destructive,
+                                                title: "Close") { [weak self] _, _, completion in
                     // TODO: Model -> 해당 indexPath delete
-                    var snapshot = self?.dataSource.snapshot()
-                    snapshot?.deleteItems([item])
-                    guard let snapShot = snapshot else { return }
-                    self?.dataSource.apply(snapShot, animatingDifferences: false)
+                    self?.updateDataSource(items: [item], type: .delete)
                     // TODO: 선택 이슈 삭제 -> 삭제 이슈 Model Update & Server Post
                     completion(true)
                 }
-                delete.backgroundColor = .systemRed
-                return UISwipeActionsConfiguration(actions: [delete])
+                close.backgroundColor = .systemRed
+                return UISwipeActionsConfiguration(actions: [close])
             }
             let listLayout = UICollectionViewCompositionalLayout.list(using: layoutConfig)
             issueListCollectionView.collectionViewLayout = listLayout
@@ -158,30 +143,16 @@ class IssueListViewController: UIViewController, IssueListDisplayLogic {
         } else {
             issueListCollectionView.allowsMultipleSelection = editing
         }
-        
-        issueListCollectionView
-            .indexPathsForVisibleItems
-            .map { issueListCollectionView.cellForItem(at: $0) }
-            .compactMap { $0 as? IssueListCollectionViewCell }
-            .forEach { $0.isInEditingMode = editing }
     }
     
     @IBAction func closeSelectedIssueTouched(_ sender: UIBarButtonItem) {
-        var snapshot = dataSource.snapshot()
-        let selectedItems = issueListCollectionView
-            .indexPathsForSelectedItems?
-            .compactMap { dataSource.itemIdentifier(for: $0) }
-        guard let deleteItems = selectedItems else {
+        guard let selectedItems = issueListCollectionView
+                .indexPathsForSelectedItems?
+                .compactMap({ dataSource.itemIdentifier(for: $0) }) else {
             return
         }
-        snapshot.deleteItems(deleteItems)
-        dataSource.apply(snapshot, animatingDifferences: false)
+        updateDataSource(items: selectedItems, type: .delete)
         // TODO: 선택 이슈 닫기 -> 닫은 이슈 Model Update & Server Post
-        // selectedItems
-        //    .map { issueListCollectionView.cellForItem(at: $0) }
-        //    .compactMap { $0 as? IssueListCollectionViewCell }
-        //    .publisher
-        //    .assign(to: &)
     }
     
     @objc private func filterTouched(_ sender: Any) {
@@ -192,16 +163,25 @@ class IssueListViewController: UIViewController, IssueListDisplayLogic {
         // TODO: issue ViewModel List 가지고 있는 객체에서 -> forEach -> isSelect true
         // FIXME: SelectAll에서 클릭 안되는 문제
         isSelectedAll.toggle()
-        //        if isSelectedAll {
-        //            issueListCollectionView
-        //                .indexPathsForVisibleItems
-        //                .forEach { issueListCollectionView.selectItem(at: $0, animated: true, scrollPosition: .bottom) }
-        //        } else {
-        //            issueListCollectionView
-        //                .indexPathsForVisibleItems
-        //                .forEach { issueListCollectionView.deselectItem(at: $0, animated: true) }
-        //        }
+        // if isSelectedAll {
+        //    issueListCollectionView
+        //        .indexPathsForVisibleItems
+        //        .forEach { issueListCollectionView.selectItem(at: $0, animated: true, scrollPosition: .bottom) }
+        // } else {
+        //    issueListCollectionView
+        //        .indexPathsForVisibleItems
+        //        .forEach { issueListCollectionView.deselectItem(at: $0, animated: true) }
+        // }
     }
+}
+
+// MARK: IssueListDisplayLogic
+
+extension IssueListViewController: IssueListDisplayLogic {
+    func displayFetchedIssues(viewModel: [IssueListViewModel]) {
+        displayedStore = viewModel
+        updateDataSource(items: displayedStore, type: .append)
+    }    
 }
 
 // MARK: UISearchBarDelegate
@@ -223,7 +203,6 @@ extension IssueListViewController: UISearchBarDelegate {
         var snapshot = NSDiffableDataSourceSnapshot<Section, IssueListViewModel>()
         snapshot.appendSections([.main])
         snapshot.appendItems(issueListItems)
-
         dataSource.apply(snapshot, animatingDifferences: false)
     }
 }
@@ -234,7 +213,7 @@ extension IssueListViewController {
     func configureDataSource() {
         dataSource = UICollectionViewDiffableDataSource<Section, IssueListViewModel>(
             collectionView: issueListCollectionView,
-            cellProvider: {(collectionView, indexPath, item) -> UICollectionViewCell? in
+            cellProvider: { (collectionView, indexPath, item) -> UICollectionViewCell? in
                 guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "IssueListCell",
                                                                     for: indexPath) as? IssueListCollectionViewCell
                 else {
@@ -244,6 +223,22 @@ extension IssueListViewController {
                 cell.systemLayoutSizeFitting(.init(width: self.view.bounds.width, height: 88))
                 return cell
             })
+    }
+    
+    enum UpdateDataSourceType {
+        case append, delete
+    }
+    
+    private func updateDataSource(items: [IssueListViewModel], type: UpdateDataSourceType) {
+        var snapshot = dataSource.snapshot()
+        switch type {
+        case .append:
+            snapshot.appendSections([.main])
+            snapshot.appendItems(items)
+        case .delete:
+            snapshot.deleteItems(items)
+        }
+        dataSource.apply(snapshot, animatingDifferences: false)
     }
 }
 
@@ -262,19 +257,5 @@ extension IssueListViewController: UICollectionViewDelegate {
             navigationController?.pushViewController(issueDetailViewController, animated: true)
             return
         }
-    }
-    
-    func collectionView(_ collectionView: UICollectionView,
-                        willDisplay cell: UICollectionViewCell,
-                        forItemAt indexPath: IndexPath) {
-        guard let cell = cell as? IssueListCollectionViewCell else { return }
-        
-        if isEditing != cell.isInEditingMode {
-            cell.isInEditingMode = isEditing
-        }
-        if isSelectedAll {
-            issueListCollectionView.selectItem(at: indexPath, animated: true, scrollPosition: .bottom)
-        }
-        // TODO: deselect
     }
 }
