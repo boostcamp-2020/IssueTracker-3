@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { hot } from "react-hot-loader";
 import styled from "styled-components";
+import { debounce } from "lodash";
+
 import axiosApi from "../../../util/axiosApi";
 
 const Horizontal = styled.div`
@@ -27,6 +29,7 @@ function CreateLabelDropdown(props) {
     display: flex;
   `;
   const [data, setData] = useState({ name: "", description: "", color: "" });
+
   const onNameHandler = (event) => {
     const inputName = event.target.value;
     // props.setData({ name: event.target.value, description: "", color: "" });
@@ -40,6 +43,10 @@ function CreateLabelDropdown(props) {
     const inputColor = event.target.value;
     setData({ name: data.name, description: data.description, color: inputColor });
   };
+
+  const debouncedNameHandler = debounce(onNameHandler, 1000);
+  const debouncedDescriptionHandler = debounce(onDescriptionHandler, 1000);
+  const debouncedColorHander = debounce(onColorHander, 1000);
 
   const newLabel = async () => {
     console.log(data);
@@ -63,15 +70,15 @@ function CreateLabelDropdown(props) {
       <Horizontal>
         <Vertical>
           <span>이름</span>
-          <input type="text" name="name" value={data.name} onChange={onNameHandler}></input>
+          <input type="text" name="name" defaultValue={data.name} onChange={debouncedNameHandler}></input>
         </Vertical>
         <Vertical>
           <span>설명</span>
-          <input type="text" name="description" value={data.description} onChange={onDescriptionHandler}></input>
+          <input type="text" name="description" defaultValue={data.description} onChange={debouncedDescriptionHandler}></input>
         </Vertical>
         <Vertical>
           <span>색상</span>
-          <input type="text" name="color" value={data.color} onChange={onColorHander}></input>
+          <input type="text" name="color" defaultValue={data.color} onChange={debouncedColorHander}></input>
         </Vertical>
         <Horizontal>
           <button onClick={newLabel}>만들기</button>
