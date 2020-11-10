@@ -14,7 +14,7 @@ final class IssueListCollectionViewCell: UICollectionViewListCell {
     
     var isInEditingMode: Bool = false { didSet { } } // selected 문제 해결 후 삭제 예정
     
-    func configureIssueListCell(of item: IssueListViewModel) {
+    func configure(of item: IssueListViewModel) {
         configureCellLabels(with: item)
         configureLabelStackView(milestone: item.milestone, labels: item.labels)
         configureAccessories()
