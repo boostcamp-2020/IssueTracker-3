@@ -80,10 +80,8 @@ final class CreateIssueViewController: UIViewController {
     @IBAction func uploadIssueTouched(_ sender: Any) {
         // Alert -> 성공 / 실패 시
         
-        dismiss(animated: true) { [unowned self] in
-            let title = titleTextField.text
-            let comment = commentTextView.text
-        }
+        interactor.uploadIssue(title: titleTextField.text ?? "", comment: commentTextView.text)
+        dismiss(animated: true)
     }
 
     @IBAction func cancelTouched(_ sender: UIBarButtonItem) {
