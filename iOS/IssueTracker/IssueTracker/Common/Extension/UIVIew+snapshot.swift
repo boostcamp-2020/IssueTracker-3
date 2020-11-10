@@ -13,7 +13,6 @@ extension UIView {
     /// 지정한 view를 이미지로 만들어줌
     /// ```
     /// let uiImage: UIImage = view.snapshot()
-    ///
     /// ```
     /// - Returns: UIImage()
     func snapshot() -> UIImage {

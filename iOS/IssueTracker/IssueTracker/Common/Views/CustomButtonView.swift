@@ -26,7 +26,7 @@ class CustomButtonView: UIButton {
     ///   - type: .milestone, .label
     ///   - text: Button Text
     ///   - color: Button Backgroun Color
-    convenience init(type: LabelType, text: String, color: String) {
+    convenience init(type: LabelType, text: String?, color: String) {
         self.init(frame: .zero)
         self.type = type
         self.text = text
@@ -39,7 +39,10 @@ class CustomButtonView: UIButton {
     }
 
     func setting() {
-        guard text != "" else { return }
+        self.isHidden = text == nil
+        guard let text = text else {
+            return
+        }
         let uiColor = UIColor(hex: color)
         
         self.setTitle(text, for: .normal)

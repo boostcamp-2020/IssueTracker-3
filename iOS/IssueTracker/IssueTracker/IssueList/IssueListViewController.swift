@@ -28,7 +28,7 @@ final class IssueListViewController: UIViewController {
     
     private var interactor: IssueListBusinessLogic!
     private var dataSource: UICollectionViewDiffableDataSource<Section, IssueListViewModel>!
-    //
+    private var displayedStore = [IssueListViewModel]()
     private var issueListModelController: IssueListModelController!
     //
     private var isSelectedAll = false
@@ -36,7 +36,7 @@ final class IssueListViewController: UIViewController {
     private var filterLeftBarButton: UIBarButtonItem!
     private var selectAllLeftBarButton: UIBarButtonItem!
     private var searchText = ""
-    
+
     // MARK: Enums
     
     enum Section: CaseIterable {
@@ -62,7 +62,7 @@ final class IssueListViewController: UIViewController {
         issueListToolBar.isHidden = true
         interactor.fetchIssues()
     }
-    
+
     // MARK: Setup
     
     private func setup() {
@@ -179,8 +179,9 @@ final class IssueListViewController: UIViewController {
 
 extension IssueListViewController: IssueListDisplayLogic {
     func displayFetchedIssues(viewModel: [IssueListViewModel]) {
-        updateDataSource(items: viewModel, type: .append)
-    }
+        displayedStore = viewModel
+        updateDataSource(items: displayedStore, type: .append)
+    }    
 }
 
 // MARK: UISearchBarDelegate
@@ -196,10 +197,13 @@ extension IssueListViewController: UISearchBarDelegate {
     }
     
     func performSearchQuery(with filter: String?) {
-//        let issueListItems = issueListModelController
-//            .filteredBasedOnTitle(with: filter ?? "",
-//                                  model: issueList).sorted { $0.title < $1.title }
-//        updateDataSource(items: issueListItems, type: .append)
+        let issueListItems = issueListModelController
+            .filteredBasedOnTitle(with: filter ?? "",
+                                  model: displayedStore).sorted { $0.title < $1.title }
+        var snapshot = NSDiffableDataSourceSnapshot<Section, IssueListViewModel>()
+        snapshot.appendSections([.main])
+        snapshot.appendItems(issueListItems)
+        dataSource.apply(snapshot, animatingDifferences: false)
     }
 }
 
@@ -215,7 +219,7 @@ extension IssueListViewController {
                 else {
                     return UICollectionViewCell()
                 }
-                cell.configureIssueListCell(of: item)
+                cell.configure(of: item)
                 cell.systemLayoutSizeFitting(.init(width: self.view.bounds.width, height: 88))
                 return cell
             })
@@ -243,7 +247,14 @@ extension IssueListViewController {
 extension IssueListViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard isEditing else {
-            performSegue(withIdentifier: "IssueDetailSegue", sender: nil)
+            let sender = displayedStore[indexPath.row]
+            guard let issueDetailViewController = self.storyboard?.instantiateViewController(
+                        identifier: IssueDetailViewController.identifier,
+                        creator: { coder -> IssueDetailViewController? in
+                            return IssueDetailViewController(coder: coder, id: sender.id, firstComment: sender)
+                        }) else { return }
+
+            navigationController?.pushViewController(issueDetailViewController, animated: true)
             return
         }
     }

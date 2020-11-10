@@ -42,7 +42,7 @@ extension IssueListInteractor: IssueListBusinessLogic {
             }
         }
     }
-    
+
     func changeIssueState() {
         
     }

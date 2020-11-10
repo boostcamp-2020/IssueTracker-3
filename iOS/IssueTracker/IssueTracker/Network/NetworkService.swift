@@ -34,16 +34,34 @@ class NetworkService: NetworkServiceProvider {
             }
             guard let response = response as? HTTPURLResponse else {
                 handler(.failure(.invalidResponse(message: "")))
-                // !200대 / 400 / 500
-                print("bad response")
                 return
             }
-            guard let data = data else {
-                print("no data")
-                handler(.failure(.invalidData(message: "data nil")))
+
+            switch response.statusCode {
+            case 100...199: // Informational
+                handler(.failure(.informational(message: "\(response.statusCode)")))
+                return
+            case 200...299: // Success
+                guard let data = data else {
+                    print("no data")
+                    handler(.failure(.invalidData(message: "data nil")))
+                    return
+                }
+                handler(.success(data))
+                return
+            case 300...399: // Redirection
+                handler(.failure(.redirection(message: "\(response.statusCode)")))
+                return
+            case 400...499: // Client Error
+                handler(.failure(.clientError(message: "\(response.statusCode)")))
+                return
+            case 500...599: // Server Error
+                handler(.failure(.serverError(message: "\(response.statusCode)")))
+                return
+            default:
+                handler(.failure(.serverError(message: "\(response.statusCode)")))
                 return
             }
-            handler(.success(data))
         }.resume()
     }
     

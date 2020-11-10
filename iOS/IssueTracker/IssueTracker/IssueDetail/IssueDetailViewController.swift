@@ -7,10 +7,15 @@
 
 import UIKit
 
-final class IssueDetailViewController: UIViewController {
-    
+protocol IssueDetailDisplayLogic: class {
+    func displayFetchedComments(viewModel: [IssueDetailViewModel])
+}
+
+final class IssueDetailViewController: UIViewController, IssueDetailDisplayLogic {
+    static let identifier = "IssueDetailViewController"
     // MARK: Properties
     
+    @IBOutlet weak var issueDetailCollectionView: UICollectionView!
     private weak var issueDetailBottomSheet: IssueDetailBottomSheetViewController!
     private var visualEffectView: UIVisualEffectView!
     private var cardVisible = false
@@ -18,24 +23,79 @@ final class IssueDetailViewController: UIViewController {
     private var animationProgressWhenInterrupted: CGFloat = .zero
     private let cardHeight: CGFloat = 600
     private let cardHandleAreaHeight: CGFloat = 65
-    
+
+    private var interactor: IssueDetailBusinessLogic!
+
+    // MARK: Enums
+
+    enum Section: Hashable {
+        case main
+    }
+
+    private var dataSource: UICollectionViewDiffableDataSource<Section, IssueDetailViewModel>!
+
     var nextState: BottomSheetState {
         return cardVisible ? .collapsed : .expanded
     }
-    
+
+    private let id: Int!
+    private let firstComment: IssueListViewModel!
+
+    init?(coder: NSCoder, id: Int, firstComment: IssueListViewModel) {
+        self.id = id
+        self.firstComment = firstComment
+        super.init(coder: coder)
+    }
+
+    required init?(coder: NSCoder) {
+        self.id = nil
+        self.firstComment = nil
+        super.init(coder: coder)
+    }
+
     // MARK: View Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         configureNavigationItem()
         // addBottomSheetView()
+        configureDataSource()
+
         configureBottomSheet()
+        setup()
+
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        interactor.fetchComments(id: id)
         tabBarController?.tabBar.isHidden = true
     }
-    
+
     override func viewWillDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         tabBarController?.tabBar.isHidden = false
+    }
+
+    // MARK: Setup
+    private func setup() {
+        let viewController = self
+        let interactor = IssueDetailInteractor()
+        let presenter = IssueDetailPresenter()
+        self.interactor = interactor
+        interactor.presenter = presenter
+        presenter.viewController = viewController
+    }
+
+    private var displayedStore = [IssueDetailViewModel]()
+
+    func displayFetchedComments(viewModel: [IssueDetailViewModel]) {
+        displayedStore = viewModel
+        var snapshot = NSDiffableDataSourceSnapshot<Section, IssueDetailViewModel>()
+        snapshot.appendSections([.main])
+        snapshot.appendItems(displayedStore)
+
+        dataSource.apply(snapshot, animatingDifferences: false)
     }
 
     // MARK: Configure View
@@ -49,26 +109,39 @@ final class IssueDetailViewController: UIViewController {
     }
     
     @objc func editButtonTouched() {
-        
+
     }
 }
 
-extension IssueDetailViewController: UICollectionViewDelegate {
-    
-}
+// MARK: UICollectionView DataSource
 
-extension IssueDetailViewController: UICollectionViewDataSource {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        10
-    }
-    func numberOfSections(in collectionView: UICollectionView) -> Int {
-        2
-    }
-    
-    func collectionView(_ collectionView: UICollectionView,
-                        cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "IssueDetailCell", for: indexPath)
-        return cell
+extension IssueDetailViewController {
+    func configureDataSource() {
+        dataSource = UICollectionViewDiffableDataSource<Section, IssueDetailViewModel>(
+            collectionView: issueDetailCollectionView,
+            cellProvider: {(collectionView, indexPath, item) -> UICollectionViewCell? in
+                guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "IssueDetailCell",
+                                                                    for: indexPath) as? IssueDetailCollectionViewCell
+                else {
+                    return UICollectionViewCell()
+                }
+                cell.configure(of: item)
+                // cell.systemLayoutSizeFitting(.init(width: self.view.bounds.width, height: 88))
+                return cell
+            })
+
+        dataSource.supplementaryViewProvider = { collectionView, kind, indexPath in
+            guard kind == UICollectionView.elementKindSectionHeader else {
+                return UICollectionReusableView()
+            }
+
+            guard let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: IssueDetailCollectionReusableView.identifier, for: indexPath)
+                    as? IssueDetailCollectionReusableView else { return  UICollectionReusableView() }
+
+            headerView.configure(item: self.firstComment)
+
+            return headerView
+        }
     }
 }
 

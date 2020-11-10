@@ -127,7 +127,6 @@
                     <connections>
                         <outlet property="issueListCollectionView" destination="gMJ-9A-2wT" id="Gb3-Ij-daJ"/>
                         <outlet property="issueListToolBar" destination="iD5-I1-ahl" id="7UG-OP-fsm"/>
-                        <segue destination="lMJ-Dn-Q9j" kind="show" identifier="IssueDetailSegue" id="IF2-KY-5Vj"/>
                         <segue destination="5lT-kN-PTP" kind="presentation" identifier="IssueListFilterSegue" id="9bz-9u-sBs"/>
                     </connections>
                 </viewController>
@@ -243,17 +242,17 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" heightSizable="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Etv-eu-euX">
-                                <rect key="frame" x="0.0" y="88" width="414" height="725"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="769"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="v44-s4-Z1Y">
                                     <size key="itemSize" width="414" height="156"/>
-                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="headerReferenceSize" width="50" height="150"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="IssueDetailCell" id="i7D-p5-9yn" customClass="IssueDetailCollectionViewCell" customModule="IssueTracker" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="156"/>
+                                        <rect key="frame" x="0.0" y="150" width="414" height="156"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinY="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="2Wg-L9-NAK">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="156"/>
@@ -366,8 +365,111 @@ HTML형태로 보여줘야 할까요</string>
                                         </collectionViewCellContentView>
                                         <color key="backgroundColor" red="0.93786627050000004" green="0.94068664310000005" blue="0.9606447816" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <size key="customSize" width="414" height="156"/>
+                                        <connections>
+                                            <outlet property="authorImage" destination="AMu-Bp-DZr" id="wPc-jl-L7A"/>
+                                            <outlet property="authorLabel" destination="5xy-gt-HT7" id="BHN-tw-rF8"/>
+                                            <outlet property="descriptionLabel" destination="0Zb-gv-gZ8" id="o5J-gh-p6p"/>
+                                            <outlet property="timeLabel" destination="NOn-dv-LpW" id="kPO-EW-7p6"/>
+                                        </connections>
                                     </collectionViewCell>
                                 </cells>
+                                <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="IssueDetailCollectionReusableView" id="GMP-MF-DCX" customClass="IssueDetailCollectionReusableView" customModule="IssueTracker" customModuleProvider="target">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="150"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <subviews>
+                                        <view contentMode="scaleToFill" id="N3H-Xa-26E">
+                                            <rect key="frame" x="29.5" y="129" width="1" height="22"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="1" id="ODu-LS-eOJ"/>
+                                            </constraints>
+                                        </view>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cId-Vn-1Ct">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="128"/>
+                                            <subviews>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="gqF-qc-zaS">
+                                                    <rect key="frame" x="15" y="16.5" width="25" height="22"/>
+                                                    <color key="tintColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" secondItem="gqF-qc-zaS" secondAttribute="height" multiplier="1:1" id="ad2-OW-dM3"/>
+                                                        <constraint firstAttribute="width" constant="25" id="oxQ-HW-x4u"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="wogus3602" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cJg-vm-KDE">
+                                                    <rect key="frame" x="47" y="15" width="91" height="22"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="#1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z91-6z-LkO">
+                                                    <rect key="frame" x="143" y="15" width="18" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" systemColor="systemGray4Color"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YCY-zv-3sQ">
+                                                    <rect key="frame" x="377" y="15" width="22" height="22"/>
+                                                    <color key="tintColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <state key="normal" image="ellipsis" catalog="system"/>
+                                                </button>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="top" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="none" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8wo-D7-kbo">
+                                                    <rect key="frame" x="15" y="48" width="384" height="41"/>
+                                                    <string key="text">레이블 전체 목록을 볼 수 있는게 어떨까요 
+전체 설명이 보여야 선택할 수 있으니레이블 전체 목록을 볼 수 있는게 어떨까요 
+전체 설명이 보여야 선택할 수 있으니</string>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ycA-e4-qNf">
+                                                    <rect key="frame" x="15" y="97" width="50" height="20"/>
+                                                    <color key="backgroundColor" systemColor="systemGreenColor"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="50" id="NZC-Pz-zMW"/>
+                                                        <constraint firstAttribute="height" constant="20" id="sZO-le-jHx"/>
+                                                    </constraints>
+                                                    <color key="tintColor" red="0.61574684790133216" green="0.99705451726913452" blue="0.5669428804351111" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                    <state key="normal" title="Open"/>
+                                                </button>
+                                            </subviews>
+                                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                            <constraints>
+                                                <constraint firstItem="cJg-vm-KDE" firstAttribute="top" secondItem="cId-Vn-1Ct" secondAttribute="top" constant="15" id="3BJ-VE-iLR"/>
+                                                <constraint firstItem="ycA-e4-qNf" firstAttribute="leading" secondItem="cId-Vn-1Ct" secondAttribute="leading" constant="15" id="Jyw-zR-UwX"/>
+                                                <constraint firstItem="gqF-qc-zaS" firstAttribute="width" secondItem="gqF-qc-zaS" secondAttribute="height" multiplier="1:1" id="LcM-zi-AJh"/>
+                                                <constraint firstItem="ycA-e4-qNf" firstAttribute="top" secondItem="8wo-D7-kbo" secondAttribute="bottom" constant="8" id="LjT-6I-4nx"/>
+                                                <constraint firstAttribute="trailing" secondItem="YCY-zv-3sQ" secondAttribute="trailing" constant="15" id="N84-76-oo3"/>
+                                                <constraint firstAttribute="trailing" secondItem="8wo-D7-kbo" secondAttribute="trailing" constant="15" id="Ryb-jA-KyM"/>
+                                                <constraint firstItem="8wo-D7-kbo" firstAttribute="leading" secondItem="cId-Vn-1Ct" secondAttribute="leading" constant="15" id="VUO-nl-MNJ"/>
+                                                <constraint firstItem="YCY-zv-3sQ" firstAttribute="width" secondItem="YCY-zv-3sQ" secondAttribute="height" multiplier="1:1" id="Y3V-Zi-Hjv"/>
+                                                <constraint firstItem="8wo-D7-kbo" firstAttribute="top" secondItem="gqF-qc-zaS" secondAttribute="bottom" constant="8" id="ZNH-SJ-cLj"/>
+                                                <constraint firstItem="gqF-qc-zaS" firstAttribute="top" secondItem="cId-Vn-1Ct" secondAttribute="top" constant="15" id="a4t-br-dgV"/>
+                                                <constraint firstItem="Z91-6z-LkO" firstAttribute="leading" secondItem="cJg-vm-KDE" secondAttribute="trailing" constant="5" id="jvS-WV-99B"/>
+                                                <constraint firstItem="YCY-zv-3sQ" firstAttribute="centerY" secondItem="cJg-vm-KDE" secondAttribute="centerY" id="kMC-3z-c45"/>
+                                                <constraint firstItem="cJg-vm-KDE" firstAttribute="leading" secondItem="gqF-qc-zaS" secondAttribute="trailing" constant="7" id="lhS-cB-uhF"/>
+                                                <constraint firstItem="Z91-6z-LkO" firstAttribute="top" secondItem="cId-Vn-1Ct" secondAttribute="top" constant="15" id="moK-8u-ITF"/>
+                                                <constraint firstAttribute="bottom" secondItem="ycA-e4-qNf" secondAttribute="bottom" constant="11" id="r5A-2W-Zob"/>
+                                                <constraint firstItem="YCY-zv-3sQ" firstAttribute="top" secondItem="cId-Vn-1Ct" secondAttribute="top" constant="15" id="tnk-f4-bea"/>
+                                                <constraint firstItem="gqF-qc-zaS" firstAttribute="leading" secondItem="cId-Vn-1Ct" secondAttribute="leading" constant="15" id="zbX-X1-jf2"/>
+                                            </constraints>
+                                        </view>
+                                    </subviews>
+                                    <color key="backgroundColor" systemColor="systemGray2Color"/>
+                                    <constraints>
+                                        <constraint firstAttribute="trailing" secondItem="cId-Vn-1Ct" secondAttribute="trailing" id="4wd-uj-che"/>
+                                        <constraint firstItem="cId-Vn-1Ct" firstAttribute="top" secondItem="GMP-MF-DCX" secondAttribute="top" id="K92-v3-v1D"/>
+                                        <constraint firstAttribute="bottom" secondItem="cId-Vn-1Ct" secondAttribute="bottom" constant="22" id="Ztt-Q2-aeI"/>
+                                        <constraint firstItem="cId-Vn-1Ct" firstAttribute="leading" secondItem="GMP-MF-DCX" secondAttribute="leading" id="fRt-1P-ZOP"/>
+                                    </constraints>
+                                    <connections>
+                                        <outlet property="authorImageView" destination="gqF-qc-zaS" id="KQb-4g-tsq"/>
+                                        <outlet property="authorLabel" destination="cJg-vm-KDE" id="ySO-vH-aTW"/>
+                                        <outlet property="bodyLabel" destination="8wo-D7-kbo" id="TkY-W4-X5G"/>
+                                        <outlet property="issueNumberLabel" destination="Z91-6z-LkO" id="ID1-Kt-m8w"/>
+                                        <outlet property="stateButton" destination="ycA-e4-qNf" id="HNX-Iz-k2r"/>
+                                    </connections>
+                                </collectionReusableView>
                                 <connections>
                                     <outlet property="dataSource" destination="lMJ-Dn-Q9j" id="s0M-aw-d3U"/>
                                     <outlet property="delegate" destination="lMJ-Dn-Q9j" id="aUj-cU-XdQ"/>
@@ -387,6 +489,7 @@ HTML형태로 보여줘야 할까요</string>
                     <navigationItem key="navigationItem" id="dI5-gL-qvC"/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="issueDetailCollectionView" destination="Etv-eu-euX" id="w57-CQ-ZIJ"/>
                         <segue destination="6Re-li-5VW" kind="presentation" id="AIl-p8-bk6"/>
                     </connections>
                 </viewController>
@@ -825,7 +928,6 @@ HTML형태로 보여줘야 할까요</string>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="plI-a0-IEk">
                         <rect key="frame" x="0.0" y="44" width="414" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="tintColor" red="1" green="0.14901960784313725" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -854,6 +956,9 @@ HTML형태로 보여줘야 할까요</string>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
+        <systemColor name="systemGray2Color">
+            <color red="0.68235294117647061" green="0.68235294117647061" blue="0.69803921568627447" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
         <systemColor name="systemGray4Color">
             <color red="0.81960784313725488" green="0.81960784313725488" blue="0.83921568627450982" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
@@ -862,6 +967,9 @@ HTML형태로 보여줘야 할까요</string>
         </systemColor>
         <systemColor name="systemGray6Color">
             <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemGreenColor">
+            <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemRedColor">
             <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

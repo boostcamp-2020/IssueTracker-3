@@ -9,10 +9,10 @@ import UIKit
 
 extension UIColor {
     /// UIColor를 hexString으로 변경
+    /// 
     ///```
     ///let color = UIColor.red
     ///let hex = color.hexString // "#FF2600"
-    ///
     ///```
     var hexString: String {
         let components = self.cgColor.components
