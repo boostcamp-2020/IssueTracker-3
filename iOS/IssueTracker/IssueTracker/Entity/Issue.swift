@@ -18,10 +18,10 @@ struct Issue: Codable {
     let milestoneID: String?
     let createdAt: String
     let closedAt: String?
-    let labels: LabelList
-    let assignee: AssigneeList
-    let milestone: MilestoneList
-    let comment: IssueComment
+    let labels: LabelList?
+    let assignee: AssigneeList?
+    let milestone: MilestoneList?
+    let comment: IssueComment?
 
     enum CodingKeys: String, CodingKey {
         case id, title, body, state, labels, assignee, milestone, comment
