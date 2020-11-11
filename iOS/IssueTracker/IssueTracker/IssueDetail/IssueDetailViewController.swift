@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Combine
 
 protocol IssueDetailDisplayLogic: class {
     func displayFetchedComments(viewModel: [IssueDetailViewModel])
@@ -26,6 +27,8 @@ final class IssueDetailViewController: UIViewController, IssueDetailDisplayLogic
     private let cardHandleAreaHeight: CGFloat = 65
 
     private var interactor: IssueDetailBusinessLogic!
+
+    private var publisher: AnyCancellable!
 
     // MARK: Enums
 
@@ -59,12 +62,10 @@ final class IssueDetailViewController: UIViewController, IssueDetailDisplayLogic
     override func viewDidLoad() {
         super.viewDidLoad()
         configureNavigationItem()
-        // addBottomSheetView()
         configureDataSource()
-
         configureBottomSheet()
+        configureNotification()
         setup()
-
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -76,6 +77,15 @@ final class IssueDetailViewController: UIViewController, IssueDetailDisplayLogic
     override func viewWillDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         tabBarController?.tabBar.isHidden = false
+    }
+
+    private func configureNotification() {
+        publisher = NotificationCenter.default
+            .publisher(for: Notification.Name("createIssueClosed"))
+            .sink { issueNubmer in
+                guard let id = issueNubmer.userInfo?["issueNumber"] as? Int else { return }
+                self.interactor.fetchComments(id: id)
+            }
     }
 
     // MARK: Setup
@@ -104,12 +114,21 @@ final class IssueDetailViewController: UIViewController, IssueDetailDisplayLogic
     private func configureNavigationItem() {
         let editButtonItem = UIBarButtonItem(title: "Edit",
                                              style: .plain,
-                                             target: nil,
+                                             target: self,
                                              action: #selector(editButtonTouched))
         navigationItem.rightBarButtonItem = editButtonItem
     }
     
     @objc func editButtonTouched() {
+        let storyBoard = UIStoryboard(name: "IssueList", bundle: nil)
+        guard let viewController = storyBoard
+                .instantiateViewController(identifier: "CreateIssueViewController")
+                as? CreateIssueViewController else { return }
+        viewController.isEdit = true
+        viewController.issueNumber = id
+        viewController.titleText = firstComment.title
+        viewController.body = firstComment.description
+        present(viewController, animated: true)
 
     }
 }
