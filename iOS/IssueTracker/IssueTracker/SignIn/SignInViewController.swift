@@ -7,6 +7,7 @@
 
 import UIKit
 import AuthenticationServices
+import Combine
 
 final class SignInViewController: UIViewController {
     
@@ -17,6 +18,8 @@ final class SignInViewController: UIViewController {
     @IBOutlet private weak var signInWithAppleView: AppleSignInButton!
     
     private var interactor: SignInBusinessLogic!
+    private var keyboardShowObserver: AnyCancellable?
+    private var keyboardHideObserver: AnyCancellable?
     
     // MARK: View Cycle
     
@@ -24,6 +27,8 @@ final class SignInViewController: UIViewController {
         super.viewDidLoad()
         setup()
         configureSignInWithAppleView()
+        configureObservers()
+        hideKeyboardWhenTappedAround()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -43,6 +48,16 @@ final class SignInViewController: UIViewController {
     }
     
     // MARK: Configure
+    
+    private func configureObservers() {
+        keyboardShowObserver = NotificationCenter.default
+            .publisher(for: UIResponder.keyboardWillShowNotification)
+            .sink { [weak self] _ in self?.keyboardWillShow() }
+        
+        keyboardHideObserver = NotificationCenter.default
+            .publisher(for: UIResponder.keyboardWillHideNotification)
+            .sink { [weak self] _ in self?.keyboardWillHide() }
+    }
     
     private func configureSignInWithAppleView() {
         signInWithAppleView.didCompletedSignIn = { [weak self] (user) in
@@ -103,7 +118,15 @@ final class SignInViewController: UIViewController {
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesBegan(touches, with: event)
-        self.view.endEditing(true)
+        view.endEditing(true)
+    }
+    
+    private func keyboardWillShow() {
+        view.frame.origin.y = -60
+    }
+    
+    private func keyboardWillHide() {
+        view.frame.origin.y = 0
     }
     
     @IBAction func loginTouched(_ sender: Any) {
