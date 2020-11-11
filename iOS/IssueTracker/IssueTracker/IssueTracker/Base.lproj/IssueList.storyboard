@@ -656,7 +656,7 @@ HTML형태로 보여줘야 할까요</string>
         <!--Create Issue View Controller-->
         <scene sceneID="5EK-P7-WOP">
             <objects>
-                <viewController id="sam-5C-mGZ" customClass="CreateIssueViewController" customModule="IssueTracker" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CreateIssueViewController" id="sam-5C-mGZ" customClass="CreateIssueViewController" customModule="IssueTracker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Fi7-tt-66z">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -678,8 +678,8 @@ HTML형태로 보여줘야 할까요</string>
                                     </navigationItem>
                                 </items>
                             </navigationBar>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="새 이슈" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oWw-TA-c4U">
-                                <rect key="frame" x="12" y="63" width="95.5" height="41"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="새 이슈" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oWw-TA-c4U">
+                                <rect key="frame" x="12" y="63" width="191" height="41"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="34"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -895,7 +895,7 @@ HTML형태로 보여줘야 할까요</string>
                             <constraint firstItem="gPh-1v-dK3" firstAttribute="bottom" secondItem="HUB-5B-J3a" secondAttribute="bottom" id="JDR-wa-A0O"/>
                             <constraint firstItem="HUB-5B-J3a" firstAttribute="trailing" secondItem="gPh-1v-dK3" secondAttribute="trailing" constant="16" id="K0X-z3-FHX"/>
                             <constraint firstItem="oWw-TA-c4U" firstAttribute="leading" secondItem="HUB-5B-J3a" secondAttribute="leading" constant="12" id="KOw-30-qGL"/>
-                            <constraint firstItem="ZOF-Iq-VJG" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="oWw-TA-c4U" secondAttribute="trailing" constant="150" id="LBt-zH-APY"/>
+                            <constraint firstItem="ZOF-Iq-VJG" firstAttribute="leading" relation="lessThanOrEqual" secondItem="oWw-TA-c4U" secondAttribute="trailing" constant="150" id="LBt-zH-APY"/>
                             <constraint firstItem="fl3-aF-M7a" firstAttribute="top" secondItem="7Hw-mv-mKy" secondAttribute="bottom" constant="16" id="LSK-BK-KJ9"/>
                             <constraint firstItem="9Oh-4V-DOR" firstAttribute="trailing" secondItem="HUB-5B-J3a" secondAttribute="trailing" id="Ocv-Sg-ZLi"/>
                             <constraint firstItem="oWw-TA-c4U" firstAttribute="top" secondItem="9Oh-4V-DOR" secondAttribute="bottom" constant="7" id="RWq-h9-bIG"/>
@@ -919,6 +919,7 @@ HTML형태로 보여줘야 할까요</string>
                     <connections>
                         <outlet property="commentTextView" destination="7Qm-3i-rgo" id="8Il-OV-zug"/>
                         <outlet property="doneLeftBarButton" destination="wWv-af-xp6" id="Tdg-st-9he"/>
+                        <outlet property="titleLabel" destination="oWw-TA-c4U" id="A5t-F3-GaF"/>
                         <outlet property="titleTextField" destination="pVE-zb-SvA" id="TON-7D-hMl"/>
                     </connections>
                 </viewController>

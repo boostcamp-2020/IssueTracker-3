@@ -288,6 +288,14 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		70533C0C255C619400BB4A3A /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				BBB322772557E5A4000F6CF3 /* CreateIssueEndPoint.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		705930BE254FE232003FE49F /* IssueList */ = {
 			isa = PBXGroup;
 			children = (
@@ -571,10 +579,10 @@
 		BB91912225500D6F007D25B7 /* CreateIssue */ = {
 			isa = PBXGroup;
 			children = (
+				70533C0C255C619400BB4A3A /* Models */,
 				BB91912325500E25007D25B7 /* CreateIssueViewController.swift */,
 				BBB322732557E4C7000F6CF3 /* CreateIssueInteractor.swift */,
 				BB74C2E12559C89D00B0D3CE /* CreateIssuePresenter.swift */,
-				BBB322772557E5A4000F6CF3 /* CreateIssueEndPoint.swift */,
 			);
 			path = CreateIssue;
 			sourceTree = "<group>";
