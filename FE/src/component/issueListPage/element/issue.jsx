@@ -10,9 +10,11 @@ const StyledIssue = styled.div`
 const Issue = (props) => {
   const { issue } = props;
   return (
-    <StyledIssue>
-      <div>{issue.title}</div>
-    </StyledIssue>
+    <>
+      <StyledIssue>
+        <span>{issue.title}</span>
+      </StyledIssue>
+    </>
   );
 };
 

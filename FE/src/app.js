@@ -27,7 +27,6 @@ const App = () => {
   });
   return (
     <StyledContent>
-      Content
       <BrowserRouter>
         <Switch>
           <Route
