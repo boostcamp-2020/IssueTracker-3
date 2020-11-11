@@ -28,13 +28,13 @@ class IssueDetailCollectionReusableView: UICollectionReusableView {
         issueNumberLabel.text = "#\(item.id)"
         bodyLabel.text = item.description
         if item.isOpen {
-            stateButton.titleLabel?.text = "Open"
+            stateButton.setTitle("Open", for: .normal)
+            stateButton.setTitleColor(.systemYellow, for: .normal)
             stateButton.backgroundColor = .systemGreen
-            stateButton.titleLabel?.textColor = .black
         } else {
-            stateButton.titleLabel?.text = "Close"
+            stateButton.setTitle("Close", for: .normal)
+            stateButton.setTitleColor(.systemYellow, for: .normal)
             stateButton.backgroundColor = .systemRed
-            stateButton.titleLabel?.textColor = .black
         }
     }
 }
