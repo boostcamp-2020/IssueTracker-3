@@ -53,9 +53,11 @@ class MilestoneModel extends Model {
 
   async changeState(id: number, state: boolean): Promise<number> {
     const data = { id, state };
+    console.log(data);
     try {
       this.data = await super.update(data, this.tableName);
-      return this.data ? this.data : HTTPCODE.FAIL;
+      console.log(this.data);
+      return this.data ? HTTPCODE.SUCCESS : HTTPCODE.FAIL;
     } catch {
       return HTTPCODE.SERVER_ERR;
     }
