@@ -26,9 +26,8 @@ class SignUpViewController: UIViewController {
             switch result {
             case .failure(let error):
                 debugPrint(error)
-            case .success(let data):
-                guard let data: RequestLogin = try? data.decoded() else { return }
-                
+            case .success(_):
+                self.navigationController?.popViewController(animated: true)
             }
         }
     }

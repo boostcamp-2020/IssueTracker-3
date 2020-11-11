@@ -47,7 +47,7 @@ final class SignInViewController: UIViewController {
                 debugPrint(error)
             case .success(let data):
                 guard let data: RequestLogin = try? data.decoded() else { return }
-                self.viewControllerChange(jwt: data.jwt)
+                self.changeViewController(jwt: data.jwt)
             }
         }
     }
@@ -64,7 +64,7 @@ final class SignInViewController: UIViewController {
             }
 
             self.appleLoginNetworkService(authorizationCode: code, identityToken: token) { jwt in
-                self.viewControllerChange(jwt: jwt)
+                self.changeViewController(jwt: jwt)
             }
         }
     }
@@ -99,7 +99,7 @@ final class SignInViewController: UIViewController {
 
     }
 
-    private func viewControllerChange(jwt: String?) {
+    private func changeViewController(jwt: String?) {
         guard let jwt = jwt else { return }
         NetworkService.token = jwt
         DispatchQueue.main.async {
@@ -122,7 +122,7 @@ final class SignInViewController: UIViewController {
                 debugPrint("jwt가 비어있습니다.")
                 return
             }
-            self?.viewControllerChange(jwt: jwt)
+            self?.changeViewController(jwt: jwt)
         }
     }
     
