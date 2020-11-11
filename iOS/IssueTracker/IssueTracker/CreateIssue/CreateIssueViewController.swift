@@ -35,7 +35,7 @@ final class CreateIssueViewController: UIViewController {
     
     @IBOutlet private weak var titleTextField: UITextField!
     @IBOutlet private weak var commentTextView: UITextView!
-    @IBOutlet private weak var doneLeftBarButton: UIBarButtonItem!
+    @IBOutlet private weak var doneRightBarButton: UIBarButtonItem!
     @IBOutlet private weak var separatorView: UIView!
     
     private var interactor: CreateIssueBusinessLogic!
@@ -52,6 +52,7 @@ final class CreateIssueViewController: UIViewController {
         configureMenuItems()
         hideKeyboardWhenTappedAround()
         configureObservers()
+        toggleRightBarButtonItem(isEnable: false)
     }
     
     // MARK: Setup
@@ -74,6 +75,11 @@ final class CreateIssueViewController: UIViewController {
         keyboardHideObserver = NotificationCenter.default
             .publisher(for: UIResponder.keyboardWillHideNotification)
             .sink { [weak self] _ in self?.keyboardWillHide() }
+    }
+    
+    private func toggleRightBarButtonItem(isEnable: Bool) {
+        doneRightBarButton.isEnabled = isEnable
+        doneRightBarButton.tintColor = (isEnable) ? nil : .clear
     }
     
     // MARK: Actions
@@ -183,6 +189,7 @@ extension CreateIssueViewController: UITextViewDelegate {
             textView.text = nil
             textView.textColor = UIColor.black
         }
+        toggleRightBarButtonItem(isEnable: true)
     }
 
     func textViewDidEndEditing(_ textView: UITextView) {
@@ -190,6 +197,7 @@ extension CreateIssueViewController: UITextViewDelegate {
             configurePlaceholder()
         }
         commentTextView.resignFirstResponder()
+        toggleRightBarButtonItem(isEnable: false)
     }
 }
 
