@@ -123,9 +123,6 @@ extension SignInViewController: ASWebAuthenticationPresentationContextProviding 
 
 extension SignInViewController: ASAuthorizationControllerPresentationContextProviding {
     func presentationAnchor(for controller: ASAuthorizationController) -> ASPresentationAnchor {
-        guard let selfView = self.view.window else {
-            return ASPresentationAnchor()
-        }
-        return selfView
+        return self.view.window ?? ASPresentationAnchor()
     }
 }
