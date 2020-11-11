@@ -141,14 +141,9 @@ final class SignInViewController: UIViewController {
 
 extension SignInViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        switch textField {
-        case idTextField:
-            idTextField.resignFirstResponder()
+        textField.resignFirstResponder()
+        if textField == idTextField {
             pwTextField.becomeFirstResponder()
-        case pwTextField:
-            pwTextField.resignFirstResponder()
-        default:
-            break
         }
         return true
     }
