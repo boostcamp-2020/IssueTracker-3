@@ -4,7 +4,7 @@ import { hot } from "react-hot-loader";
 import styled from "styled-components";
 import MoveToLabelButton from "../labelListPage/buttons/moveToLabelButton";
 import MoveToMaileStoneButton from "../labelListPage/buttons/moveToMilestoneButton";
-import NewMilestoneButton from "./buttons/newMilestoneButton";
+import NewMilestoneButton from "./buttons/newButton";
 
 const DivButtonWrapper = styled.div`
   display: flex;
