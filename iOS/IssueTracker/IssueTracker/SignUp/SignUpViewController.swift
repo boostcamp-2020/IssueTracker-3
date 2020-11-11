@@ -8,27 +8,50 @@
 import UIKit
 
 class SignUpViewController: UIViewController {
-
-    @IBOutlet weak var idLabel: UITextField!
-    @IBOutlet weak var passwordLabel: UITextField!
-    @IBOutlet weak var matchPasswordLabel: UITextField!
-    @IBOutlet weak var nameLabel: UITextField!
+    
+    @IBOutlet private weak var idTextField: UITextField!
+    @IBOutlet private weak var pwTextField: UITextField!
+    @IBOutlet private weak var matchPWTextField: UITextField!
+    @IBOutlet private weak var nameTextField: UITextField!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
+    
     @IBAction func signUpButtonTouched(_ sender: Any) {
         let networkService = NetworkService()
-        let user = User(userID: idLabel.text, password: passwordLabel.text)
-
+        let user = User(userID: idTextField.text, password: pwTextField.text)
+        
         guard let encodedData = try? JSONEncoder().encode(user) else { return }
-
+        
         networkService.request(apiConfiguration: SignInEndPoint.signUp(encodedData)) { result in
             switch result {
             case .failure(let error):
                 debugPrint(error)
             case .success(_:):
-                self.navigationController?.popViewController(animated: true)
+                DispatchQueue.main.async { [weak self] in
+                    self?.navigationController?.popViewController(animated: true)
+                }
             }
         }
+    }
+}
+
+// MARK: UITextFieldDelegate
+
+extension SignUpViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        switch textField {
+        case idTextField:
+            pwTextField.becomeFirstResponder()
+        case pwTextField:
+            matchPWTextField.becomeFirstResponder()
+        case matchPWTextField:
+            nameTextField.becomeFirstResponder()
+        default:
+            break
+        }
+        return true
     }
 }
