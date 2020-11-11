@@ -55,9 +55,3 @@ extension CreateIssueInteractor: CreateIssueBusinessLogic {
         
     }
 }
-
-//guard (200...299).contains() else {
-//    result.send(completion: .failure(.error(message: "\(httpResponse.statusCode)")))
-//    return
-//}
-//guard (400...499).contains(response)

@@ -26,7 +26,7 @@ class SignUpViewController: UIViewController {
             switch result {
             case .failure(let error):
                 debugPrint(error)
-            case .success(_):
+            case .success(_:):
                 self.navigationController?.popViewController(animated: true)
             }
         }

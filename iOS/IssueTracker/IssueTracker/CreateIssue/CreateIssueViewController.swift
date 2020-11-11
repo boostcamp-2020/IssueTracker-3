@@ -19,7 +19,6 @@ protocol CreateIssueDisplayLogic: class {
 // TODO: 밑에 3개 view / vc 구현
 // TODO: VIP 구성
 // TODO: upload 후 alert or toast
-// TODO: 키보드 엔터 -> resign
 // TODO: 키보드 -> view 전체 올리기
 // TODO: 타이핑 중 아무곳 터치 -> 키보드 내리기
 
@@ -81,10 +80,8 @@ final class CreateIssueViewController: UIViewController {
     @IBAction func uploadIssueTouched(_ sender: Any) {
         // Alert -> 성공 / 실패 시
         
-        dismiss(animated: true) { [unowned self] in
-            let title = titleTextField.text
-            let comment = commentTextView.text
-        }
+        interactor.uploadIssue(title: titleTextField.text ?? "", comment: commentTextView.text)
+        dismiss(animated: true)
     }
 
     @IBAction func cancelTouched(_ sender: UIBarButtonItem) {

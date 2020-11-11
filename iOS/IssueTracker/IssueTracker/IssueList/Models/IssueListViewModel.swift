@@ -14,7 +14,6 @@ struct IssueListViewModel: Hashable {
     let milestone: CustomButtonView
     let labels: [CustomButtonView]
     let isOpen: Bool
-//    let author: String
     let identifier = UUID()
 
     init(id: Int,
@@ -23,7 +22,6 @@ struct IssueListViewModel: Hashable {
          milestone: CustomButtonView,
          labels: [CustomButtonView],
          isOpen: Bool = false
-//         author: String
          ) {
         self.id = id
         self.title = title
@@ -31,7 +29,6 @@ struct IssueListViewModel: Hashable {
         self.milestone = milestone
         self.labels = labels
         self.isOpen = isOpen
-//        self.author = author
     }
     
     init(issue: Issue) {

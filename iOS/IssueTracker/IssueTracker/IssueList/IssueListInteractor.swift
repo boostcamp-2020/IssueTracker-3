@@ -39,10 +39,18 @@ extension IssueListInteractor: IssueListBusinessLogic {
                 }
                 self.issues = decodedData
                 self.presenter?.presentFetchedIssues(issues: self.issues)
+                self.classifyIssues()
             }
         }
     }
 
+    func classifyIssues() {
+        issues.forEach { issue in
+            guard let milestoneID = issue.milestoneID else { return }
+            MilestoneCalculator.input(milestoneID: milestoneID, issueState: issue.state)
+        }
+    }
+    
     func changeIssueState() {
         
     }

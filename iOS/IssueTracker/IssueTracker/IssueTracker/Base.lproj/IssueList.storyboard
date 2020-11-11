@@ -105,7 +105,7 @@
                                     <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="medium" weight="semibold"/>
                                 </state>
                                 <connections>
-                                    <segue destination="sam-5C-mGZ" kind="presentation" id="CkP-v7-hh3"/>
+                                    <segue destination="sam-5C-mGZ" kind="presentation" identifier="CreateIssueSegue" id="CkP-v7-hh3"/>
                                 </connections>
                             </button>
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" id="m1C-gy-0QN">
@@ -497,7 +497,7 @@ HTML형태로 보여줘야 할까요</string>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="issueDetailCollectionView" destination="Etv-eu-euX" id="w57-CQ-ZIJ"/>
-                        <segue destination="6Re-li-5VW" kind="presentation" id="AIl-p8-bk6"/>
+                        <segue destination="6Re-li-5VW" kind="presentation" identifier="IssueDetailSegue" id="AIl-p8-bk6"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="I9L-2x-rC8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -605,7 +605,7 @@ HTML형태로 보여줘야 할까요</string>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="XSJ-to-Dhg">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="IssueBottomSheetCell" id="XSJ-to-Dhg">
                                         <rect key="frame" x="0.0" y="0.0" width="374" height="128"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="BAV-q7-xJp">
