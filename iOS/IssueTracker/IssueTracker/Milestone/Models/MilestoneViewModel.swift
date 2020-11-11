@@ -20,9 +20,9 @@ class MilestoneViewModel: Hashable {
         self.milestoneButton = CustomButtonView(type: .milestone, text: milestone.name, color: "#ffffff")
         self.description = milestone.description
         self.dueDate = milestone.dueDate
-        self.percentage = String(MilestoneCalculator.percentage(of: milestone.id))
-        self.openIssuesCount = String(MilestoneCalculator[milestone.id, .open])
-        self.closedIssuesCount = String(MilestoneCalculator[milestone.id, .closed])
+        self.percentage = String(MilestoneCalculator.percentage(of: milestone.id)) + " %"
+        self.openIssuesCount = String(MilestoneCalculator[milestone.id, .open]) + " open"
+        self.closedIssuesCount = String(MilestoneCalculator[milestone.id, .closed]) + " closed"
     }
 
     func hash(into hasher: inout Hasher) {
