@@ -188,6 +188,7 @@ extension IssueListViewController: IssueListDisplayLogic {
 }
 
 // MARK: UISearchBarDelegate
+
 extension IssueListViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         performSearchQuery(with: searchText)
