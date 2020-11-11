@@ -66,9 +66,15 @@ extension LabelViewController {
                     return UICollectionViewCell()
                 }
                 cell.configure(viewModel: item)
-//                cell.systemLayoutSizeFitting(.init(width: self.view.bounds.width, height: 88))
                 return cell
             })
+    }
+}
+
+extension LabelViewController: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard let item = dataSource.itemIdentifier(for: indexPath) else { return }
+
     }
 }
 

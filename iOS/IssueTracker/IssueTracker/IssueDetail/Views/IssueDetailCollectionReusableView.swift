@@ -35,7 +35,6 @@ class IssueDetailCollectionReusableView: UICollectionReusableView {
             stateButton.titleLabel?.text = "Close"
             stateButton.backgroundColor = .systemRed
             stateButton.titleLabel?.textColor = .black
-
         }
     }
 }

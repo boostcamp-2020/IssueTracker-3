@@ -21,13 +21,11 @@ class NetworkService: NetworkServiceProvider {
     
     func request(apiConfiguration: APIConfiguration, handler: @escaping (Result<Data, NetworkError>) -> Void) {
         guard let urlRequest = try? configureURLRequest(apiConfiguration: apiConfiguration) else {
-            print("url 변환 실패")
             handler(.failure(.invalidURL))
             return
         }
         session.dataTask(with: urlRequest) { data, response, error in
             if let error = error {
-                print("error")
                 handler(.failure(.requestFailure(message: error.localizedDescription)))
                 return
             }

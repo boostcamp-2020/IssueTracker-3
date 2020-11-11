@@ -134,7 +134,6 @@ extension AppleSignInButton: ASAuthorizationControllerDelegate {
         default:
             break
         }
-
     }
 }
 

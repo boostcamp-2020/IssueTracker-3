@@ -88,15 +88,10 @@ final class SignInViewController: UIViewController {
                 guard let decodedData: RequestLogin = try? data.decoded() else {
                     return
                 }
+
                 handler(decodedData.jwt)
             }
         }
-    }
-
-    private func saveUserInKeychain(_ userIdentifier: String) {
-        try? KeychainItem(service: "com.example.apple-samplecode.juice",
-                          account: "userIdentifier").saveItem(userIdentifier)
-
     }
 
     private func changeViewController(jwt: String?) {
