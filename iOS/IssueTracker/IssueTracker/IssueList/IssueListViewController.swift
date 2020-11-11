@@ -29,11 +29,16 @@ final class IssueListViewController: UIViewController {
     private var filterLeftBarButton: UIBarButtonItem!
     private var selectAllLeftBarButton: UIBarButtonItem!
     private var searchText = ""
+    private var selectAllFlag = true
 
     // MARK: Enums
     
     enum Section: CaseIterable {
         case main
+    }
+    
+    enum UpdateDataSourceType {
+        case append, delete
     }
     
     // MARK: View Cycle
@@ -154,17 +159,21 @@ final class IssueListViewController: UIViewController {
     }
     
     @objc private func selectAllTouched(_ sender: Any) {
-        // TODO: issue ViewModel List 가지고 있는 객체에서 -> forEach -> isSelect true
-        // FIXME: SelectAll에서 클릭 안되는 문제
-        // if isSelectedAll {
-        //    issueListCollectionView
-        //        .indexPathsForVisibleItems
-        //        .forEach { issueListCollectionView.selectItem(at: $0, animated: true, scrollPosition: .bottom) }
-        // } else {
-        //    issueListCollectionView
-        //        .indexPathsForVisibleItems
-        //        .forEach { issueListCollectionView.deselectItem(at: $0, animated: true) }
-        // }
+        if selectAllFlag {
+            displayedIssue
+                .compactMap { dataSource.indexPath(for: $0) }
+                .forEach({
+                    issueListCollectionView.selectItem(at: $0, animated: true, scrollPosition: .bottom)
+                })
+            selectAllFlag.toggle()
+        } else {
+            displayedIssue
+                .compactMap { dataSource.indexPath(for: $0) }
+                .forEach({
+                    issueListCollectionView.deselectItem(at: $0, animated: true)
+                })
+            selectAllFlag.toggle()
+        }
     }
 }
 
@@ -224,10 +233,6 @@ extension IssueListViewController {
                 cell.systemLayoutSizeFitting(.init(width: self.view.bounds.width, height: 88))
                 return cell
             })
-    }
-    
-    enum UpdateDataSourceType {
-        case append, delete
     }
     
     private func updateDataSource(items: [IssueListViewModel], type: UpdateDataSourceType) {
