@@ -8,10 +8,6 @@
 import UIKit
 import Combine
 
-// TODO: Activity Indicators
-// TODO: ios13 이하 버전 Edit 구현
-
-// FIXME: 플로팅 버튼 (shade / 에니메이션 - (스크롤:숨기기 / 끝나면:나오기 / edit mode 없애기)
 // FIXME: ToolBar Editing Mode에서 저~~~~ 밑으로 내려가는 문제 해결
 // FIXME: SelectAll 문제 - 전체 다 안됨 (겉으로 보기에만 됨 / 여러번 하면 오류 + cell 위치 틀리는 문제 / Model data를 변경해야함)
 
@@ -25,14 +21,11 @@ final class IssueListViewController: UIViewController {
     
     @IBOutlet private weak var issueListCollectionView: UICollectionView!
     @IBOutlet private weak var issueListToolBar: UIToolbar!
+    @IBOutlet private weak var indicatorView: UIActivityIndicatorView!
     
     private var interactor: IssueListBusinessLogic!
     private var dataSource: UICollectionViewDiffableDataSource<Section, IssueListViewModel>!
     private var issueListModelController: IssueListModelController!
-    //
-    private var isSelectedAll = false
-    
-    @IBOutlet weak var indicatorView: UIActivityIndicatorView!
     private var filterLeftBarButton: UIBarButtonItem!
     private var selectAllLeftBarButton: UIBarButtonItem!
     private var searchText = ""
@@ -163,7 +156,6 @@ final class IssueListViewController: UIViewController {
     @objc private func selectAllTouched(_ sender: Any) {
         // TODO: issue ViewModel List 가지고 있는 객체에서 -> forEach -> isSelect true
         // FIXME: SelectAll에서 클릭 안되는 문제
-        isSelectedAll.toggle()
         // if isSelectedAll {
         //    issueListCollectionView
         //        .indexPathsForVisibleItems
