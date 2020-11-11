@@ -12,7 +12,7 @@ struct UserDefault {
     private let key: String
     private let defaultValue: String
 
-    init(_ key: String, defaultValue: String) {
+    init(key: String, defaultValue: String = "") {
         self.key = key
         self.defaultValue = defaultValue
     }

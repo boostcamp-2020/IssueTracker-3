@@ -24,7 +24,7 @@ final class IssueListCollectionViewCell: UICollectionViewListCell {
         titleLabel.text = item.title
         descriptionLabel.text = item.description
     }
-    
+
     private func configureLabelStackView(milestone: UIButton, labels: [UIButton]) {
         labelStackView.subviews.forEach({
             $0.removeFromSuperview()

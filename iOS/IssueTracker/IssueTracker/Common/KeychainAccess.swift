@@ -26,8 +26,7 @@ struct KeychainAccess {
         var queryResult: AnyObject?
         let readStatus = SecItemCopyMatching(query, &queryResult)
         if readStatus != errSecSuccess {
-            debugPrint("Failed to retrieve data for key: \(account).")
-            debugPrint("Reason: \(securityErrorMeesage(fromStatus: readStatus))")
+            debugPrint("\(securityErrorMeesage(fromStatus: readStatus))")
             return nil
         }
         guard let passwordData = queryResult as? Data else {
@@ -60,8 +59,7 @@ struct KeychainAccess {
             return true
         }
         if readStatus != errSecItemNotFound {
-            debugPrint("Failed to query existence of key: \(account).")
-            debugPrint("Reason: \(securityErrorMeesage(fromStatus: readStatus))")
+            debugPrint("\(securityErrorMeesage(fromStatus: readStatus))")
         }
         return false
     }

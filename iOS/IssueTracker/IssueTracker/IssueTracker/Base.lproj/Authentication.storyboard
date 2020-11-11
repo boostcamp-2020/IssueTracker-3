@@ -118,6 +118,9 @@
                                                 <rect key="frame" x="83" y="302" width="45" height="33"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <state key="normal" title="로그인"/>
+                                                <connections>
+                                                    <action selector="loginTouched:" destination="8q5-Xp-b3w" eventType="touchUpInside" id="waC-Ux-JZ3"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1XK-4g-6ED">
                                                 <rect key="frame" x="279" y="302" width="64" height="33"/>
@@ -313,7 +316,10 @@
                                             </label>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vBI-Lo-xbj" userLabel="다음 Button">
                                                 <rect key="frame" x="172" y="643" width="69" height="30"/>
-                                                <state key="normal" title="다음"/>
+                                                <state key="normal" title="등록"/>
+                                                <connections>
+                                                    <action selector="signUpButtonTouched:" destination="AH7-Vn-m2L" eventType="touchUpInside" id="p0H-pW-d8j"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ig3-fE-NrG">
                                                 <rect key="frame" x="205" y="185" width="41" height="51"/>
@@ -394,6 +400,12 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="oh4-bM-MIZ"/>
+                    <connections>
+                        <outlet property="idLabel" destination="OiJ-Aj-bUk" id="aWB-bd-hEt"/>
+                        <outlet property="matchPasswordLabel" destination="SNC-QX-fD3" id="EVX-RC-HJz"/>
+                        <outlet property="nameLabel" destination="4VZ-Ps-XZu" id="jac-eh-oh3"/>
+                        <outlet property="passwordLabel" destination="9GR-1q-gdd" id="M7c-jK-G2v"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7jz-cc-ISk" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
