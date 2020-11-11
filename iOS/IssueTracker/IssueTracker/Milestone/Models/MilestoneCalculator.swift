@@ -48,4 +48,11 @@ struct MilestoneCalculator {
         MilestoneCalculator.openIssuesCounter.removeAll()
         MilestoneCalculator.closedIssuesCounter.removeAll()
     }
+    
+    static func percentage(of milestoneID: Int) -> Int {
+        let openIssuesCount = MilestoneCalculator.openIssuesCounter[milestoneID] ?? 0
+        let closedIssuesCount = MilestoneCalculator.closedIssuesCounter[milestoneID] ?? 0
+        guard openIssuesCount + closedIssuesCount != 0 else { return 0 }
+        return (closedIssuesCount * 100) / (openIssuesCount + closedIssuesCount)
+    }
 }
