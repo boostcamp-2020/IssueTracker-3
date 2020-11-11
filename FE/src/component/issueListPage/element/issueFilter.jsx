@@ -13,12 +13,12 @@ const Styled = styled.div`
 
 function IssueFilter(props) {
   const { setIssues, labels, milestones, originIssues, users } = props;
-  const [condition, setCondition] = useState({ label: null, milestone: null, user: null });
+  const [condition, setCondition] = useState({ label: "default", milestone: "default", user: "default" });
 
   useEffect(() => {
     const filtered = originIssues
       .filter((issue) => {
-        if (condition.label === null) return true;
+        if (condition.label === "default") return true;
         if (condition.label === "empty" && issue.labels.length === 0) return true;
         if (condition.label === "empty" && issue.labels.length !== 0) return false;
         let isIn = false;
@@ -28,14 +28,14 @@ function IssueFilter(props) {
         return isIn;
       })
       .filter((issue) => {
-        if (condition.milestone === null) return true;
+        if (condition.milestone === "default") return true;
         if (condition.milestone === "empty" && issue.milestone.length === 0) return true;
         if (condition.milestone === "empty" && issue.milestone.length !== 0) return false;
         if (issue.milestone?.[0]?.name === condition.milestone) return true;
         return false;
       })
       .filter((issue) => {
-        if (condition.user === null) return true;
+        if (condition.user === "default") return true;
         if (issue.user_id === condition.user) return true;
         return false;
       });

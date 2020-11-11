@@ -1,7 +1,7 @@
 import React from "react";
 import { hot } from "react-hot-loader";
 import styled from "styled-components";
-import ModalDropdown from "react-dropdown";
+import { Select, MenuItem } from "@material-ui/core";
 
 const Styled = styled.div`
   margin-right: 20px;
@@ -12,13 +12,17 @@ function UserDropdown(props) {
   const userOption = users.map((user) => {
     return { value: user.id, label: user.login_id };
   });
-  userOption.unshift({ label: "user", value: null });
+  userOption.unshift({ label: "user", value: "default" });
   const onUserHandler = (event) => {
-    setCondition({ label: condition.label, milestone: condition.milestone, user: event.value });
+    setCondition({ label: condition.label, milestone: condition.milestone, user: event.target.value });
   };
   return (
     <Styled>
-      <ModalDropdown options={userOption} value={null} onChange={onUserHandler} placeholder="user" />
+      <Select defaultValue="default" onChange={onUserHandler}>
+        {userOption.map((user) => {
+          return <MenuItem value={user.value}>{user.label}</MenuItem>;
+        })}
+      </Select>
     </Styled>
   );
 }

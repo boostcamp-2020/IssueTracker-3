@@ -1,7 +1,7 @@
 import React from "react";
 import { hot } from "react-hot-loader";
 import styled from "styled-components";
-import ModalDropdown from "react-dropdown";
+import { Select, MenuItem } from "@material-ui/core";
 
 const Styled = styled.div`
   margin-right: 20px;
@@ -12,13 +12,17 @@ function LabelDropdown(props) {
     return { value: label.name, label: label.name };
   });
   labelOption.unshift({ label: "issue with no label", value: "empty" });
-  labelOption.unshift({ label: "label", value: null });
+  labelOption.unshift({ label: "label", value: "default" });
   const onLabelHandler = (event) => {
-    setCondition({ label: event.value, milestone: condition.milestone, user: condition.user });
+    setCondition({ label: event.target.value, milestone: condition.milestone, user: condition.user });
   };
   return (
     <Styled>
-      <ModalDropdown options={labelOption} value={null} onChange={onLabelHandler} placeholder="label" />
+      <Select defaultValue="default" onChange={onLabelHandler}>
+        {labelOption.map((label) => {
+          return <MenuItem value={label.value}>{label.label}</MenuItem>;
+        })}
+      </Select>
     </Styled>
   );
 }
