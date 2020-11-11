@@ -53,8 +53,7 @@ final class IssueListViewController: UIViewController {
         configureNavigationItems()
         issueListModelController = IssueListModelController()
         performSearchQuery(with: nil)
-        showSearchBar()
-        //
+        showAlert(type: .color)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -95,8 +94,7 @@ final class IssueListViewController: UIViewController {
         let searchController = UISearchController(searchResultsController: nil)
         searchController.searchBar.delegate = self
         searchController.obscuresBackgroundDuringPresentation = false
-        searchController.hidesNavigationBarDuringPresentation = true
-        navigationItem.hidesSearchBarWhenScrolling = true
+        searchController.hidesNavigationBarDuringPresentation = false
         searchController.searchBar.sizeToFit()
         searchController.searchBar.returnKeyType = UIReturnKeyType.search
         searchController.searchBar.placeholder = "Search"
@@ -190,11 +188,16 @@ extension IssueListViewController: IssueListDisplayLogic {
 }
 
 // MARK: UISearchBarDelegate
-
 extension IssueListViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         performSearchQuery(with: searchText)
         self.searchText = searchText
+    }
+
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.text = ""
+        performSearchQuery(with: "")
+        searchBar.resignFirstResponder()
     }
     
     func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
@@ -204,7 +207,7 @@ extension IssueListViewController: UISearchBarDelegate {
     func performSearchQuery(with filter: String?) {
         let issueListItems = issueListModelController
             .filteredBasedOnTitle(with: filter ?? "",
-                                  model: displayedIssue).sorted { $0.title < $1.title }
+                                  model: displayedIssue).sorted { $0.title > $1.title }
         var snapshot = NSDiffableDataSourceSnapshot<Section, IssueListViewModel>()
         snapshot.appendSections([.main])
         snapshot.appendItems(issueListItems)
