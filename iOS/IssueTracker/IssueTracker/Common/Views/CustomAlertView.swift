@@ -12,7 +12,6 @@ enum TextFieldType {
     case date
 }
 
-
 extension UIViewController {
     func showAlert(type: TextFieldType,
                    id: Int? = nil,
@@ -149,10 +148,10 @@ class CustomAlertView: UIViewController {
 
         switch type {
         case .color:
-            let encodedData = AddLabel(id: id, name: nil, description: nil, color: nil).encoding()
+            let encodedData = AddLabel(id: id, name: nil, description: nil, color: nil).encoded()
             endpoint = LabelEndPoint.deleteLabel(encodedData)
         case .date:
-            let encodedData = AddMilestone(id: id, name: nil, description: nil, dueDate: nil).encoding()
+            let encodedData = AddMilestone(id: id, name: nil, description: nil, dueDate: nil).encoded()
             endpoint = MilestoneEndPoint.deleteMilestone(encodedData)
         case .none:
             break
@@ -224,7 +223,7 @@ class CustomAlertView: UIViewController {
 
         switch type {
         case .color:
-            let encodedData = AddLabel(id: id, name: name, description: description, color: color).encoding()
+            let encodedData = AddLabel(id: id, name: name, description: description, color: color).encoded()
 
             if id == nil {
                 endpoint = LabelEndPoint.addLabel(encodedData)
@@ -234,7 +233,7 @@ class CustomAlertView: UIViewController {
         case .date:
             guard let dueDate = dueDate else { return}
 
-            let encodedData = AddMilestone(id: id, name: name, description: description, dueDate: dueDate).encoding()
+            let encodedData = AddMilestone(id: id, name: name, description: description, dueDate: dueDate).encoded()
 
             if id == nil {
                 endpoint = MilestoneEndPoint.addMilestone(encodedData)
@@ -300,13 +299,4 @@ struct AddMilestone: Codable {
     let name: String?
     let description: String?
     let dueDate: String?
-}
-
-extension Encodable {
-    func encoding() -> Data {
-        let jsonEncoder = JSONEncoder()
-        jsonEncoder.keyEncodingStrategy = .convertToSnakeCase
-        guard let encodedData = try? jsonEncoder.encode(self) else { return Data() }
-        return encodedData
-    }
 }
