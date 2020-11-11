@@ -57,7 +57,6 @@
                                                 </constraints>
                                             </view>
                                         </subviews>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstItem="hYn-dz-cqP" firstAttribute="leading" secondItem="kcl-nT-jzY" secondAttribute="leading" id="2Rx-iV-glI"/>
                                             <constraint firstItem="SAR-mA-VqR" firstAttribute="top" secondItem="kcl-nT-jzY" secondAttribute="top" constant="13" id="3iB-8m-4uL"/>
@@ -106,7 +105,6 @@
                                                 </constraints>
                                             </view>
                                         </subviews>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="trailing" secondItem="ikr-pX-JPK" secondAttribute="trailing" constant="8" id="1BL-b7-FMP"/>
                                             <constraint firstItem="ikr-pX-JPK" firstAttribute="leading" secondItem="6FF-YY-ISw" secondAttribute="trailing" constant="8" id="COh-5Y-QOs"/>
@@ -152,7 +150,6 @@
                                                 </constraints>
                                             </view>
                                         </subviews>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstItem="KQU-vG-tCt" firstAttribute="leading" secondItem="T3z-A9-jUY" secondAttribute="leading" constant="17" id="8v5-k7-7Vr"/>
                                             <constraint firstItem="wo0-SX-dvN" firstAttribute="leading" secondItem="KQU-vG-tCt" secondAttribute="trailing" constant="8" id="Ele-sz-TW8"/>
@@ -184,6 +181,11 @@
                                                     <constraint firstAttribute="width" secondItem="cra-QU-WLP" secondAttribute="height" multiplier="1:1" id="gNp-tG-Gtu"/>
                                                 </constraints>
                                                 <state key="normal" image="arrow.clockwise" catalog="system"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <real key="value" value="5"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="#FF5D5D" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bue-OO-3ID">
                                                 <rect key="frame" x="51.5" y="12" width="118" height="0.0"/>
@@ -197,6 +199,11 @@
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="40" id="Q43-lz-0cA"/>
                                                 </constraints>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <real key="value" value="5"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="t8y-BP-0ab">
                                                 <rect key="frame" x="0.0" y="24" width="256" height="1"/>
@@ -206,7 +213,6 @@
                                                 </constraints>
                                             </view>
                                         </subviews>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstItem="t8y-BP-0ab" firstAttribute="top" secondItem="Bue-OO-3ID" secondAttribute="bottom" constant="12" id="1Kr-K7-lbU"/>
                                             <constraint firstItem="t8y-BP-0ab" firstAttribute="top" secondItem="dVs-yI-IiM" secondAttribute="bottom" constant="11" id="3Sm-mw-kIk"/>

@@ -108,9 +108,8 @@
                                     <segue destination="sam-5C-mGZ" kind="presentation" identifier="CreateIssueSegue" id="CkP-v7-hh3"/>
                                 </connections>
                             </button>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" id="m1C-gy-0QN">
-                                <rect key="frame" x="0.0" y="61" width="414" height="774"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="m1C-gy-0QN">
+                                <rect key="frame" x="188.5" y="456.5" width="37" height="37"/>
                             </activityIndicatorView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="qel-gu-NqZ"/>
@@ -121,7 +120,9 @@
                             <constraint firstItem="gMJ-9A-2wT" firstAttribute="trailing" secondItem="qel-gu-NqZ" secondAttribute="trailing" id="HpK-ly-vAT"/>
                             <constraint firstItem="iD5-I1-ahl" firstAttribute="leading" secondItem="qel-gu-NqZ" secondAttribute="leading" id="Jpi-Sj-qnF"/>
                             <constraint firstItem="qel-gu-NqZ" firstAttribute="trailing" secondItem="cWt-Qc-OJy" secondAttribute="trailing" constant="20" id="YV7-C7-YHb"/>
+                            <constraint firstItem="m1C-gy-0QN" firstAttribute="centerY" secondItem="gMJ-9A-2wT" secondAttribute="centerY" id="agV-L2-2zF"/>
                             <constraint firstItem="qel-gu-NqZ" firstAttribute="trailing" secondItem="iD5-I1-ahl" secondAttribute="trailing" id="aoR-HF-3Do"/>
+                            <constraint firstItem="m1C-gy-0QN" firstAttribute="centerX" secondItem="gMJ-9A-2wT" secondAttribute="centerX" id="tP2-JY-VCl"/>
                             <constraint firstItem="gMJ-9A-2wT" firstAttribute="leading" secondItem="qel-gu-NqZ" secondAttribute="leading" id="xz5-ci-QXU"/>
                             <constraint firstItem="gMJ-9A-2wT" firstAttribute="top" secondItem="qel-gu-NqZ" secondAttribute="top" id="yUd-AO-cAd"/>
                             <constraint firstItem="gMJ-9A-2wT" firstAttribute="bottom" secondItem="qel-gu-NqZ" secondAttribute="bottom" id="zlg-eH-fvh"/>
