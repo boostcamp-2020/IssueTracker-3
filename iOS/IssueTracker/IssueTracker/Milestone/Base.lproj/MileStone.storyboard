@@ -36,9 +36,9 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="nsi-YL-BbN">
-                                                    <rect key="frame" x="20" y="11" width="121" height="39"/>
+                                                    <rect key="frame" x="20" y="11" width="80" height="39"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" priority="250" constant="121" id="hop-3P-eYe"/>
+                                                        <constraint firstAttribute="width" priority="250" constant="80" id="hop-3P-eYe"/>
                                                     </constraints>
                                                 </stackView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="이번 배포를 위한 스프린트" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zhk-6P-1FN">
@@ -48,7 +48,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2020년 6월 19일까지" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dfL-mA-312">
-                                                    <rect key="frame" x="156" y="22.5" width="118" height="16"/>
+                                                    <rect key="frame" x="115" y="22.5" width="118" height="16"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                     <color key="textColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.84999999999999998" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -125,6 +125,9 @@
                     <navigationItem key="navigationItem" title="마일스톤" id="6sS-de-9n7">
                         <barButtonItem key="rightBarButtonItem" style="done" id="pnm-ef-iAo">
                             <imageReference key="image" image="plus" catalog="system" symbolScale="large"/>
+                            <connections>
+                                <action selector="makeMilestoneTouched:" destination="epP-nL-ijg" id="a23-g2-aec"/>
+                            </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>

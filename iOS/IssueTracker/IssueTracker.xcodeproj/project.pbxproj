@@ -68,6 +68,7 @@
 		BB0D52792558E68A009DEB8F /* KeyChain.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0D52782558E68A009DEB8F /* KeyChain.swift */; };
 		BB41E027254963FA008245A3 /* APIConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB41E026254963FA008245A3 /* APIConfiguration.swift */; };
 		BB52171B254A9EAF008455D4 /* OAuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB52171A254A9EAF008455D4 /* OAuthManager.swift */; };
+		BB64F470255B2374003B3E37 /* DateFormatter+format.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB64F46F255B2374003B3E37 /* DateFormatter+format.swift */; };
 		BB65A046254FECA300D09DD5 /* IssueListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB65A045254FECA300D09DD5 /* IssueListViewController.swift */; };
 		BB65A04C254FED2000D09DD5 /* IssueDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB65A04B254FED2000D09DD5 /* IssueDetailViewController.swift */; };
 		BB74C2DE2559BFE700B0D3CE /* Encodable+encoded.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB74C2DD2559BFE700B0D3CE /* Encodable+encoded.swift */; };
@@ -183,6 +184,7 @@
 		BB0D52782558E68A009DEB8F /* KeyChain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyChain.swift; sourceTree = "<group>"; };
 		BB41E026254963FA008245A3 /* APIConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIConfiguration.swift; sourceTree = "<group>"; };
 		BB52171A254A9EAF008455D4 /* OAuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OAuthManager.swift; sourceTree = "<group>"; };
+		BB64F46F255B2374003B3E37 /* DateFormatter+format.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DateFormatter+format.swift"; sourceTree = "<group>"; };
 		BB65A045254FECA300D09DD5 /* IssueListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueListViewController.swift; sourceTree = "<group>"; };
 		BB65A04B254FED2000D09DD5 /* IssueDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueDetailViewController.swift; sourceTree = "<group>"; };
 		BB74C2DD2559BFE700B0D3CE /* Encodable+encoded.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Encodable+encoded.swift"; sourceTree = "<group>"; };
@@ -359,6 +361,7 @@
 				7059318F25518527003FE49F /* UIVIew+snapshot.swift */,
 				705931A525523F0A003FE49F /* String+toDate.swift */,
 				709E018A255AAE1300503654 /* String+asURL.swift */,
+				BB64F46F255B2374003B3E37 /* DateFormatter+format.swift */,
 				7059319825518A8A003FE49F /* UIColor+random.swift */,
 				705931B225523FE0003FE49F /* UIColor+hex.swift */,
 				70EE428625594A10007E0C5D /* UIColor+visibleTextColor.swift */,
@@ -858,6 +861,7 @@
 				70ECC5E7255A5735003C2AA0 /* LabelInteractor.swift in Sources */,
 				BB0143AE255AF1D6006CB0BC /* MilestoneViewModel.swift in Sources */,
 				BBB321F32556DE42000F6CF3 /* EditIssueViewController.swift in Sources */,
+				BB64F470255B2374003B3E37 /* DateFormatter+format.swift in Sources */,
 				BB74C2E22559C89D00B0D3CE /* CreateIssuePresenter.swift in Sources */,
 				BB0D52792558E68A009DEB8F /* KeyChain.swift in Sources */,
 				BBDDCC0225592715008B8CBD /* IssueListPresenter.swift in Sources */,
