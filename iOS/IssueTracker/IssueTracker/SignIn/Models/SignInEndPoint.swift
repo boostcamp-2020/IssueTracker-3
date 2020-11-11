@@ -12,6 +12,7 @@ enum SignInEndPoint: APIConfiguration {
     case signUp(Data)
     case apple(Data)
     case github
+    case token(Data)
 
     var method: HTTPMethod {
         //        switch self {
@@ -28,7 +29,8 @@ enum SignInEndPoint: APIConfiguration {
         case .signIn: return "/auth/login"
         case .signUp: return "/auth/register"
         case .apple: return "/auth/apple"
-        case .github: return "/auth/github"
+        case .github: return "/auth/github/callback"
+        case .token: return "/auth/github/token"
         }
     }
 
@@ -38,6 +40,7 @@ enum SignInEndPoint: APIConfiguration {
         case .signUp(let data): return data
         case .apple(let data): return data
         case .github: return nil
+        case .token(let data): return data
         }
     }
 }

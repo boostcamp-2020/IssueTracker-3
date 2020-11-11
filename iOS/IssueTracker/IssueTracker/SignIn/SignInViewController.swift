@@ -117,12 +117,12 @@ final class SignInViewController: UIViewController {
     @IBAction func signInWithGitHubTouched(_ sender: UIButton) {
         let baseURL = APIServer.baseURL
         let url = baseURL + SignInEndPoint.github.path
-        OAuthManager.init(provider: self).reqeustToken(url: url) { token in
-            guard token != "" else {
-                print("nilnil닐닐")
+        OAuthManager.init(provider: self).reqeustToken(url: url) { [weak self] jwt in
+            guard jwt != "" else {
+                debugPrint("jwt가 비어있습니다.")
                 return
             }
-            print(token)
+            self?.viewControllerChange(jwt: jwt)
         }
     }
     
