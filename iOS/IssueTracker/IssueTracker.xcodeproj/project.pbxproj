@@ -66,6 +66,7 @@
 		BB0143C2255AF894006CB0BC /* MilestonePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0143C1255AF894006CB0BC /* MilestonePresenter.swift */; };
 		BB0D52752558E4FF009DEB8F /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0D52742558E4FE009DEB8F /* NetworkError.swift */; };
 		BB0D52792558E68A009DEB8F /* KeyChain.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0D52782558E68A009DEB8F /* KeyChain.swift */; };
+		BB229B89255BD284007F2D6A /* MilestoneCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB229B88255BD284007F2D6A /* MilestoneCalculator.swift */; };
 		BB41E027254963FA008245A3 /* APIConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB41E026254963FA008245A3 /* APIConfiguration.swift */; };
 		BB52171B254A9EAF008455D4 /* OAuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB52171A254A9EAF008455D4 /* OAuthManager.swift */; };
 		BB64F470255B2374003B3E37 /* DateFormatter+format.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB64F46F255B2374003B3E37 /* DateFormatter+format.swift */; };
@@ -182,6 +183,7 @@
 		BB0143C1255AF894006CB0BC /* MilestonePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MilestonePresenter.swift; sourceTree = "<group>"; };
 		BB0D52742558E4FE009DEB8F /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		BB0D52782558E68A009DEB8F /* KeyChain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyChain.swift; sourceTree = "<group>"; };
+		BB229B88255BD284007F2D6A /* MilestoneCalculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MilestoneCalculator.swift; sourceTree = "<group>"; };
 		BB41E026254963FA008245A3 /* APIConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIConfiguration.swift; sourceTree = "<group>"; };
 		BB52171A254A9EAF008455D4 /* OAuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OAuthManager.swift; sourceTree = "<group>"; };
 		BB64F46F255B2374003B3E37 /* DateFormatter+format.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DateFormatter+format.swift"; sourceTree = "<group>"; };
@@ -516,6 +518,7 @@
 			children = (
 				BB0143AD255AF1D6006CB0BC /* MilestoneViewModel.swift */,
 				BB0143B7255AF34F006CB0BC /* MilestoneEndPoint.swift */,
+				BB229B88255BD284007F2D6A /* MilestoneCalculator.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -841,6 +844,7 @@
 				70EE4293255953F5007E0C5D /* IssueDetailViewModel.swift in Sources */,
 				701343C125493A160044080A /* NetworkService.swift in Sources */,
 				BBB3229425580B00000F6CF3 /* Milestone.swift in Sources */,
+				BB229B89255BD284007F2D6A /* MilestoneCalculator.swift in Sources */,
 				708EFEEE2546DBC9009D9DEC /* AppDelegate.swift in Sources */,
 				BBB2B6E725596CB2001871D8 /* HTTPHeader.swift in Sources */,
 				BBB2B6E325596C9B001871D8 /* HTTPMethod.swift in Sources */,
