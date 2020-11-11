@@ -15,16 +15,17 @@ final class SignInViewController: UIViewController {
     @IBOutlet private weak var idTextField: UITextField!
     @IBOutlet private weak var pwTextField: UITextField!
     @IBOutlet private weak var signInWithAppleView: AppleSignInButton!
-
+    
+    private var interactor: SignInBusinessLogic!
+    
     // MARK: View Cycle
-
-    var text: String?
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        setup()
         configureSignInWithAppleView()
     }
-
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         navigationController?.navigationBar.isHidden = true
@@ -34,13 +35,19 @@ final class SignInViewController: UIViewController {
         super.viewWillAppear(true)
         navigationController?.navigationBar.isHidden = false
     }
-
+    
+    // MARK: Setup
+    
+    private func setup() {
+        interactor = SignInInteractor()
+    }
+    
     @IBAction func loginTouched(_ sender: Any) {
         let networkService = NetworkService()
         let user = User(userID: idTextField.text, password: pwTextField.text)
-
+        
         guard let encodedData = try? JSONEncoder().encode(user) else { return }
-
+        
         networkService.request(apiConfiguration: SignInEndPoint.signIn(encodedData)) { result in
             switch result {
             case .failure(let error):
@@ -51,24 +58,24 @@ final class SignInViewController: UIViewController {
             }
         }
     }
-
+    
     func configureSignInWithAppleView() {
         signInWithAppleView.didCompletedSignIn = { [weak self] (user) in
             // user.identityToken = JWT 토큰을 풀어서 name, email 가져오기, 서버로 보내기
             // user.authorizationCode = 서버로 보낼 코드 // 5분만
-
+            
             guard let self = self,
                   let code = user.authorizationCode,
                   let token = user.identityToken else {
                 return
             }
-
+            
             self.appleLoginNetworkService(authorizationCode: code, identityToken: token) { jwt in
                 self.changeViewController(jwt: jwt)
             }
         }
     }
-
+    
     private func appleLoginNetworkService(authorizationCode code: String,
                                           identityToken token: String,
                                           handler: @escaping (String?) -> Void) {
@@ -76,9 +83,9 @@ final class SignInViewController: UIViewController {
         let networkService = NetworkService()
         let jsonEncoder = JSONEncoder()
         jsonEncoder.keyEncodingStrategy = .convertToSnakeCase
-
+        
         guard let encodedData = try? jsonEncoder.encode(appleModel) else { return }
-
+        
         networkService.request(apiConfiguration: SignInEndPoint.apple(encodedData)) { result in
             switch result {
             case .failure(let error):
@@ -88,25 +95,25 @@ final class SignInViewController: UIViewController {
                 guard let decodedData: RequestLogin = try? data.decoded() else {
                     return
                 }
-
+                
                 handler(decodedData.jwt)
             }
         }
     }
-
+    
     private func changeViewController(jwt: String?) {
         guard let jwt = jwt else { return }
         NetworkService.token = jwt
         DispatchQueue.main.async {
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
-
+            
             guard let tabBarController = storyboard.instantiateViewController(withIdentifier: "UITabBarController")
                     as? UITabBarController else { return }
-
+            
             self.view.window?.rootViewController = tabBarController
         }
     }
-
+    
     // MARK: Action Functions
     
     @IBAction func signInWithGitHubTouched(_ sender: UIButton) {
@@ -119,6 +126,7 @@ final class SignInViewController: UIViewController {
             }
             self?.changeViewController(jwt: jwt)
         }
+        // interactor.signInWithGitHub(with: self)
     }
 }
 
