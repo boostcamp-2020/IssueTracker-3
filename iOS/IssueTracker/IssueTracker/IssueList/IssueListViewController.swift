@@ -53,7 +53,6 @@ final class IssueListViewController: UIViewController {
         configureNavigationItems()
         issueListModelController = IssueListModelController()
         performSearchQuery(with: nil)
-        showAlert(type: .color)
     }
     
     override func viewWillAppear(_ animated: Bool) {

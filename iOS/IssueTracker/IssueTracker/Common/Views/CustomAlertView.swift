@@ -59,6 +59,7 @@ class CustomAlertView: UIViewController {
         case .color:
             dateView.isHidden = true
             colorView.isHidden = false
+            colorBackgroundView.backgroundColor =  UIColor(hex: colorLabel.text ?? "#ffffff")
         case .date:
             dateView.isHidden = false
             colorView.isHidden = true
@@ -104,15 +105,89 @@ class CustomAlertView: UIViewController {
         self.view.endEditing(true)
     }
 
+    @IBAction func randomColorButtonTouched(_ sender: Any) {
+        let randomColor = UIColor().random()
+        colorBackgroundView.backgroundColor = UIColor().random()
+        colorLabel.text = randomColor.hexString
+    }
+
     @IBAction func closeButtonTouched(_ sender: Any) {
         dismiss(animated: true)
     }
+
     @IBAction func saveButtonTouched(_ sender: Any) {
-        
+        let networkService = NetworkService()
+        let addLabel: AddLabel
+        let addMilestone: AddMilestone
+
+        let name = titleTextField.text
+        let description = descriptionTextField.text
+        let color = colorLabel.text
+        let dueDate = dateTextField.text
+
+        switch type {
+        case .color:
+            addLabel = AddLabel(name: name, description: description, color: color)
+            guard let encodedData = try? JSONEncoder().encode(addLabel) else { return }
+            networkService.request(apiConfiguration: LabelEndPoint.addLabel(encodedData)) { result in
+                switch result {
+                case .failure(let error):
+                    debugPrint(error)
+                case .success(_):
+                    DispatchQueue.main.async {
+                        self.dismiss(animated: true)}
+                }
+            }
+            return
+        case .date:
+            addMilestone = AddMilestone(name: name, description: description, dueDate: dueDate)
+            let jsonEncode = JSONEncoder()
+            jsonEncode.keyEncodingStrategy = .convertToSnakeCase
+            guard let encodedData = try? jsonEncode.encode(addMilestone) else { return }
+
+            networkService.request(apiConfiguration: MilestoneEndPoint.addMilestone(encodedData)) { result in
+                switch result {
+                case .failure(let error):
+                    debugPrint(error)
+                case .success(_):
+                    DispatchQueue.main.async {
+                        self.dismiss(animated: true)}
+                }
+            }
+            return
+        case .none:
+            return
+        }
     }
+
     @IBAction func resetButtonTouched(_ sender: Any) {
         titleTextField.text = ""
         dateTextField.text = ""
         descriptionTextField.text = ""
     }
+}
+
+extension CustomAlertView: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if textField == titleTextField {
+            if dateView.isHidden {
+                descriptionTextField.becomeFirstResponder()
+            } else {
+                dateTextField.becomeFirstResponder()
+            }
+        }
+        return true
+    }
+}
+
+struct AddLabel: Codable {
+    let name: String?
+    let description: String?
+    let color: String?
+}
+
+struct AddMilestone: Codable {
+    let name: String?
+    let description: String?
+    let dueDate: String?
 }

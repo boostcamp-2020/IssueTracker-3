@@ -44,6 +44,9 @@
                                                         <real key="value" value="0.0"/>
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <outlet property="delegate" destination="qYB-lC-7Qx" id="JFQ-YV-ILa"/>
+                                                </connections>
                                             </textField>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hYn-dz-cqP">
                                                 <rect key="frame" x="0.0" y="54" width="256" height="1"/>
@@ -90,6 +93,9 @@
                                                         <real key="value" value="0.0"/>
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <outlet property="delegate" destination="qYB-lC-7Qx" id="Gmk-qa-Jap"/>
+                                                </connections>
                                             </textField>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="X8v-TY-jV8">
                                                 <rect key="frame" x="0.0" y="54" width="256" height="1"/>
@@ -133,6 +139,9 @@
                                                         <real key="value" value="0.0"/>
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <outlet property="delegate" destination="qYB-lC-7Qx" id="gdW-zd-nWn"/>
+                                                </connections>
                                             </textField>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gEN-cC-Wfw">
                                                 <rect key="frame" x="0.0" y="54" width="256" height="1"/>
@@ -174,6 +183,14 @@
                                                     <constraint firstAttribute="width" secondItem="cra-QU-WLP" secondAttribute="height" multiplier="1:1" id="gNp-tG-Gtu"/>
                                                 </constraints>
                                                 <state key="normal" image="arrow.clockwise" catalog="system"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <real key="value" value="20"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="randomColorButtonTouched:" destination="qYB-lC-7Qx" eventType="touchUpInside" id="e4c-wM-Max"/>
+                                                </connections>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="#FF5D5D" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bue-OO-3ID">
                                                 <rect key="frame" x="51.5" y="12" width="118" height="0.0"/>
@@ -187,6 +204,11 @@
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="40" id="Q43-lz-0cA"/>
                                                 </constraints>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <real key="value" value="5"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="t8y-BP-0ab">
                                                 <rect key="frame" x="0.0" y="24" width="256" height="1"/>
