@@ -93,6 +93,6 @@ extension MilestoneViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return .init(width: self.view.bounds.width, height: 90)
+        return .init(width: self.view.bounds.width, height: 80)
     }
 }
