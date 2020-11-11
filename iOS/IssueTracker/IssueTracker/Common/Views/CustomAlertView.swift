@@ -55,6 +55,7 @@ class CustomAlertView: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        hideKeyboardWhenTappedAround()
         switch type {
         case .color:
             dateView.isHidden = true
@@ -88,6 +89,13 @@ class CustomAlertView: UIViewController {
         datePicker.locale = .init(identifier: "ko_KR")
         datePicker.backgroundColor = .white
         datePicker.preferredDatePickerStyle = .wheels
+    }
+    
+    // MARK: Actions
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesBegan(touches, with: event)
+        view.endEditing(true)
     }
     
     @objc func cancelPressed() {
