@@ -671,7 +671,8 @@ HTML형태로 보여줘야 할까요</string>
                                                 <action selector="cancelTouched:" destination="sam-5C-mGZ" id="4HT-rc-HZi"/>
                                             </connections>
                                         </barButtonItem>
-                                        <barButtonItem key="rightBarButtonItem" style="done" systemItem="done" id="wWv-af-xp6">
+                                        <barButtonItem key="rightBarButtonItem" style="done" id="wWv-af-xp6">
+                                            <imageReference key="image" image="pencil.slash" catalog="system" symbolScale="large"/>
                                             <connections>
                                                 <action selector="writingDoneTouched:" destination="sam-5C-mGZ" id="V2S-yG-cLb"/>
                                             </connections>
@@ -919,7 +920,7 @@ HTML형태로 보여줘야 할까요</string>
                     <navigationItem key="navigationItem" id="0Hh-mG-PqR"/>
                     <connections>
                         <outlet property="commentTextView" destination="7Qm-3i-rgo" id="8Il-OV-zug"/>
-                        <outlet property="doneLeftBarButton" destination="wWv-af-xp6" id="Tdg-st-9he"/>
+                        <outlet property="doneRightBarButton" destination="wWv-af-xp6" id="Tdg-st-9he"/>
                         <outlet property="separatorView" destination="gYs-3K-uGQ" id="Pxs-NS-HKQ"/>
                         <outlet property="titleTextField" destination="pVE-zb-SvA" id="TON-7D-hMl"/>
                     </connections>
@@ -957,6 +958,7 @@ HTML형태로 보여줘야 할까요</string>
         <image name="chevron.up" catalog="system" width="128" height="72"/>
         <image name="ellipsis" catalog="system" width="128" height="37"/>
         <image name="face.smiling" catalog="system" width="128" height="121"/>
+        <image name="pencil.slash" catalog="system" width="128" height="113"/>
         <image name="person.fill" catalog="system" width="128" height="120"/>
         <image name="plus.circle.fill" catalog="system" width="128" height="121"/>
         <systemColor name="labelColor">

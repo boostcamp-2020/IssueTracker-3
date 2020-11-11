@@ -163,7 +163,7 @@ final class IssueListViewController: UIViewController {
             displayedIssue
                 .compactMap { dataSource.indexPath(for: $0) }
                 .forEach({
-                    issueListCollectionView.selectItem(at: $0, animated: true, scrollPosition: .bottom)
+                    issueListCollectionView.selectItem(at: $0, animated: true, scrollPosition: .top)
                 })
             selectAllFlag.toggle()
         } else {
