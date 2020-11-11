@@ -69,6 +69,7 @@
 		BB0D52792558E68A009DEB8F /* KeyChain.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0D52782558E68A009DEB8F /* KeyChain.swift */; };
 		BB229B89255BD284007F2D6A /* MilestoneCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB229B88255BD284007F2D6A /* MilestoneCalculator.swift */; };
 		BB229BB2255C2309007F2D6A /* URL+searchToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB229BB1255C2309007F2D6A /* URL+searchToken.swift */; };
+		BB229BC1255C48FB007F2D6A /* UIViewController+hideKeyboardWhenTapped.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB229BC0255C48FA007F2D6A /* UIViewController+hideKeyboardWhenTapped.swift */; };
 		BB41E027254963FA008245A3 /* APIConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB41E026254963FA008245A3 /* APIConfiguration.swift */; };
 		BB52171B254A9EAF008455D4 /* OAuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB52171A254A9EAF008455D4 /* OAuthManager.swift */; };
 		BB64F470255B2374003B3E37 /* DateFormatter+format.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB64F46F255B2374003B3E37 /* DateFormatter+format.swift */; };
@@ -188,6 +189,7 @@
 		BB0D52782558E68A009DEB8F /* KeyChain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyChain.swift; sourceTree = "<group>"; };
 		BB229B88255BD284007F2D6A /* MilestoneCalculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MilestoneCalculator.swift; sourceTree = "<group>"; };
 		BB229BB1255C2309007F2D6A /* URL+searchToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+searchToken.swift"; sourceTree = "<group>"; };
+		BB229BC0255C48FA007F2D6A /* UIViewController+hideKeyboardWhenTapped.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+hideKeyboardWhenTapped.swift"; sourceTree = "<group>"; };
 		BB41E026254963FA008245A3 /* APIConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIConfiguration.swift; sourceTree = "<group>"; };
 		BB52171A254A9EAF008455D4 /* OAuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OAuthManager.swift; sourceTree = "<group>"; };
 		BB64F46F255B2374003B3E37 /* DateFormatter+format.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DateFormatter+format.swift"; sourceTree = "<group>"; };
@@ -366,6 +368,7 @@
 				7059318F25518527003FE49F /* UIVIew+snapshot.swift */,
 				705931A525523F0A003FE49F /* String+toDate.swift */,
 				709E018A255AAE1300503654 /* String+asURL.swift */,
+				BB229BC0255C48FA007F2D6A /* UIViewController+hideKeyboardWhenTapped.swift */,
 				BB64F46F255B2374003B3E37 /* DateFormatter+format.swift */,
 				7059319825518A8A003FE49F /* UIColor+random.swift */,
 				705931B225523FE0003FE49F /* UIColor+hex.swift */,
@@ -875,6 +878,7 @@
 				BBB321F32556DE42000F6CF3 /* EditIssueViewController.swift in Sources */,
 				BB64F470255B2374003B3E37 /* DateFormatter+format.swift in Sources */,
 				BB74C2E22559C89D00B0D3CE /* CreateIssuePresenter.swift in Sources */,
+				BB229BC1255C48FB007F2D6A /* UIViewController+hideKeyboardWhenTapped.swift in Sources */,
 				BB0D52792558E68A009DEB8F /* KeyChain.swift in Sources */,
 				BBDDCC0225592715008B8CBD /* IssueListPresenter.swift in Sources */,
 				BB65A046254FECA300D09DD5 /* IssueListViewController.swift in Sources */,
