@@ -51,6 +51,10 @@ final class MilestoneViewController: UIViewController {
     }
     
     // MARK: Actions
+
+    @IBAction func makeMilestoneTouched(_ sender: UIBarButtonItem) {
+        
+    }
 }
 
 // MARK: MilestoneDisplayLogic
