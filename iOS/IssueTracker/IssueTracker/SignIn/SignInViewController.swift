@@ -42,24 +42,9 @@ final class SignInViewController: UIViewController {
         interactor = SignInInteractor()
     }
     
-    @IBAction func loginTouched(_ sender: Any) {
-        let networkService = NetworkService()
-        let user = User(userID: idTextField.text, password: pwTextField.text)
-        
-        guard let encodedData = try? JSONEncoder().encode(user) else { return }
-        
-        networkService.request(apiConfiguration: SignInEndPoint.signIn(encodedData)) { result in
-            switch result {
-            case .failure(let error):
-                debugPrint(error)
-            case .success(let data):
-                guard let data: RequestLogin = try? data.decoded() else { return }
-                self.changeViewController(jwt: data.jwt)
-            }
-        }
-    }
+    // MARK: Configure
     
-    func configureSignInWithAppleView() {
+    private func configureSignInWithAppleView() {
         signInWithAppleView.didCompletedSignIn = { [weak self] (user) in
             // user.identityToken = JWT 토큰을 풀어서 name, email 가져오기, 서버로 보내기
             // user.authorizationCode = 서버로 보낼 코드 // 5분만
@@ -114,7 +99,29 @@ final class SignInViewController: UIViewController {
         }
     }
     
-    // MARK: Action Functions
+    // MARK: Actions
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesBegan(touches, with: event)
+        self.view.endEditing(true)
+    }
+    
+    @IBAction func loginTouched(_ sender: Any) {
+        let networkService = NetworkService()
+        let user = User(userID: idTextField.text, password: pwTextField.text)
+        
+        guard let encodedData = try? JSONEncoder().encode(user) else { return }
+        
+        networkService.request(apiConfiguration: SignInEndPoint.signIn(encodedData)) { result in
+            switch result {
+            case .failure(let error):
+                debugPrint(error)
+            case .success(let data):
+                guard let data: RequestLogin = try? data.decoded() else { return }
+                self.changeViewController(jwt: data.jwt)
+            }
+        }
+    }
     
     @IBAction func signInWithGitHubTouched(_ sender: UIButton) {
         let baseURL = APIServer.baseURL
@@ -130,11 +137,32 @@ final class SignInViewController: UIViewController {
     }
 }
 
+// MARK: UITextFieldDelegate
+
+extension SignInViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        switch textField {
+        case idTextField:
+            idTextField.resignFirstResponder()
+            pwTextField.becomeFirstResponder()
+        case pwTextField:
+            pwTextField.resignFirstResponder()
+        default:
+            break
+        }
+        return true
+    }
+}
+
+// MARK: ASWebAuthenticationPresentationContextProviding
+
 extension SignInViewController: ASWebAuthenticationPresentationContextProviding {
     func presentationAnchor(for session: ASWebAuthenticationSession) -> ASPresentationAnchor {
         return self.view.window ?? ASPresentationAnchor()
     }
 }
+
+// MARK: ASAuthorizationControllerPresentationContextProviding
 
 extension SignInViewController: ASAuthorizationControllerPresentationContextProviding {
     func presentationAnchor(for controller: ASAuthorizationController) -> ASPresentationAnchor {
