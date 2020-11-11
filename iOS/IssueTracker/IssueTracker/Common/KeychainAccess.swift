@@ -26,7 +26,7 @@ struct KeychainAccess {
         var queryResult: AnyObject?
         let readStatus = SecItemCopyMatching(query, &queryResult)
         if readStatus != errSecSuccess {
-            debugPrint("Failed to retrieve data for key: \(account). Reason: \(securityErrorMeesage(fromStatus: readStatus))")
+            debugPrint("\(securityErrorMeesage(fromStatus: readStatus))")
             return nil
         }
         guard let passwordData = queryResult as? Data else {
@@ -59,7 +59,7 @@ struct KeychainAccess {
             return true
         }
         if readStatus != errSecItemNotFound {
-            debugPrint("Failed to query existence of key: \(account). Reason: \(securityErrorMeesage(fromStatus: readStatus))")
+            debugPrint("\(securityErrorMeesage(fromStatus: readStatus))")
         }
         return false
     }
@@ -93,7 +93,8 @@ struct KeychainAccess {
     private func update(_ value: String, forAccountKey account: String) throws {
         let query = baseQueryDictionary()
         query[kSecAttrAccount] = account
-        let attributesToUpdate = [kSecValueData: value.data(using: .utf8)!, kSecAttrAccessible: kSecAttrAccessibleAfterFirstUnlock] as NSDictionary
+        let attributesToUpdate = [kSecValueData: value.data(using: .utf8)!,
+                                  kSecAttrAccessible: kSecAttrAccessibleAfterFirstUnlock] as NSDictionary
         let updateStatus = SecItemUpdate(query, attributesToUpdate)
         if updateStatus != errSecSuccess {
             throw KeychainError.updateFailed(key: account, description: securityErrorMeesage(fromStatus: updateStatus))

@@ -16,10 +16,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                options connectionOptions: UIScene.ConnectionOptions)
     {
 
-//        if NetworkService.token != "" {
-//            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-//            window?.rootViewController = storyboard.instantiateViewController(withIdentifier: "UITabBarController")
-//        }
+        if NetworkService.token != "" {
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            window?.rootViewController = storyboard.instantiateViewController(withIdentifier: "UITabBarController")
+        }
         
         guard let _ = (scene as? UIWindowScene) else { return }
     }
