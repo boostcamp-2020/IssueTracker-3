@@ -919,6 +919,7 @@ HTML형태로 보여줘야 할까요</string>
                     <connections>
                         <outlet property="commentTextView" destination="7Qm-3i-rgo" id="8Il-OV-zug"/>
                         <outlet property="doneLeftBarButton" destination="wWv-af-xp6" id="Tdg-st-9he"/>
+                        <outlet property="separatorView" destination="gYs-3K-uGQ" id="Pxs-NS-HKQ"/>
                         <outlet property="titleTextField" destination="pVE-zb-SvA" id="TON-7D-hMl"/>
                     </connections>
                 </viewController>
