@@ -14,13 +14,15 @@ const StyledIssueListPage = styled.div`
   flex-direction: column;
   width: 100%;
 `;
-function IssueListPage() {
+function IssueListPage(props) {
+  const { user } = props;
   const [labels, setLabels] = useState([]);
   const [milestones, setMilestones] = useState([]);
   const [issues, setIssues] = useState([]);
   const [originIssues, setOriginIssues] = useState([]);
   const [users, setUsers] = useState([]);
   const [checked, setChecked] = useState([]);
+  const [condition, setCondition] = useState({ state: 1, author: 5, assignee: null, comment: null });
   useEffect(async () => {
     const response = await axiosApi("/label", "GET");
     setLabels(response.data);
@@ -30,20 +32,17 @@ function IssueListPage() {
     setMilestones(response.data);
   }, []);
   useEffect(async () => {
-    const response = await axiosApi("/issue", "GET");
-    const openIssue = response.data.filter((issue) => {
-      return issue.state == 1;
-    });
+    const response = await axiosApi("/issue/filter", "GET", condition);
     setOriginIssues(response.data);
-    setIssues(openIssue);
-  }, []);
+    setIssues(response.data);
+  }, [condition]);
   useEffect(async () => {
     const response = await axiosApi("/auth/alluser", "GET");
     setUsers(response.data);
   }, []);
   return (
     <StyledIssueListPage>
-      <IssueHeader labels={labels} milestones={milestones} />
+      <IssueHeader labels={labels} milestones={milestones} condition={condition} setCondition={setCondition} user={user} />
       {checked.length === 0 ? (
         <IssueFilter labels={labels} milestones={milestones} setIssues={setIssues} originIssues={originIssues} issues={issues} users={users} />
       ) : (

@@ -21,7 +21,7 @@ const StyledContent = styled.div`
 `;
 const App = () => {
   const [user, setUser] = useState({
-    id: 1,
+    id: 5,
     name: "",
     url: "",
   });
@@ -33,7 +33,7 @@ const App = () => {
             exact
             path="/"
             render={() => {
-              return user.id === 0 ? <LoginPage User={user} setUser={setUser} /> : <IssueListPage />;
+              return user.id === 0 ? <LoginPage User={user} setUser={setUser} /> : <IssueListPage user={user} />;
             }}
           />
           <Route exact path="/issuelist" component={IssueListPage} />

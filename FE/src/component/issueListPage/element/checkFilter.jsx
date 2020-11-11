@@ -8,6 +8,12 @@ const Styled = styled.div`
   display: flex;
   width: 100%;
   justify-content: flex-end;
+  .right {
+    margin-left: auto;
+  }
+  .item {
+    margin-left: 20px;
+  }
 `;
 
 function CheckFilter(props) {
@@ -16,11 +22,12 @@ function CheckFilter(props) {
     for (const issue of checked) {
       await axiosApi(`/issue/${issue}/state/${event.target.value}`, "PATCH");
     }
+    window.location.href = "/";
   };
   return (
     <Styled>
-      <span>{checked.length}</span>
-      <Select defaultValue="none" onChange={onCheckedHandler}>
+      <span className="item">{checked.length} item selected</span>
+      <Select className="right" defaultValue="none" onChange={onCheckedHandler}>
         <MenuItem value="none" disabled>
           Mark as
         </MenuItem>
