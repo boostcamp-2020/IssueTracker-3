@@ -38,6 +38,18 @@ final class SignInViewController: UIViewController {
     @IBAction func loginTouched(_ sender: Any) {
         let networkService = NetworkService()
         let user = User(userID: idTextField.text, password: pwTextField.text)
+        var flag = false
+
+        if user.userID == "" {
+            idTextField.shake()
+            flag = true
+        }
+        if user.password == "" {
+            pwTextField.shake()
+            flag = true
+        }
+
+        guard !flag else { return }
 
         guard let encodedData = try? JSONEncoder().encode(user) else { return }
 

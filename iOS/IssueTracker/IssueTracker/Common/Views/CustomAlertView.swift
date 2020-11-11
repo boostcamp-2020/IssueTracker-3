@@ -13,13 +13,26 @@ enum TextFieldType {
 }
 
 extension UIViewController {
-    func showAlert(type: TextFieldType) {
+    func showAlert(type: TextFieldType,
+                   id: Int? = nil,
+                   title: String = "",
+                   description: String = "",
+                   date: String = "",
+                   colorLabel: String = "#123321",
+                   complition: @escaping (() -> Void)) {
         let storyboard = UIStoryboard(name: "CustomAlertController", bundle: nil)
         
         let customAlertView = storyboard.instantiateViewController(
             identifier: "CustomAlertViewID",
             creator: { coder -> CustomAlertView? in
-                return CustomAlertView(coder: coder, type: type)
+                return CustomAlertView(coder: coder,
+                                       type: type,
+                                       id: id,
+                                       title: title,
+                                       description: description,
+                                       date: date,
+                                       colorLabel: colorLabel,
+                                       complition: complition)
             })
 
         let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .alert)
@@ -43,26 +56,51 @@ class CustomAlertView: UIViewController {
 
     private var type: TextFieldType?
 
+    private var titleText: String?
+    private var descriptionText: String?
+    private var dateText: String?
+    private var colorLabelText: String?
+    private var id: Int?
+    private var complition: (() -> Void)
+
     required init?(coder: NSCoder) {
-        self.type = nil
+        complition = {}
         super.init(coder: coder)
     }
 
-    required init?(coder: NSCoder, type: TextFieldType) {
+    required init?(coder: NSCoder,
+                   type: TextFieldType,
+                   id: Int?,
+                   title: String?,
+                   description: String?,
+                   date: String?,
+                   colorLabel: String?,
+                   complition: @escaping () -> Void) {
+        self.id = id
+        self.titleText = title
+        self.descriptionText = description
+        self.dateText = date
+        self.colorLabelText = colorLabel
         self.type = type
+        self.complition = complition
         super.init(coder: coder)
     }
 
     override func viewDidLoad() {
+        titleTextField.text = titleText
+        descriptionTextField.text = descriptionText
+
         super.viewDidLoad()
         switch type {
         case .color:
             dateView.isHidden = true
             colorView.isHidden = false
-            colorBackgroundView.backgroundColor =  UIColor(hex: colorLabel.text ?? "#ffffff")
+            colorLabel.text = colorLabelText
+            colorBackgroundView.backgroundColor =  UIColor(hex: colorLabelText ?? "#123321")
         case .date:
             dateView.isHidden = false
             colorView.isHidden = true
+            dateTextField.text = dateText
             createDatePicker()
         case .none:
             return
@@ -116,6 +154,8 @@ class CustomAlertView: UIViewController {
     }
 
     @IBAction func saveButtonTouched(_ sender: Any) {
+        var flag = false
+
         let networkService = NetworkService()
         let addLabel: AddLabel
         let addMilestone: AddMilestone
@@ -125,22 +165,53 @@ class CustomAlertView: UIViewController {
         let color = colorLabel.text
         let dueDate = dateTextField.text
 
+        switch "" {
+        case name:
+            titleTextField.shake()
+            flag = true
+            fallthrough
+        case description:
+            descriptionTextField.shake()
+            flag = true
+            fallthrough
+        case dueDate:
+            dateTextField.shake()
+            if dateTextField.isHidden {
+                flag = true
+            }
+        default:
+            break
+        }
+
+        guard !flag else {
+            return
+        }
+
         switch type {
         case .color:
-            addLabel = AddLabel(name: name, description: description, color: color)
+            addLabel = AddLabel(id: id, name: name, description: description, color: color)
             guard let encodedData = try? JSONEncoder().encode(addLabel) else { return }
-            networkService.request(apiConfiguration: LabelEndPoint.addLabel(encodedData)) { result in
+            let endpoint: APIConfiguration
+
+            if id == nil {
+                endpoint = LabelEndPoint.addLabel(encodedData)
+            } else {
+                endpoint =  LabelEndPoint.editLabel(encodedData)
+            }
+
+            networkService.request(apiConfiguration: endpoint) { result in
                 switch result {
                 case .failure(let error):
                     debugPrint(error)
-                case .success(_):
+                case .success:
                     DispatchQueue.main.async {
-                        self.dismiss(animated: true)}
+                        self.dismiss(animated: true)
+                        self.complition()
+                    }
                 }
             }
-            return
         case .date:
-            addMilestone = AddMilestone(name: name, description: description, dueDate: dueDate)
+            addMilestone = AddMilestone(id: id, name: name, description: description, dueDate: dueDate)
             let jsonEncode = JSONEncoder()
             jsonEncode.keyEncodingStrategy = .convertToSnakeCase
             guard let encodedData = try? jsonEncode.encode(addMilestone) else { return }
@@ -149,15 +220,21 @@ class CustomAlertView: UIViewController {
                 switch result {
                 case .failure(let error):
                     debugPrint(error)
-                case .success(_):
+                case .success:
                     DispatchQueue.main.async {
-                        self.dismiss(animated: true)}
+                        self.dismiss(animated: true)
+                        self.complition()
+                    }
                 }
             }
             return
         case .none:
             return
         }
+    }
+
+    func makeLabelNetwork(name: String, description: String, color: String, dueDate: String) {
+
     }
 
     @IBAction func resetButtonTouched(_ sender: Any) {
@@ -175,18 +252,25 @@ extension CustomAlertView: UITextFieldDelegate {
             } else {
                 dateTextField.becomeFirstResponder()
             }
+        } else if textField == dateTextField {
+            descriptionTextField.becomeFirstResponder()
+        } else if textField == descriptionTextField {
+            descriptionTextField.resignFirstResponder()
         }
         return true
     }
+
 }
 
 struct AddLabel: Codable {
+    let id: Int?
     let name: String?
     let description: String?
     let color: String?
 }
 
 struct AddMilestone: Codable {
+    let id: Int?
     let name: String?
     let description: String?
     let dueDate: String?

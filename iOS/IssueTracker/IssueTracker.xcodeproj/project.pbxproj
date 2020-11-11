@@ -14,6 +14,7 @@
 		704CDE43255A871800232D54 /* RequestLogin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 704CDE42255A871800232D54 /* RequestLogin.swift */; };
 		70533BB7255BC3DE00BB4A3A /* CustomAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70533BB6255BC3DE00BB4A3A /* CustomAlertView.swift */; };
 		70533BFF255BDBED00BB4A3A /* CustomAlertController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 70533BFE255BDBED00BB4A3A /* CustomAlertController.storyboard */; };
+		70533C09255C301600BB4A3A /* UIView+shake.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70533C08255C301600BB4A3A /* UIView+shake.swift */; };
 		705930D4254FFF63003FE49F /* IssueFilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 705930D3254FFF63003FE49F /* IssueFilterViewController.swift */; };
 		705930DB25500126003FE49F /* IssueFilterTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 705930DA25500126003FE49F /* IssueFilterTableViewCell.swift */; };
 		705930E625502FA4003FE49F /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 705930E525502FA4003FE49F /* HeaderView.swift */; };
@@ -127,6 +128,7 @@
 		704CDE42255A871800232D54 /* RequestLogin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestLogin.swift; sourceTree = "<group>"; };
 		70533BB6255BC3DE00BB4A3A /* CustomAlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAlertView.swift; sourceTree = "<group>"; };
 		70533BFE255BDBED00BB4A3A /* CustomAlertController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CustomAlertController.storyboard; sourceTree = "<group>"; };
+		70533C08255C301600BB4A3A /* UIView+shake.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+shake.swift"; sourceTree = "<group>"; };
 		705930D3254FFF63003FE49F /* IssueFilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueFilterViewController.swift; sourceTree = "<group>"; };
 		705930DA25500126003FE49F /* IssueFilterTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueFilterTableViewCell.swift; sourceTree = "<group>"; };
 		705930E525502FA4003FE49F /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
@@ -371,6 +373,7 @@
 				70EE428B25594FAE007E0C5D /* UIColor+hexString.swift */,
 				BBB2B6D225596078001871D8 /* Data+decoded.swift */,
 				BB74C2DD2559BFE700B0D3CE /* Encodable+encoded.swift */,
+				70533C08255C301600BB4A3A /* UIView+shake.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -844,6 +847,7 @@
 				70B0A13E2552850600E0E130 /* IssueFilterViewModel.swift in Sources */,
 				BB0143AA255AF17A006CB0BC /* MilestoneViewController.swift in Sources */,
 				BBDDCBFA25591B3C008B8CBD /* IssueListInteractor.swift in Sources */,
+				70533C09255C301600BB4A3A /* UIView+shake.swift in Sources */,
 				70EE428725594A10007E0C5D /* UIColor+visibleTextColor.swift in Sources */,
 				705930D4254FFF63003FE49F /* IssueFilterViewController.swift in Sources */,
 				70EE4293255953F5007E0C5D /* IssueDetailViewModel.swift in Sources */,

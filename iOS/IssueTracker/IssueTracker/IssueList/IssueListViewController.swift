@@ -53,6 +53,7 @@ final class IssueListViewController: UIViewController {
         configureNavigationItems()
         issueListModelController = IssueListModelController()
         performSearchQuery(with: nil)
+        showSearchBar()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -94,6 +95,8 @@ final class IssueListViewController: UIViewController {
         searchController.searchBar.delegate = self
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.hidesNavigationBarDuringPresentation = false
+        navigationItem.hidesSearchBarWhenScrolling = true
+
         searchController.searchBar.sizeToFit()
         searchController.searchBar.returnKeyType = UIReturnKeyType.search
         searchController.searchBar.placeholder = "Search"

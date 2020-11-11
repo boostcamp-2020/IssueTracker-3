@@ -10,6 +10,7 @@ import Foundation
 enum LabelEndPoint: APIConfiguration {
     case getLebels
     case addLabel(Data)
+    case editLabel(Data)
 
     var method: HTTPMethod {
         switch self {
@@ -17,6 +18,8 @@ enum LabelEndPoint: APIConfiguration {
             return .get
         case .addLabel:
             return .post
+        case .editLabel:
+            return .patch
         }
     }
 
@@ -26,6 +29,8 @@ enum LabelEndPoint: APIConfiguration {
             return "/label"
         case .addLabel:
             return "/label"
+        case .editLabel:
+            return "/label"
         }
     }
 
@@ -34,6 +39,8 @@ enum LabelEndPoint: APIConfiguration {
         case .getLebels:
             return nil
         case .addLabel(let data):
+            return data
+        case .editLabel(let data):
             return data
         }
     }

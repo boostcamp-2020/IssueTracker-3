@@ -8,11 +8,13 @@
 import Foundation
 
 class LabelViewModel: Hashable {
+    let id: Int?
     let description: String
     let labelButton: CustomButtonView
     let identifier = UUID()
 
     init(label: Label) {
+        self.id = label.id
         self.description = label.description
         self.labelButton = CustomButtonView(type: .label, text: label.name, color: label.color)
     }
