@@ -11,8 +11,9 @@
 		701343BB254907AA0044080A /* IssueListEndPointTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 701343BA254907AA0044080A /* IssueListEndPointTest.swift */; };
 		701343C125493A160044080A /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 701343C025493A160044080A /* NetworkService.swift */; };
 		702D6C0B254A8E0100E1A706 /* SignInWithAppleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 702D6C0A254A8E0100E1A706 /* SignInWithAppleButton.swift */; };
-		702D6C38254AB0DB00E1A706 /* KeychainItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 702D6C37254AB0DB00E1A706 /* KeychainItem.swift */; };
 		704CDE43255A871800232D54 /* RequestLogin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 704CDE42255A871800232D54 /* RequestLogin.swift */; };
+		70533BB7255BC3DE00BB4A3A /* CustomAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70533BB6255BC3DE00BB4A3A /* CustomAlertView.swift */; };
+		70533BFF255BDBED00BB4A3A /* CustomAlertController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 70533BFE255BDBED00BB4A3A /* CustomAlertController.storyboard */; };
 		705930D4254FFF63003FE49F /* IssueFilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 705930D3254FFF63003FE49F /* IssueFilterViewController.swift */; };
 		705930DB25500126003FE49F /* IssueFilterTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 705930DA25500126003FE49F /* IssueFilterTableViewCell.swift */; };
 		705930E625502FA4003FE49F /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 705930E525502FA4003FE49F /* HeaderView.swift */; };
@@ -115,8 +116,9 @@
 		701343C025493A160044080A /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		702D6C0A254A8E0100E1A706 /* SignInWithAppleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInWithAppleButton.swift; sourceTree = "<group>"; };
 		702D6C1A254A937300E1A706 /* IssueTracker.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = IssueTracker.entitlements; sourceTree = "<group>"; };
-		702D6C37254AB0DB00E1A706 /* KeychainItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainItem.swift; sourceTree = "<group>"; };
 		704CDE42255A871800232D54 /* RequestLogin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestLogin.swift; sourceTree = "<group>"; };
+		70533BB6255BC3DE00BB4A3A /* CustomAlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAlertView.swift; sourceTree = "<group>"; };
+		70533BFE255BDBED00BB4A3A /* CustomAlertController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CustomAlertController.storyboard; sourceTree = "<group>"; };
 		705930D3254FFF63003FE49F /* IssueFilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueFilterViewController.swift; sourceTree = "<group>"; };
 		705930DA25500126003FE49F /* IssueFilterTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueFilterTableViewCell.swift; sourceTree = "<group>"; };
 		705930E525502FA4003FE49F /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
@@ -233,7 +235,6 @@
 				702D6C43254AB9C300E1A706 /* Views */,
 				BBCC49EC2547E8F300FAB2F4 /* SignInViewController.swift */,
 				BBCC4A122548204200FAB2F4 /* SignInInteractor.swift */,
-				702D6C37254AB0DB00E1A706 /* KeychainItem.swift */,
 				BB52171A254A9EAF008455D4 /* OAuthManager.swift */,
 			);
 			path = SignIn;
@@ -403,6 +404,7 @@
 				708EFEFB2546DBCA009D9DEC /* Info.plist */,
 				BBE2860825503C1200A59009 /* Authentication.storyboard */,
 				705930F72550380F003FE49F /* IssueList.storyboard */,
+				70533BFE255BDBED00BB4A3A /* CustomAlertController.storyboard */,
 			);
 			path = IssueTracker;
 			sourceTree = "<group>";
@@ -449,6 +451,7 @@
 			isa = PBXGroup;
 			children = (
 				7059319425518603003FE49F /* CustomButtonView.swift */,
+				70533BB6255BC3DE00BB4A3A /* CustomAlertView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -689,6 +692,7 @@
 			files = (
 				7074DE212547DB9800A64FC2 /* .swiftlint.yml in Resources */,
 				7059310625503859003FE49F /* MileStone.storyboard in Resources */,
+				70533BFF255BDBED00BB4A3A /* CustomAlertController.storyboard in Resources */,
 				708EFEFA2546DBCA009D9DEC /* LaunchScreen.storyboard in Resources */,
 				705930F92550380F003FE49F /* IssueList.storyboard in Resources */,
 				705930FF25503840003FE49F /* Label.storyboard in Resources */,
@@ -755,6 +759,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				70533BB7255BC3DE00BB4A3A /* CustomAlertView.swift in Sources */,
 				7059313525512E72003FE49F /* IssueListViewModel.swift in Sources */,
 				BBB322A025580C73000F6CF3 /* Comment.swift in Sources */,
 				BBCC4A032547FCF800FAB2F4 /* SignUpViewController.swift in Sources */,
@@ -809,7 +814,6 @@
 				7059311E25506294003FE49F /* IssueDetailBottomSheetViewController.swift in Sources */,
 				705931662551460B003FE49F /* IssueListCollectionViewCell.swift in Sources */,
 				BBB3228E25580A63000F6CF3 /* Issue.swift in Sources */,
-				702D6C38254AB0DB00E1A706 /* KeychainItem.swift in Sources */,
 				7059315125513C69003FE49F /* IssueListModelController.swift in Sources */,
 				702D6C0B254A8E0100E1A706 /* SignInWithAppleButton.swift in Sources */,
 				BBB5295425597778001B708E /* AppleModel.swift in Sources */,
