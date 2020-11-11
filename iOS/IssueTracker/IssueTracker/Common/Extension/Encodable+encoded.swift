@@ -17,9 +17,11 @@ extension Encodable {
     /// ```
     ///
     /// - Returns: Data
-    func encoded() throws -> Data {
+    func encoded() -> Data {
         let encoder = JSONEncoder()
         encoder.outputFormatting = .prettyPrinted
-        return try encoder.encode(self)
+        encoder.keyEncodingStrategy = .convertToSnakeCase
+        guard let encodedData = try? encoder.encode(self) else { return Data() }
+        return encodedData
     }
 }
