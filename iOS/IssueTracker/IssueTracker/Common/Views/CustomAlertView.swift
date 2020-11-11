@@ -12,6 +12,7 @@ enum TextFieldType {
     case date
 }
 
+
 extension UIViewController {
     func showAlert(type: TextFieldType,
                    id: Int? = nil,
@@ -19,6 +20,7 @@ extension UIViewController {
                    description: String = "",
                    date: String = "",
                    colorLabel: String = "#123321",
+
                    complition: @escaping (() -> Void)) {
         let storyboard = UIStoryboard(name: "CustomAlertController", bundle: nil)
         
@@ -62,7 +64,8 @@ class CustomAlertView: UIViewController {
     private var colorLabelText: String?
     private var id: Int?
     private var complition: (() -> Void)
-
+    @IBOutlet weak var deleteButton: UIButton!
+    
     required init?(coder: NSCoder) {
         complition = {}
         super.init(coder: coder)
@@ -79,7 +82,7 @@ class CustomAlertView: UIViewController {
         self.id = id
         self.titleText = title
         self.descriptionText = description
-        self.dateText = date
+        self.dateText = date?.components(separatedBy: "T").first
         self.colorLabelText = colorLabel
         self.type = type
         self.complition = complition
@@ -90,6 +93,10 @@ class CustomAlertView: UIViewController {
         titleTextField.text = titleText
         descriptionTextField.text = descriptionText
 
+        if id == nil {
+            deleteButton.isHidden = true
+        }
+        
         super.viewDidLoad()
         switch type {
         case .color:
@@ -122,7 +129,7 @@ class CustomAlertView: UIViewController {
 
         dateTextField.inputAccessoryView = toolBar
         dateTextField.inputView = datePicker
-        
+
         datePicker.datePickerMode = .date
         datePicker.locale = .init(identifier: "ko_KR")
         datePicker.backgroundColor = .white
@@ -133,10 +140,42 @@ class CustomAlertView: UIViewController {
         dateTextField.resignFirstResponder()
     }
 
+    private let networkService = NetworkService()
+    private var addLabel: AddLabel!
+    private var addMilestone: AddMilestone!
+    private var endpoint: APIConfiguration!
+
+    @IBAction func deleteButtonTouched(_ sender: Any) {
+
+        switch type {
+        case .color:
+            let encodedData = AddLabel(id: id, name: nil, description: nil, color: nil).encoding()
+            endpoint = LabelEndPoint.deleteLabel(encodedData)
+        case .date:
+            let encodedData = AddMilestone(id: id, name: nil, description: nil, dueDate: nil).encoding()
+            endpoint = MilestoneEndPoint.deleteMilestone(encodedData)
+        case .none:
+            break
+        }
+
+        networkService.request(apiConfiguration: endpoint) { result in
+            switch result {
+            case .failure(let error):
+                debugPrint(error)
+            case .success:
+                DispatchQueue.main.async {
+                    self.dismiss(animated: true)
+                    self.complition()
+                }
+            }
+        }
+    }
+
     @objc func donePressed() {
         let formatter = DateFormatter()
         formatter.dateStyle = .medium
         formatter.timeStyle = .none
+        formatter.dateFormat = "YYYY-MM-dd"
         formatter.locale = .init(identifier: "ko-KR")
 
         dateTextField.text = formatter.string(from: datePicker.date)
@@ -155,10 +194,6 @@ class CustomAlertView: UIViewController {
 
     @IBAction func saveButtonTouched(_ sender: Any) {
         var flag = false
-
-        let networkService = NetworkService()
-        let addLabel: AddLabel
-        let addMilestone: AddMilestone
 
         let name = titleTextField.text
         let description = descriptionTextField.text
@@ -189,48 +224,39 @@ class CustomAlertView: UIViewController {
 
         switch type {
         case .color:
-            addLabel = AddLabel(id: id, name: name, description: description, color: color)
-            guard let encodedData = try? JSONEncoder().encode(addLabel) else { return }
-            let endpoint: APIConfiguration
+            let encodedData = AddLabel(id: id, name: name, description: description, color: color).encoding()
 
             if id == nil {
                 endpoint = LabelEndPoint.addLabel(encodedData)
             } else {
-                endpoint =  LabelEndPoint.editLabel(encodedData)
-            }
-
-            networkService.request(apiConfiguration: endpoint) { result in
-                switch result {
-                case .failure(let error):
-                    debugPrint(error)
-                case .success:
-                    DispatchQueue.main.async {
-                        self.dismiss(animated: true)
-                        self.complition()
-                    }
-                }
+                endpoint = LabelEndPoint.editLabel(encodedData)
             }
         case .date:
-            addMilestone = AddMilestone(id: id, name: name, description: description, dueDate: dueDate)
-            let jsonEncode = JSONEncoder()
-            jsonEncode.keyEncodingStrategy = .convertToSnakeCase
-            guard let encodedData = try? jsonEncode.encode(addMilestone) else { return }
+            guard let dueDate = dueDate else { return}
 
-            networkService.request(apiConfiguration: MilestoneEndPoint.addMilestone(encodedData)) { result in
-                switch result {
-                case .failure(let error):
-                    debugPrint(error)
-                case .success:
-                    DispatchQueue.main.async {
-                        self.dismiss(animated: true)
-                        self.complition()
-                    }
+            let encodedData = AddMilestone(id: id, name: name, description: description, dueDate: dueDate).encoding()
+
+            if id == nil {
+                endpoint = MilestoneEndPoint.addMilestone(encodedData)
+            } else {
+                endpoint = MilestoneEndPoint.editMilestone(encodedData)
+            }
+        case .none:
+            break
+        }
+
+        networkService.request(apiConfiguration: endpoint) { result in
+            switch result {
+            case .failure(let error):
+                debugPrint(error)
+            case .success:
+                DispatchQueue.main.async {
+                    self.dismiss(animated: true)
+                    self.complition()
                 }
             }
-            return
-        case .none:
-            return
         }
+
     }
 
     func makeLabelNetwork(name: String, description: String, color: String, dueDate: String) {
@@ -274,4 +300,13 @@ struct AddMilestone: Codable {
     let name: String?
     let description: String?
     let dueDate: String?
+}
+
+extension Encodable {
+    func encoding() -> Data {
+        let jsonEncoder = JSONEncoder()
+        jsonEncoder.keyEncodingStrategy = .convertToSnakeCase
+        guard let encodedData = try? jsonEncoder.encode(self) else { return Data() }
+        return encodedData
+    }
 }
