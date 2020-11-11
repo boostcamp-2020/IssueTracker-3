@@ -9,7 +9,7 @@ import UIKit
 import MarkdownView
 
 protocol CreateIssueDisplayLogic: class {
-  
+
 }
 
 // Must
@@ -40,7 +40,13 @@ final class CreateIssueViewController: UIViewController {
     
     private var interactor: CreateIssueBusinessLogic!
     private var markdownPreview: MarkdownView?
-    
+
+    @IBOutlet weak var titleLabel: UILabel!
+
+    var isEdit: Bool = false
+    var issueNumber: Int?
+    var titleText: String?
+    var body: String?
     // MARK: View Cycle
     
     override func viewDidLoad() {
@@ -49,7 +55,18 @@ final class CreateIssueViewController: UIViewController {
         configurePlaceholder()
         configureMenuItems()
     }
-    
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        if isEdit {
+            titleLabel.text = "#\(issueNumber ?? 0)"
+            titleLabel.font = UIFont(name: "title", size: .init(10))
+            titleTextField.text = titleText
+            commentTextView.text = body
+            commentTextView.textColor = UIColor.black
+        }
+    }
+
     // MARK: Setup
     
     private func setup() {
@@ -69,7 +86,7 @@ final class CreateIssueViewController: UIViewController {
         case 1:
             loadMarkdownPreview()
         default:
-          return
+            return
         }
     }
     
@@ -79,8 +96,16 @@ final class CreateIssueViewController: UIViewController {
     
     @IBAction func uploadIssueTouched(_ sender: Any) {
         // Alert -> 성공 / 실패 시
-        
-        interactor.uploadIssue(title: titleTextField.text ?? "", comment: commentTextView.text)
+        if isEdit {
+            interactor.editIssue(id: issueNumber ?? 0,
+                                 title: titleTextField.text ?? "",
+                                 comment: commentTextView.text) {
+                    NotificationCenter.default.post(.init(name: Notification.Name(rawValue: "createIssueClosed"),
+                                                          userInfo: ["issueNumber": self.issueNumber ?? 0]))
+            }
+        } else {
+            interactor.uploadIssue(title: titleTextField.text ?? "", comment: commentTextView.text)
+        }
         dismiss(animated: true)
     }
 

@@ -13,6 +13,7 @@ protocol CreateIssueDataStore {
 
 protocol CreateIssueBusinessLogic {
     func uploadIssue(title: String, comment: String)
+    func editIssue(id: Int, title: String, comment: String, completion: @escaping () -> Void)
 }
 
 final class CreateIssueInteractor: CreateIssueDataStore {
@@ -21,15 +22,16 @@ final class CreateIssueInteractor: CreateIssueDataStore {
     var createdIssue: Issue?
     private var issueID: Int?
     
-    private func createIssue(title: String, comment: String) -> Issue {
-        return Issue(title: title, body: comment)
+    private func createIssue(id: Int = 0, title: String, comment: String) -> Issue {
+        return Issue(id: id, title: title, body: comment)
     }
+
 }
 
 extension CreateIssueInteractor: CreateIssueBusinessLogic {
     func uploadIssue(title: String, comment: String) {
         createdIssue = createIssue(title: title, comment: comment)
-        guard let data = try? createdIssue?.encoded() else {
+        guard let data = createdIssue?.encoded() else {
             // Error 처리
             return
         }
@@ -46,6 +48,26 @@ extension CreateIssueInteractor: CreateIssueBusinessLogic {
                 }
                 self?.issueID = decodedData
                 // patch - label 등 나머지
+                return
+            }
+        }
+    }
+
+    func editIssue(id: Int, title: String, comment: String, completion: @escaping () -> Void) {
+        createdIssue = createIssue(id: id, title: title, comment: comment)
+        guard let data = createdIssue?.encoded() else {
+            // Error 처리
+            return
+        }
+
+        networkService.request(apiConfiguration: CreateIssueEndPoint.edit(data)) { result in
+            switch result {
+            case .failure(let error):
+                debugPrint(error)
+                // Error 처리
+                return
+            case .success:
+                completion()
                 return
             }
         }

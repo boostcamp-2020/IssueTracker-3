@@ -9,9 +9,15 @@ import Foundation
 
 enum CreateIssueEndPoint: APIConfiguration {
     case upload(Data)
+    case edit(Data)
     
     var method: HTTPMethod {
-        return .post
+        switch self {
+        case .upload:
+            return .post
+        case .edit:
+            return .patch
+        }
     }
     
     var path: String {
@@ -21,6 +27,8 @@ enum CreateIssueEndPoint: APIConfiguration {
     var body: Data? {
         switch self {
         case .upload(let data):
+            return data
+        case .edit(let data):
             return data
         }
     }
