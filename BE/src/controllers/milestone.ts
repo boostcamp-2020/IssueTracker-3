@@ -43,10 +43,8 @@ const del = async (req: Request, res: Response): Promise<Response> => {
     milestone_id: null,
   };
   const issueRes = await IssueModel.editMilestone(issue, id);
-  console.log(issueRes);
   if (issueRes === HTTPCODE.SUCCESS) {
     const result = await MilestoneModel.del(id);
-    console.log(result);
     return res.sendStatus(result);
   }
   return res.sendStatus(issueRes);

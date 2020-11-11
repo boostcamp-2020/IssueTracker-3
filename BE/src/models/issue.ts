@@ -63,9 +63,7 @@ class IssueModel extends Model {
 
   async editMilestone(pData: object, milestoneId: number): Promise<number> {
     try {
-      console.log(pData, milestoneId);
       this.data = await db.query(`UPDATE ${this.tableName} SET ? WHERE milestone_id = ?`, [pData, milestoneId]);
-      console.log(this.data[0].affectedRows);
       return this.data[0].affectedRows ? HTTPCODE.SUCCESS : HTTPCODE.FAIL;
     } catch {
       return HTTPCODE.SERVER_ERR;
