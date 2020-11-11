@@ -135,6 +135,7 @@ final class IssueListViewController: UIViewController {
         issueListToolBar.isHidden = !editing
         
         navigationItem.leftBarButtonItem = editing ? selectAllLeftBarButton : filterLeftBarButton
+
         if editing {
             navigationItem.rightBarButtonItem?.title = "Cancel"
             navigationItem.rightBarButtonItem?.style = .plain
