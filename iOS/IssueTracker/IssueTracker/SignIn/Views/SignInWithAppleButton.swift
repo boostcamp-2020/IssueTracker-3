@@ -8,7 +8,7 @@
 import UIKit
 import AuthenticationServices
 
-@IBDesignable
+// @IBDesignable
 class AppleSignInButton: UIView {
     private var appleButton = ASAuthorizationAppleIDButton()
     var didCompletedSignIn: ((_ user: AppleUser) -> Void)?
