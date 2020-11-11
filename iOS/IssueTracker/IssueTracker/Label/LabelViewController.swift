@@ -53,6 +53,9 @@ class LabelViewController: UIViewController, LabelDisplayLogic {
         snapshot.appendItems(displayedLabel)
         dataSource.apply(snapshot, animatingDifferences: false)
     }
+    @IBAction func makeLabelButtonTouched(_ sender: Any) {
+        showAlert(type: .color)
+    }
 }
 
 extension LabelViewController {
@@ -74,7 +77,6 @@ extension LabelViewController {
 extension LabelViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard let item = dataSource.itemIdentifier(for: indexPath) else { return }
-
     }
 }
 

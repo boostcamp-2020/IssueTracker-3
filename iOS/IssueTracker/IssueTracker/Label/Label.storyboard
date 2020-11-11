@@ -88,6 +88,9 @@
                     <navigationItem key="navigationItem" title="레이블" id="mjp-FT-c7B">
                         <barButtonItem key="rightBarButtonItem" style="done" id="N3N-Wr-oNp">
                             <imageReference key="image" image="plus" catalog="system" symbolScale="large"/>
+                            <connections>
+                                <action selector="makeLabelButtonTouched:" destination="9iF-eK-y0C" id="RdC-8W-tjJ"/>
+                            </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
