@@ -15,12 +15,6 @@ enum SignInEndPoint: APIConfiguration {
     case token(Data)
 
     var method: HTTPMethod {
-        //        switch self {
-        //        case .signIn: return .post
-        //        case .signUp(_): return .post
-        //        case .apple(_): return .post
-        //        case .github: return .post
-        //        }
         return .post
     }
 

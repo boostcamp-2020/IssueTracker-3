@@ -18,9 +18,8 @@ struct Milestone: Codable {
     let state: Int
     
     enum CodingKeys: String, CodingKey {
-        case id, name, description
+        case id, name, description, state
         case dueDate = "due_date"
         case createdAt = "created_at"
-        case state
     }
 }
