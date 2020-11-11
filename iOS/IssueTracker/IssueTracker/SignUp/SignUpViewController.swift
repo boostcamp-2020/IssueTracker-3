@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Combine
 
 class SignUpViewController: UIViewController {
     
@@ -14,8 +15,50 @@ class SignUpViewController: UIViewController {
     @IBOutlet private weak var matchPWTextField: UITextField!
     @IBOutlet private weak var nameTextField: UITextField!
     
+    private var keyboardShowObserver: AnyCancellable?
+    private var keyboardHideObserver: AnyCancellable?
+    private var currentTextField: UITextField?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        hideKeyboardWhenTappedAround()
+        configureObservers()
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesBegan(touches, with: event)
+        view.endEditing(true)
+    }
+    
+    private func configureObservers() {
+        keyboardShowObserver = NotificationCenter.default
+            .publisher(for: UIResponder.keyboardWillShowNotification)
+            .sink { [weak self] notification in self?.keyboardWillShow(notification) }
+        
+        keyboardHideObserver = NotificationCenter.default
+            .publisher(for: UIResponder.keyboardWillHideNotification)
+            .sink { [weak self] _ in self?.keyboardWillHide() }
+    }
+    
+    private func keyboardWillShow(_ notification: Notification) {
+        guard let keyboardFrame = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else {
+            return
+        }
+        let keyboardRect =  keyboardFrame.cgRectValue
+        guard let currentTextField = currentTextField else { return }
+
+        if currentTextField.frame.maxY + 200 > keyboardRect.origin.y {
+            let distance = (currentTextField.frame.maxY - keyboardRect.origin.y + 200)
+            UIView.animate(withDuration: 0.25) { [weak self] in
+                self?.view.transform = CGAffineTransform(translationX: 0, y: -distance)
+            }
+        }
+    }
+    
+    private func keyboardWillHide() {
+        UIView.animate(withDuration: 0.25) { [weak self] in
+            self?.view.transform = .identity
+        }
     }
     
     @IBAction func signUpButtonTouched(_ sender: Any) {
@@ -40,15 +83,24 @@ class SignUpViewController: UIViewController {
 // MARK: UITextFieldDelegate
 
 extension SignUpViewController: UITextFieldDelegate {
+    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+        currentTextField = textField
+        return true
+    }
+    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
+        currentTextField = nil
         switch textField {
         case idTextField:
             pwTextField.becomeFirstResponder()
+            currentTextField = pwTextField
         case pwTextField:
             matchPWTextField.becomeFirstResponder()
+            currentTextField = matchPWTextField
         case matchPWTextField:
             nameTextField.becomeFirstResponder()
+            currentTextField = nameTextField
         default:
             break
         }
