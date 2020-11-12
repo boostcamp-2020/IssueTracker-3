@@ -146,11 +146,11 @@
                         <viewLayoutGuide key="safeArea" id="qel-gu-NqZ"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="iD5-I1-ahl" firstAttribute="bottom" secondItem="qel-gu-NqZ" secondAttribute="bottom" constant="49" id="91b-tA-N7e"/>
                             <constraint firstItem="iD5-I1-ahl" firstAttribute="top" secondItem="cWt-Qc-OJy" secondAttribute="bottom" constant="18" id="HJG-Hg-PCB"/>
                             <constraint firstItem="gMJ-9A-2wT" firstAttribute="trailing" secondItem="qel-gu-NqZ" secondAttribute="trailing" id="HpK-ly-vAT"/>
                             <constraint firstItem="iD5-I1-ahl" firstAttribute="leading" secondItem="qel-gu-NqZ" secondAttribute="leading" id="Jpi-Sj-qnF"/>
                             <constraint firstItem="qel-gu-NqZ" firstAttribute="trailing" secondItem="cWt-Qc-OJy" secondAttribute="trailing" constant="20" id="YV7-C7-YHb"/>
+                            <constraint firstItem="iD5-I1-ahl" firstAttribute="bottom" secondItem="qel-gu-NqZ" secondAttribute="bottom" constant="49" id="YYP-FK-zQg"/>
                             <constraint firstItem="m1C-gy-0QN" firstAttribute="centerY" secondItem="gMJ-9A-2wT" secondAttribute="centerY" id="agV-L2-2zF"/>
                             <constraint firstItem="qel-gu-NqZ" firstAttribute="trailing" secondItem="iD5-I1-ahl" secondAttribute="trailing" id="aoR-HF-3Do"/>
                             <constraint firstItem="m1C-gy-0QN" firstAttribute="centerX" secondItem="gMJ-9A-2wT" secondAttribute="centerX" id="tP2-JY-VCl"/>
@@ -170,21 +170,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zFo-zb-cVf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-936.23188405797111" y="2645.7589285714284"/>
-        </scene>
-        <!--View Controller-->
-        <scene sceneID="YlT-PF-F9F">
-            <objects>
-                <viewController id="Ejo-5w-cMC" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="gXs-r7-0ZN">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <viewLayoutGuide key="safeArea" id="G6H-79-FgW"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="YgA-lR-0ZO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="79.710144927536234" y="2613.6160714285711"/>
         </scene>
         <!--Issue Filter View Controller-->
         <scene sceneID="an2-NL-ycR">
@@ -326,9 +311,9 @@
                                                                 </userDefinedRuntimeAttribute>
                                                             </userDefinedRuntimeAttributes>
                                                         </imageView>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="godrm" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5xy-gt-HT7">
-                                                            <rect key="frame" x="60" y="15" width="48" height="21"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="smk1120" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5xy-gt-HT7">
+                                                            <rect key="frame" x="60" y="15" width="67" height="21"/>
+                                                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
                                                             <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
@@ -400,9 +385,9 @@ HTML형태로 보여줘야 할까요</string>
                                                         <constraint firstItem="NOn-dv-LpW" firstAttribute="top" secondItem="5xy-gt-HT7" secondAttribute="bottom" constant="2" id="rdm-gR-fI1"/>
                                                     </constraints>
                                                 </view>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="B1H-ZL-bvu">
+                                                <view alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="B1H-ZL-bvu">
                                                     <rect key="frame" x="29.5" y="140" width="1" height="16"/>
-                                                    <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <color key="backgroundColor" systemColor="systemGray3Color"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="1" id="bJY-7X-o05"/>
                                                     </constraints>
@@ -434,10 +419,10 @@ HTML형태로 보여줘야 할까요</string>
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="150"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
-                                        <view contentMode="scaleToFill" id="N3H-Xa-26E">
+                                        <view alpha="0.80000000000000004" contentMode="scaleToFill" id="N3H-Xa-26E">
                                             <rect key="frame" x="29.5" y="129" width="1" height="22"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <color key="backgroundColor" systemColor="systemGray3Color"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="1" id="ODu-LS-eOJ"/>
                                             </constraints>
@@ -454,13 +439,13 @@ HTML형태로 보여줘야 할까요</string>
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="wogus3602" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cJg-vm-KDE">
-                                                    <rect key="frame" x="47" y="15" width="91" height="22"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <rect key="frame" x="47" y="15" width="95" height="22"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="#1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z91-6z-LkO">
-                                                    <rect key="frame" x="143" y="15" width="18" height="21"/>
+                                                    <rect key="frame" x="147" y="15" width="18" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" systemColor="systemGray4Color"/>
                                                     <nil key="highlightedColor"/>
@@ -470,7 +455,7 @@ HTML형태로 보여줘야 할까요</string>
                                                     <color key="tintColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <state key="normal" image="ellipsis" catalog="system"/>
                                                 </button>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="top" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="none" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8wo-D7-kbo">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="top" horizontalHuggingPriority="251" verticalHuggingPriority="750" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="none" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8wo-D7-kbo">
                                                     <rect key="frame" x="15" y="48" width="384" height="41"/>
                                                     <string key="text">레이블 전체 목록을 볼 수 있는게 어떨까요 
 전체 설명이 보여야 선택할 수 있으니레이블 전체 목록을 볼 수 있는게 어떨까요 
@@ -584,6 +569,9 @@ HTML형태로 보여줘야 할까요</string>
                                         <real key="value" value="3"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="addCommentTouched:" destination="6Re-li-5VW" eventType="touchUpInside" id="lzr-ZG-uGC"/>
+                                </connections>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="e4T-jP-hwT">
                                 <rect key="frame" x="326" y="29" width="68" height="34"/>
@@ -598,6 +586,9 @@ HTML형태로 보여줘야 할까요</string>
                                                 <real key="value" value="5"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="scrollUpTouched:" destination="6Re-li-5VW" eventType="touchUpInside" id="fG8-rX-vgz"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SUD-Zb-Nl2">
                                         <rect key="frame" x="34" y="0.0" width="34" height="34"/>
@@ -609,6 +600,9 @@ HTML형태로 보여줘야 할까요</string>
                                                 <real key="value" value="5"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="scrollDownTouched:" destination="6Re-li-5VW" eventType="touchUpInside" id="HZz-Bi-OBb"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <constraints>
@@ -651,6 +645,9 @@ HTML형태로 보여줘야 할까요</string>
                                         <real key="value" value="0.10000000000000001"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="closeIssueTouched:" destination="6Re-li-5VW" eventType="touchUpInside" id="6sI-Vt-txl"/>
+                                </connections>
                             </button>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="NOz-qD-4cp">
                                 <rect key="frame" x="20" y="113" width="374" height="621"/>
@@ -709,6 +706,22 @@ HTML형태로 보여줘야 할까요</string>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ITf-94-2ML" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-971" y="4078"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="Xgd-P5-w65">
+            <objects>
+                <viewController id="vcw-7O-bMj" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="hlz-Mh-nFX">
+                        <rect key="frame" x="0.0" y="0.0" width="300" height="350"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="nyt-R9-no9"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <size key="freeformSize" width="300" height="350"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vrr-nt-65p" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-226" y="3894"/>
         </scene>
         <!--Create Issue View Controller-->
         <scene sceneID="5EK-P7-WOP">
@@ -1026,7 +1039,7 @@ HTML형태로 보여줘야 할까요</string>
         <!--이슈-->
         <scene sceneID="hki-7S-sUk">
             <objects>
-                <navigationController storyboardIdentifier="UINavigationController-rPo-vs-DwV" automaticallyAdjustsScrollViewInsets="NO" id="rPo-vs-DwV" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="MainNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="rPo-vs-DwV" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="이슈" image="1.circle.fill" catalog="system" id="2y5-cR-K3w"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="plI-a0-IEk">
@@ -1065,6 +1078,9 @@ HTML형태로 보여줘야 할까요</string>
         </systemColor>
         <systemColor name="systemGray2Color">
             <color red="0.68235294117647061" green="0.68235294117647061" blue="0.69803921568627447" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemGray3Color">
+            <color red="0.7803921568627451" green="0.7803921568627451" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGray4Color">
             <color red="0.81960784313725488" green="0.81960784313725488" blue="0.83921568627450982" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
