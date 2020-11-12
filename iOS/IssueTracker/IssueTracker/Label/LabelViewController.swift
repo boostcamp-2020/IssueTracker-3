@@ -73,6 +73,10 @@ extension LabelViewController {
                     return UICollectionViewCell()
                 }
                 cell.configure(viewModel: item)
+
+                cell.contentView.layer.cornerRadius = 10
+                cell.contentView.clipsToBounds = true
+
                 return cell
             })
     }
@@ -100,6 +104,6 @@ extension LabelViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return .init(width: self.view.bounds.width, height: 80)
+        return .init(width: self.view.bounds.width - 12, height: 80)
     }
 }
