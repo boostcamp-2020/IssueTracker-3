@@ -49,6 +49,9 @@ class NetworkService: NetworkServiceProvider {
             case 300...399: // Redirection
                 handler(.failure(.redirection(message: "\(response.statusCode)")))
                 return
+            case 401:
+                handler(.failure(.tokenExpiration(message: "\(response.statusCode)")))
+                return
             case 400...499: // Client Error
                 handler(.failure(.clientError(message: "\(response.statusCode)")))
                 return
