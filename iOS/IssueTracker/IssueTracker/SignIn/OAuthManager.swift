@@ -58,14 +58,3 @@ final class OAuthManager {
 struct CallBackUrl: Codable {
     let url: String
 }
-
-extension URL {
-    func searchToken(of tokenQuery: String) -> String {
-        guard let queryItems = URLComponents(string: self.absoluteString)?.queryItems,
-              let token = queryItems.first(where: { $0.name == tokenQuery })?.value
-        else {
-            return ""
-        }
-        return token
-    }
-}

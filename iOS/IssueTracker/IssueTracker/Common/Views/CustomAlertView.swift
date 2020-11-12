@@ -35,28 +35,27 @@ extension UIViewController {
                                        colorLabel: colorLabel,
                                        complition: complition)
             })
-
+        
         let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .alert)
         alertController.setValue(customAlertView, forKey: "contentViewController")
-
+        
         self.present(alertController, animated: true)
     }
 }
 
 class CustomAlertView: UIViewController {
     @IBOutlet weak var titleTextField: UITextField!
-
+    
     @IBOutlet weak var dateView: UIView!
     @IBOutlet weak var dateTextField: UITextField!
-
+    
     @IBOutlet weak var descriptionTextField: UITextField!
-
+    
     @IBOutlet weak var colorView: UIView!
     @IBOutlet weak var colorLabel: UILabel!
     @IBOutlet weak var colorBackgroundView: UIView!
-
+    
     private var type: TextFieldType?
-
     private var titleText: String?
     private var descriptionText: String?
     private var dateText: String?
@@ -87,7 +86,7 @@ class CustomAlertView: UIViewController {
         self.complition = complition
         super.init(coder: coder)
     }
-
+    
     override func viewDidLoad() {
         titleTextField.text = titleText
         descriptionTextField.text = descriptionText
@@ -97,6 +96,7 @@ class CustomAlertView: UIViewController {
         }
         
         super.viewDidLoad()
+        hideKeyboardWhenTappedAround()
         switch type {
         case .color:
             dateView.isHidden = true
@@ -112,20 +112,20 @@ class CustomAlertView: UIViewController {
             return
         }
     }
-
+    
     private let datePicker = UIDatePicker()
-
+    
     func createDatePicker() {
         let toolBar = UIToolbar()
         toolBar.sizeToFit()
         toolBar.backgroundColor = .white
-
+        
         let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: nil, action: #selector(donePressed))
         let cancelButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: nil, action: #selector(cancelPressed))
         let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
-
+        
         toolBar.setItems([cancelButton, flexibleSpace, doneButton], animated: true)
-
+        
         dateTextField.inputAccessoryView = toolBar
         dateTextField.inputView = datePicker
 
@@ -134,11 +134,18 @@ class CustomAlertView: UIViewController {
         datePicker.backgroundColor = .white
         datePicker.preferredDatePickerStyle = .wheels
     }
-
+    
+    // MARK: Actions
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesBegan(touches, with: event)
+        view.endEditing(true)
+    }
+    
     @objc func cancelPressed() {
         dateTextField.resignFirstResponder()
     }
-
+  
     private let networkService = NetworkService()
     private var addLabel: AddLabel!
     private var addMilestone: AddMilestone!
@@ -176,11 +183,11 @@ class CustomAlertView: UIViewController {
         formatter.timeStyle = .none
         formatter.dateFormat = "YYYY-MM-dd"
         formatter.locale = .init(identifier: "ko-KR")
-
+        
         dateTextField.text = formatter.string(from: datePicker.date)
         self.view.endEditing(true)
     }
-
+  
     @IBAction func randomColorButtonTouched(_ sender: Any) {
         let randomColor = UIColor().random()
         colorBackgroundView.backgroundColor = UIColor().random()
@@ -257,7 +264,7 @@ class CustomAlertView: UIViewController {
         }
 
     }
-
+  
     func makeLabelNetwork(name: String, description: String, color: String, dueDate: String) {
 
     }
@@ -269,10 +276,24 @@ class CustomAlertView: UIViewController {
     }
 }
 
+// MARK: UITextFieldDelegate
+
 extension CustomAlertView: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        if textField == titleTextField {
-            if dateView.isHidden {
+        textField.resignFirstResponder()
+        
+        switch textField {
+        case titleTextField:
+            if type == .color { descriptionTextField.becomeFirstResponder() }
+            if type == .date { dateTextField.becomeFirstResponder() }
+        case dateTextField:
+            descriptionTextField.becomeFirstResponder()
+        default:
+            break
+        }
+      
+       if textField == titleTextField {
+           if dateView.isHidden {
                 descriptionTextField.becomeFirstResponder()
             } else {
                 dateTextField.becomeFirstResponder()
@@ -284,7 +305,6 @@ extension CustomAlertView: UITextFieldDelegate {
         }
         return true
     }
-
 }
 
 struct AddLabel: Codable {

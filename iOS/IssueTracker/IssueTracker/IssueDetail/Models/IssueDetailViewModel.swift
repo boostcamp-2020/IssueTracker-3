@@ -11,28 +11,28 @@ class IssueDetailViewModel: Hashable {
     let id: Int
     let body: String
     let emoji: String
-    let issueID: Int
     var createdAt: String
+    let img: String
     let identifier = UUID()
 
     init(id: Int,
          body: String,
          emoji: String,
-         issueID: Int,
-         createdAt: String) {
+         createdAt: String,
+         img: String) {
         self.id = id
         self.body = body
         self.emoji = emoji
-        self.issueID = issueID
         self.createdAt = createdAt
+        self.img = img
     }
 
-    init(commentList: Comment) {
+    init(commentList: DetailComment) {
         self.id = commentList.id
         self.body = commentList.body
         self.emoji = commentList.emoji
-        self.issueID = commentList.issueID ?? 0
         self.createdAt = commentList.createdAt
+        self.img = commentList.img
         self.setAgoTime(commentList.createdAt)
     }
 
