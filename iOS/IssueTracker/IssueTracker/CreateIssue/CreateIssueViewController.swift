@@ -45,11 +45,19 @@ final class CreateIssueViewController: UIViewController {
 
     @IBOutlet weak var titleLabel: UILabel!
 
+    @IBOutlet weak var assigneeStackView: UIStackView!
+    @IBOutlet weak var labelStackView: UIStackView!
+    @IBOutlet weak var milestoneStackView: UIStackView!
+    
     var isEdit: Bool = false
     var issueNumber: Int?
     var titleText: String?
     var body: String?
-  
+    var labels: [CustomButtonView]?
+    var milestone: CustomButtonView?
+
+    private var publisher: AnyCancellable!
+
     // MARK: View Cycle
     
     override func viewDidLoad() {
@@ -59,7 +67,15 @@ final class CreateIssueViewController: UIViewController {
         configureMenuItems()
         hideKeyboardWhenTappedAround()
         configureObservers()
+        configureNotification()
         toggleRightBarButtonItem(isEnable: false)
+
+        labels?.forEach({
+            labelStackView.addArrangedSubview($0)
+        })
+
+        guard let milestone = milestone else { return }
+        milestoneStackView.addArrangedSubview(milestone)
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -84,7 +100,45 @@ final class CreateIssueViewController: UIViewController {
     }
     
     // MARK: Configure
-    
+
+    var assigneeIDs = [Int?]()
+    var labelIDs = [Int?]()
+    var milestoneIDs = [Int]()
+
+    private func configureNotification() {
+        publisher = NotificationCenter.default
+            .publisher(for: Notification.Name(rawValue: "EditViewController"))
+            .sink { [weak self] selectedItem in
+                guard let self = self,
+                      let selected = selectedItem.userInfo?["selected"] as? [IssueDetailEditViewModel],
+                      let type = selectedItem.userInfo?["type"] as? EditViewController.EditType else { return }
+
+                switch type {
+                case .assignee:
+                    selected.forEach({
+                        if let assignee = $0.assignee {
+                            self.assigneeStackView.addArrangedSubview(assignee)
+                            self.assigneeIDs.append($0.assigneeID)
+                        }
+                    })
+                case .label:
+                    selected.forEach({
+                        if let labels = $0.labels {
+                            self.labelStackView.addArrangedSubview(labels)
+                            self.labelIDs.append($0.labelID)
+                        }
+                    })
+                case .milestone:
+                    selected.forEach({
+                        if let milestone = $0.milestone {
+                            self.milestoneStackView.addArrangedSubview(milestone)
+                            self.milestoneIDs.append($0.milestoneID ?? 0)
+                        }
+                    })
+                }
+            }
+    }
+
     private func configureObservers() {
         keyboardShowObserver = NotificationCenter.default
             .publisher(for: UIResponder.keyboardWillShowNotification)
@@ -141,21 +195,31 @@ final class CreateIssueViewController: UIViewController {
     
     @IBAction func uploadIssueTouched(_ sender: Any) {
         // Alert -> 성공 / 실패 시
+        guard let issueNumber = issueNumber else { return }
         if isEdit {
-            interactor.editIssue(id: issueNumber ?? 0,
+            interactor.editIssue(id: issueNumber,
                                  title: titleTextField.text ?? "",
-                                 comment: commentTextView.text) {
-                DispatchQueue.main.async { NotificationCenter
+                                 comment: commentTextView.text,
+                                 milestoneID: milestoneIDs.first) {
+                DispatchQueue.main.async {
+                    NotificationCenter
                         .default
                         .post(.init(name: Notification.Name(rawValue: "createIssueClosed"),
                                     userInfo: ["issueNumber": self.issueNumber ?? 0]))
                 self.dismiss(animated: true)
                 }
-
             }
         } else {
-            interactor.uploadIssue(title: titleTextField.text ?? "", comment: commentTextView.text)
+            interactor.uploadIssue(title: titleTextField.text ?? "", comment: commentTextView.text, milestoneID: 0)
             self.dismiss(animated: true)
+        }
+
+        if !labelStackView.subviews.isEmpty {
+            interactor.uploadLabel(id: issueNumber, labelIDs: labelIDs)
+        }
+
+        if !assigneeStackView.subviews.isEmpty {
+            interactor.uploadAssignee(id: issueNumber, assigneeIDs: assigneeIDs)
         }
 
     }
@@ -163,8 +227,8 @@ final class CreateIssueViewController: UIViewController {
     @IBAction func cancelTouched(_ sender: UIBarButtonItem) {
         dismiss(animated: true, completion: nil)
     }
-    @IBAction func authorEditTouched(_ sender: Any) {
-        editViewController(editType: .author)
+    @IBAction func assigneeEditTouched(_ sender: Any) {
+        editViewController(editType: .assignee)
     }
     @IBAction func labelEditTouched(_ sender: Any) {
         editViewController(editType: .label)
@@ -173,16 +237,18 @@ final class CreateIssueViewController: UIViewController {
         editViewController(editType: .milestone)
     }
 
-    func editViewController(editType: EditTableViewController.EditType) {
+    func editViewController(editType: EditViewController.EditType) {
+        guard let issueNumber = issueNumber else { return }
         let storyboard = UIStoryboard(name: "IssueList", bundle: nil)
         let viewController = storyboard
-            .instantiateViewController(identifier: "EditTableViewController",
-                                       creator: { coder -> EditTableViewController? in
-                                       return EditTableViewController(coder: coder,
-                                                                      id: 1,
-                                                                      editType: editType)
+            .instantiateViewController(identifier: "EditViewController",
+                                       creator: { coder -> EditViewController? in
+                                        return EditViewController(coder: coder,
+                                                                  id: issueNumber,
+                                                                  editType: editType,
+                                                                  labels: self.labels,
+                                                                  milestone: self.milestone)
                                        })
-
         present(viewController, animated: true)
     }
 }
