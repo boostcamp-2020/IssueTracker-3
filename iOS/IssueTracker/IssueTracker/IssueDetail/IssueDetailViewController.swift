@@ -27,6 +27,7 @@ final class IssueDetailViewController: UIViewController, IssueDetailDisplayLogic
     private var animationProgressWhenInterrupted: CGFloat = .zero
     private let cardHeight: CGFloat = 600
     private let cardHandleAreaHeight: CGFloat = 65
+
     private var publisher: AnyCancellable!
 
     // MARK: Enums
@@ -81,7 +82,7 @@ final class IssueDetailViewController: UIViewController, IssueDetailDisplayLogic
     private func configureNotification() {
         publisher = NotificationCenter.default
             .publisher(for: Notification.Name("createIssueClosed"))
-            .sink { [weak self] issueNubmer in
+            .sink { [weak self] _ in
 //                guard let id = issueNubmer.userInfo?["issueNumber"] as? Int else { return }
 //                self?.interactor.fetchComments(id: id)
                 self?.navigationController?.popViewController(animated: true)

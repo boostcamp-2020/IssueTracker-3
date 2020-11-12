@@ -24,9 +24,7 @@ final class IssueDetailInteractor: IssueDetailDataStore {
 
 extension IssueDetailInteractor: IssueDetailBusinessLogic {
     func fetchComments(id: Int) {
-        networkService.request(apiConfiguration: IssueDetailEndPoint.getComments(id)) {
-            [weak self] result in
-            guard let self = self else { return }
+        networkService.request(apiConfiguration: IssueDetailEndPoint.getComments(id)) { result in
             switch result {
             case .failure(let error):
                 debugPrint(error)
@@ -47,6 +45,10 @@ extension IssueDetailInteractor: IssueDetailBusinessLogic {
             return
         }
         URLSession.shared.dataTask(with: imageURL) { data, _, error in
+            guard error == nil else {
+                debugPrint(error)
+                return
+            }
             guard let data = data else {
                 debugPrint("Image data Failure")
                 return

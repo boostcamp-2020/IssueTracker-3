@@ -237,7 +237,7 @@ extension IssueListViewController {
                 return cell
             })
     }
-    
+
     private func reloadDataSource(items: [IssueListViewModel]) {
         var snapshot = NSDiffableDataSourceSnapshot<Section, IssueListViewModel>()
         snapshot.appendSections([.main])
