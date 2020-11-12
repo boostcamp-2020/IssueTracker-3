@@ -3,7 +3,6 @@ import axios from 'axios';
 import qs from 'qs';
 
 function Callback({ history, location }) {
-
   useEffect(() => {
     async function getToken() {
       const { code } = qs.parse(location.search, {
@@ -11,14 +10,13 @@ function Callback({ history, location }) {
       });
 
       try {
-        // 이 부분은 express에 요청하여 JWT 토큰을 발급합니다.
-        const { jwt } = await axios.post(`http://101.101.210.34:3000/auth/github/web`, {
+        const result = await axios.post(`http://101.101.210.34:3000/auth/github/web`, {
           code,
         });
-        console.log(jwt);
+        console.log(result);
 
         // 유저 JWT 토큰을 저장합니다.
-        localStorage.setItem('jwt', jwt);
+        localStorage.setItem('token', result.data.JWT);
         history.push('/'); // 로그인이 완료되면 보여줄 페이지
       } catch (error) {
         history.push('/error'); // api요청이 실패했을때 애러 핸들링 페이지

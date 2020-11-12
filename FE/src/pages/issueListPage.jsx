@@ -43,6 +43,8 @@ function IssueListPage(props) {
     const response = await axiosApi("/auth/alluser", "GET");
     setUsers(response.data);
   }, []);
+  console.log(localStorage.getItem("token"));
+  alert(localStorage.getItem("token"));
   return (
     <StyledIssueListPage>
       <IssueHeader labels={labels} milestones={milestones} condition={condition} setCondition={setCondition} user={user} />

@@ -13,7 +13,7 @@ function GithubButton() {
     const res = await axiosApi("https://github.com/login/oauth/authorize?client_id=f3f153d6be2389b2b220&redirect_uri=http://101.101.210.34/callback", "GET");
   };
   return (
-      <StyledGithubButton onClick={githubLogin}> 깃허브로 로그인 하기 </StyledGithubButton>
+      <StyledGithubButton><a href="https://github.com/login/oauth/authorize?client_id=f3f153d6be2389b2b220&redirect_uri=http://101.101.210.34/callback">깃허브로 로그인 하기</a> </StyledGithubButton>
   );
 }
 
