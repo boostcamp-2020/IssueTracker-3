@@ -184,7 +184,7 @@ final class IssueListViewController: UIViewController {
 extension IssueListViewController: IssueListDisplayLogic {
     func displayFetchedIssues(viewModel: [IssueListViewModel]) {
         displayedIssue = viewModel
-        updateDataSource(items: displayedIssue, type: .append)
+        reloadDataSource(items: displayedIssue)
         indicatorView.stopAnimating()
         indicatorView.isHidden = true
     }    
@@ -239,7 +239,14 @@ extension IssueListViewController {
     enum UpdateDataSourceType {
         case append, delete
     }
-    
+
+    private func reloadDataSource(items: [IssueListViewModel]) {
+        var snapshot = NSDiffableDataSourceSnapshot<Section, IssueListViewModel>()
+        snapshot.appendSections([.main])
+        snapshot.appendItems(items, toSection: .main)
+        dataSource.apply(snapshot, animatingDifferences: false)
+    }
+
     private func updateDataSource(items: [IssueListViewModel], type: UpdateDataSourceType) {
         var snapshot = dataSource.snapshot()
         switch type {

@@ -43,6 +43,7 @@ final class OAuthManager {
                 case .success(let data):
                     guard let decodedData: RequestLogin = try? data.decoded(),
                           let jwt = decodedData.jwt else { return }
+
                     handler(jwt)
                 }
             }

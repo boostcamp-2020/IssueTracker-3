@@ -83,8 +83,9 @@ final class IssueDetailViewController: UIViewController, IssueDetailDisplayLogic
         publisher = NotificationCenter.default
             .publisher(for: Notification.Name("createIssueClosed"))
             .sink { [weak self] issueNubmer in
-                guard let id = issueNubmer.userInfo?["issueNumber"] as? Int else { return }
-                self?.interactor.fetchComments(id: id)
+//                guard let id = issueNubmer.userInfo?["issueNumber"] as? Int else { return }
+//                self?.interactor.fetchComments(id: id)
+                self?.navigationController?.popViewController(animated: true)
             }
     }
 
