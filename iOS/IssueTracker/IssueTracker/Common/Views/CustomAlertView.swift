@@ -286,8 +286,7 @@ class CustomAlertView: UIViewController {
 
 extension CustomAlertView: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
-        
+
         switch textField {
         case titleTextField:
             if type == .color { descriptionTextField.becomeFirstResponder() }
@@ -296,18 +295,6 @@ extension CustomAlertView: UITextFieldDelegate {
             descriptionTextField.becomeFirstResponder()
         default:
             break
-        }
-      
-       if textField == titleTextField {
-           if dateView.isHidden {
-                descriptionTextField.becomeFirstResponder()
-            } else {
-                dateTextField.becomeFirstResponder()
-            }
-        } else if textField == dateTextField {
-            descriptionTextField.becomeFirstResponder()
-        } else if textField == descriptionTextField {
-            descriptionTextField.resignFirstResponder()
         }
         return true
     }
