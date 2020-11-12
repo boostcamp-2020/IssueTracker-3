@@ -145,10 +145,10 @@ final class CreateIssueViewController: UIViewController {
             interactor.editIssue(id: issueNumber ?? 0,
                                  title: titleTextField.text ?? "",
                                  comment: commentTextView.text) {
-                DispatchQueue.main.async{ NotificationCenter
+                DispatchQueue.main.async { NotificationCenter
                         .default
-                        .post(.init(name: Notification.Name(rawValue: "createIssueClosed")
-                                    , userInfo: ["issueNumber": self.issueNumber ?? 0]))
+                        .post(.init(name: Notification.Name(rawValue: "createIssueClosed"),
+                                    userInfo: ["issueNumber": self.issueNumber ?? 0]))
                 self.dismiss(animated: true)
                 }
 

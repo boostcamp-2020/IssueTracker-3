@@ -237,10 +237,6 @@ extension IssueListViewController {
                 return cell
             })
     }
-    
-    enum UpdateDataSourceType {
-        case append, delete
-    }
 
     private func reloadDataSource(items: [IssueListViewModel]) {
         var snapshot = NSDiffableDataSourceSnapshot<Section, IssueListViewModel>()

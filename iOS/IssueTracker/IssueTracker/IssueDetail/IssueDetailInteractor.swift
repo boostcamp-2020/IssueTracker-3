@@ -24,9 +24,7 @@ final class IssueDetailInteractor: IssueDetailDataStore {
 
 extension IssueDetailInteractor: IssueDetailBusinessLogic {
     func fetchComments(id: Int) {
-        networkService.request(apiConfiguration: IssueDetailEndPoint.getComments(id)) {
-            [weak self] result in
-            guard let self = self else { return }
+        networkService.request(apiConfiguration: IssueDetailEndPoint.getComments(id)) { result in
             switch result {
             case .failure(let error):
                 debugPrint(error)
@@ -41,7 +39,9 @@ extension IssueDetailInteractor: IssueDetailBusinessLogic {
         }
     }
     
-    func loadAuthorImage(imageURL: String = "https://user-images.githubusercontent.com/5876149/97951341-39d26600-1ddd-11eb-94e7-9102b90bda8b.jpg", with handler: @escaping (Data) -> Void) {
+    func loadAuthorImage(
+        imageURL: String = "https://user-images.githubusercontent.com/5876149/97951341-39d26600-1ddd-11eb-94e7-9102b90bda8b.jpg",
+        with handler: @escaping (Data) -> Void) {
         guard let imageURL = try? imageURL.asURL() else {
             debugPrint("invalid Image URL")
             return
