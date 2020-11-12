@@ -6,6 +6,8 @@ import MoveToCreateLabelButton from "../component/labelListPage/buttons/moveToCr
 import MoveToLabelButton from "../component/labelListPage/buttons/moveToLabelButton";
 import MoveToMaileStoneButton from "../component/labelListPage/buttons/moveToMilestoneButton";
 import LabelFilter from "../component/labelListPage/filter/labelFilter";
+import CreateLabelDropdown from "../component/labelListPage/dropdown/createLabelDropdown";
+
 import axiosApi from "../util/axiosApi";
 
 const StyledLabelListPage = styled.div`
@@ -25,13 +27,23 @@ const Combination = styled.div`
 `;
 const Body = styled.div`
   display: flex;
+  flex-direction: column;
 `;
 function LabelListPage() {
   const [labels, setLabels] = useState([]);
+  const [visible, setVisible] = useState("none");
   useEffect(async () => {
     const response = await axiosApi("/label", "GET");
     setLabels(response.data);
   }, []);
+
+  const Dropdown = () => {
+    if (visible === "none") {
+      setVisible("flex");
+    } else {
+      setVisible("none");
+    }
+  };
   return (
     <StyledLabelListPage>
       <Header>
@@ -40,10 +52,11 @@ function LabelListPage() {
           <MoveToMaileStoneButton />
         </Combination>
         <LabelFilter />
-        <MoveToCreateLabelButton />
+        <MoveToCreateLabelButton event={Dropdown} />
       </Header>
       <Body>
-        <LabelList labels={labels} />
+        <CreateLabelDropdown visible={visible} event={Dropdown} setLabels={setLabels} />
+        <LabelList labels={labels} setLabels={setLabels} />
       </Body>
     </StyledLabelListPage>
   );
