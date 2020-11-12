@@ -27,8 +27,6 @@ final class IssueDetailViewController: UIViewController, IssueDetailDisplayLogic
     private var animationProgressWhenInterrupted: CGFloat = .zero
     private let cardHeight: CGFloat = 600
     private let cardHandleAreaHeight: CGFloat = 65
-
-    private var interactor: IssueDetailBusinessLogic!
     private var publisher: AnyCancellable!
 
     // MARK: Enums

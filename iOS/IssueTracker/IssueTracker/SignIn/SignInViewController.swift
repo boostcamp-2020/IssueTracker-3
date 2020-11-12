@@ -73,6 +73,7 @@ final class SignInViewController: UIViewController {
                 guard let data: RequestLogin = try? data.decoded() else { return }
                 self.changeViewController(jwt: data.jwt)
             }
+        }
     }
     
     // MARK: Configure
@@ -155,23 +156,6 @@ final class SignInViewController: UIViewController {
     
     private func keyboardWillHide() {
         view.frame.origin.y = 0
-    }
-    
-    @IBAction func loginTouched(_ sender: Any) {
-        let networkService = NetworkService()
-        let user = User(userID: idTextField.text, password: pwTextField.text)
-        
-        guard let encodedData = try? JSONEncoder().encode(user) else { return }
-        
-        networkService.request(apiConfiguration: SignInEndPoint.signIn(encodedData)) { result in
-            switch result {
-            case .failure(let error):
-                debugPrint(error)
-            case .success(let data):
-                guard let data: RequestLogin = try? data.decoded() else { return }
-                self.changeViewController(jwt: data.jwt)
-            }
-        }
     }
     
     @IBAction func signInWithGitHubTouched(_ sender: UIButton) {
