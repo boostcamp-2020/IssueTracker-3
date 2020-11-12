@@ -14,13 +14,9 @@ class EditTableViewCell: UITableViewCell {
     }
 
     @IBOutlet weak var button: UIButton!
-    @IBOutlet weak var titleLabel: UILabel!
-    func configureSeleted(title: String) {
-        titleLabel.text = title
-    }
-
-    func configureList(title: String) {
-        titleLabel.text = title
+    @IBOutlet weak var stackView: UIStackView!
+    func configure(button: CustomButtonView) {
+        stackView.addArrangedSubview(button)
     }
 
     func chagneButtonImage(buttonType: ButtonType) {

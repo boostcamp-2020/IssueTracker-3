@@ -8,7 +8,7 @@
 import UIKit
 
 protocol EditDisplayLogic: class {
-    func displayFetchAllGetUser(viewModel: [IssueDetailEditViewModel])
+    func displayFetchAll(viewModel: [IssueDetailEditViewModel])
 }
 
 class EditViewController: UIViewController, EditDisplayLogic {
@@ -43,16 +43,26 @@ class EditViewController: UIViewController, EditDisplayLogic {
 
     private let id: Int?
     private let editType: EditType?
+    private let labels: [CustomButtonView]?
+    private let milestone: CustomButtonView?
 
-    init?(coder: NSCoder, id: Int, editType: EditType) {
+    init?(coder: NSCoder,
+          id: Int,
+          editType: EditType,
+          labels: [CustomButtonView]?,
+          milestone: CustomButtonView?) {
         self.id = id
         self.editType = editType
+        self.labels = labels
+        self.milestone = milestone
         super.init(coder: coder)
     }
 
     required init?(coder: NSCoder) {
         self.id = nil
         self.editType = nil
+        self.labels = nil
+        self.milestone = nil
         super.init(coder: coder)
     }
     
@@ -88,7 +98,7 @@ class EditViewController: UIViewController, EditDisplayLogic {
     private var displayedSelected = [IssueDetailEditViewModel]()
     private var displayedList = [IssueDetailEditViewModel]()
 
-    func displayFetchAllGetUser(viewModel: [IssueDetailEditViewModel]) {
+    func displayFetchAll(viewModel: [IssueDetailEditViewModel]) {
         displayedList = viewModel
         performQuery()
     }
@@ -102,9 +112,22 @@ class EditViewController: UIViewController, EditDisplayLogic {
                 ) as? EditTableViewCell else {
                     return UITableViewCell()
                 }
+                guard let editType = self.editType else { return cell }
+                switch editType {
+                case .assignee:
+                    if let assignee = item.assignee {
+                        cell.configure(button: assignee)
+                    }
+                case .label:
+                    if let labels = item.labels {
+                        cell.configure(button: labels)
+                    }
+                case .milestone:
+                    if let milestone = item.milestone {
+                        cell.configure(button: milestone)
+                    }
 
-                cell.configureSeleted(title: item.title)
-                cell.configureList(title: item.title)
+                }
 
                 return cell
             })
@@ -140,6 +163,14 @@ class EditViewController: UIViewController, EditDisplayLogic {
 
 extension EditViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let editType = editType else { return }
+
+        // TODO: logic 생각
+        guard !(indexPath.section == 1 && editType == .milestone && !displayedSelected.isEmpty) else {
+            tableView.shake()
+            return
+        }
+
         guard let selectedItem = dataSource.itemIdentifier(for: indexPath),
               let cell = tableView.cellForRow(at: indexPath) as? EditTableViewCell else { return }
 
