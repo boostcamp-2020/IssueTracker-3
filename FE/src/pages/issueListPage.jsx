@@ -22,7 +22,7 @@ function IssueListPage(props) {
   const [originIssues, setOriginIssues] = useState([]);
   const [users, setUsers] = useState([]);
   const [checked, setChecked] = useState([]);
-  const [condition, setCondition] = useState({ state: 1, author: 5, assignee: null, comment: null });
+  const [condition, setCondition] = useState({ state: 1, author: 0, assignee: 0, comment: 0 });
   useEffect(async () => {
     const response = await axiosApi("/label", "GET");
     setLabels(response.data);
@@ -32,7 +32,10 @@ function IssueListPage(props) {
     setMilestones(response.data);
   }, []);
   useEffect(async () => {
-    const response = await axiosApi("/issue/filter", "GET", condition);
+    const response = await axiosApi(
+      `/issue/filter/state/${condition.state}/author/${condition.author}/assignee/${condition.assignee}/comment/${condition.comment}`,
+      "GET"
+    );
     setOriginIssues(response.data);
     setIssues(response.data);
   }, [condition]);
