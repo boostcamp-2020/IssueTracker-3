@@ -71,6 +71,7 @@
 		BB0D52752558E4FF009DEB8F /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0D52742558E4FE009DEB8F /* NetworkError.swift */; };
 		BB0D52792558E68A009DEB8F /* KeyChain.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0D52782558E68A009DEB8F /* KeyChain.swift */; };
 		BB1F55B7255D99AA00DB37E9 /* IssueCommentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB1F55B6255D99AA00DB37E9 /* IssueCommentViewController.swift */; };
+		BB1F55BC255DA61D00DB37E9 /* SwiftyMarkdown in Frameworks */ = {isa = PBXBuildFile; productRef = BB1F55BB255DA61D00DB37E9 /* SwiftyMarkdown */; };
 		BB229B89255BD284007F2D6A /* MilestoneCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB229B88255BD284007F2D6A /* MilestoneCalculator.swift */; };
 		BB229BB2255C2309007F2D6A /* URL+searchToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB229BB1255C2309007F2D6A /* URL+searchToken.swift */; };
 		BB229BC1255C48FB007F2D6A /* UIViewController+hideKeyboardWhenTapped.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB229BC0255C48FA007F2D6A /* UIViewController+hideKeyboardWhenTapped.swift */; };
@@ -239,6 +240,7 @@
 			files = (
 				FB61544F48E987F7556EC50C /* libPods-IssueTracker.a in Frameworks */,
 				BB74C2EF2559CF5F00B0D3CE /* MarkdownView in Frameworks */,
+				BB1F55BC255DA61D00DB37E9 /* SwiftyMarkdown in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -690,6 +692,7 @@
 			name = IssueTracker;
 			packageProductDependencies = (
 				BB74C2EE2559CF5F00B0D3CE /* MarkdownView */,
+				BB1F55BB255DA61D00DB37E9 /* SwiftyMarkdown */,
 			);
 			productName = IssueTracker;
 			productReference = 708EFEEA2546DBC9009D9DEC /* IssueTracker.app */;
@@ -742,6 +745,7 @@
 			mainGroup = 708EFEE12546DBC9009D9DEC;
 			packageReferences = (
 				BB74C2ED2559CF5F00B0D3CE /* XCRemoteSwiftPackageReference "MarkdownView" */,
+				BB1F55BA255DA61D00DB37E9 /* XCRemoteSwiftPackageReference "SwiftyMarkdown" */,
 			);
 			productRefGroup = 708EFEEB2546DBC9009D9DEC /* Products */;
 			projectDirPath = "";
@@ -1218,6 +1222,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		BB1F55BA255DA61D00DB37E9 /* XCRemoteSwiftPackageReference "SwiftyMarkdown" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SimonFairbairn/SwiftyMarkdown.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.2.3;
+			};
+		};
 		BB74C2ED2559CF5F00B0D3CE /* XCRemoteSwiftPackageReference "MarkdownView" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/keitaoouchi/MarkdownView.git";
@@ -1229,6 +1241,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		BB1F55BB255DA61D00DB37E9 /* SwiftyMarkdown */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BB1F55BA255DA61D00DB37E9 /* XCRemoteSwiftPackageReference "SwiftyMarkdown" */;
+			productName = SwiftyMarkdown;
+		};
 		BB74C2EE2559CF5F00B0D3CE /* MarkdownView */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = BB74C2ED2559CF5F00B0D3CE /* XCRemoteSwiftPackageReference "MarkdownView" */;
