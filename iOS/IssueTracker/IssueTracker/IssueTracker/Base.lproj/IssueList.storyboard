@@ -36,13 +36,13 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="레이블 목록 보기 구현" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lki-kq-UDe">
-                                                    <rect key="frame" x="16" y="10" width="145" height="20.5"/>
+                                                    <rect key="frame" x="39" y="10" width="145" height="20.5"/>
                                                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="레이블 전체 목록을 볼 수 있어야 한다 2줄까지 보입니다.레이블 전체 목록을 볼 수 있어야 한다 2줄까지 보입니다." lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rz8-SB-ZgW">
-                                                    <rect key="frame" x="16" y="36.5" width="240" height="41.5"/>
+                                                    <rect key="frame" x="39" y="36.5" width="240" height="41.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <color key="textColor" red="0.23529411764705882" green="0.23529411764705882" blue="0.26666666666666666" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -54,14 +54,43 @@
                                                         <constraint firstAttribute="width" constant="74" id="F61-Wg-pdx"/>
                                                     </constraints>
                                                 </stackView>
+                                                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aOY-cC-eQM">
+                                                    <rect key="frame" x="8" y="10" width="23" height="22"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="23" id="8Ya-ZP-Xea"/>
+                                                    </constraints>
+                                                    <color key="tintColor" systemColor="systemRedColor"/>
+                                                    <state key="normal">
+                                                        <imageReference key="image" image="exclamationmark.arrow.circlepath" catalog="system" symbolScale="medium"/>
+                                                        <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="medium" weight="semibold"/>
+                                                    </state>
+                                                </button>
+                                                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qi3-Kl-uOh">
+                                                    <rect key="frame" x="8" y="10" width="23" height="22"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="23" id="blQ-KE-bg3"/>
+                                                    </constraints>
+                                                    <color key="tintColor" systemColor="systemGreenColor"/>
+                                                    <state key="normal">
+                                                        <imageReference key="image" image="exclamationmark.circle" catalog="system" symbolScale="medium"/>
+                                                        <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="medium" weight="semibold"/>
+                                                    </state>
+                                                </button>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstAttribute="trailing" secondItem="pgy-ki-F4b" secondAttribute="trailing" constant="12" id="5Qc-CZ-vty"/>
+                                                <constraint firstItem="aOY-cC-eQM" firstAttribute="leading" secondItem="fo3-Tu-moA" secondAttribute="leading" constant="8" id="7aB-bQ-fQe"/>
+                                                <constraint firstItem="qi3-Kl-uOh" firstAttribute="leading" secondItem="aOY-cC-eQM" secondAttribute="leading" id="CiG-eD-hr5"/>
+                                                <constraint firstItem="Lki-kq-UDe" firstAttribute="leading" secondItem="aOY-cC-eQM" secondAttribute="trailing" constant="8" id="GK1-av-SRy"/>
+                                                <constraint firstItem="qi3-Kl-uOh" firstAttribute="bottom" secondItem="aOY-cC-eQM" secondAttribute="bottom" id="GNU-yU-IFR"/>
+                                                <constraint firstItem="qi3-Kl-uOh" firstAttribute="trailing" secondItem="aOY-cC-eQM" secondAttribute="trailing" id="GaF-Pw-7mI"/>
+                                                <constraint firstItem="qi3-Kl-uOh" firstAttribute="top" secondItem="aOY-cC-eQM" secondAttribute="top" id="LeD-lV-tCJ"/>
                                                 <constraint firstAttribute="bottom" secondItem="Rz8-SB-ZgW" secondAttribute="bottom" constant="10" id="Pux-dl-OyV"/>
-                                                <constraint firstItem="pgy-ki-F4b" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Lki-kq-UDe" secondAttribute="trailing" constant="45" id="YXs-bb-Njv"/>
-                                                <constraint firstItem="pgy-ki-F4b" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Rz8-SB-ZgW" secondAttribute="trailing" constant="30" id="cvn-NI-KnO"/>
+                                                <constraint firstItem="pgy-ki-F4b" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Lki-kq-UDe" secondAttribute="trailing" constant="10" id="YXs-bb-Njv"/>
+                                                <constraint firstItem="pgy-ki-F4b" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Rz8-SB-ZgW" secondAttribute="trailing" constant="10" id="cvn-NI-KnO"/>
+                                                <constraint firstItem="aOY-cC-eQM" firstAttribute="top" secondItem="fo3-Tu-moA" secondAttribute="top" constant="10" id="dLj-P9-Xuz"/>
+                                                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="aOY-cC-eQM" secondAttribute="bottom" constant="20" id="ehT-WU-F6C"/>
                                                 <constraint firstItem="Rz8-SB-ZgW" firstAttribute="leading" secondItem="Lki-kq-UDe" secondAttribute="leading" id="t7k-yw-nf8"/>
-                                                <constraint firstItem="Lki-kq-UDe" firstAttribute="leading" secondItem="fo3-Tu-moA" secondAttribute="leading" constant="16" id="vj2-td-YKg"/>
                                                 <constraint firstItem="pgy-ki-F4b" firstAttribute="top" secondItem="fo3-Tu-moA" secondAttribute="top" constant="11" id="vx8-h6-IBs"/>
                                                 <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="pgy-ki-F4b" secondAttribute="bottom" priority="750" constant="11" id="w6n-Xc-U3X"/>
                                                 <constraint firstItem="Rz8-SB-ZgW" firstAttribute="top" secondItem="Lki-kq-UDe" secondAttribute="bottom" constant="6" id="wu9-lH-nXU"/>
@@ -71,6 +100,8 @@
                                         <size key="customSize" width="375" height="88"/>
                                         <connections>
                                             <outlet property="descriptionLabel" destination="Rz8-SB-ZgW" id="XlZ-bd-421"/>
+                                            <outlet property="issueClosedButton" destination="aOY-cC-eQM" id="QTI-Jt-cSU"/>
+                                            <outlet property="issueOpenButton" destination="qi3-Kl-uOh" id="77h-hn-ize"/>
                                             <outlet property="labelStackView" destination="pgy-ki-F4b" id="lyi-I6-WlB"/>
                                             <outlet property="titleLabel" destination="Lki-kq-UDe" id="zfD-Lo-0m5"/>
                                         </connections>
@@ -139,6 +170,21 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zFo-zb-cVf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-936.23188405797111" y="2645.7589285714284"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="YlT-PF-F9F">
+            <objects>
+                <viewController id="Ejo-5w-cMC" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="gXs-r7-0ZN">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="G6H-79-FgW"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="YgA-lR-0ZO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="79.710144927536234" y="2613.6160714285711"/>
         </scene>
         <!--Issue Filter View Controller-->
         <scene sceneID="an2-NL-ycR">
@@ -1005,6 +1051,8 @@ HTML형태로 보여줘야 할까요</string>
         <image name="chevron.right" catalog="system" width="96" height="128"/>
         <image name="chevron.up" catalog="system" width="128" height="72"/>
         <image name="ellipsis" catalog="system" width="128" height="37"/>
+        <image name="exclamationmark.arrow.circlepath" catalog="system" width="128" height="110"/>
+        <image name="exclamationmark.circle" catalog="system" width="128" height="121"/>
         <image name="face.smiling" catalog="system" width="128" height="121"/>
         <image name="pencil.slash" catalog="system" width="128" height="113"/>
         <image name="person.fill" catalog="system" width="128" height="120"/>
