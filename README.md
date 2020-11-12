@@ -30,7 +30,7 @@
 
 ## IssueTracker 배포
 
-101.101.210.34/
+http://101.101.210.34/
 
 ## IssueTracker 기획
 
