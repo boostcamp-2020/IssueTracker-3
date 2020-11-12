@@ -731,7 +731,7 @@ HTML형태로 보여줘야 할까요</string>
                                 <rect key="frame" x="16" y="219.5" width="382" height="426.5"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="200" id="7ij-8Z-oND"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="100" id="7ij-8Z-oND"/>
                                 </constraints>
                                 <color key="textColor" systemColor="labelColor"/>
                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
@@ -939,6 +939,7 @@ HTML형태로 보여줘야 할까요</string>
                     <navigationItem key="navigationItem" id="0Hh-mG-PqR"/>
                     <connections>
                         <outlet property="commentTextView" destination="7Qm-3i-rgo" id="8Il-OV-zug"/>
+                        <outlet property="commentTextViewBottomConstraint" destination="V4Y-29-zHe" id="mWO-oV-xSy"/>
                         <outlet property="doneRightBarButton" destination="wWv-af-xp6" id="Tdg-st-9he"/>
                         <outlet property="separatorView" destination="gYs-3K-uGQ" id="Pxs-NS-HKQ"/>
                         <outlet property="titleTextField" destination="pVE-zb-SvA" id="TON-7D-hMl"/>
