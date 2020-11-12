@@ -1,7 +1,6 @@
 import React from "react";
 import { hot } from "react-hot-loader";
 import styled from "styled-components";
-import { Link } from "react-router-dom";
 import axiosApi from "@util/axiosApi";
 
 const StyledGithubButton = styled.button`
@@ -11,12 +10,10 @@ const StyledGithubButton = styled.button`
 `;
 function GithubButton() {
   const githubLogin = async () => {
-    const res = await axiosApi("/auth/github", "GET");
+    const res = await axiosApi("https://github.com/login/oauth/authorize?client_id=f3f153d6be2389b2b220&redirect_uri=http://101.101.210.34/callback", "GET");
   };
   return (
-    <Link to="./github">
       <StyledGithubButton onClick={githubLogin}> 깃허브로 로그인 하기 </StyledGithubButton>
-    </Link>
   );
 }
 

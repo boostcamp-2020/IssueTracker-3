@@ -11,6 +11,8 @@ import LabelListPage from "@pages/labelListPage";
 import MilestoneCreatePage from "@pages/milestoneCreatePage";
 import MilestoneListPage from "@pages/milestoneListPage";
 import RegisterPage from "@pages/registerPage";
+import Callback from "@pages/callback";
+
 
 const StyledContent = styled.div`
   display: flex;
@@ -44,6 +46,7 @@ const App = () => {
           <Route exact path="/milestonecreate" component={MilestoneCreatePage} />
           <Route exact path="/milestonelist" component={MilestoneListPage} />
           <Route exact path="/register" component={RegisterPage} />
+          <Route exact path="/callback" component={Callback} />
         </Switch>
       </BrowserRouter>
     </StyledContent>

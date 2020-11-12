@@ -5,4 +5,5 @@ export interface User {
   password: string;
   img: string;
   created_at: Date;
+type: number;
 }
