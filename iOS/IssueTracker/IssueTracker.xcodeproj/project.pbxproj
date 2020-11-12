@@ -70,6 +70,7 @@
 		BB0143C2255AF894006CB0BC /* MilestonePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0143C1255AF894006CB0BC /* MilestonePresenter.swift */; };
 		BB0D52752558E4FF009DEB8F /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0D52742558E4FE009DEB8F /* NetworkError.swift */; };
 		BB0D52792558E68A009DEB8F /* KeyChain.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0D52782558E68A009DEB8F /* KeyChain.swift */; };
+		BB1F55B7255D99AA00DB37E9 /* IssueCommentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB1F55B6255D99AA00DB37E9 /* IssueCommentViewController.swift */; };
 		BB229B89255BD284007F2D6A /* MilestoneCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB229B88255BD284007F2D6A /* MilestoneCalculator.swift */; };
 		BB229BB2255C2309007F2D6A /* URL+searchToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB229BB1255C2309007F2D6A /* URL+searchToken.swift */; };
 		BB229BC1255C48FB007F2D6A /* UIViewController+hideKeyboardWhenTapped.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB229BC0255C48FA007F2D6A /* UIViewController+hideKeyboardWhenTapped.swift */; };
@@ -191,6 +192,7 @@
 		BB0143C1255AF894006CB0BC /* MilestonePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MilestonePresenter.swift; sourceTree = "<group>"; };
 		BB0D52742558E4FE009DEB8F /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		BB0D52782558E68A009DEB8F /* KeyChain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyChain.swift; sourceTree = "<group>"; };
+		BB1F55B6255D99AA00DB37E9 /* IssueCommentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueCommentViewController.swift; sourceTree = "<group>"; };
 		BB229B88255BD284007F2D6A /* MilestoneCalculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MilestoneCalculator.swift; sourceTree = "<group>"; };
 		BB229BB1255C2309007F2D6A /* URL+searchToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+searchToken.swift"; sourceTree = "<group>"; };
 		BB229BC0255C48FA007F2D6A /* UIViewController+hideKeyboardWhenTapped.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+hideKeyboardWhenTapped.swift"; sourceTree = "<group>"; };
@@ -593,6 +595,7 @@
 				7059311125503E52003FE49F /* Views */,
 				BB65A04B254FED2000D09DD5 /* IssueDetailViewController.swift */,
 				7059311D25506294003FE49F /* IssueDetailBottomSheetViewController.swift */,
+				BB1F55B6255D99AA00DB37E9 /* IssueCommentViewController.swift */,
 				70ECC5C225599983003C2AA0 /* IssueDetailInteractor.swift */,
 				70ECC5C6255999A2003C2AA0 /* IssueDetailPresenter.swift */,
 			);
@@ -897,6 +900,7 @@
 				70ECC5E7255A5735003C2AA0 /* LabelInteractor.swift in Sources */,
 				BB0143AE255AF1D6006CB0BC /* MilestoneViewModel.swift in Sources */,
 				BB229BB2255C2309007F2D6A /* URL+searchToken.swift in Sources */,
+				BB1F55B7255D99AA00DB37E9 /* IssueCommentViewController.swift in Sources */,
 				BB64F470255B2374003B3E37 /* DateFormatter+format.swift in Sources */,
 				BB229BC1255C48FB007F2D6A /* UIViewController+hideKeyboardWhenTapped.swift in Sources */,
 				BB0D52792558E68A009DEB8F /* KeyChain.swift in Sources */,
