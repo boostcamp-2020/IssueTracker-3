@@ -12,8 +12,6 @@ final class IssueListCollectionViewCell: UICollectionViewListCell {
     @IBOutlet private weak var descriptionLabel: UILabel!
     @IBOutlet private weak var labelStackView: UIStackView!
     
-    var isInEditingMode: Bool = false { didSet { } } // selected 문제 해결 후 삭제 예정
-    
     func configure(of item: IssueListViewModel) {
         configureCellLabels(with: item)
         configureLabelStackView(milestone: item.milestone, labels: item.labels)
