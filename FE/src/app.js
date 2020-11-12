@@ -21,20 +21,19 @@ const StyledContent = styled.div`
 `;
 const App = () => {
   const [user, setUser] = useState({
-    id: 0,
+    id: 5,
     name: "",
     url: "",
   });
   return (
     <StyledContent>
-      Content
       <BrowserRouter>
         <Switch>
           <Route
             exact
             path="/"
             render={() => {
-              return user.id === 0 ? <LoginPage User={user} setUser={setUser} /> : <IssueListPage />;
+              return user.id === 0 ? <LoginPage User={user} setUser={setUser} /> : <IssueListPage user={user} />;
             }}
           />
           <Route exact path="/issuelist" component={IssueListPage} />
