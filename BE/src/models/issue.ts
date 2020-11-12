@@ -28,7 +28,7 @@ class IssueModel extends Model {
         issues[idx].assignee = [...assignees[0].map(filter.nullFilter)];
         const milestones = await db.query(`SELECT * from MILESTONE m WHERE m.id = ${element.milestone_id}`);
         issues[idx].milestone = [...milestones[0].map(filter.nullFilter)];
-        const comments = await db.query(`SELECT * from COMMENT c JOIN ISSUE i ON i.id = c.issue_id WHERE i.id = ${element.id}`);
+        const comments = await db.query(`SELECT * from COMMENT WHERE issue_id = ${element.id}`);
         const comment = {
           comments: [...comments[0].map(filter.nullFilter)],
           counts: comments[0].length,
