@@ -19,7 +19,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="gMJ-9A-2wT">
-                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
+                                <rect key="frame" x="0.0" y="140" width="414" height="722"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Ejc-cX-RjK">
                                     <size key="itemSize" width="375" height="88"/>
@@ -82,7 +82,7 @@
                                 </connections>
                             </collectionView>
                             <toolbar hidden="YES" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iD5-I1-ahl">
-                                <rect key="frame" x="0.0" y="862" width="414" height="49"/>
+                                <rect key="frame" x="0.0" y="867" width="414" height="44"/>
                                 <items>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="Oa2-hU-bYZ"/>
                                     <barButtonItem title="선택 이슈 닫기" style="plain" id="uxy-Ej-z3D">
@@ -93,7 +93,7 @@
                                 </items>
                             </toolbar>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cWt-Qc-OJy">
-                                <rect key="frame" x="350" y="800" width="44" height="44"/>
+                                <rect key="frame" x="350" y="805" width="44" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="44" id="KB5-Wp-t6l"/>
                                     <constraint firstAttribute="height" constant="44" id="kJq-z1-UyL"/>
@@ -108,9 +108,8 @@
                                     <segue destination="sam-5C-mGZ" kind="presentation" identifier="CreateIssueSegue" id="CkP-v7-hh3"/>
                                 </connections>
                             </button>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" id="m1C-gy-0QN">
-                                <rect key="frame" x="0.0" y="61" width="414" height="774"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="m1C-gy-0QN">
+                                <rect key="frame" x="188.5" y="482.5" width="37" height="37"/>
                             </activityIndicatorView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="qel-gu-NqZ"/>
@@ -121,7 +120,9 @@
                             <constraint firstItem="gMJ-9A-2wT" firstAttribute="trailing" secondItem="qel-gu-NqZ" secondAttribute="trailing" id="HpK-ly-vAT"/>
                             <constraint firstItem="iD5-I1-ahl" firstAttribute="leading" secondItem="qel-gu-NqZ" secondAttribute="leading" id="Jpi-Sj-qnF"/>
                             <constraint firstItem="qel-gu-NqZ" firstAttribute="trailing" secondItem="cWt-Qc-OJy" secondAttribute="trailing" constant="20" id="YV7-C7-YHb"/>
+                            <constraint firstItem="m1C-gy-0QN" firstAttribute="centerY" secondItem="gMJ-9A-2wT" secondAttribute="centerY" id="agV-L2-2zF"/>
                             <constraint firstItem="qel-gu-NqZ" firstAttribute="trailing" secondItem="iD5-I1-ahl" secondAttribute="trailing" id="aoR-HF-3Do"/>
+                            <constraint firstItem="m1C-gy-0QN" firstAttribute="centerX" secondItem="gMJ-9A-2wT" secondAttribute="centerX" id="tP2-JY-VCl"/>
                             <constraint firstItem="gMJ-9A-2wT" firstAttribute="leading" secondItem="qel-gu-NqZ" secondAttribute="leading" id="xz5-ci-QXU"/>
                             <constraint firstItem="gMJ-9A-2wT" firstAttribute="top" secondItem="qel-gu-NqZ" secondAttribute="top" id="yUd-AO-cAd"/>
                             <constraint firstItem="gMJ-9A-2wT" firstAttribute="bottom" secondItem="qel-gu-NqZ" secondAttribute="bottom" id="zlg-eH-fvh"/>
@@ -180,7 +181,7 @@
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="gSs-Sv-6YB">
-                                                            <rect key="frame" x="0.0" y="0.0" width="334" height="22"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="520" height="22"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
@@ -371,9 +372,9 @@ HTML형태로 보여줘야 할까요</string>
                                         <color key="backgroundColor" red="0.93786627050000004" green="0.94068664310000005" blue="0.9606447816" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <size key="customSize" width="414" height="156"/>
                                         <connections>
-                                            <outlet property="authorImage" destination="AMu-Bp-DZr" id="wPc-jl-L7A"/>
                                             <outlet property="authorLabel" destination="5xy-gt-HT7" id="BHN-tw-rF8"/>
                                             <outlet property="descriptionLabel" destination="0Zb-gv-gZ8" id="o5J-gh-p6p"/>
+                                            <outlet property="profileImage" destination="AMu-Bp-DZr" id="wPc-jl-L7A"/>
                                             <outlet property="timeLabel" destination="NOn-dv-LpW" id="kPO-EW-7p6"/>
                                         </connections>
                                     </collectionViewCell>
@@ -670,7 +671,8 @@ HTML형태로 보여줘야 할까요</string>
                                                 <action selector="cancelTouched:" destination="sam-5C-mGZ" id="4HT-rc-HZi"/>
                                             </connections>
                                         </barButtonItem>
-                                        <barButtonItem key="rightBarButtonItem" style="done" systemItem="done" id="wWv-af-xp6">
+                                        <barButtonItem key="rightBarButtonItem" style="done" id="wWv-af-xp6">
+                                            <imageReference key="image" image="pencil.slash" catalog="system" symbolScale="large"/>
                                             <connections>
                                                 <action selector="writingDoneTouched:" destination="sam-5C-mGZ" id="V2S-yG-cLb"/>
                                             </connections>
@@ -716,7 +718,7 @@ HTML형태로 보여줘야 할까요</string>
                                 </connections>
                             </segmentedControl>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="코멘트는 여기에" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="7Qm-3i-rgo">
-                                <rect key="frame" x="16" y="219.5" width="382" height="414.5"/>
+                                <rect key="frame" x="16" y="219.5" width="382" height="426.5"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="200" id="7ij-8Z-oND"/>
@@ -729,7 +731,7 @@ HTML형태로 보여줘야 할까요</string>
                                 </connections>
                             </textView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gYs-3K-uGQ" userLabel="Line View">
-                                <rect key="frame" x="12" y="642" width="390" height="1"/>
+                                <rect key="frame" x="12" y="654" width="390" height="1"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="1" id="eW2-OW-ck0"/>
@@ -752,22 +754,22 @@ HTML형태로 보여줘야 할까요</string>
                                 </connections>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="gPh-1v-dK3">
-                                <rect key="frame" x="16" y="646" width="382" height="162"/>
+                                <rect key="frame" x="16" y="658" width="382" height="150"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nxX-92-7Ut">
-                                        <rect key="frame" x="0.0" y="0.0" width="382" height="54"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="382" height="50"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="담당자" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ULZ-I9-PsE">
-                                                <rect key="frame" x="4" y="0.0" width="52" height="54"/>
+                                                <rect key="frame" x="4" y="0.0" width="52" height="50"/>
                                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IYU-DK-db3">
-                                                <rect key="frame" x="68" y="4" width="268" height="46"/>
+                                                <rect key="frame" x="68" y="4" width="272" height="42"/>
                                             </stackView>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xdb-fl-Av9">
-                                                <rect key="frame" x="348" y="12" width="30" height="30"/>
+                                                <rect key="frame" x="352" y="12" width="26" height="26"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="xdb-fl-Av9" secondAttribute="height" multiplier="1:1" id="TkJ-Qz-jOo"/>
                                                 </constraints>
@@ -797,19 +799,19 @@ HTML형태로 보여줘야 할까요</string>
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8d7-Mb-0LY">
-                                        <rect key="frame" x="0.0" y="54" width="382" height="54"/>
+                                        <rect key="frame" x="0.0" y="50" width="382" height="50"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="레이블" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u2W-oX-p15">
-                                                <rect key="frame" x="4" y="0.0" width="52" height="54"/>
+                                                <rect key="frame" x="4" y="0.0" width="52" height="50"/>
                                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ruB-8k-5kB">
-                                                <rect key="frame" x="68" y="4" width="268" height="46"/>
+                                                <rect key="frame" x="68" y="4" width="272" height="42"/>
                                             </stackView>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MwM-rk-z1b">
-                                                <rect key="frame" x="348" y="12" width="30" height="30"/>
+                                                <rect key="frame" x="352" y="12" width="26" height="26"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="MwM-rk-z1b" secondAttribute="height" multiplier="1:1" id="qmn-kd-Y67"/>
                                                 </constraints>
@@ -839,22 +841,22 @@ HTML형태로 보여줘야 할까요</string>
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dVW-3w-QL5">
-                                        <rect key="frame" x="0.0" y="108" width="382" height="54"/>
+                                        <rect key="frame" x="0.0" y="100" width="382" height="50"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="마일스톤" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jeP-zT-j3L">
-                                                <rect key="frame" x="4" y="0.0" width="69.5" height="54"/>
+                                                <rect key="frame" x="4" y="0.0" width="69.5" height="50"/>
                                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IQx-9v-4gM">
-                                                <rect key="frame" x="85.5" y="4" width="10" height="46"/>
+                                                <rect key="frame" x="85.5" y="4" width="10" height="42"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" priority="250" constant="10" id="lhp-7F-eEv"/>
                                                 </constraints>
                                             </stackView>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fel-ZD-BkK">
-                                                <rect key="frame" x="348" y="12" width="30" height="30"/>
+                                                <rect key="frame" x="352" y="12" width="26" height="26"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="fel-ZD-BkK" secondAttribute="height" multiplier="1:1" id="y8b-8M-sv3"/>
                                                 </constraints>
@@ -927,8 +929,8 @@ HTML형태로 보여줘야 할까요</string>
                     <navigationItem key="navigationItem" id="0Hh-mG-PqR"/>
                     <connections>
                         <outlet property="commentTextView" destination="7Qm-3i-rgo" id="8Il-OV-zug"/>
-                        <outlet property="doneLeftBarButton" destination="wWv-af-xp6" id="Tdg-st-9he"/>
-                        <outlet property="titleLabel" destination="oWw-TA-c4U" id="A5t-F3-GaF"/>
+                        <outlet property="doneRightBarButton" destination="wWv-af-xp6" id="Tdg-st-9he"/>
+                        <outlet property="separatorView" destination="gYs-3K-uGQ" id="Pxs-NS-HKQ"/>
                         <outlet property="titleTextField" destination="pVE-zb-SvA" id="TON-7D-hMl"/>
                     </connections>
                 </viewController>
@@ -993,6 +995,7 @@ HTML형태로 보여줘야 할까요</string>
         <image name="chevron.up" catalog="system" width="128" height="72"/>
         <image name="ellipsis" catalog="system" width="128" height="37"/>
         <image name="face.smiling" catalog="system" width="128" height="121"/>
+        <image name="pencil.slash" catalog="system" width="128" height="113"/>
         <image name="person.fill" catalog="system" width="128" height="120"/>
         <image name="plus.circle.fill" catalog="system" width="128" height="121"/>
         <systemColor name="labelColor">

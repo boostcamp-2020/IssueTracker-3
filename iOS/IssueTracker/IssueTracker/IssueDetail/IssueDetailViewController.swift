@@ -18,6 +18,8 @@ final class IssueDetailViewController: UIViewController, IssueDetailDisplayLogic
     // MARK: Properties
     
     @IBOutlet weak var issueDetailCollectionView: UICollectionView!
+    
+    private var interactor: IssueDetailBusinessLogic!
     private weak var issueDetailBottomSheet: IssueDetailBottomSheetViewController!
     private var visualEffectView: UIVisualEffectView!
     private var cardVisible = false
@@ -27,7 +29,6 @@ final class IssueDetailViewController: UIViewController, IssueDetailDisplayLogic
     private let cardHandleAreaHeight: CGFloat = 65
 
     private var interactor: IssueDetailBusinessLogic!
-
     private var publisher: AnyCancellable!
 
     // MARK: Enums
@@ -41,7 +42,7 @@ final class IssueDetailViewController: UIViewController, IssueDetailDisplayLogic
     var nextState: BottomSheetState {
         return cardVisible ? .collapsed : .expanded
     }
-
+    
     private let id: Int!
     private let firstComment: IssueListViewModel!
 
@@ -90,13 +91,13 @@ final class IssueDetailViewController: UIViewController, IssueDetailDisplayLogic
     }
 
     // MARK: Setup
+    
     private func setup() {
-        let viewController = self
         let interactor = IssueDetailInteractor()
         let presenter = IssueDetailPresenter()
         self.interactor = interactor
         interactor.presenter = presenter
-        presenter.viewController = viewController
+        presenter.viewController = self
     }
 
     private var displayedStore = [IssueDetailViewModel]()
@@ -146,7 +147,9 @@ extension IssueDetailViewController {
                     return UICollectionViewCell()
                 }
                 cell.configure(of: item)
-                // cell.systemLayoutSizeFitting(.init(width: self.view.bounds.width, height: 88))
+                self.interactor.loadAuthorImage(imageURL: item.img) { data in
+                    cell.profileImage.image = UIImage(data: data)
+                }
                 return cell
             })
 
@@ -168,7 +171,6 @@ extension IssueDetailViewController {
     }
 }
 
-// BottomSheet 수정 ver
 extension IssueDetailViewController {
     enum BottomSheetState {
         case expanded

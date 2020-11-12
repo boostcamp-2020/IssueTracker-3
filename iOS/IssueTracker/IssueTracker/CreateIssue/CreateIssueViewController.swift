@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Combine
 import MarkdownView
 
 protocol CreateIssueDisplayLogic: class {
@@ -19,8 +20,6 @@ protocol CreateIssueDisplayLogic: class {
 // TODO: 밑에 3개 view / vc 구현
 // TODO: VIP 구성
 // TODO: upload 후 alert or toast
-// TODO: 키보드 -> view 전체 올리기
-// TODO: 타이핑 중 아무곳 터치 -> 키보드 내리기
 
 // TODO: 이미지 링크
 // TODO: 링크 터치 구현
@@ -36,10 +35,13 @@ final class CreateIssueViewController: UIViewController {
     
     @IBOutlet private weak var titleTextField: UITextField!
     @IBOutlet private weak var commentTextView: UITextView!
-    @IBOutlet private weak var doneLeftBarButton: UIBarButtonItem!
+    @IBOutlet private weak var doneRightBarButton: UIBarButtonItem!
+    @IBOutlet private weak var separatorView: UIView!
     
     private var interactor: CreateIssueBusinessLogic!
     private var markdownPreview: MarkdownView?
+    private var keyboardShowObserver: AnyCancellable?
+    private var keyboardHideObserver: AnyCancellable?
 
     @IBOutlet weak var titleLabel: UILabel!
 
@@ -47,6 +49,7 @@ final class CreateIssueViewController: UIViewController {
     var issueNumber: Int?
     var titleText: String?
     var body: String?
+  
     // MARK: View Cycle
     
     override func viewDidLoad() {
@@ -54,6 +57,9 @@ final class CreateIssueViewController: UIViewController {
         setup()
         configurePlaceholder()
         configureMenuItems()
+        hideKeyboardWhenTappedAround()
+        configureObservers()
+        toggleRightBarButtonItem(isEnable: false)
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -77,7 +83,46 @@ final class CreateIssueViewController: UIViewController {
         presenter.viewController = self
     }
     
+    // MARK: Configure
+    
+    private func configureObservers() {
+        keyboardShowObserver = NotificationCenter.default
+            .publisher(for: UIResponder.keyboardWillShowNotification)
+            .sink { [weak self] notification in self?.keyboardWillShow(notification) }
+        
+        keyboardHideObserver = NotificationCenter.default
+            .publisher(for: UIResponder.keyboardWillHideNotification)
+            .sink { [weak self] _ in self?.keyboardWillHide() }
+    }
+    
+    private func toggleRightBarButtonItem(isEnable: Bool) {
+        doneRightBarButton.isEnabled = isEnable
+        doneRightBarButton.tintColor = (isEnable) ? nil : .clear
+    }
+    
     // MARK: Actions
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesBegan(touches, with: event)
+        view.endEditing(true)
+    }
+    
+    private func keyboardWillShow(_ notification: Notification) {
+        guard let keyboardFrame = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else {
+            return
+        }
+        let keyboardRect =  keyboardFrame.cgRectValue
+        if commentTextView.frame.maxY > keyboardRect.origin.y {
+            view.frame.origin.y -= 170
+        }
+        if view.frame.maxY < keyboardRect.origin.y {
+            view.frame.origin.y = 0
+        }
+    }
+    
+    private func keyboardWillHide() {
+        view.frame.origin.y = 0
+    }
     
     @IBAction func markdownSegmentedControlChanged(_ sender: UISegmentedControl) {
         switch sender.selectedSegmentIndex {
@@ -198,6 +243,7 @@ extension CreateIssueViewController: UITextViewDelegate {
             textView.text = nil
             textView.textColor = UIColor.black
         }
+        toggleRightBarButtonItem(isEnable: true)
     }
 
     func textViewDidEndEditing(_ textView: UITextView) {
@@ -205,6 +251,7 @@ extension CreateIssueViewController: UITextViewDelegate {
             configurePlaceholder()
         }
         commentTextView.resignFirstResponder()
+        toggleRightBarButtonItem(isEnable: false)
     }
 }
 
