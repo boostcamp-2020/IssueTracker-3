@@ -41,17 +41,17 @@ extension IssueDetailInteractor: IssueDetailBusinessLogic {
         }
     }
     
-    func loadAuthorImage(imageURL: String = "https://user-images.githubusercontent.com/5876149/97951341-39d26600-1ddd-11eb-94e7-9102b90bda8b.jpg", with handler: @escaping (Data) -> Void) {
+    func loadAuthorImage(imageURL: String, with handler: @escaping (Data) -> Void) {
         guard let imageURL = try? imageURL.asURL() else {
             debugPrint("invalid Image URL")
             return
         }
-        DispatchQueue.global().async {
-            guard let data = try? Data(contentsOf: imageURL) else {
-                debugPrint("Image URL Not Available")
+        URLSession.shared.dataTask(with: imageURL) { data, _, error in
+            guard let data = data else {
+                debugPrint("Image data Failure")
                 return
             }
             handler(data)
-        }
+        }.resume()
     }
 }

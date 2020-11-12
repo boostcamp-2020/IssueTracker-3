@@ -25,6 +25,10 @@ final class IssueListInteractor: IssueListDataStore {
 }
 
 extension IssueListInteractor: IssueListBusinessLogic {
+    func changeIssueState() {
+        
+    }
+    
     func fetchIssues() {
         networkService.request(apiConfiguration: IssueListEndPoint.getIssues) { [weak self] result in
             guard let self = self else { return }
@@ -43,6 +47,10 @@ extension IssueListInteractor: IssueListBusinessLogic {
             }
         }
     }
+    
+    func closeIssues() {
+        
+    }
 
     func classifyIssues() {
         issues.forEach { issue in
@@ -51,13 +59,9 @@ extension IssueListInteractor: IssueListBusinessLogic {
         }
     }
     
-    func changeIssueState() {
-        
-    }
-    
     //
     func filtered(with filter: String, model: [IssueListViewModel]) {
-//        let filtered = model.filter { $0.contains(filter) }
+        // let filtered = model.filter { $0.contains(filter) }
         // return filtered
     }
 

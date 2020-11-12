@@ -145,8 +145,11 @@ extension IssueDetailViewController {
                     return UICollectionViewCell()
                 }
                 cell.configure(of: item)
-                self.interactor.loadAuthorImage(imageURL: item.img) { data in
-                    cell.profileImage.image = UIImage(data: data)
+                let img = "https://user-images.githubusercontent.com/5876149/97951341-39d26600-1ddd-11eb-94e7-9102b90bda8b.jpg"
+                self.interactor.loadAuthorImage(imageURL: img) { data in
+                    DispatchQueue.main.async {
+                        cell.profileImage.image = UIImage(data: data)
+                    }
                 }
                 return cell
             })
