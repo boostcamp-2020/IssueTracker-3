@@ -18,28 +18,25 @@ protocol CreateIssueBusinessLogic {
 
 final class CreateIssueInteractor: CreateIssueDataStore {
     let networkService: NetworkServiceProvider = NetworkService()
-    var presenter: CreateIssuePresentationLogic?
     var createdIssue: Issue?
     private var issueID: Int?
     
     private func createIssue(id: Int = 0, title: String, comment: String) -> Issue {
         return Issue(id: id, title: title, body: comment)
     }
-
 }
 
 extension CreateIssueInteractor: CreateIssueBusinessLogic {
     func uploadIssue(title: String, comment: String) {
         createdIssue = createIssue(title: title, comment: comment)
         guard let data = createdIssue?.encoded() else {
-            // Error 처리
+            debugPrint("uploadIssue encoding error")
             return
         }
         networkService.request(apiConfiguration: CreateIssueEndPoint.upload(data)) { [weak self] result in
             switch result {
             case .failure(let error):
                 debugPrint(error)
-                // Error 처리
                 return
             case .success(let data):
                 guard let decodedData: Int = try? data.decoded() else {
@@ -56,7 +53,7 @@ extension CreateIssueInteractor: CreateIssueBusinessLogic {
     func editIssue(id: Int, title: String, comment: String, completion: @escaping () -> Void) {
         createdIssue = createIssue(id: id, title: title, comment: comment)
         guard let data = createdIssue?.encoded() else {
-            // Error 처리
+            debugPrint("createIssue encoding error")
             return
         }
 
@@ -64,7 +61,6 @@ extension CreateIssueInteractor: CreateIssueBusinessLogic {
             switch result {
             case .failure(let error):
                 debugPrint(error)
-                // Error 처리
                 return
             case .success:
                 completion()

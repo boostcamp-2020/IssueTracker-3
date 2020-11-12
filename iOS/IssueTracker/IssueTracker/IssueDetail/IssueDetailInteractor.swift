@@ -39,19 +39,21 @@ extension IssueDetailInteractor: IssueDetailBusinessLogic {
         }
     }
     
-    func loadAuthorImage(
-        imageURL: String,
-        with handler: @escaping (Data) -> Void) {
+    func loadAuthorImage(imageURL: String, with handler: @escaping (Data) -> Void) {
         guard let imageURL = try? imageURL.asURL() else {
             debugPrint("invalid Image URL")
             return
         }
-        DispatchQueue.global().async {
-            guard let data = try? Data(contentsOf: imageURL) else {
-                debugPrint("Image URL Not Available")
+        URLSession.shared.dataTask(with: imageURL) { data, _, error in
+            guard error == nil else {
+                debugPrint(error?.localizedDescription ?? "load Image dataTask error")
+                return
+            }
+            guard let data = data else {
+                debugPrint("Image data Failure")
                 return
             }
             handler(data)
-        }
+        }.resume()
     }
 }

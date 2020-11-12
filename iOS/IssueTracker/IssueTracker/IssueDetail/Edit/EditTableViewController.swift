@@ -61,12 +61,6 @@ class EditTableViewController: UITableViewController {
     }
 }
 
-extension EditIssueViewController {
-
-}
-
 struct IssueDetailEditViewModel: Hashable {
-
     let identifier = UUID()
-
 }
