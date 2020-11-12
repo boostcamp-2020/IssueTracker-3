@@ -26,7 +26,7 @@ function IsssueHeader(props) {
   const onConditionHandler = (event) => {
     switch (event.target.value) {
       case "default":
-        setCondition({ state: 1, author: null, assignee: null, comment: null });
+        setCondition({ state: 1, author: 0, assignee: 0, comment: 0 });
         break;
       case "open":
         setCondition({ state: 1, author: condition.author, assignee: condition.assignee, comment: condition.comment });

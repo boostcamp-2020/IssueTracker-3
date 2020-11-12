@@ -23,7 +23,7 @@ const StyledContent = styled.div`
 `;
 const App = () => {
   const [user, setUser] = useState({
-    id: 5,
+    id: 0,
     name: "",
     url: "",
   });
