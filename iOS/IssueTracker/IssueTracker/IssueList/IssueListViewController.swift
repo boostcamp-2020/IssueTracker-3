@@ -51,7 +51,7 @@ final class IssueListViewController: UIViewController {
         configureNavigationItems()
         issueListModelController = IssueListModelController()
         performSearchQuery(with: nil)
-        showAlert(type: .color)
+        showSearchBar()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -93,6 +93,8 @@ final class IssueListViewController: UIViewController {
         searchController.searchBar.delegate = self
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.hidesNavigationBarDuringPresentation = false
+        navigationItem.hidesSearchBarWhenScrolling = true
+
         searchController.searchBar.sizeToFit()
         searchController.searchBar.returnKeyType = UIReturnKeyType.search
         searchController.searchBar.placeholder = "Search"
@@ -131,6 +133,7 @@ final class IssueListViewController: UIViewController {
         issueListToolBar.isHidden = !editing
         
         navigationItem.leftBarButtonItem = editing ? selectAllLeftBarButton : filterLeftBarButton
+
         if editing {
             navigationItem.rightBarButtonItem?.title = "Cancel"
             navigationItem.rightBarButtonItem?.style = .plain
@@ -182,7 +185,7 @@ final class IssueListViewController: UIViewController {
 extension IssueListViewController: IssueListDisplayLogic {
     func displayFetchedIssues(viewModel: [IssueListViewModel]) {
         displayedIssue = viewModel
-        updateDataSource(items: displayedIssue, type: .append)
+        reloadDataSource(items: displayedIssue)
         indicatorView.stopAnimating()
         indicatorView.isHidden = true
     }    
@@ -235,6 +238,17 @@ extension IssueListViewController {
             })
     }
     
+    enum UpdateDataSourceType {
+        case append, delete
+    }
+
+    private func reloadDataSource(items: [IssueListViewModel]) {
+        var snapshot = NSDiffableDataSourceSnapshot<Section, IssueListViewModel>()
+        snapshot.appendSections([.main])
+        snapshot.appendItems(items, toSection: .main)
+        dataSource.apply(snapshot, animatingDifferences: false)
+    }
+  
     private func updateDataSource(items: [IssueListViewModel], type: UpdateDataSourceType) {
         var snapshot = dataSource.snapshot()
         switch type {

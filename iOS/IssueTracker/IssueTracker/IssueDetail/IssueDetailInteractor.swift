@@ -24,7 +24,8 @@ final class IssueDetailInteractor: IssueDetailDataStore {
 
 extension IssueDetailInteractor: IssueDetailBusinessLogic {
     func fetchComments(id: Int) {
-        networkService.request(apiConfiguration: IssueDetailEndPoint.getComments(id)) { [weak self] result in
+        networkService.request(apiConfiguration: IssueDetailEndPoint.getComments(id)) {
+            [weak self] result in
             guard let self = self else { return }
             switch result {
             case .failure(let error):

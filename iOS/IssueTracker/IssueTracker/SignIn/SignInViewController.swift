@@ -46,6 +46,34 @@ final class SignInViewController: UIViewController {
     private func setup() {
         interactor = SignInInteractor()
     }
+
+    @IBAction func loginTouched(_ sender: Any) {
+        let networkService = NetworkService()
+        let user = User(userID: idTextField.text, password: pwTextField.text)
+        var flag = false
+
+        if user.userID == "" {
+            idTextField.shake()
+            flag = true
+        }
+        if user.password == "" {
+            pwTextField.shake()
+            flag = true
+        }
+
+        guard !flag else { return }
+
+        guard let encodedData = try? JSONEncoder().encode(user) else { return }
+
+        networkService.request(apiConfiguration: SignInEndPoint.signIn(encodedData)) { result in
+            switch result {
+            case .failure(let error):
+                debugPrint(error)
+            case .success(let data):
+                guard let data: RequestLogin = try? data.decoded() else { return }
+                self.changeViewController(jwt: data.jwt)
+            }
+    }
     
     // MARK: Configure
     

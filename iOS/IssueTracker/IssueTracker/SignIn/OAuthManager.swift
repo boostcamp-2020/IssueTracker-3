@@ -26,6 +26,7 @@ final class OAuthManager {
         guard let url = try? url.asURL() else { return }
 
         session = ASWebAuthenticationSession(url: url, callbackURLScheme: callbackScheme) { callBackURL, error in
+
             guard let callBackURL = callBackURL, error == nil else {
                 print(String(describing: error?.localizedDescription))
                 return
@@ -42,6 +43,7 @@ final class OAuthManager {
                 case .success(let data):
                     guard let decodedData: RequestLogin = try? data.decoded(),
                           let jwt = decodedData.jwt else { return }
+
                     handler(jwt)
                 }
             }

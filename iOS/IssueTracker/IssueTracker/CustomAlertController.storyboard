@@ -17,7 +17,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4E8-nU-nWI">
-                                <rect key="frame" x="17" y="17" width="17.5" height="16.5"/>
+                                <rect key="frame" x="17" y="17" width="17.5" height="22"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="9"/>
                                 <state key="normal" image="xmark" catalog="system"/>
                                 <connections>
@@ -25,7 +25,7 @@
                                 </connections>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="21" translatesAutoresizingMaskIntoConstraints="NO" id="LX0-Yn-Xcc">
-                                <rect key="frame" x="22" y="73.5" width="256" height="207"/>
+                                <rect key="frame" x="22" y="79" width="256" height="207"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kcl-nT-jzY">
                                         <rect key="frame" x="0.0" y="0.0" width="256" height="55"/>
@@ -46,7 +46,7 @@
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                                 <connections>
-                                                    <outlet property="delegate" destination="qYB-lC-7Qx" id="aZK-hb-hWA"/>
+                                                    <outlet property="delegate" destination="qYB-lC-7Qx" id="JFQ-YV-ILa"/>
                                                 </connections>
                                             </textField>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hYn-dz-cqP">
@@ -94,7 +94,7 @@
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                                 <connections>
-                                                    <outlet property="delegate" destination="qYB-lC-7Qx" id="dUD-yV-MKB"/>
+                                                    <outlet property="delegate" destination="qYB-lC-7Qx" id="Gmk-qa-Jap"/>
                                                 </connections>
                                             </textField>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="X8v-TY-jV8">
@@ -139,7 +139,7 @@
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                                 <connections>
-                                                    <outlet property="delegate" destination="qYB-lC-7Qx" id="H7o-1W-Irb"/>
+                                                    <outlet property="delegate" destination="qYB-lC-7Qx" id="gdW-zd-nWn"/>
                                                 </connections>
                                             </textField>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gEN-cC-Wfw">
@@ -183,9 +183,12 @@
                                                 <state key="normal" image="arrow.clockwise" catalog="system"/>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                        <real key="value" value="5"/>
+                                                        <real key="value" value="20"/>
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="randomColorButtonTouched:" destination="qYB-lC-7Qx" eventType="touchUpInside" id="e4c-wM-Max"/>
+                                                </connections>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="#FF5D5D" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bue-OO-3ID">
                                                 <rect key="frame" x="51.5" y="12" width="118" height="0.0"/>
@@ -264,13 +267,20 @@
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ikh-hN-5Dq">
-                                <rect key="frame" x="0.0" y="50.5" width="300" height="1"/>
+                                <rect key="frame" x="0.0" y="56" width="300" height="1"/>
                                 <color key="backgroundColor" systemColor="systemGray3Color"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="1" id="a7r-L4-uPx"/>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="300" id="eBq-E5-akN"/>
                                 </constraints>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3ST-O1-xjb">
+                                <rect key="frame" x="263.5" y="17" width="19.5" height="22"/>
+                                <state key="normal" image="trash" catalog="system"/>
+                                <connections>
+                                    <action selector="deleteButtonTouched:" destination="qYB-lC-7Qx" eventType="touchUpInside" id="bUr-iO-aYk"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="lfi-D5-tyL"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -280,12 +290,15 @@
                             <constraint firstAttribute="bottom" secondItem="K0Z-fQ-eoa" secondAttribute="bottom" constant="21" id="6XC-h0-MTL"/>
                             <constraint firstItem="LX0-Yn-Xcc" firstAttribute="leading" secondItem="G4E-JK-xqL" secondAttribute="leading" constant="22" id="Ed4-fv-yNU"/>
                             <constraint firstItem="K0Z-fQ-eoa" firstAttribute="centerY" secondItem="1cB-Z2-wcF" secondAttribute="centerY" id="Fb7-Dc-PjJ"/>
+                            <constraint firstAttribute="trailing" secondItem="3ST-O1-xjb" secondAttribute="trailing" constant="17" id="IjG-pf-1oy"/>
                             <constraint firstItem="LX0-Yn-Xcc" firstAttribute="top" secondItem="Ikh-hN-5Dq" secondAttribute="bottom" constant="22" id="K5i-nD-OWS"/>
                             <constraint firstItem="4E8-nU-nWI" firstAttribute="leading" secondItem="G4E-JK-xqL" secondAttribute="leading" constant="17" id="LEX-z3-YJn"/>
+                            <constraint firstItem="3ST-O1-xjb" firstAttribute="top" secondItem="G4E-JK-xqL" secondAttribute="topMargin" constant="17" id="TB7-1d-RL1"/>
                             <constraint firstAttribute="trailing" secondItem="LX0-Yn-Xcc" secondAttribute="trailing" constant="22" id="UH8-3k-Ku2"/>
                             <constraint firstItem="K0Z-fQ-eoa" firstAttribute="top" relation="greaterThanOrEqual" secondItem="LX0-Yn-Xcc" secondAttribute="bottom" constant="12" id="Whs-uG-uuH"/>
                             <constraint firstItem="K0Z-fQ-eoa" firstAttribute="leading" secondItem="G4E-JK-xqL" secondAttribute="leading" constant="14" id="ZTx-wq-XJt"/>
                             <constraint firstItem="Ikh-hN-5Dq" firstAttribute="leading" secondItem="G4E-JK-xqL" secondAttribute="leading" id="bfm-Wc-cPA"/>
+                            <constraint firstItem="Ikh-hN-5Dq" firstAttribute="top" secondItem="3ST-O1-xjb" secondAttribute="bottom" constant="17" id="jEN-iQ-MjP"/>
                             <constraint firstAttribute="trailing" secondItem="1cB-Z2-wcF" secondAttribute="trailing" constant="14" id="lox-B2-Cef"/>
                             <constraint firstItem="4E8-nU-nWI" firstAttribute="top" secondItem="G4E-JK-xqL" secondAttribute="top" constant="17" id="pmM-3F-KfC"/>
                             <constraint firstAttribute="trailing" secondItem="Ikh-hN-5Dq" secondAttribute="trailing" id="ttX-YQ-4MH"/>
@@ -299,6 +312,7 @@
                         <outlet property="colorView" destination="yjn-eS-PmY" id="xzf-ij-nJc"/>
                         <outlet property="dateTextField" destination="ikr-pX-JPK" id="u5a-6H-k2B"/>
                         <outlet property="dateView" destination="IF5-Ko-iji" id="k2M-VO-9oO"/>
+                        <outlet property="deleteButton" destination="3ST-O1-xjb" id="Qmp-wu-ERN"/>
                         <outlet property="descriptionTextField" destination="wo0-SX-dvN" id="BB6-6c-Qul"/>
                         <outlet property="titleTextField" destination="0QH-sK-DZ3" id="OKJ-AS-T6m"/>
                     </connections>
@@ -310,6 +324,7 @@
     </scenes>
     <resources>
         <image name="arrow.clockwise" catalog="system" width="115" height="128"/>
+        <image name="trash" catalog="system" width="121" height="128"/>
         <image name="xmark" catalog="system" width="128" height="113"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

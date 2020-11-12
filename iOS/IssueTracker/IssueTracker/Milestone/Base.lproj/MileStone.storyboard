@@ -31,43 +31,53 @@
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="MilestoneCollectionViewCell" id="Qkf-sb-QRX" customClass="MilestoneCollectionViewCell" customModule="IssueTracker" customModuleProvider="target">
                                         <rect key="frame" x="6.5" y="0.0" width="401" height="88"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="GaA-4y-ypW" customClass="MilestoneCollectionViewCell" customModule="IssueTracker" customModuleProvider="target">
+                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="GaA-4y-ypW" customClass="MilestoneCollectionViewCell" customModule="IssueTracker" customModuleProvider="target">
                                             <rect key="frame" x="0.0" y="0.0" width="401" height="88"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="nsi-YL-BbN">
-                                                    <rect key="frame" x="20" y="11" width="80" height="39"/>
+                                                    <rect key="frame" x="20" y="11" width="80" height="34"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" priority="250" constant="30" id="eKv-r4-DqI"/>
                                                         <constraint firstAttribute="width" priority="250" constant="80" id="hop-3P-eYe"/>
                                                     </constraints>
                                                 </stackView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="이번 배포를 위한 스프린트" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zhk-6P-1FN">
+                                                <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="이번 배포를 위한 스프린트" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zhk-6P-1FN">
                                                     <rect key="frame" x="20" y="60" width="154.5" height="18"/>
                                                     <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
                                                     <color key="textColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.84999999999999998" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2020년 6월 19일까지" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dfL-mA-312">
-                                                    <rect key="frame" x="197.5" y="22.5" width="118" height="16"/>
+                                                <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2020년 6월 19일까지" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dfL-mA-312">
+                                                    <rect key="frame" x="190" y="20" width="118" height="16"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                     <color key="textColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.84999999999999998" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="64%" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tGc-Op-YDK">
-                                                    <rect key="frame" x="350.5" y="14" width="35.5" height="18"/>
+                                                <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="100%" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tGc-Op-YDK">
+                                                    <rect key="frame" x="343" y="14" width="43" height="18"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="43" id="aYo-FJ-9Df"/>
+                                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="18" id="vFj-ny-Ead"/>
+                                                    </constraints>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                                     <color key="textColor" red="0.035294117647058823" green="0.33333333333333331" blue="0.058823529411764705" alpha="0.84999999999999998" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="13 open" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="llz-hk-2W5">
+                                                <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="13 open" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="llz-hk-2W5">
                                                     <rect key="frame" x="341" y="46" width="45" height="15"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="15" id="S6e-5N-RAP"/>
+                                                    </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="23 close" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iw7-mc-X02">
                                                     <rect key="frame" x="337" y="65" width="49" height="15"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="15" id="JCN-IN-ndw"/>
+                                                    </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -76,7 +86,7 @@
                                             <constraints>
                                                 <constraint firstItem="iw7-mc-X02" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="zhk-6P-1FN" secondAttribute="trailing" constant="10" id="55f-Ja-8F0"/>
                                                 <constraint firstItem="llz-hk-2W5" firstAttribute="top" secondItem="tGc-Op-YDK" secondAttribute="bottom" constant="14" id="5vO-0a-Ac1"/>
-                                                <constraint firstItem="zhk-6P-1FN" firstAttribute="top" secondItem="nsi-YL-BbN" secondAttribute="bottom" constant="10" id="92z-fF-x87"/>
+                                                <constraint firstItem="zhk-6P-1FN" firstAttribute="top" secondItem="nsi-YL-BbN" secondAttribute="bottom" constant="15" id="92z-fF-x87"/>
                                                 <constraint firstItem="nsi-YL-BbN" firstAttribute="top" secondItem="GaA-4y-ypW" secondAttribute="top" constant="11" id="9ny-Aa-44j"/>
                                                 <constraint firstItem="nsi-YL-BbN" firstAttribute="leading" secondItem="GaA-4y-ypW" secondAttribute="leading" constant="20" id="AkX-BB-v51"/>
                                                 <constraint firstItem="zhk-6P-1FN" firstAttribute="leading" secondItem="GaA-4y-ypW" secondAttribute="leading" constant="20" id="DNL-jv-tO8"/>
@@ -84,10 +94,9 @@
                                                 <constraint firstItem="iw7-mc-X02" firstAttribute="top" secondItem="llz-hk-2W5" secondAttribute="bottom" constant="4" id="J58-fU-jYe"/>
                                                 <constraint firstItem="llz-hk-2W5" firstAttribute="trailing" secondItem="iw7-mc-X02" secondAttribute="trailing" id="KO5-eX-LBr"/>
                                                 <constraint firstAttribute="trailing" secondItem="iw7-mc-X02" secondAttribute="trailing" constant="15" id="L6J-cE-aOz"/>
-                                                <constraint firstItem="dfL-mA-312" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="nsi-YL-BbN" secondAttribute="trailing" constant="15" id="M7l-BQ-DMh"/>
                                                 <constraint firstItem="llz-hk-2W5" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="zhk-6P-1FN" secondAttribute="trailing" constant="10" id="ehb-3r-2yu"/>
                                                 <constraint firstItem="tGc-Op-YDK" firstAttribute="leading" secondItem="dfL-mA-312" secondAttribute="trailing" constant="35" id="gE3-rI-pNM"/>
-                                                <constraint firstAttribute="bottom" secondItem="iw7-mc-X02" secondAttribute="bottom" priority="750" constant="8" id="h2w-2G-qiR"/>
+                                                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="iw7-mc-X02" secondAttribute="bottom" constant="8" id="h2w-2G-qiR"/>
                                                 <constraint firstItem="nsi-YL-BbN" firstAttribute="centerY" secondItem="dfL-mA-312" secondAttribute="centerY" id="hby-1x-fFn"/>
                                                 <constraint firstItem="tGc-Op-YDK" firstAttribute="top" secondItem="GaA-4y-ypW" secondAttribute="top" constant="14" id="ote-WR-YbX"/>
                                                 <constraint firstAttribute="trailing" secondItem="tGc-Op-YDK" secondAttribute="trailing" constant="15" id="pYw-tB-Vko"/>

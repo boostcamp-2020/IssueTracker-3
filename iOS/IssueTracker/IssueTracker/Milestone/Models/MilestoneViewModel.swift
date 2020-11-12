@@ -8,6 +8,7 @@
 import Foundation
 
 class MilestoneViewModel: Hashable {
+    let id: Int
     let milestoneButton: CustomButtonView
     let description: String
     let dueDate: String
@@ -17,6 +18,7 @@ class MilestoneViewModel: Hashable {
     let identifier = UUID()
 
     init(milestone: Milestone) {
+        self.id = milestone.id
         self.milestoneButton = CustomButtonView(type: .milestone, text: milestone.name, color: "#ffffff")
         self.description = milestone.description
         self.dueDate = milestone.dueDate

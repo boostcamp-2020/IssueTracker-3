@@ -26,7 +26,7 @@ final class MilestoneViewController: UIViewController {
     enum Section {
         case main
     }
-    
+
     // MARK: View Cycle
 
     override func viewDidLoad() {
@@ -53,11 +53,13 @@ final class MilestoneViewController: UIViewController {
     // MARK: Actions
 
     @IBAction func makeMilestoneTouched(_ sender: UIBarButtonItem) {
-        
+        showAlert(type: .date) {
+            self.interactor.fetchMilestones()
+        }
     }
 }
 
-// MARK: MilestoneDisplayLogic
+// MARK: - MilestoneDisplayLogic
 
 extension MilestoneViewController: MilestoneDisplayLogic {
     func displayFetchedMilestones(viewModel: [MilestoneViewModel]) {
@@ -69,7 +71,7 @@ extension MilestoneViewController: MilestoneDisplayLogic {
     }
 }
 
-// MARK: UICollectionView DataSource
+// MARK: - UICollectionView DataSource
 
 extension MilestoneViewController {
     func configureDataSource() {
@@ -87,12 +89,30 @@ extension MilestoneViewController {
     }
 }
 
-// MARK: UICollectionViewDelegateFlowLayout
+// MARK: - UICollectionViewDelegate
+extension MilestoneViewController: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard let item = dataSource.itemIdentifier(for: indexPath) else { return }
+
+        guard let title = item.milestoneButton.titleLabel?.text else { return }
+
+        showAlert(type: .date,
+                  id: item.id,
+                  title: title,
+                  description: item.description,
+                  date: item.dueDate,
+                  colorLabel: "") {
+            self.interactor.fetchMilestones()
+        }
+    }
+}
+
+// MARK: - UICollectionViewDelegateFlowLayout
 
 extension MilestoneViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return .init(width: self.view.bounds.width, height: 80)
+        return .init(width: self.view.bounds.width, height: 88)
     }
 }

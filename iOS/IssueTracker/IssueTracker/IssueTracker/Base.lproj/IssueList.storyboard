@@ -657,7 +657,7 @@ HTML형태로 보여줘야 할까요</string>
         <!--Create Issue View Controller-->
         <scene sceneID="5EK-P7-WOP">
             <objects>
-                <viewController id="sam-5C-mGZ" customClass="CreateIssueViewController" customModule="IssueTracker" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CreateIssueViewController" id="sam-5C-mGZ" customClass="CreateIssueViewController" customModule="IssueTracker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Fi7-tt-66z">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -680,8 +680,8 @@ HTML형태로 보여줘야 할까요</string>
                                     </navigationItem>
                                 </items>
                             </navigationBar>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="새 이슈" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oWw-TA-c4U">
-                                <rect key="frame" x="12" y="63" width="95.5" height="41"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="새 이슈" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oWw-TA-c4U">
+                                <rect key="frame" x="12" y="63" width="191" height="41"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="34"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -897,7 +897,7 @@ HTML형태로 보여줘야 할까요</string>
                             <constraint firstItem="gPh-1v-dK3" firstAttribute="bottom" secondItem="HUB-5B-J3a" secondAttribute="bottom" id="JDR-wa-A0O"/>
                             <constraint firstItem="HUB-5B-J3a" firstAttribute="trailing" secondItem="gPh-1v-dK3" secondAttribute="trailing" constant="16" id="K0X-z3-FHX"/>
                             <constraint firstItem="oWw-TA-c4U" firstAttribute="leading" secondItem="HUB-5B-J3a" secondAttribute="leading" constant="12" id="KOw-30-qGL"/>
-                            <constraint firstItem="ZOF-Iq-VJG" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="oWw-TA-c4U" secondAttribute="trailing" constant="150" id="LBt-zH-APY"/>
+                            <constraint firstItem="ZOF-Iq-VJG" firstAttribute="leading" relation="lessThanOrEqual" secondItem="oWw-TA-c4U" secondAttribute="trailing" constant="150" id="LBt-zH-APY"/>
                             <constraint firstItem="fl3-aF-M7a" firstAttribute="top" secondItem="7Hw-mv-mKy" secondAttribute="bottom" constant="16" id="LSK-BK-KJ9"/>
                             <constraint firstItem="9Oh-4V-DOR" firstAttribute="trailing" secondItem="HUB-5B-J3a" secondAttribute="trailing" id="Ocv-Sg-ZLi"/>
                             <constraint firstItem="oWw-TA-c4U" firstAttribute="top" secondItem="9Oh-4V-DOR" secondAttribute="bottom" constant="7" id="RWq-h9-bIG"/>
@@ -928,6 +928,34 @@ HTML형태로 보여줘야 할까요</string>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ezo-gz-1R1" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-226.08695652173915" y="3375.6696428571427"/>
+        </scene>
+        <!--Edit Table View Controller-->
+        <scene sceneID="Cnf-Ln-03z">
+            <objects>
+                <tableViewController id="HP2-LP-X4d" customClass="EditTableViewController" customModule="IssueTracker" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="caR-oh-jis">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="ikP-Il-uKC">
+                                <rect key="frame" x="0.0" y="28" width="414" height="43.5"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ikP-Il-uKC" id="yBV-r8-CAL">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="HP2-LP-X4d" id="JLw-IZ-V2K"/>
+                            <outlet property="delegate" destination="HP2-LP-X4d" id="nOm-pW-bEv"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Lfs-IW-BKb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="567" y="3376"/>
         </scene>
         <!--이슈-->
         <scene sceneID="hki-7S-sUk">

@@ -10,7 +10,7 @@ import Combine
 import MarkdownView
 
 protocol CreateIssueDisplayLogic: class {
-  
+
 }
 
 // Must
@@ -42,7 +42,14 @@ final class CreateIssueViewController: UIViewController {
     private var markdownPreview: MarkdownView?
     private var keyboardShowObserver: AnyCancellable?
     private var keyboardHideObserver: AnyCancellable?
-    
+
+    @IBOutlet weak var titleLabel: UILabel!
+
+    var isEdit: Bool = false
+    var issueNumber: Int?
+    var titleText: String?
+    var body: String?
+  
     // MARK: View Cycle
     
     override func viewDidLoad() {
@@ -54,7 +61,18 @@ final class CreateIssueViewController: UIViewController {
         configureObservers()
         toggleRightBarButtonItem(isEnable: false)
     }
-    
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        if isEdit {
+            titleLabel.text = "#\(issueNumber ?? 0)"
+            titleLabel.font = UIFont(name: "title", size: .init(10))
+            titleTextField.text = titleText
+            commentTextView.text = body
+            commentTextView.textColor = UIColor.black
+        }
+    }
+
     // MARK: Setup
     
     private func setup() {
@@ -113,7 +131,7 @@ final class CreateIssueViewController: UIViewController {
         case 1:
             loadMarkdownPreview()
         default:
-          return
+            return
         }
     }
     
@@ -123,9 +141,23 @@ final class CreateIssueViewController: UIViewController {
     
     @IBAction func uploadIssueTouched(_ sender: Any) {
         // Alert -> 성공 / 실패 시
-        
-        interactor.uploadIssue(title: titleTextField.text ?? "", comment: commentTextView.text)
-        dismiss(animated: true)
+        if isEdit {
+            interactor.editIssue(id: issueNumber ?? 0,
+                                 title: titleTextField.text ?? "",
+                                 comment: commentTextView.text) {
+                DispatchQueue.main.async{ NotificationCenter
+                        .default
+                        .post(.init(name: Notification.Name(rawValue: "createIssueClosed")
+                                    , userInfo: ["issueNumber": self.issueNumber ?? 0]))
+                self.dismiss(animated: true)
+                }
+
+            }
+        } else {
+            interactor.uploadIssue(title: titleTextField.text ?? "", comment: commentTextView.text)
+            self.dismiss(animated: true)
+        }
+
     }
 
     @IBAction func cancelTouched(_ sender: UIBarButtonItem) {

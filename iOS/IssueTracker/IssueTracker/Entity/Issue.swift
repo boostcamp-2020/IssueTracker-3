@@ -28,7 +28,7 @@ struct Issue: Codable {
          body: String,
          userID: Int = 1,
          state: Int = 1,
-         milestoneID: MilestoneID? = .integer(0),
+         milestoneID: MilestoneID? = nil,
          createdAt: String? = nil,
          closedAt: String? = nil,
          labels: LabelList? = nil,
