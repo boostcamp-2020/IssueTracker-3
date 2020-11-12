@@ -15,7 +15,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                willConnectTo session: UISceneSession,
                options connectionOptions: UIScene.ConnectionOptions)
     {
-//        try? KeychainAccess.shared.removeAll()
+        // try? KeychainAccess.shared.removeAll()
         if NetworkService.token != "" {
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             window?.rootViewController = storyboard.instantiateViewController(withIdentifier: "UITabBarController")
