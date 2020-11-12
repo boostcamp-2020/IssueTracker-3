@@ -147,7 +147,6 @@ final class CreateIssueViewController: UIViewController {
             interactor.uploadIssue(title: titleTextField.text ?? "", comment: commentTextView.text)
             self.dismiss(animated: true)
         }
-
     }
 
     @IBAction func cancelTouched(_ sender: UIBarButtonItem) {
