@@ -5,6 +5,7 @@ import HTTPCODE from "@utils/magicnumber";
 import filterFunc from "@utils/filter";
 
 const get = async (req: Request, res: Response): Promise<any> => {
+  console.log(req.user);
   try {
     const result = await IssueModel.select();
     return res.json(result);
@@ -18,10 +19,10 @@ const getFilter = async (req: Request, res: Response): Promise<any> => {
   try {
     const issues = await IssueModel.select();
     const issuesFilter = issues.filter((issue: any) => {
-      if (state) if (!filterFunc.stateFilter(issue.state, !!+state)) return false;
-      if (author) if (!filterFunc.userFilter(issue.user_id, +author)) return false;
-      if (assignee) if (!filterFunc.assigneeFilter(issue.assignee, +assignee)) return false;
-      if (comment) if (!filterFunc.commentFilter(issue.comment.comments, +comment)) return false;
+	  if (!filterFunc.stateFilter(!!issue.state, !!+state)) return false;
+      if (+author) if (!filterFunc.userFilter(issue.user_id, +author)) return false;
+      if (+assignee) if (!filterFunc.assigneeFilter(issue.assignee, +assignee)) return false;
+      if (+comment) if (!filterFunc.commentFilter(issue.comment.comments, +comment)) return false;
       return true;
     });
     res.json(issuesFilter);
