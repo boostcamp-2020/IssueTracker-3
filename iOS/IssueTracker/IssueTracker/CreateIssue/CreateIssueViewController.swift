@@ -118,6 +118,28 @@ final class CreateIssueViewController: UIViewController {
     @IBAction func cancelTouched(_ sender: UIBarButtonItem) {
         dismiss(animated: true, completion: nil)
     }
+    @IBAction func authorEditTouched(_ sender: Any) {
+        editViewController(editType: .author)
+    }
+    @IBAction func labelEditTouched(_ sender: Any) {
+        editViewController(editType: .label)
+    }
+    @IBAction func milestoneEditTouched(_ sender: Any) {
+        editViewController(editType: .milestone)
+    }
+
+    func editViewController(editType: EditTableViewController.EditType) {
+        let storyboard = UIStoryboard(name: "IssueList", bundle: nil)
+        let viewController = storyboard
+            .instantiateViewController(identifier: "EditTableViewController",
+                                       creator: { coder -> EditTableViewController? in
+                                       return EditTableViewController(coder: coder,
+                                                                      id: 1,
+                                                                      editType: editType)
+                                       })
+
+        present(viewController, animated: true)
+    }
 }
 
 extension CreateIssueViewController: CreateIssueDisplayLogic {

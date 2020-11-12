@@ -777,6 +777,9 @@ HTML형태로 보여줘야 할까요</string>
                                                     <imageReference key="image" image="plus.circle.fill" catalog="system" symbolScale="small"/>
                                                     <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="medium" weight="medium"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="authorEditTouched:" destination="sam-5C-mGZ" eventType="touchUpInside" id="g76-VX-f0P"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -816,6 +819,9 @@ HTML형태로 보여줘야 할까요</string>
                                                     <imageReference key="image" image="plus.circle.fill" catalog="system" symbolScale="small"/>
                                                     <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="medium" weight="medium"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="labelEditTouched:" destination="sam-5C-mGZ" eventType="touchUpInside" id="4Om-3p-sMF"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -858,6 +864,9 @@ HTML형태로 보여줘야 할까요</string>
                                                     <imageReference key="image" image="plus.circle.fill" catalog="system" symbolScale="small"/>
                                                     <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="medium" weight="medium"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="milestoneEditTouched:" destination="sam-5C-mGZ" eventType="touchUpInside" id="DLo-kx-43J"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -930,7 +939,7 @@ HTML형태로 보여줘야 할까요</string>
         <!--Edit Table View Controller-->
         <scene sceneID="Cnf-Ln-03z">
             <objects>
-                <tableViewController id="HP2-LP-X4d" customClass="EditTableViewController" customModule="IssueTracker" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="EditTableViewController" id="HP2-LP-X4d" customClass="EditTableViewController" customModule="IssueTracker" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="caR-oh-jis">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
