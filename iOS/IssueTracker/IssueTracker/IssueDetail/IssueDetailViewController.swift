@@ -82,9 +82,9 @@ final class IssueDetailViewController: UIViewController, IssueDetailDisplayLogic
     private func configureNotification() {
         publisher = NotificationCenter.default
             .publisher(for: Notification.Name("createIssueClosed"))
-            .sink { issueNubmer in
+            .sink { [weak self] issueNubmer in
                 guard let id = issueNubmer.userInfo?["issueNumber"] as? Int else { return }
-                self.interactor.fetchComments(id: id)
+                self?.interactor.fetchComments(id: id)
             }
     }
 
@@ -129,7 +129,6 @@ final class IssueDetailViewController: UIViewController, IssueDetailDisplayLogic
         viewController.titleText = firstComment.title
         viewController.body = firstComment.description
         present(viewController, animated: true)
-
     }
 }
 

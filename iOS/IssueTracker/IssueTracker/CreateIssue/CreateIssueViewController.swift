@@ -100,13 +100,15 @@ final class CreateIssueViewController: UIViewController {
             interactor.editIssue(id: issueNumber ?? 0,
                                  title: titleTextField.text ?? "",
                                  comment: commentTextView.text) {
-                    NotificationCenter.default.post(.init(name: Notification.Name(rawValue: "createIssueClosed"),
-                                                          userInfo: ["issueNumber": self.issueNumber ?? 0]))
+                    NotificationCenter
+                        .default
+                        .post(.init(name: Notification.Name(rawValue: "createIssueClosed")
+                                    , userInfo: ["issueNumber": self.issueNumber ?? 0]))
             }
         } else {
             interactor.uploadIssue(title: titleTextField.text ?? "", comment: commentTextView.text)
         }
-        dismiss(animated: true)
+        self.dismiss(animated: true)
     }
 
     @IBAction func cancelTouched(_ sender: UIBarButtonItem) {
