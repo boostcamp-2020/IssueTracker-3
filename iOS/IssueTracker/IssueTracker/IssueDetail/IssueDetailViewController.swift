@@ -12,6 +12,13 @@ protocol IssueDetailDisplayLogic: class {
     func displayFetchedComments(viewModel: [IssueDetailViewModel])
 }
 
+protocol IssueDetailBottomSheetDelegate: class {
+    func addCommentViewShouldAppear()
+    func issueDetailViewShouldScrollUp()
+    func issueDetailViewShouldScrollDown()
+    func issueDetailViewShouldCloseIssue()
+}
+
 final class IssueDetailViewController: UIViewController, IssueDetailDisplayLogic {
     static let identifier = "IssueDetailViewController"
     
@@ -22,11 +29,11 @@ final class IssueDetailViewController: UIViewController, IssueDetailDisplayLogic
     private var interactor: IssueDetailBusinessLogic!
     private weak var issueDetailBottomSheet: IssueDetailBottomSheetViewController!
     private var visualEffectView: UIVisualEffectView!
-    private var cardVisible = false
     private var runningAnimations = [UIViewPropertyAnimator]()
     private var animationProgressWhenInterrupted: CGFloat = .zero
-    private let cardHeight: CGFloat = 600
-    private let cardHandleAreaHeight: CGFloat = 65
+    private var bottomSheetVisible = false
+    private var bottomSheetHeight: CGFloat = .zero
+    private let bottomSheetHandleAreaHeight: CGFloat = 100
 
     private var publisher: AnyCancellable!
 
@@ -39,7 +46,7 @@ final class IssueDetailViewController: UIViewController, IssueDetailDisplayLogic
     private var dataSource: UICollectionViewDiffableDataSource<Section, IssueDetailViewModel>!
 
     var nextState: BottomSheetState {
-        return cardVisible ? .collapsed : .expanded
+        return bottomSheetVisible ? .collapsed : .expanded
     }
     
     private let id: Int!
@@ -88,8 +95,6 @@ final class IssueDetailViewController: UIViewController, IssueDetailDisplayLogic
                 self?.navigationController?.popViewController(animated: true)
             }
     }
-
-    // MARK: Setup
     
     private func setup() {
         let interactor = IssueDetailInteractor()
@@ -106,11 +111,8 @@ final class IssueDetailViewController: UIViewController, IssueDetailDisplayLogic
         var snapshot = NSDiffableDataSourceSnapshot<Section, IssueDetailViewModel>()
         snapshot.appendSections([.main])
         snapshot.appendItems(displayedStore)
-
         dataSource.apply(snapshot, animatingDifferences: false)
     }
-
-    // MARK: Configure View
     
     private func configureNavigationItem() {
         let editButtonItem = UIBarButtonItem(title: "Edit",
@@ -173,13 +175,14 @@ extension IssueDetailViewController {
     }
 }
 
-extension IssueDetailViewController {
+extension IssueDetailViewController: IssueDetailBottomSheetDelegate {
     enum BottomSheetState {
         case expanded
         case collapsed
     }
 
     private func configureBottomSheet() {
+        bottomSheetHeight = (view.frame.height * 2) / 3
         visualEffectView = UIVisualEffectView()
         visualEffectView.frame = view.frame
         visualEffectView.isUserInteractionEnabled = false
@@ -189,14 +192,15 @@ extension IssueDetailViewController {
                 .instantiateViewController(identifier: "IssueDetailBottomSheet")
                 as? IssueDetailBottomSheetViewController else { return }
         issueDetailBottomSheet = viewController
+        issueDetailBottomSheet.delegate = self
         
         self.addChild(issueDetailBottomSheet)
         self.view.addSubview(issueDetailBottomSheet.view)
         
         issueDetailBottomSheet.view.frame = CGRect(x: .zero,
-                                                   y: view.frame.height-cardHandleAreaHeight,
+                                                   y: view.frame.height-bottomSheetHandleAreaHeight,
                                                    width: view.bounds.width,
-                                                   height: cardHeight)
+                                                   height: bottomSheetHeight)
         issueDetailBottomSheet.view.clipsToBounds = true
 
         let panGestureRecognizer = UIPanGestureRecognizer(target: self,
@@ -210,14 +214,16 @@ extension IssueDetailViewController {
             let frameAnimator = UIViewPropertyAnimator(duration: duration, dampingRatio: 1) {
                 switch state {
                 case .expanded:
-                    self.issueDetailBottomSheet.view.frame.origin.y = self.view.frame.height - self.cardHeight
+                    self.issueDetailBottomSheet.view.frame.origin.y =
+                        self.view.frame.height - self.bottomSheetHeight
                 case .collapsed:
-                    self.issueDetailBottomSheet.view.frame.origin.y = self.view.frame.height - self.cardHandleAreaHeight
+                    self.issueDetailBottomSheet.view.frame.origin.y =
+                        self.view.frame.height - self.bottomSheetHandleAreaHeight
                 }
             }
             
             frameAnimator.addCompletion { _ in
-                self.cardVisible = !(self.cardVisible)
+                self.bottomSheetVisible = !(self.bottomSheetVisible)
                 self.runningAnimations.removeAll()
             }
             
@@ -290,13 +296,29 @@ extension IssueDetailViewController {
             startInteractiveTransition(state: nextState, duration: 0.9)
         case .changed:
             let translation = recognizer.translation(in: issueDetailBottomSheet.handleArea)
-            var fractionComplete = translation.y / cardHeight
-            fractionComplete = cardVisible ? fractionComplete : -fractionComplete
+            var fractionComplete = translation.y / bottomSheetHeight
+            fractionComplete = bottomSheetVisible ? fractionComplete : -fractionComplete
             updateInteractiveTransition(fractionCompleted: fractionComplete)
         case .ended:
             continueInteractiveTransition()
         default:
             break
         }
+    }
+    
+    func addCommentViewShouldAppear() {
+        
+    }
+    
+    func issueDetailViewShouldScrollUp() {
+        
+    }
+    
+    func issueDetailViewShouldScrollDown() {
+        
+    }
+    
+    func issueDetailViewShouldCloseIssue() {
+        
     }
 }
