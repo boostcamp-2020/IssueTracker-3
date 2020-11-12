@@ -279,7 +279,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" heightSizable="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Etv-eu-euX">
-                                <rect key="frame" x="0.0" y="44" width="414" height="769"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="752"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="v44-s4-Z1Y">
                                     <size key="itemSize" width="414" height="156"/>
@@ -531,7 +531,7 @@ HTML형태로 보여줘야 할까요</string>
                             <constraint firstItem="Etv-eu-euX" firstAttribute="leading" secondItem="1Xg-HL-rZo" secondAttribute="leading" id="8e8-N3-xG6"/>
                             <constraint firstItem="Etv-eu-euX" firstAttribute="trailing" secondItem="1Xg-HL-rZo" secondAttribute="trailing" id="GRv-bV-7ib"/>
                             <constraint firstItem="Etv-eu-euX" firstAttribute="top" secondItem="1Xg-HL-rZo" secondAttribute="top" id="gC6-nN-iBH"/>
-                            <constraint firstItem="Etv-eu-euX" firstAttribute="bottom" secondItem="1Xg-HL-rZo" secondAttribute="bottom" id="gre-Ax-5eS"/>
+                            <constraint firstAttribute="bottom" secondItem="Etv-eu-euX" secondAttribute="bottom" constant="100" id="ugd-yE-Can"/>
                         </constraints>
                     </view>
                     <toolbarItems/>
@@ -709,7 +709,7 @@ HTML형태로 보여줘야 할까요</string>
                                                 </userDefinedRuntimeAttributes>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="wogus3602" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wjA-1t-5Jl">
-                                                <rect key="frame" x="2" y="34" width="79" height="16"/>
+                                                <rect key="frame" x="8" y="34" width="73" height="16"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -719,7 +719,7 @@ HTML형태로 보여줘야 할까요</string>
                                         <constraints>
                                             <constraint firstItem="wjA-1t-5Jl" firstAttribute="centerX" secondItem="LsD-s0-m8Y" secondAttribute="centerX" id="6dr-iu-kmO"/>
                                             <constraint firstAttribute="trailing" secondItem="wjA-1t-5Jl" secondAttribute="trailing" constant="2" id="I18-hZ-x0j"/>
-                                            <constraint firstItem="wjA-1t-5Jl" firstAttribute="leading" secondItem="LsD-s0-m8Y" secondAttribute="leading" constant="2" id="IXe-L9-thz"/>
+                                            <constraint firstItem="wjA-1t-5Jl" firstAttribute="leading" secondItem="LsD-s0-m8Y" secondAttribute="leading" constant="8" id="IXe-L9-thz"/>
                                             <constraint firstAttribute="bottom" secondItem="wjA-1t-5Jl" secondAttribute="bottom" id="Lvo-Vz-tAo"/>
                                             <constraint firstItem="O9w-ae-vUL" firstAttribute="centerX" secondItem="LsD-s0-m8Y" secondAttribute="centerX" id="TQW-lz-KfF"/>
                                             <constraint firstItem="wjA-1t-5Jl" firstAttribute="top" secondItem="O9w-ae-vUL" secondAttribute="bottom" constant="4" id="ZqN-c0-9Xk"/>
@@ -826,43 +826,21 @@ HTML형태로 보여줘야 할까요</string>
         <!--Issue Comment View Controller-->
         <scene sceneID="Xgd-P5-w65">
             <objects>
-                <viewController id="vcw-7O-bMj" customClass="IssueCommentViewController" customModule="IssueTracker" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CommentViewController" id="vcw-7O-bMj" customClass="IssueCommentViewController" customModule="IssueTracker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="hlz-Mh-nFX">
-                        <rect key="frame" x="0.0" y="0.0" width="300" height="350"/>
+                        <rect key="frame" x="0.0" y="0.0" width="400" height="450"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dQX-dd-Aum">
-                                <rect key="frame" x="0.0" y="0.0" width="300" height="44"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                <items>
-                                    <navigationItem id="Qtv-7U-xge">
-                                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="1VJ-PD-kED">
-                                            <connections>
-                                                <action selector="cancelTouched:" destination="vcw-7O-bMj" id="rGc-6f-msy"/>
-                                            </connections>
-                                        </barButtonItem>
-                                        <barButtonItem key="rightBarButtonItem" title="Upload" style="done" id="14b-oD-orN">
-                                            <connections>
-                                                <action selector="uploadTouched:" destination="vcw-7O-bMj" id="Jut-Yi-9es"/>
-                                            </connections>
-                                        </barButtonItem>
-                                    </navigationItem>
-                                </items>
-                            </navigationBar>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="qBq-vc-Jyf">
-                                <rect key="frame" x="8" y="52" width="284" height="290"/>
+                                <rect key="frame" x="8" y="96" width="384" height="346"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="300" id="XGT-8x-d46"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="300" id="avS-xP-Yp9"/>
+                                </constraints>
                                 <color key="textColor" systemColor="labelColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                        <real key="value" value="1"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                                <connections>
-                                    <outlet property="delegate" destination="vcw-7O-bMj" id="7gg-VX-tHv"/>
-                                </connections>
                             </textView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="nyt-R9-no9"/>
@@ -874,14 +852,26 @@ HTML형태로 보여줘야 할까요</string>
                             <constraint firstItem="qBq-vc-Jyf" firstAttribute="leading" secondItem="nyt-R9-no9" secondAttribute="leading" constant="8" id="xN1-vG-YsT"/>
                         </constraints>
                     </view>
-                    <size key="freeformSize" width="300" height="350"/>
+                    <navigationItem key="navigationItem" id="oHj-sh-b2D">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="1VJ-PD-kED">
+                            <connections>
+                                <action selector="cancelTouched:" destination="vcw-7O-bMj" id="rGc-6f-msy"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Upload" style="done" id="14b-oD-orN">
+                            <connections>
+                                <action selector="uploadTouched:" destination="vcw-7O-bMj" id="Jut-Yi-9es"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <size key="freeformSize" width="400" height="450"/>
                     <connections>
                         <outlet property="commentTextView" destination="qBq-vc-Jyf" id="dtQ-71-r0u"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vrr-nt-65p" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-226" y="3894"/>
+            <point key="canvasLocation" x="555" y="4077"/>
         </scene>
         <!--Create Issue View Controller-->
         <scene sceneID="5EK-P7-WOP">
@@ -1214,6 +1204,24 @@ HTML형태로 보여줘야 할까요</string>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RSd-cd-4XT" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-936" y="1944"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="Wyh-O8-XdQ">
+            <objects>
+                <navigationController storyboardIdentifier="CommentNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="Yft-m2-x1L" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="faa-kV-8mN">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="vcw-7O-bMj" kind="relationship" relationship="rootViewController" id="VUB-HD-2NR"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="EMn-eC-qFo" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-194" y="4077"/>
         </scene>
     </scenes>
     <resources>
