@@ -18,6 +18,7 @@ class IssueDetailBottomSheetViewController: UIViewController {
     @IBOutlet weak var downButton: UIButton!
     
     private var dataSource: UICollectionViewDiffableDataSource<SectionLayoutType, Int>! = nil
+    weak var delegate: IssueDetailBottomSheetDelegate?
     
     // MARK: Enums
 
@@ -35,16 +36,9 @@ class IssueDetailBottomSheetViewController: UIViewController {
         }
     }
     
-    // MARK: Modern CollectionViews Code
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.title = "Distinct Sections"
-        if #available(iOS 14.0, *) {
-            configureDataSource()
-        } else {
-            // Fallback on earlier versions
-        }
+        configureDataSource()
     }
     
     func createLayout() -> UICollectionViewLayout {
@@ -72,7 +66,6 @@ class IssueDetailBottomSheetViewController: UIViewController {
         return layout
     }
     
-    @available(iOS 14.0, *)
     func configureDataSource() {
         
         let listCellRegistration = UICollectionView.CellRegistration<ListCell, Int> { (cell, _, identifier) in
@@ -109,6 +102,21 @@ class IssueDetailBottomSheetViewController: UIViewController {
         }
         dataSource.apply(snapshot, animatingDifferences: false)
     }
+    @IBAction func addCommentTouched(_ sender: Any) {
+        
+    }
+    
+    @IBAction func scrollUpTouched(_ sender: Any) {
+        
+    }
+    
+    @IBAction func scrollDownTouched(_ sender: Any) {
+        
+    }
+    
+    @IBAction func closeIssueTouched(_ sender: Any) {
+        
+    }
 }
 
 extension IssueDetailBottomSheetViewController: UICollectionViewDelegate {
@@ -119,16 +127,16 @@ extension IssueDetailBottomSheetViewController: UICollectionViewDelegate {
 
 class TextCell: UICollectionViewCell {
     let label = UILabel()
-    static let reuseIdentifier = "text-cell-reuse-identifier"
+    static let reuseIdentifier = "textCellReuseIdentifier"
 
     override init(frame: CGRect) {
         super.init(frame: frame)
         configure()
     }
     required init?(coder: NSCoder) {
-        fatalError("not implemnted")
+        super.init(coder: coder)
+        configure()
     }
-
 }
 
 extension TextCell {
