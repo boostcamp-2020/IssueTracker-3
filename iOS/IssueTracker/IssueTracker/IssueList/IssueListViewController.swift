@@ -19,18 +19,19 @@ final class IssueListViewController: UIViewController {
     
     // MARK: Properties
     
-    @IBOutlet private weak var issueListCollectionView: UICollectionView!
-    @IBOutlet private weak var issueListToolBar: UIToolbar!
-    @IBOutlet private weak var indicatorView: UIActivityIndicatorView!
+    @IBOutlet weak var issueListCollectionView: UICollectionView!
+    @IBOutlet weak var issueListToolBar: UIToolbar!
+    @IBOutlet weak var indicatorView: UIActivityIndicatorView!
     
-    private var interactor: IssueListBusinessLogic!
-    private var dataSource: UICollectionViewDiffableDataSource<Section, IssueListViewModel>!
     private var issueListModelController: IssueListModelController!
     private var filterLeftBarButton: UIBarButtonItem!
     private var selectAllLeftBarButton: UIBarButtonItem!
     private var searchText = ""
     private var selectAllFlag = true
 
+    var dataSource: UICollectionViewDiffableDataSource<Section, IssueListViewModel>!
+    var interactor: IssueListBusinessLogic!
+    
     // MARK: Enums
     
     enum Section: CaseIterable {
@@ -40,17 +41,21 @@ final class IssueListViewController: UIViewController {
     enum UpdateDataSourceType {
         case append, delete
     }
-    
+
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+        setup()
+    }
+
     // MARK: View Cycle
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        setup()
         configureDataSource()
         configureCollectionLayoutList()
         configureNavigationItems()
         issueListModelController = IssueListModelController()
-        performSearchQuery(with: nil)
+        performApply()
         showSearchBar()
     }
     
@@ -61,7 +66,7 @@ final class IssueListViewController: UIViewController {
         indicatorView.startAnimating()
     }
 
-    private var displayedIssue = [IssueListViewModel]()
+    var displayedIssue = [IssueListViewModel]()
 
     // MARK: Setup
     
@@ -148,20 +153,22 @@ final class IssueListViewController: UIViewController {
     }
     
     @IBAction func closeSelectedIssueTouched(_ sender: UIBarButtonItem) {
+        
         guard let selectedItems = issueListCollectionView
                 .indexPathsForSelectedItems?
                 .compactMap({ dataSource.itemIdentifier(for: $0) }) else {
             return
         }
+        
         updateDataSource(items: selectedItems, type: .delete)
         // TODO: 선택 이슈 닫기 -> 닫은 이슈 Model Update & Server Post
     }
     
-    @objc private func filterTouched(_ sender: Any) {
+    @objc func filterTouched(_ sender: Any) {
         performSegue(withIdentifier: "IssueListFilterSegue", sender: nil)
     }
     
-    @objc private func selectAllTouched(_ sender: Any) {
+    @objc func selectAllTouched(_ sender: Any) {
         if selectAllFlag {
             displayedIssue
                 .compactMap { dataSource.indexPath(for: $0) }
@@ -186,22 +193,23 @@ extension IssueListViewController: IssueListDisplayLogic {
     func displayFetchedIssues(viewModel: [IssueListViewModel]) {
         displayedIssue = viewModel
         reloadDataSource(items: displayedIssue)
-        indicatorView.stopAnimating()
-        indicatorView.isHidden = true
-    }    
+    }
 }
 
 // MARK: UISearchBarDelegate
 
 extension IssueListViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        performSearchQuery(with: searchText)
+        displayedIssue = issueListModelController
+            .filteredBasedOnTitle(with: searchText,
+                                  model: displayedIssue).sorted { $0.title > $1.title }
+        performApply()
         self.searchText = searchText
     }
 
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         searchBar.text = ""
-        performSearchQuery(with: "")
+        performApply()
         searchBar.resignFirstResponder()
     }
     
@@ -209,14 +217,14 @@ extension IssueListViewController: UISearchBarDelegate {
         self.navigationItem.searchController?.searchBar.text = searchText
     }
     
-    func performSearchQuery(with filter: String?) {
-        let issueListItems = issueListModelController
-            .filteredBasedOnTitle(with: filter ?? "",
-                                  model: displayedIssue).sorted { $0.title > $1.title }
+    func performApply() {
         var snapshot = NSDiffableDataSourceSnapshot<Section, IssueListViewModel>()
         snapshot.appendSections([.main])
-        snapshot.appendItems(issueListItems)
-        dataSource.apply(snapshot, animatingDifferences: false)
+        snapshot.appendItems(displayedIssue)
+        dataSource.apply(snapshot, animatingDifferences: false) { [weak self] in
+            self?.indicatorView.stopAnimating()
+            self?.indicatorView.isHidden = true
+        }
     }
 }
 
@@ -253,6 +261,7 @@ extension IssueListViewController {
         case .delete:
             snapshot.deleteItems(items)
         }
+
         dataSource.apply(snapshot, animatingDifferences: false)
     }
 }

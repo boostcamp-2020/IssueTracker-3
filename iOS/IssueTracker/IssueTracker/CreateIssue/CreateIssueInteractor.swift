@@ -96,7 +96,7 @@ extension CreateIssueInteractor: CreateIssueBusinessLogic {
     }
 
     func uploadAssignee(id: Int, assigneeIDs: [Int?]) {
-        let label = assigneeIDs.compactMap{$0}
+        let label = assigneeIDs.compactMap({$0})
         let model = UploadAssigneeModel(assignees: label)
         let encoded = model.encoded()
         networkService.request(apiConfiguration: CreateIssueEndPoint.assignee(encoded, id)) { result in

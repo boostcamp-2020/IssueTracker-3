@@ -961,8 +961,11 @@ HTML형태로 보여줘야 할까요</string>
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="44.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" distribution="fillProportionally" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="kOY-au-x3v">
+                                                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="kOY-au-x3v">
                                                     <rect key="frame" x="15" y="11" width="35" height="22"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" priority="250" constant="35" id="7yZ-Z1-3f4"/>
+                                                    </constraints>
                                                 </stackView>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cf0-lt-pPK">
                                                     <rect key="frame" x="379" y="11" width="20" height="22.5"/>

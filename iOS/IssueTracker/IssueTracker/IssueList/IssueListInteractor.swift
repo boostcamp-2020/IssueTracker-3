@@ -19,12 +19,13 @@ protocol IssueListBusinessLogic {
 }
 
 final class IssueListInteractor: IssueListDataStore {
-    let networkService: NetworkServiceProvider = NetworkService()
+    var networkService: NetworkServiceProvider = NetworkService()
     var presenter: IssueListPresentationLogic?
     var issues = IssueList()
 }
 
 extension IssueListInteractor: IssueListBusinessLogic {
+
     func fetchIssues() {
         networkService.request(apiConfiguration: IssueListEndPoint.getIssues) { [weak self] result in
             guard let self = self else { return }

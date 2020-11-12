@@ -8,9 +8,9 @@
 import UIKit
 
 final class IssueListCollectionViewCell: UICollectionViewListCell {
-    @IBOutlet private weak var titleLabel: UILabel!
-    @IBOutlet private weak var descriptionLabel: UILabel!
-    @IBOutlet private weak var labelStackView: UIStackView!
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var descriptionLabel: UILabel!
+    @IBOutlet weak var labelStackView: UIStackView!
     
     var isInEditingMode: Bool = false { didSet { } } // selected 문제 해결 후 삭제 예정
     
