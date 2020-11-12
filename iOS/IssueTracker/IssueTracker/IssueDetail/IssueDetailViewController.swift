@@ -102,6 +102,8 @@ final class IssueDetailViewController: UIViewController, IssueDetailDisplayLogic
         self.interactor = interactor
         interactor.presenter = presenter
         presenter.viewController = self
+        
+        _ = [id].publisher.assign(to: \.issueID, on: issueDetailBottomSheet)
     }
 
     private var displayedStore = [IssueDetailViewModel]()
@@ -279,8 +281,6 @@ extension IssueDetailViewController: IssueDetailBottomSheetDelegate {
         }
     }
     
-    // MARK: Actions
-    
     @objc func bottomSheetTapped(recognzier: UITapGestureRecognizer) {
         switch recognzier.state {
         case .ended:
@@ -307,18 +307,79 @@ extension IssueDetailViewController: IssueDetailBottomSheetDelegate {
     }
     
     func addCommentViewShouldAppear() {
+        guard runningAnimations.isEmpty else { return }
+        if bottomSheetVisible {
+            animateTransitionIfNeeded(state: .collapsed, duration: 0.9)
+            bottomSheetVisible.toggle()
+        }
+        let storyboard = UIStoryboard(name: "IssueList", bundle: nil)
+        let commentNavigationController = storyboard.instantiateViewController(
+            identifier: "CommentNavigationController")
+        guard let commentViewController = commentNavigationController.children.first
+                as? IssueCommentViewController else {
+            return
+        }
         
+        let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .alert)
+        alertController.setValue(commentNavigationController, forKey: "contentViewController")
+        
+        let height = NSLayoutConstraint(item: alertController.view!,
+                                        attribute: NSLayoutConstraint.Attribute.height,
+                                        relatedBy: NSLayoutConstraint.Relation.equal,
+                                        toItem: nil,
+                                        attribute: NSLayoutConstraint.Attribute.notAnAttribute,
+                                        multiplier: 1,
+                                        constant: 350)
+        let width = NSLayoutConstraint(item: alertController.view!,
+                                       attribute: NSLayoutConstraint.Attribute.width,
+                                       relatedBy: NSLayoutConstraint.Relation.equal,
+                                       toItem: nil,
+                                       attribute: NSLayoutConstraint.Attribute.notAnAttribute,
+                                       multiplier: 1,
+                                       constant: 300)
+        alertController.view.addConstraint(height)
+        alertController.view.addConstraint(width)
+        
+        _ = [id].publisher.assign(to: \.issueID, on: commentViewController)
+        commentViewController.completionHandler = { [weak self] in
+            self?.navigationController?.popViewController(animated: true)
+        }
+        
+        self.present(alertController, animated: true)
     }
     
     func issueDetailViewShouldScrollUp() {
-        
+        guard var minIndexPath = issueDetailCollectionView.indexPathsForVisibleItems.min() else {
+            return
+        }
+        if minIndexPath.item > 0 {
+            minIndexPath.item -= 1
+        }
+        issueDetailCollectionView.scrollToItem(at: minIndexPath, at: .top, animated: true)
     }
     
     func issueDetailViewShouldScrollDown() {
-        
+        guard var maxIndexPath = issueDetailCollectionView.indexPathsForVisibleItems.max() else {
+            return
+        }
+        if maxIndexPath.item < issueDetailCollectionView.numberOfItems(inSection: 0) {
+            maxIndexPath.item += 1
+        }
+        issueDetailCollectionView.scrollToItem(at: maxIndexPath, at: .bottom, animated: true)
     }
     
     func issueDetailViewShouldCloseIssue() {
-        
+        let networkService = NetworkService()
+        networkService.request(apiConfiguration: IssueListEndPoint.changeState(id, 0)) { [weak self] result in
+            switch result {
+            case .failure(let error):
+                debugPrint(error)
+                return
+            case .success(_: ):
+                DispatchQueue.main.async {
+                    self?.navigationController?.popViewController(animated: true)
+                }
+            }
+        }
     }
 }
