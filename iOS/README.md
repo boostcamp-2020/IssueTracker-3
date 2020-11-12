@@ -4,11 +4,12 @@
 
 
 ## Library
-1. <a href="https://github.com/Alamofire/AlamofireImage" target="_self">Alamofire</a>
+~~1. <a href="https://github.com/Alamofire/AlamofireImage" target="_self">Alamofire</a>~~
+URLSession으로 Service를 만들어서 사용
 
 ## Requirements
 
- - iOS 13.6+
+ - iOS 14.0+
  - Xcode 12.1+
  - Swift 5.3+
  
@@ -23,9 +24,7 @@ end
 ```
 
 ## Swift Package Manager
-```swift
-  import Alamofire
-```
+
 
 ## Installation
 
