@@ -9,11 +9,25 @@ import UIKit
 
 class EditTableViewController: UITableViewController {
 
-    private var dataqSource: UITableViewDiffableDataSource<Section, IssueDetailEditViewModel>!
+    private var dataqSource: EditDataSource!
 
-    enum Section {
+    enum Section: Int, CaseIterable, CustomStringConvertible {
         case selected
         case list
+
+        var description: String {
+            switch self {
+            case .selected: return "Selected"
+            case .list: return "List"
+            }
+        }
+    }
+
+    class EditDataSource: UITableViewDiffableDataSource<Section, IssueFilterViewModel> {
+        override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+            let sectionKind = Section(rawValue: section)
+            return sectionKind?.description
+        }
     }
 
     enum EditType {
@@ -36,7 +50,7 @@ class EditTableViewController: UITableViewController {
         self.editType = nil
         super.init(coder: coder)
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -45,6 +59,10 @@ class EditTableViewController: UITableViewController {
     func configureDataSource() {
 
     }
+}
+
+extension EditIssueViewController {
+
 }
 
 struct IssueDetailEditViewModel: Hashable {

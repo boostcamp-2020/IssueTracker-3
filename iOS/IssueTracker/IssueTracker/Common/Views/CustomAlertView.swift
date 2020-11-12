@@ -198,6 +198,35 @@ class CustomAlertView: UIViewController {
         dismiss(animated: true)
     }
 
+    private func makeEndPoint(_ name: String?,
+                              _ description: String?,
+                              _ color: String?,
+                              _ dueDate: String?) -> APIConfiguration? {
+        switch type {
+        case .color:
+            let encodedData = AddLabel(id: id, name: name, description: description, color: color).encoded()
+
+            if id == nil {
+                return LabelEndPoint.addLabel(encodedData)
+            } else {
+                return LabelEndPoint.editLabel(encodedData)
+            }
+        case .date:
+            guard let dueDate = dueDate else { return nil }
+
+            let encodedData = AddMilestone(id: id, name: name, description: description, dueDate: dueDate).encoded()
+
+            if id == nil {
+                return MilestoneEndPoint.addMilestone(encodedData)
+            } else {
+                return MilestoneEndPoint.editMilestone(encodedData)
+            }
+        case .none:
+            break
+        }
+        return nil
+    }
+
     @IBAction func saveButtonTouched(_ sender: Any) {
         var flag = false
 
@@ -224,32 +253,9 @@ class CustomAlertView: UIViewController {
             break
         }
 
-        guard !flag else {
-            return
-        }
+        guard !flag else { return }
 
-        switch type {
-        case .color:
-            let encodedData = AddLabel(id: id, name: name, description: description, color: color).encoded()
-
-            if id == nil {
-                endpoint = LabelEndPoint.addLabel(encodedData)
-            } else {
-                endpoint = LabelEndPoint.editLabel(encodedData)
-            }
-        case .date:
-            guard let dueDate = dueDate else { return}
-
-            let encodedData = AddMilestone(id: id, name: name, description: description, dueDate: dueDate).encoded()
-
-            if id == nil {
-                endpoint = MilestoneEndPoint.addMilestone(encodedData)
-            } else {
-                endpoint = MilestoneEndPoint.editMilestone(encodedData)
-            }
-        case .none:
-            break
-        }
+        endpoint = makeEndPoint(name, description, color, dueDate)
 
         networkService.request(apiConfiguration: endpoint) { result in
             switch result {

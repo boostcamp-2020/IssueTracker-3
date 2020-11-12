@@ -56,8 +56,6 @@ class IssueFilterViewController: UIViewController {
         issueFilter = issueFilter
             .filter({$0.chevronDirection.contains(.check)})
             .filter({!$0.isChevron}).map({$0})
-
-//        NotificationCenter().post(name: "name", object: nil, userInfo: nil)
         print(issueFilter.map({$0.title}))
         dismiss(animated: true)
     }

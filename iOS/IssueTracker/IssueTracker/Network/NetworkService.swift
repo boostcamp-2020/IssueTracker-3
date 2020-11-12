@@ -65,7 +65,7 @@ class NetworkService: NetworkServiceProvider {
     private func configureURLRequest(apiConfiguration: APIConfiguration) throws -> URLRequest {
         let url = try APIServer.baseURL.asURL()
         var urlRequest = URLRequest(url: url.appendingPathComponent(apiConfiguration.path))
-//         urlRequest.setValue("bearer \(token)", forHTTPHeaderField: "\(HTTPHeader.authentication)")
+        urlRequest.setValue("Bearer \(NetworkService.token)", forHTTPHeaderField: "\(HTTPHeader.authentication)")
         urlRequest.httpMethod = "\(apiConfiguration.method)"
         urlRequest.setValue("\(ContentType.formEncode)", forHTTPHeaderField: "\(HTTPHeader.acceptType)")
 //        urlRequest.setValue("\(ContentType.formEncode)", forHTTPHeaderField: "\(HTTPHeader.contentType)")
