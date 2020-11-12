@@ -21,7 +21,7 @@
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="gMJ-9A-2wT">
                                 <rect key="frame" x="0.0" y="88" width="414" height="774"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Ejc-cX-RjK">
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="30" id="Ejc-cX-RjK">
                                     <size key="itemSize" width="375" height="88"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
@@ -999,7 +999,7 @@ HTML형태로 보여줘야 할까요</string>
                                                     <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="medium" weight="medium"/>
                                                 </state>
                                                 <connections>
-                                                    <action selector="authorEditTouched:" destination="sam-5C-mGZ" eventType="touchUpInside" id="g76-VX-f0P"/>
+                                                    <action selector="assigneeEditTouched:" destination="sam-5C-mGZ" eventType="touchUpInside" id="g76-VX-f0P"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -1147,10 +1147,14 @@ HTML형태로 보여줘야 할까요</string>
                     </view>
                     <navigationItem key="navigationItem" id="0Hh-mG-PqR"/>
                     <connections>
+                        <outlet property="assigneeStackView" destination="IYU-DK-db3" id="24c-ww-pRo"/>
                         <outlet property="commentTextView" destination="7Qm-3i-rgo" id="8Il-OV-zug"/>
                         <outlet property="commentTextViewBottomConstraint" destination="V4Y-29-zHe" id="mWO-oV-xSy"/>
                         <outlet property="doneRightBarButton" destination="wWv-af-xp6" id="Tdg-st-9he"/>
+                        <outlet property="labelStackView" destination="ruB-8k-5kB" id="weA-AH-GfO"/>
+                        <outlet property="milestoneStackView" destination="IQx-9v-4gM" id="a7c-5d-KJG"/>
                         <outlet property="separatorView" destination="gYs-3K-uGQ" id="Pxs-NS-HKQ"/>
+                        <outlet property="titleLabel" destination="oWw-TA-c4U" id="Tbs-Wr-Mdw"/>
                         <outlet property="titleTextField" destination="pVE-zb-SvA" id="TON-7D-hMl"/>
                     </connections>
                 </viewController>
@@ -1158,33 +1162,94 @@ HTML형태로 보여줘야 할까요</string>
             </objects>
             <point key="canvasLocation" x="-226.08695652173915" y="3375.6696428571427"/>
         </scene>
-        <!--Edit Table View Controller-->
-        <scene sceneID="Cnf-Ln-03z">
+        <!--Edit View Controller-->
+        <scene sceneID="Ond-lH-YFr">
             <objects>
-                <tableViewController storyboardIdentifier="EditTableViewController" id="HP2-LP-X4d" customClass="EditTableViewController" customModule="IssueTracker" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="caR-oh-jis">
+                <viewController storyboardIdentifier="EditViewController" id="h7d-AU-1N6" customClass="EditViewController" customModule="IssueTracker" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Kfq-TB-2QR">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Yj0-mk-eoo">
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="EditTableViewCell" id="4kn-aK-rwa" customClass="EditTableViewCell" customModule="IssueTracker" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="414" height="44.5"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="4kn-aK-rwa" id="Tz2-Y9-kcA">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="44.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="kOY-au-x3v">
+                                                    <rect key="frame" x="15" y="11" width="35" height="22"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" priority="250" constant="35" id="7yZ-Z1-3f4"/>
+                                                    </constraints>
+                                                </stackView>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cf0-lt-pPK">
+                                                    <rect key="frame" x="379" y="11" width="20" height="22.5"/>
+                                                    <state key="normal" image="plus.circle" catalog="system"/>
+                                                </button>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="cf0-lt-pPK" secondAttribute="bottom" constant="11" id="78N-UT-fro"/>
+                                                <constraint firstAttribute="bottom" secondItem="kOY-au-x3v" secondAttribute="bottom" constant="11.5" id="7Fl-0L-rtR"/>
+                                                <constraint firstAttribute="trailing" secondItem="cf0-lt-pPK" secondAttribute="trailing" constant="15" id="Er3-X3-VnV"/>
+                                                <constraint firstItem="cf0-lt-pPK" firstAttribute="top" secondItem="Tz2-Y9-kcA" secondAttribute="top" constant="11" id="ife-f7-9tn"/>
+                                                <constraint firstItem="kOY-au-x3v" firstAttribute="leading" secondItem="Tz2-Y9-kcA" secondAttribute="leading" constant="15" id="mDy-VS-2vQ"/>
+                                                <constraint firstItem="cf0-lt-pPK" firstAttribute="leading" relation="lessThanOrEqual" secondItem="kOY-au-x3v" secondAttribute="trailing" constant="329" id="mXY-hC-B68"/>
+                                                <constraint firstItem="kOY-au-x3v" firstAttribute="top" secondItem="Tz2-Y9-kcA" secondAttribute="top" constant="11" id="oxZ-pZ-3hw"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="button" destination="cf0-lt-pPK" id="vK4-ib-RFw"/>
+                                            <outlet property="stackView" destination="kOY-au-x3v" id="cNt-oW-rwy"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="delegate" destination="h7d-AU-1N6" id="6ki-O9-rVx"/>
+                                </connections>
+                            </tableView>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zYu-z1-K2y">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                                <items>
+                                    <navigationItem title="Title" id="7hL-Z6-gBc">
+                                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="lnq-JT-SVe">
+                                            <connections>
+                                                <action selector="cancelTouched:" destination="h7d-AU-1N6" id="iEv-WJ-Dsa"/>
+                                            </connections>
+                                        </barButtonItem>
+                                        <barButtonItem key="rightBarButtonItem" style="done" systemItem="done" id="RYv-8D-yRO">
+                                            <connections>
+                                                <action selector="doneTouched:" destination="h7d-AU-1N6" id="6pm-Da-Zdh"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="a3O-Sz-scZ"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="EditTableViewCell" id="ikP-Il-uKC">
-                                <rect key="frame" x="0.0" y="28" width="414" height="43.5"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ikP-Il-uKC" id="yBV-r8-CAL">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="HP2-LP-X4d" id="JLw-IZ-V2K"/>
-                            <outlet property="delegate" destination="HP2-LP-X4d" id="nOm-pW-bEv"/>
-                        </connections>
-                    </tableView>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Lfs-IW-BKb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                        <constraints>
+                            <constraint firstItem="zYu-z1-K2y" firstAttribute="leading" secondItem="Kfq-TB-2QR" secondAttribute="leading" id="34p-AW-ZTf"/>
+                            <constraint firstAttribute="trailing" secondItem="zYu-z1-K2y" secondAttribute="trailing" id="4uZ-3E-ofx"/>
+                            <constraint firstItem="Yj0-mk-eoo" firstAttribute="trailing" secondItem="a3O-Sz-scZ" secondAttribute="trailing" id="IRE-gV-nQg"/>
+                            <constraint firstItem="zYu-z1-K2y" firstAttribute="top" secondItem="Kfq-TB-2QR" secondAttribute="top" id="LC1-Wd-kUa"/>
+                            <constraint firstItem="Yj0-mk-eoo" firstAttribute="top" secondItem="zYu-z1-K2y" secondAttribute="bottom" id="LOX-uk-4v7"/>
+                            <constraint firstItem="Yj0-mk-eoo" firstAttribute="leading" secondItem="a3O-Sz-scZ" secondAttribute="leading" id="fmk-Gs-UoB"/>
+                            <constraint firstItem="a3O-Sz-scZ" firstAttribute="bottom" secondItem="Yj0-mk-eoo" secondAttribute="bottom" id="jqS-wt-jAo"/>
+                        </constraints>
+                    </view>
+                    <nil key="simulatedTopBarMetrics"/>
+                    <connections>
+                        <outlet property="editTableView" destination="Yj0-mk-eoo" id="KGq-Gl-dnM"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0kB-XY-Rto" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="567" y="3376"/>
+            <point key="canvasLocation" x="553.62318840579712" y="3375.6696428571427"/>
         </scene>
         <!--이슈-->
         <scene sceneID="hki-7S-sUk">
@@ -1237,6 +1302,7 @@ HTML형태로 보여줘야 할까요</string>
         <image name="face.smiling" catalog="system" width="128" height="121"/>
         <image name="pencil.slash" catalog="system" width="128" height="113"/>
         <image name="person.fill" catalog="system" width="128" height="120"/>
+        <image name="plus.circle" catalog="system" width="128" height="121"/>
         <image name="plus.circle.fill" catalog="system" width="128" height="121"/>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

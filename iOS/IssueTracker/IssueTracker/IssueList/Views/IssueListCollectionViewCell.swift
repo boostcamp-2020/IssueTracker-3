@@ -8,11 +8,12 @@
 import UIKit
 
 final class IssueListCollectionViewCell: UICollectionViewListCell {
-    @IBOutlet private weak var titleLabel: UILabel!
-    @IBOutlet private weak var descriptionLabel: UILabel!
-    @IBOutlet private weak var labelStackView: UIStackView!
-    @IBOutlet private weak var issueOpenButton: UIButton!
-    @IBOutlet private weak var issueClosedButton: UIButton!
+
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var descriptionLabel: UILabel!
+    @IBOutlet weak var labelStackView: UIStackView!
+    @IBOutlet weak var issueOpenButton: UIButton!
+    @IBOutlet weak var issueClosedButton: UIButton!
     
     func configure(of item: IssueListViewModel) {
         configureCellLabels(with: item)

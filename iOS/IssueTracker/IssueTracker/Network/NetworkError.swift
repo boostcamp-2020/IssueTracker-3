@@ -26,4 +26,8 @@ enum NetworkError: Error {
     case redirection(message: String)
     case clientError(message: String)
     case serverError(message: String)
+
+    // MARK: Token
+
+    case tokenExpiration(message: String)
 }

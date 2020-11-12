@@ -88,7 +88,7 @@ final class IssueDetailViewController: UIViewController, IssueDetailDisplayLogic
 
     private func configureNotification() {
         publisher = NotificationCenter.default
-            .publisher(for: Notification.Name("createIssueClosed"))
+            .publisher(for: Notification.Name(rawValue: "createIssueClosed"))
             .sink { [weak self] _ in
 //                guard let id = issueNubmer.userInfo?["issueNumber"] as? Int else { return }
 //                self?.interactor.fetchComments(id: id)
@@ -106,13 +106,13 @@ final class IssueDetailViewController: UIViewController, IssueDetailDisplayLogic
         _ = [id].publisher.assign(to: \.issueID, on: issueDetailBottomSheet)
     }
 
-    private var displayedStore = [IssueDetailViewModel]()
+    private var displayedComments = [IssueDetailViewModel]()
 
     func displayFetchedComments(viewModel: [IssueDetailViewModel]) {
-        displayedStore = viewModel
+        displayedComments = viewModel
         var snapshot = NSDiffableDataSourceSnapshot<Section, IssueDetailViewModel>()
         snapshot.appendSections([.main])
-        snapshot.appendItems(displayedStore)
+        snapshot.appendItems(displayedComments)
         dataSource.apply(snapshot, animatingDifferences: false)
     }
     
@@ -133,6 +133,9 @@ final class IssueDetailViewController: UIViewController, IssueDetailDisplayLogic
         viewController.issueNumber = id
         viewController.titleText = firstComment.title
         viewController.body = firstComment.description
+        viewController.labels = firstComment.labels
+        viewController.milestone = firstComment.milestone
+
         present(viewController, animated: true)
     }
 }
