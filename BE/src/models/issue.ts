@@ -61,6 +61,15 @@ class IssueModel extends Model {
     }
   }
 
+  async editMilestone(pData: object, milestoneId: number): Promise<number> {
+    try {
+      this.data = await db.query(`UPDATE ${this.tableName} SET ? WHERE milestone_id = ?`, [pData, milestoneId]);
+      return this.data[0].affectedRows ? HTTPCODE.SUCCESS : HTTPCODE.FAIL;
+    } catch {
+      return HTTPCODE.SERVER_ERR;
+    }
+  }
+
   async del(id: number): Promise<number> {
     try {
       this.data = await super.delete(id, this.tableName);
