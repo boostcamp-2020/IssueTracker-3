@@ -46,7 +46,7 @@ extension IssueDetailInteractor: IssueDetailBusinessLogic {
         }
         URLSession.shared.dataTask(with: imageURL) { data, _, error in
             guard error == nil else {
-                debugPrint(error)
+                debugPrint(error?.localizedDescription ?? "load Image dataTask error")
                 return
             }
             guard let data = data else {
