@@ -9,5 +9,5 @@ router.patch("/", IssueController.edit);
 router.delete("/", IssueController.del);
 router.patch("/:id/state/:state", IssueController.changeState);
 
-router.get("/filter", IssueController.getFilter);
+router.get("/filter/state/:state/author/:author/assignee/:assignee/comment/:comment", IssueController.getFilter);
 export = router;

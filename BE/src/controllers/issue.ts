@@ -14,14 +14,14 @@ const get = async (req: Request, res: Response): Promise<any> => {
 };
 
 const getFilter = async (req: Request, res: Response): Promise<any> => {
-  const { state = 1, author, assignee, comment } = req.body;
+  const { state, author, assignee, comment } = req.params;
   try {
     const issues = await IssueModel.select();
     const issuesFilter = issues.filter((issue: any) => {
-      if (state) if (!filterFunc.stateFilter(issue.state, state)) return false;
-      if (author) if (!filterFunc.userFilter(issue.user_id, author)) return false;
-      if (assignee) if (!filterFunc.assigneeFilter(issue.assignee, assignee)) return false;
-      if (comment) if (!filterFunc.commentFilter(issue.comment.comments, comment)) return false;
+      if (state) if (!filterFunc.stateFilter(issue.state, !!+state)) return false;
+      if (author) if (!filterFunc.userFilter(issue.user_id, +author)) return false;
+      if (assignee) if (!filterFunc.assigneeFilter(issue.assignee, +assignee)) return false;
+      if (comment) if (!filterFunc.commentFilter(issue.comment.comments, +comment)) return false;
       return true;
     });
     res.json(issuesFilter);
