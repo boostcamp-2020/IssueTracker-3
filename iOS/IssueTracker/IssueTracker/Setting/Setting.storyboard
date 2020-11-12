@@ -59,7 +59,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Swm-3w-wvS">
-                                <rect key="frame" x="144.5" y="593" width="125" height="55"/>
+                                <rect key="frame" x="144.5" y="543" width="125" height="55"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="36"/>
                                 <state key="normal" title="로그아웃">
                                     <color key="titleColor" systemColor="systemRedColor"/>
@@ -80,7 +80,7 @@
                             <constraint firstItem="5L1-AX-a2p" firstAttribute="centerX" secondItem="D6d-lb-kGn" secondAttribute="centerX" id="OHS-xN-aDV"/>
                             <constraint firstItem="Swm-3w-wvS" firstAttribute="centerX" secondItem="D6d-lb-kGn" secondAttribute="centerX" id="Xaf-Sg-ZMJ"/>
                             <constraint firstItem="fdb-FC-CIP" firstAttribute="centerX" secondItem="D6d-lb-kGn" secondAttribute="centerX" id="ZgV-8p-53f"/>
-                            <constraint firstItem="Swm-3w-wvS" firstAttribute="top" secondItem="JuL-A0-3XA" secondAttribute="bottom" constant="100" id="bLO-ib-jMZ"/>
+                            <constraint firstItem="Swm-3w-wvS" firstAttribute="top" secondItem="JuL-A0-3XA" secondAttribute="bottom" constant="50" id="bLO-ib-jMZ"/>
                             <constraint firstItem="5HC-mg-2Ds" firstAttribute="top" secondItem="gK7-2L-t4l" secondAttribute="top" constant="100" id="bl7-F5-OYp"/>
                             <constraint firstItem="fdb-FC-CIP" firstAttribute="top" secondItem="5L1-AX-a2p" secondAttribute="bottom" constant="30" id="cMA-oW-WSt"/>
                             <constraint firstItem="qw3-jD-h08" firstAttribute="centerX" secondItem="D6d-lb-kGn" secondAttribute="centerX" id="mFC-Ty-I92"/>
