@@ -49,7 +49,7 @@ final class IssueListViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        issueListToolBar.isHidden = true
+        configureToolBar()
         interactor.fetchIssues()
         toggleIndicatorView(state: true)
     }
@@ -79,6 +79,11 @@ final class IssueListViewController: UIViewController {
                                                  action: #selector(selectAllTouched))
         navigationItem.leftBarButtonItem = filterLeftBarButton
         navigationItem.rightBarButtonItem = editButtonItem
+    }
+    
+    private func configureToolBar() {
+        issueListToolBar.sizeToFit()
+        issueListToolBar.isHidden = true
     }
     
     private func showSearchBar() {
@@ -138,7 +143,7 @@ final class IssueListViewController: UIViewController {
         
         tabBarController?.tabBar.isHidden = editing
         issueListToolBar.isHidden = !editing
-        
+        issueListToolBar.sizeToFit()
         navigationItem.leftBarButtonItem = editing ? selectAllLeftBarButton : filterLeftBarButton
 
         if editing {
