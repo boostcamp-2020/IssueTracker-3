@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import { Milestone } from "@interfaces/milestone";
 import MilestoneModel from "@models/milestone";
+import IssueModel from "@models/issue";
 import HTTPCODE from "@utils/magicnumber";
 
 const get = async (req: Request, res: Response): Promise<Response<any>> => {
@@ -38,8 +39,15 @@ const edit = async (req: Request, res: Response): Promise<Response> => {
 
 const del = async (req: Request, res: Response): Promise<Response> => {
   const { id } = req.body;
-  const result = await MilestoneModel.del(id);
-  return res.sendStatus(result);
+  const issue = {
+    milestone_id: null,
+  };
+  const issueRes = await IssueModel.editMilestone(issue, id);
+  if (issueRes === HTTPCODE.SUCCESS) {
+    const result = await MilestoneModel.del(id);
+    return res.sendStatus(result);
+  }
+  return res.sendStatus(issueRes);
 };
 
 const changeState = async (req: Request, res: Response): Promise<Response> => {

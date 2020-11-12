@@ -12,12 +12,12 @@ const StyledIssueList = styled.div`
 `;
 
 function IssueList(props) {
-  const { issues, setIssue } = props;
+  const { issues, setChecked, checked } = props;
   return (
     <>
       <StyledIssueList>
         {issues?.map((issue, index) => (
-          <Issue key={index} issue={issue} />
+          <Issue key={index} issue={issue} setChecked={setChecked} checked={checked} />
         ))}
       </StyledIssueList>
     </>
