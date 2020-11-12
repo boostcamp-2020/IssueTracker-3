@@ -32,10 +32,9 @@ final class OAuthManager {
                 return
             }
 
-            let url = CallBackUrl(url: callBackURL.absoluteString)
-            guard let encoded = try? JSONEncoder().encode(url) else { return }
+            let encodedData = CallBackUrl(url: callBackURL.absoluteString).encoded()
 
-            networkService.request(apiConfiguration: SignInEndPoint.token(encoded)) { result in
+            networkService.request(apiConfiguration: SignInEndPoint.token(encodedData)) { result in
                 switch result {
                 case .failure(let error):
                     debugPrint(error)
@@ -51,6 +50,7 @@ final class OAuthManager {
         }
 
         session?.presentationContextProvider = provider
+        session?.prefersEphemeralWebBrowserSession = true
         session?.start()
     }
 }
