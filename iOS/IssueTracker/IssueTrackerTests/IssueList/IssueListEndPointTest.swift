@@ -44,28 +44,28 @@ final class IssueListEndPointTest: XCTestCase {
         XCTAssertEqual(request?.path, "/issue")
     }
     
-    func test_request_with_issueListEndPoint_success() throws {
-        //Given
-        let expectation = XCTestExpectation(description: "NetworkTaskExpectation")
-        let networkService = NetworkService()
-        let getIssues = IssueListEndPoint.getIssues
-        
-        //When
-        networkService.request(apiConfiguration: getIssues) { result in
-            //Then
-            switch result {
-            case .success(let data):
-                guard let data: IssueList = try? data.decoded() else {
-                    XCTFail("Throw 에러")
-                    return
-                }
-                XCTAssertNotNil(data, "네트워크 연결 실패")
-                expectation.fulfill()
-            case .failure(let error):
-                XCTFail("네트워크 연결 실패\(error)")
-            }
-            
-        }
-        wait(for: [expectation], timeout: 5.0)
-    }
+//    func test_request_with_issueListEndPoint_success() throws {
+//        //Given
+//        let expectation = XCTestExpectation(description: "NetworkTaskExpectation")
+//        let networkService = NetworkService()
+//        let getIssues = IssueListEndPoint.getIssues
+//
+//        //When
+//        networkService.request(apiConfiguration: getIssues) { result in
+//            //Then
+//            switch result {
+//            case .success(let data):
+//                guard let data: IssueList = try? data.decoded() else {
+//                    XCTFail("Throw 에러")
+//                    return
+//                }
+//                XCTAssertNotNil(data, "네트워크 연결 실패")
+//                expectation.fulfill()
+//            case .failure(let error):
+//                XCTFail("네트워크 연결 실패\(error)")
+//            }
+//
+//        }
+//        wait(for: [expectation], timeout: 5.0)
+//    }
 }
