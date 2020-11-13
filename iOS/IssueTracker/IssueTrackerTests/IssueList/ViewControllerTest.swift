@@ -241,8 +241,8 @@ class ViewControllerTest: XCTestCase {
         sut.closeSelectedIssueTouched(UIBarButtonItem(title: "선택 이슈 닫기", style: .plain, target: nil, action: nil))
 
         //Then
-        let number = sut.issueListCollectionView.numberOfItems(inSection: 0)
-        XCTAssertEqual(number, 1, "2개에서 한개가 삭제되므로 1개 남아야 합니다.")
+        let bool = sut.indicatorView.isAnimating
+        XCTAssertEqual(bool, true, "클로즈가 실행되면 indicatorView가 시작이 된다.")
     }
 
     func test_selectAllTouched_User_Action() {

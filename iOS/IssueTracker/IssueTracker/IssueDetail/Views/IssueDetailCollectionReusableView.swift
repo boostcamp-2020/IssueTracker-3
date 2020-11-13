@@ -26,7 +26,7 @@ class IssueDetailCollectionReusableView: UICollectionReusableView {
 
     func configure(item: IssueListViewModel) {
         authorLabel.text = item.title
-        issueNumberLabel.text = "#\(String(describing: item.id))"
+        issueNumberLabel.text = "#\(item.id ?? 0)"
         bodyLabel.attributedText = convertMarkdownText(of: item.description)
         if item.isOpen {
             stateButton.setTitle("Open", for: .normal)

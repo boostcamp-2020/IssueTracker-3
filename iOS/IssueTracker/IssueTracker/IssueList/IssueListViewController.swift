@@ -210,7 +210,6 @@ extension IssueListViewController: IssueListDisplayLogic {
     func displayFetchedIssues(viewModel: [IssueListViewModel]) {
         displayedIssue = viewModel
         reloadDataSource(items: displayedIssue)
-        toggleIndicatorView(state: false)
     }
 }
 
@@ -268,7 +267,9 @@ extension IssueListViewController {
         var snapshot = NSDiffableDataSourceSnapshot<Section, IssueListViewModel>()
         snapshot.appendSections([.main])
         snapshot.appendItems(items, toSection: .main)
-        dataSource.apply(snapshot, animatingDifferences: false)
+        dataSource.apply(snapshot, animatingDifferences: false) {
+            self.toggleIndicatorView(state: false)
+        }
     }
 }
 

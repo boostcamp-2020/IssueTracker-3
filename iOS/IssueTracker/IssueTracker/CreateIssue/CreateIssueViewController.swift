@@ -189,8 +189,12 @@ final class CreateIssueViewController: UIViewController {
             if !assigneeStackView.subviews.isEmpty {
                 interactor.uploadAssignee(id: issueNumber, assigneeIDs: assigneeIDs)
             }
+
         } else {
-            interactor.uploadIssue(title: titleTextField.text ?? "", comment: commentTextView.text, milestoneID: 0)
+            let labelids = labelIDs.compactMap({$0})
+            interactor.uploadIssue(title: titleTextField.text ?? "",
+                                   comment: commentTextView.text,
+                                   milestoneID: milestoneIDs[0], labelids: labelids)
             self.dismiss(animated: true)
         }
     }

@@ -78,15 +78,14 @@ extension MilestoneViewController {
         dataSource = UICollectionViewDiffableDataSource<Section, MilestoneViewModel>(
             collectionView: milestoneCollectionView,
             cellProvider: {(collectionView, indexPath, item) -> UICollectionViewCell? in
-                guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MilestoneCollectionViewCell",
-                                                                    for: indexPath) as? MilestoneCollectionViewCell
+                guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MilestoneCollectionViewCell", for: indexPath) as? MilestoneCollectionViewCell
                 else {
                     return UICollectionViewCell()
                 }
                 cell.configure(viewModel: item)
 
-                cell.contentView.layer.cornerRadius = 10
-                cell.contentView.clipsToBounds = true
+                cell.layer.cornerRadius = 10
+                cell.clipsToBounds = true
 
                 return cell
             })
