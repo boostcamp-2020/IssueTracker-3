@@ -29,7 +29,7 @@
         <!--Navigation Controller-->
         <scene sceneID="0KD-1E-U1p">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="RoK-7g-YYk" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="AuthenticationNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="RoK-7g-YYk" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="RsG-wH-xuc">
                         <rect key="frame" x="0.0" y="44" width="375" height="44"/>
@@ -44,10 +44,10 @@
             </objects>
             <point key="canvasLocation" x="180" y="250"/>
         </scene>
-        <!--UINavigationController-rPo-vs-DwV-->
+        <!--MainNavigationController-->
         <scene sceneID="dY3-oT-FUX">
             <objects>
-                <viewControllerPlaceholder storyboardName="IssueList" referencedIdentifier="UINavigationController-rPo-vs-DwV" id="pM0-9N-yHB" sceneMemberID="viewController">
+                <viewControllerPlaceholder storyboardName="IssueList" referencedIdentifier="MainNavigationController" id="pM0-9N-yHB" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Item" id="REF-Ii-gWf"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dB8-QT-3VH" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

@@ -15,11 +15,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                willConnectTo session: UISceneSession,
                options connectionOptions: UIScene.ConnectionOptions)
     {
-//        try? KeychainAccess.shared.removeAll()
-//        if NetworkService.token != "" {
-//            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-//            window?.rootViewController = storyboard.instantiateViewController(withIdentifier: "UITabBarController")
-//        }
+        if NetworkService.token != "" {
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            window?.rootViewController = storyboard.instantiateViewController(withIdentifier: "UITabBarController")
+        }
         
         guard let _ = (scene as? UIWindowScene) else { return }
     }

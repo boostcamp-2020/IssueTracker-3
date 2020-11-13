@@ -9,10 +9,6 @@ import UIKit
 import Combine
 import MarkdownView
 
-protocol CreateIssueDisplayLogic: class {
-
-}
-
 // Must
 // TODO: image link
 // TODO: upload logic (데이터 저장 + upload)
@@ -37,6 +33,7 @@ final class CreateIssueViewController: UIViewController {
     @IBOutlet private weak var commentTextView: UITextView!
     @IBOutlet private weak var doneRightBarButton: UIBarButtonItem!
     @IBOutlet private weak var separatorView: UIView!
+    @IBOutlet private weak var commentTextViewBottomConstraint: NSLayoutConstraint!
     
     private var interactor: CreateIssueBusinessLogic!
     private var markdownPreview: MarkdownView?
@@ -44,7 +41,6 @@ final class CreateIssueViewController: UIViewController {
     private var keyboardHideObserver: AnyCancellable?
 
     @IBOutlet weak var titleLabel: UILabel!
-
     @IBOutlet weak var assigneeStackView: UIStackView!
     @IBOutlet weak var labelStackView: UIStackView!
     @IBOutlet weak var milestoneStackView: UIStackView!
@@ -92,11 +88,7 @@ final class CreateIssueViewController: UIViewController {
     // MARK: Setup
     
     private func setup() {
-        let interactor = CreateIssueInteractor()
-        let presenter = CreateIssuePresenter()
-        self.interactor = interactor
-        interactor.presenter = presenter
-        presenter.viewController = self
+        interactor = CreateIssueInteractor()
     }
     
     // MARK: Configure
@@ -167,15 +159,12 @@ final class CreateIssueViewController: UIViewController {
         }
         let keyboardRect =  keyboardFrame.cgRectValue
         if commentTextView.frame.maxY > keyboardRect.origin.y {
-            view.frame.origin.y -= 170
-        }
-        if view.frame.maxY < keyboardRect.origin.y {
-            view.frame.origin.y = 0
+            commentTextViewBottomConstraint.constant = commentTextView.frame.maxY - keyboardRect.origin.y + 100
         }
     }
-    
+
     private func keyboardWillHide() {
-        view.frame.origin.y = 0
+        commentTextViewBottomConstraint.constant = 8
     }
     
     @IBAction func markdownSegmentedControlChanged(_ sender: UISegmentedControl) {
@@ -213,7 +202,7 @@ final class CreateIssueViewController: UIViewController {
             interactor.uploadIssue(title: titleTextField.text ?? "", comment: commentTextView.text, milestoneID: 0)
             self.dismiss(animated: true)
         }
-
+        
         if !labelStackView.subviews.isEmpty {
             interactor.uploadLabel(id: issueNumber, labelIDs: labelIDs)
         }
@@ -221,18 +210,20 @@ final class CreateIssueViewController: UIViewController {
         if !assigneeStackView.subviews.isEmpty {
             interactor.uploadAssignee(id: issueNumber, assigneeIDs: assigneeIDs)
         }
-
     }
 
     @IBAction func cancelTouched(_ sender: UIBarButtonItem) {
         dismiss(animated: true, completion: nil)
     }
+
     @IBAction func assigneeEditTouched(_ sender: Any) {
         editViewController(editType: .assignee)
     }
+    
     @IBAction func labelEditTouched(_ sender: Any) {
         editViewController(editType: .label)
     }
+    
     @IBAction func milestoneEditTouched(_ sender: Any) {
         editViewController(editType: .milestone)
     }
@@ -251,10 +242,6 @@ final class CreateIssueViewController: UIViewController {
                                        })
         present(viewController, animated: true)
     }
-}
-
-extension CreateIssueViewController: CreateIssueDisplayLogic {
-    
 }
 
 // MARK: MarkdownPreview

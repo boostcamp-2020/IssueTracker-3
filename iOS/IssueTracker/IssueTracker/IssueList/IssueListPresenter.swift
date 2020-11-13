@@ -20,8 +20,4 @@ final class IssueListPresenter: IssueListPresentationLogic {
             self?.viewController?.displayFetchedIssues(viewModel: viewModel)
         }
     }
-    
-    // change State
-    
-    // filter
 }

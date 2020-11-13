@@ -45,6 +45,7 @@ class ViewControllerTest: XCTestCase {
     // MARK: - Test doubles
 
     class IssueListBusinessLogicSpy: IssueListBusinessLogic {
+
         var issues: IssueList = []
 
         // MARK: Method call expectations
@@ -52,6 +53,9 @@ class ViewControllerTest: XCTestCase {
         var fetchListsCalled = false
 
         // MARK: Spied methods
+        func closeIssue(id: Int, state: Int, handler: @escaping () -> Void) {
+            fetchListsCalled = true
+        }
 
         func fetchIssues() {
             fetchListsCalled = true

@@ -11,9 +11,17 @@ class SettingViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
     }
     
-    // 로그아웃
-    // 팀원 소개 + 깃허브 링크
+    @IBAction func signOutTouched(_ sender: UIButton) {
+        try? KeychainAccess.shared.removeAll()
+        
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        guard let navigationController = storyboard
+                .instantiateViewController(withIdentifier: "AuthenticationNavigationController")
+                as? UINavigationController else {
+            return
+        }
+        self.view.window?.rootViewController = navigationController
+    }
 }

@@ -15,6 +15,7 @@ protocol IssueListBusinessLogic {
     func fetchIssues()
     func changeIssueState()
     func filtered(with filter: String, model: [IssueListViewModel])
+    func closeIssue(id: Int, state: Int, handler: @escaping () -> Void)
 }
 
 final class IssueListInteractor: IssueListDataStore {
@@ -24,6 +25,10 @@ final class IssueListInteractor: IssueListDataStore {
 }
 
 extension IssueListInteractor: IssueListBusinessLogic {
+    func changeIssueState() {
+
+    }
+
     func fetchIssues() {
         networkService.request(apiConfiguration: IssueListEndPoint.getIssues) { [weak self] result in
             guard let self = self else { return }
@@ -40,6 +45,20 @@ extension IssueListInteractor: IssueListBusinessLogic {
                 self.presenter?.presentFetchedIssues(issues: self.issues)
                 self.classifyIssues()
             }
+        }
+    }
+    
+    func closeIssue(id: Int, state: Int, handler: @escaping () -> Void) {
+        networkService.request(apiConfiguration: IssueListEndPoint.changeState(id, state)) { [weak self] result in
+            guard let self = self else { return }
+            switch result {
+            case .failure(let error):
+                debugPrint(error)
+                return
+            case .success(_: ):
+                self.fetchIssues()
+            }
+            handler()
         }
     }
 

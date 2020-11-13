@@ -71,7 +71,6 @@ class NetworkService: NetworkServiceProvider {
         urlRequest.setValue("Bearer \(NetworkService.token)", forHTTPHeaderField: "\(HTTPHeader.authentication)")
         urlRequest.httpMethod = "\(apiConfiguration.method)"
         urlRequest.setValue("\(ContentType.formEncode)", forHTTPHeaderField: "\(HTTPHeader.acceptType)")
-//        urlRequest.setValue("\(ContentType.formEncode)", forHTTPHeaderField: "\(HTTPHeader.contentType)")
         urlRequest.httpBody = apiConfiguration.body
         return urlRequest
     }

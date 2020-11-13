@@ -12,6 +12,13 @@ protocol IssueDetailDisplayLogic: class {
     func displayFetchedComments(viewModel: [IssueDetailViewModel])
 }
 
+protocol IssueDetailBottomSheetDelegate: class {
+    func addCommentViewShouldAppear()
+    func issueDetailViewShouldScrollUp()
+    func issueDetailViewShouldScrollDown()
+    func issueDetailViewShouldCloseIssue()
+}
+
 final class IssueDetailViewController: UIViewController, IssueDetailDisplayLogic {
     static let identifier = "IssueDetailViewController"
     
@@ -22,11 +29,11 @@ final class IssueDetailViewController: UIViewController, IssueDetailDisplayLogic
     private var interactor: IssueDetailBusinessLogic!
     private weak var issueDetailBottomSheet: IssueDetailBottomSheetViewController!
     private var visualEffectView: UIVisualEffectView!
-    private var cardVisible = false
     private var runningAnimations = [UIViewPropertyAnimator]()
     private var animationProgressWhenInterrupted: CGFloat = .zero
-    private let cardHeight: CGFloat = 600
-    private let cardHandleAreaHeight: CGFloat = 65
+    private var bottomSheetVisible = false
+    private var bottomSheetHeight: CGFloat = .zero
+    private let bottomSheetHandleAreaHeight: CGFloat = 100
 
     private var publisher: AnyCancellable!
 
@@ -39,7 +46,7 @@ final class IssueDetailViewController: UIViewController, IssueDetailDisplayLogic
     private var dataSource: UICollectionViewDiffableDataSource<Section, IssueDetailViewModel>!
 
     var nextState: BottomSheetState {
-        return cardVisible ? .collapsed : .expanded
+        return bottomSheetVisible ? .collapsed : .expanded
     }
     
     private let id: Int!
@@ -88,8 +95,6 @@ final class IssueDetailViewController: UIViewController, IssueDetailDisplayLogic
                 self?.navigationController?.popViewController(animated: true)
             }
     }
-
-    // MARK: Setup
     
     private func setup() {
         let interactor = IssueDetailInteractor()
@@ -97,6 +102,8 @@ final class IssueDetailViewController: UIViewController, IssueDetailDisplayLogic
         self.interactor = interactor
         interactor.presenter = presenter
         presenter.viewController = self
+        
+        _ = [id].publisher.assign(to: \.issueID, on: issueDetailBottomSheet)
     }
 
     private var displayedComments = [IssueDetailViewModel]()
@@ -106,11 +113,8 @@ final class IssueDetailViewController: UIViewController, IssueDetailDisplayLogic
         var snapshot = NSDiffableDataSourceSnapshot<Section, IssueDetailViewModel>()
         snapshot.appendSections([.main])
         snapshot.appendItems(displayedComments)
-
         dataSource.apply(snapshot, animatingDifferences: false)
     }
-
-    // MARK: Configure View
     
     private func configureNavigationItem() {
         let editButtonItem = UIBarButtonItem(title: "Edit",
@@ -149,8 +153,11 @@ extension IssueDetailViewController {
                     return UICollectionViewCell()
                 }
                 cell.configure(of: item)
-                self.interactor.loadAuthorImage(imageURL: item.img) { data in
-                    cell.profileImage.image = UIImage(data: data)
+                let img = "https://user-images.githubusercontent.com/5876149/97951341-39d26600-1ddd-11eb-94e7-9102b90bda8b.jpg"
+                self.interactor.loadAuthorImage(imageURL: img) { data in
+                    DispatchQueue.main.async {
+                        cell.profileImage.image = UIImage(data: data)
+                    }
                 }
                 return cell
             })
@@ -173,13 +180,14 @@ extension IssueDetailViewController {
     }
 }
 
-extension IssueDetailViewController {
+extension IssueDetailViewController: IssueDetailBottomSheetDelegate {
     enum BottomSheetState {
         case expanded
         case collapsed
     }
 
     private func configureBottomSheet() {
+        bottomSheetHeight = (view.frame.height * 2) / 3
         visualEffectView = UIVisualEffectView()
         visualEffectView.frame = view.frame
         visualEffectView.isUserInteractionEnabled = false
@@ -189,14 +197,15 @@ extension IssueDetailViewController {
                 .instantiateViewController(identifier: "IssueDetailBottomSheet")
                 as? IssueDetailBottomSheetViewController else { return }
         issueDetailBottomSheet = viewController
+        issueDetailBottomSheet.delegate = self
         
         self.addChild(issueDetailBottomSheet)
         self.view.addSubview(issueDetailBottomSheet.view)
         
         issueDetailBottomSheet.view.frame = CGRect(x: .zero,
-                                                   y: view.frame.height-cardHandleAreaHeight,
+                                                   y: view.frame.height-bottomSheetHandleAreaHeight,
                                                    width: view.bounds.width,
-                                                   height: cardHeight)
+                                                   height: bottomSheetHeight)
         issueDetailBottomSheet.view.clipsToBounds = true
 
         let panGestureRecognizer = UIPanGestureRecognizer(target: self,
@@ -210,14 +219,16 @@ extension IssueDetailViewController {
             let frameAnimator = UIViewPropertyAnimator(duration: duration, dampingRatio: 1) {
                 switch state {
                 case .expanded:
-                    self.issueDetailBottomSheet.view.frame.origin.y = self.view.frame.height - self.cardHeight
+                    self.issueDetailBottomSheet.view.frame.origin.y =
+                        self.view.frame.height - self.bottomSheetHeight
                 case .collapsed:
-                    self.issueDetailBottomSheet.view.frame.origin.y = self.view.frame.height - self.cardHandleAreaHeight
+                    self.issueDetailBottomSheet.view.frame.origin.y =
+                        self.view.frame.height - self.bottomSheetHandleAreaHeight
                 }
             }
             
             frameAnimator.addCompletion { _ in
-                self.cardVisible = !(self.cardVisible)
+                self.bottomSheetVisible = !(self.bottomSheetVisible)
                 self.runningAnimations.removeAll()
             }
             
@@ -273,8 +284,6 @@ extension IssueDetailViewController {
         }
     }
     
-    // MARK: Actions
-    
     @objc func bottomSheetTapped(recognzier: UITapGestureRecognizer) {
         switch recognzier.state {
         case .ended:
@@ -290,13 +299,90 @@ extension IssueDetailViewController {
             startInteractiveTransition(state: nextState, duration: 0.9)
         case .changed:
             let translation = recognizer.translation(in: issueDetailBottomSheet.handleArea)
-            var fractionComplete = translation.y / cardHeight
-            fractionComplete = cardVisible ? fractionComplete : -fractionComplete
+            var fractionComplete = translation.y / bottomSheetHeight
+            fractionComplete = bottomSheetVisible ? fractionComplete : -fractionComplete
             updateInteractiveTransition(fractionCompleted: fractionComplete)
         case .ended:
             continueInteractiveTransition()
         default:
             break
+        }
+    }
+    
+    func addCommentViewShouldAppear() {
+        guard runningAnimations.isEmpty else { return }
+        if bottomSheetVisible {
+            animateTransitionIfNeeded(state: .collapsed, duration: 0.9)
+            bottomSheetVisible.toggle()
+        }
+        let storyboard = UIStoryboard(name: "IssueList", bundle: nil)
+        let commentNavigationController = storyboard.instantiateViewController(
+            identifier: "CommentNavigationController")
+        guard let commentViewController = commentNavigationController.children.first
+                as? IssueCommentViewController else {
+            return
+        }
+        
+        let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .alert)
+        alertController.setValue(commentNavigationController, forKey: "contentViewController")
+        
+        let height = NSLayoutConstraint(item: alertController.view!,
+                                        attribute: NSLayoutConstraint.Attribute.height,
+                                        relatedBy: NSLayoutConstraint.Relation.equal,
+                                        toItem: nil,
+                                        attribute: NSLayoutConstraint.Attribute.notAnAttribute,
+                                        multiplier: 1,
+                                        constant: 350)
+        let width = NSLayoutConstraint(item: alertController.view!,
+                                       attribute: NSLayoutConstraint.Attribute.width,
+                                       relatedBy: NSLayoutConstraint.Relation.equal,
+                                       toItem: nil,
+                                       attribute: NSLayoutConstraint.Attribute.notAnAttribute,
+                                       multiplier: 1,
+                                       constant: 300)
+        alertController.view.addConstraint(height)
+        alertController.view.addConstraint(width)
+        
+        _ = [id].publisher.assign(to: \.issueID, on: commentViewController)
+        commentViewController.completionHandler = { [weak self] in
+            self?.navigationController?.popViewController(animated: true)
+        }
+        
+        self.present(alertController, animated: true)
+    }
+    
+    func issueDetailViewShouldScrollUp() {
+        guard var minIndexPath = issueDetailCollectionView.indexPathsForVisibleItems.min() else {
+            return
+        }
+        if minIndexPath.item > 0 {
+            minIndexPath.item -= 1
+        }
+        issueDetailCollectionView.scrollToItem(at: minIndexPath, at: .top, animated: true)
+    }
+    
+    func issueDetailViewShouldScrollDown() {
+        guard var maxIndexPath = issueDetailCollectionView.indexPathsForVisibleItems.max() else {
+            return
+        }
+        if maxIndexPath.item < issueDetailCollectionView.numberOfItems(inSection: 0) {
+            maxIndexPath.item += 1
+        }
+        issueDetailCollectionView.scrollToItem(at: maxIndexPath, at: .bottom, animated: true)
+    }
+    
+    func issueDetailViewShouldCloseIssue() {
+        let networkService = NetworkService()
+        networkService.request(apiConfiguration: IssueListEndPoint.changeState(id, 0)) { [weak self] result in
+            switch result {
+            case .failure(let error):
+                debugPrint(error)
+                return
+            case .success(_: ):
+                DispatchQueue.main.async {
+                    self?.navigationController?.popViewController(animated: true)
+                }
+            }
         }
     }
 }
