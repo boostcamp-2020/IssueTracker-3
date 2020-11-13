@@ -5,24 +5,42 @@
 //  Created by ParkJaeHyun on 2020/11/03.
 //
 
-import Foundation
+import UIKit
 
 struct IssueListViewModel: Hashable {
+    let id: Int?
     let title: String
     let description: String
-    let milestone: String
-    let labels: [String]
+    let milestone: CustomButtonView
+    let labels: [CustomButtonView]
+    let isOpen: Bool
     let identifier = UUID()
 
-    init(title: String,
+    init(id: Int?,
+         title: String,
          description: String,
-         milestone: String,
-         labels: [String]
+         milestone: CustomButtonView,
+         labels: [CustomButtonView],
+         isOpen: Bool = false
          ) {
+        self.id = id
         self.title = title
         self.description = description
         self.milestone = milestone
         self.labels = labels
+        self.isOpen = isOpen
+    }
+    
+    init(issue: Issue) {
+        id = issue.id
+        title = issue.title
+        description = issue.body
+        isOpen = issue.state == 1 ? true : false
+        milestone = CustomButtonView(type: .milestone, text: issue.milestone?.first?.name ?? "", color: "#ffffff")
+        labels = issue.labels?
+            .compactMap { CustomButtonView(type: .label,
+                                           text: $0.description,
+                                           color: $0.color) } ?? [CustomButtonView()]
     }
 
     func hash(into hasher: inout Hasher) {

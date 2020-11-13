@@ -7,8 +7,8 @@
 
 import Foundation
 
-class IssueListModelController {
-    func filtered(with filter: String, model: [IssueListViewModel]) -> [IssueListViewModel] {
+final class IssueListModelController {
+    func filteredBasedOnTitle(with filter: String, model: [IssueListViewModel]) -> [IssueListViewModel] {
         let filtered = model.filter { $0.contains(filter) }
         return filtered
     }

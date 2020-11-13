@@ -16,25 +16,59 @@ class IssuesMock {
     }
 
     func generatedModel() {
-        issues.append(IssueListViewModel(title: "test1",
-                                         description: "설명",
-                                         milestone: "프로젝트1",
-                                         labels: ["label1, label2"]))
-        issues.append(IssueListViewModel(title: "test2",
-                                         description: "설명",
-                                         milestone: "프로젝트2",
-                                         labels: ["label1, label2"]))
-        issues.append(IssueListViewModel(title: "test3",
-                                         description: "설명",
-                                         milestone: "프로젝트3",
-                                         labels: ["label1, label2"]))
-        issues.append(IssueListViewModel(title: "ha",
-                                         description: "설명",
-                                         milestone: "프로젝트4",
-                                         labels: ["label1, label2"]))
-        issues.append(IssueListViewModel(title: "haha",
-                                         description: "설명",
-                                         milestone: "프로젝트5",
-                                         labels: ["label1, label2"]))
+        issues.append(IssueListViewModel(
+                        id: 1,
+                        title: "test",
+                        description: "설명",
+                        milestone: CustomButtonView(type: .milestone,
+                                                    text: "프로젝트",
+                                                    color: "#ffffff"),
+                        labels: [CustomButtonView(type: .label,
+                                                  text: "label",
+                                                  color: "#ffffff"),
+                                 CustomButtonView(type: .label,
+                                                  text: "labe",
+                                                  color: "#ffffff")]))
+        issues.append(IssueListViewModel(
+                        id: 1,
+                        title: "test1",
+                        description: "설명",
+                        milestone: CustomButtonView(type: .milestone,
+                                                    text: "프로젝트",
+                                                    color: "#ffffff"),
+                        labels: [CustomButtonView(type: .label,
+                                                  text: "label",
+                                                  color: "#ffffff"),
+                                 CustomButtonView(type: .label,
+                                                  text: "labe",
+                                                  color: "#ffffff")]))
+        issues.append(IssueListViewModel(
+                        id: 1,
+                        title: "test2",
+                        description: "설명",
+                        milestone: CustomButtonView(type: .milestone,
+                                                    text: "프로젝트",
+                                                    color: "#ffffff"),
+                        labels: [CustomButtonView(type: .label,
+                                                  text: "label",
+                                                  color: "#ffffff"),
+                                 CustomButtonView(type: .label,
+                                                  text: "labe",
+                                                  color: "#ffffff")]))
+        (1...10).forEach { number in
+            issues.append(IssueListViewModel(
+                            id: 1,
+                            title: "haha\(number)",
+                            description: "설명",
+                            milestone: CustomButtonView(type: .milestone,
+                                                        text: "프로젝트",
+                                                        color: "#ffffff"),
+                            labels: [CustomButtonView(type: .label,
+                                                      text: "label\(number)",
+                                                      color: "#ffffff"),
+                                     CustomButtonView(type: .label,
+                                                      text: "labe\(number)",
+                                                      color: "#ffffff")]))
+        }
     }
 }

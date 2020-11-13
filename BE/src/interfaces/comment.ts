@@ -1,8 +1,9 @@
+/* eslint-disable camelcase */
 export interface Comment {
-  id: number;
-  issueID: number;
-  userID: number;
+  id: number | null;
+  issue_id: number;
+  user_id: number;
   body: string;
-  emoji: string;
-  createdAt: Date;
+  emoji: string | null;
+  created_at: Date;
 }
