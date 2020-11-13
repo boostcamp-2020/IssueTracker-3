@@ -49,17 +49,17 @@ final class IssueDetailViewController: UIViewController, IssueDetailDisplayLogic
         return bottomSheetVisible ? .collapsed : .expanded
     }
     
-    private let id: Int!
+    private let id: Int
     private let firstComment: IssueListViewModel!
 
     init?(coder: NSCoder, id: Int?, firstComment: IssueListViewModel) {
-        self.id = id
+        self.id = id ?? 0
         self.firstComment = firstComment
         super.init(coder: coder)
     }
 
     required init?(coder: NSCoder) {
-        self.id = nil
+        self.id = 0
         self.firstComment = nil
         super.init(coder: coder)
     }

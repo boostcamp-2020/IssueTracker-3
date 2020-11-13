@@ -18,7 +18,7 @@ class CustomButtonView: UIButton {
     }
 
     override init(frame: CGRect) {
-        super.init(frame: frame)
+            super.init(frame: frame)
     }
 
     /// 라벨, 마일스톤 버튼 생성
