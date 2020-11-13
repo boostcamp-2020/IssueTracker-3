@@ -4,14 +4,14 @@ on:
   push:
     branches: [ ios_develop ]
   pull_request:
-    branches: [ ios_release ]
+    branches: [ ios_release, ios_develop ]
   
 jobs:
   build-and-UnitTest:
     runs-on: macos-latest
 
     env:
-      XC_VERSION: ${{ '12.1.0' }}
+      XC_VERSION: ${{ '12.1' }}
       XC_PROJECT: ${{ 'iOS/IssueTracker/IssueTracker.xcworkspace' }}
       XC_SCHEME: ${{ 'IssueTrackerTests' }}
     

@@ -3,19 +3,18 @@
 //  IssueTracker
 //
 //  Created by ParkJaeHyun on 2020/10/29.
-// test
+//  
 
 import UIKit
 import AuthenticationServices
 
-@IBDesignable
-class AppleSignInButton: UIView {
+// @IBDesignable
+final class AppleSignInButton: UIView {
     private var appleButton = ASAuthorizationAppleIDButton()
     var didCompletedSignIn: ((_ user: AppleUser) -> Void)?
 
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
         setUpView()
     }
 
@@ -87,14 +86,16 @@ class AppleSignInButton: UIView {
     }
 }
 
-// MARK: - Presentation Context Provider Delegate
+// MARK: Presentation Context Provider Delegate
+
 extension AppleSignInButton: ASAuthorizationControllerPresentationContextProviding {
     func presentationAnchor(for controller: ASAuthorizationController) -> ASPresentationAnchor {
         return self.window!
     }
 }
 
-// MARK: - ASAuthorizationController Delegate
+// MARK: ASAuthorizationController Delegate
+
 extension AppleSignInButton: ASAuthorizationControllerDelegate {
     func authorizationController(controller: ASAuthorizationController, didCompleteWithError error: Error) {
         let alertBox = UIAlertController.init(title: AppSignInStrings.appleSignInFailedTitle.localized,
@@ -110,19 +111,19 @@ extension AppleSignInButton: ASAuthorizationControllerDelegate {
                                  didCompleteWithAuthorization authorization: ASAuthorization) {
         switch authorization.credential {
         case let credentials as ASAuthorizationAppleIDCredential:
-//            guard let authorization = credentials.authorizationCode else { break }
-//            guard let jwt = credentials.identityToken  else { break }
-//
-//            let data = String(data: authorization, encoding: .utf8)
-//            let data2 = String(data: jwt, encoding: .utf8)
+            guard let authorization = credentials.authorizationCode else { break }
+            guard let jwt = credentials.identityToken  else { break }
+
+            let authorizationCode = String(data: authorization, encoding: .utf8)
+            let identityToken = String(data: jwt, encoding: .utf8)
 
             didCompletedSignIn?(AppleUser(credentials.user,
                                           credentials.fullName?.givenName,
                                           credentials.fullName?.familyName,
                                           credentials.email,
                                           nil,
-                                          credentials.authorizationCode,
-                                          credentials.identityToken))
+                                          authorizationCode,
+                                          identityToken))
         case let passwordCredential as ASPasswordCredential:
             didCompletedSignIn?(AppleUser(passwordCredential.user,
                                           nil,
@@ -134,7 +135,6 @@ extension AppleSignInButton: ASAuthorizationControllerDelegate {
         default:
             break
         }
-
     }
 }
 
@@ -144,31 +144,5 @@ private enum AppSignInStrings: String {
 
     var localized: String {
         return NSLocalizedString(self.rawValue, comment: "")
-    }
-}
-
-class AppleUser {
-    var id: String?
-    var firstName: String?
-    var lastName: String?
-    var email: String?
-    var password: String?
-    var authorizationCode: Data?
-    var identityToken: Data?
-
-    init(_ id: String?,
-         _ firstName: String?,
-         _ lastName: String?,
-         _ email: String?,
-         _ password: String?,
-         _ authorizationCode: Data?,
-         _ identityToken: Data?) {
-        self.id = id
-        self.firstName = firstName
-        self.lastName = lastName
-        self.email = email
-        self.password = password
-        self.authorizationCode = authorizationCode
-        self.identityToken = identityToken
     }
 }
