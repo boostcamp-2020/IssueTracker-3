@@ -32,7 +32,6 @@ final class CreateIssueInteractor: CreateIssueDataStore {
 }
 
 extension CreateIssueInteractor: CreateIssueBusinessLogic {
-
     func uploadIssue(title: String, comment: String, milestoneID: Int?) {
         createdIssue = createIssue(title: title, comment: comment, milestoneID: milestoneID)
         guard let data = createdIssue?.encoded() else {

@@ -13,8 +13,6 @@ protocol IssueListDataStore {
 
 protocol IssueListBusinessLogic {
     func fetchIssues()
-    func changeIssueState()
-    func filtered(with filter: String, model: [IssueListViewModel])
     func closeIssue(id: Int, state: Int, handler: @escaping () -> Void)
 }
 
@@ -25,10 +23,6 @@ final class IssueListInteractor: IssueListDataStore {
 }
 
 extension IssueListInteractor: IssueListBusinessLogic {
-    func changeIssueState() {
-
-    }
-
     func fetchIssues() {
         networkService.request(apiConfiguration: IssueListEndPoint.getIssues) { [weak self] result in
             guard let self = self else { return }
@@ -67,20 +61,5 @@ extension IssueListInteractor: IssueListBusinessLogic {
             guard let milestoneID = issue.milestoneID else { return }
             MilestoneCalculator.input(milestoneID: milestoneID, issueState: issue.state)
         }
-    }
-
-    func changeIssueStage() {
-
-    }
-
-    func filtered(with filter: String, model: [IssueListViewModel]) {
-        //let filtered = model.filter { $0.contains(filter) }
-        // return filtered
-    }
-
-    func add(model: IssueListViewModel, to issueList: [IssueListViewModel]) -> [IssueListViewModel] {
-        var issueListCopy = issueList
-        issueListCopy.append(model)
-        return issueListCopy
     }
 }

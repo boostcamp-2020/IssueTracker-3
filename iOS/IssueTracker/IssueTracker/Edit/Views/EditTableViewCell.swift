@@ -7,19 +7,21 @@
 
 import UIKit
 
-class EditTableViewCell: UITableViewCell {
+final class EditTableViewCell: UITableViewCell {
+    
+    @IBOutlet weak var button: UIButton!
+    @IBOutlet weak var stackView: UIStackView!
+    
     enum ButtonType {
         case seleted
         case list
     }
 
-    @IBOutlet weak var button: UIButton!
-    @IBOutlet weak var stackView: UIStackView!
     func configure(button: CustomButtonView) {
         stackView.addArrangedSubview(button)
     }
 
-    func chagneButtonImage(buttonType: ButtonType) {
+    func changeButtonImage(buttonType: ButtonType) {
         switch buttonType {
         case .seleted:
             button.setImage(UIImage(systemName: "plus.circle"), for: .normal)

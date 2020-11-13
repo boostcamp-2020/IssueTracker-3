@@ -7,6 +7,8 @@
 
 import Foundation
 
+typealias AllGetUserList = [AllGetUser]
+
 struct AllGetUser: Codable {
     let id: Int
     let loginID, password: String
@@ -20,5 +22,3 @@ struct AllGetUser: Codable {
         case createdAt = "created_at"
     }
 }
-
-typealias AllGetUserList = [AllGetUser]

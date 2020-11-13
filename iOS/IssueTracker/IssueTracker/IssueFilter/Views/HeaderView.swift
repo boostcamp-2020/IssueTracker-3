@@ -7,7 +7,7 @@
 
 import UIKit
 
-class HeaderView: UIView {
+final class HeaderView: UIView {
 
     init(label: UILabel) {
         super.init(frame: .zero)

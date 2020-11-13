@@ -18,8 +18,4 @@ final class IssueDetailPresenter: IssueDetailPresentationLogic {
         let viewModel = issues.map({ IssueDetailViewModel(commentList: $0) })
         viewController?.displayFetchedComments(viewModel: viewModel)
     }
-    
-    // change State
-    
-    // filter
 }

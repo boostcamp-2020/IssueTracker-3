@@ -7,20 +7,21 @@
 
 import Foundation
 
-protocol LabelBusinessLogic {
-    func fetchLabels()
-}
-
 protocol LabelDataStore {
     var labels: LabelList { get set }
 }
 
-class LabelInteractor: LabelBusinessLogic, LabelDataStore {
-    var labels = LabelList()
-    
+protocol LabelBusinessLogic {
+    func fetchLabels()
+}
+
+final class LabelInteractor: LabelDataStore {
     let networkService: NetworkServiceProvider = NetworkService()
     var presenter: LabelPresentationLogic?
+    var labels = LabelList()
+}
 
+extension LabelInteractor: LabelBusinessLogic {
     func fetchLabels() {
         networkService.request(apiConfiguration: LabelEndPoint.getLebels) { [weak self] result in
             guard let self = self else { return }

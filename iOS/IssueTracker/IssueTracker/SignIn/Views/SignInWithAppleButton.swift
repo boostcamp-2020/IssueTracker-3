@@ -9,13 +9,12 @@ import UIKit
 import AuthenticationServices
 
 // @IBDesignable
-class AppleSignInButton: UIView {
+final class AppleSignInButton: UIView {
     private var appleButton = ASAuthorizationAppleIDButton()
     var didCompletedSignIn: ((_ user: AppleUser) -> Void)?
 
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
         setUpView()
     }
 
@@ -145,31 +144,5 @@ private enum AppSignInStrings: String {
 
     var localized: String {
         return NSLocalizedString(self.rawValue, comment: "")
-    }
-}
-
-class AppleUser {
-    var id: String?
-    var firstName: String?
-    var lastName: String?
-    var email: String?
-    var password: String?
-    var authorizationCode: String?
-    var identityToken: String?
-
-    init(_ id: String?,
-         _ firstName: String?,
-         _ lastName: String?,
-         _ email: String?,
-         _ password: String?,
-         _ authorizationCode: String?,
-         _ identityToken: String?) {
-        self.id = id
-        self.firstName = firstName
-        self.lastName = lastName
-        self.email = email
-        self.password = password
-        self.authorizationCode = authorizationCode
-        self.identityToken = identityToken
     }
 }

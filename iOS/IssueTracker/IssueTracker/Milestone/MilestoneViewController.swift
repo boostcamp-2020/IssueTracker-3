@@ -59,7 +59,7 @@ final class MilestoneViewController: UIViewController {
     }
 }
 
-// MARK: - MilestoneDisplayLogic
+// MARK: MilestoneDisplayLogic
 
 extension MilestoneViewController: MilestoneDisplayLogic {
     func displayFetchedMilestones(viewModel: [MilestoneViewModel]) {
@@ -71,7 +71,7 @@ extension MilestoneViewController: MilestoneDisplayLogic {
     }
 }
 
-// MARK: - UICollectionView DataSource
+// MARK: UICollectionView DataSource
 
 extension MilestoneViewController {
     func configureDataSource() {
@@ -93,7 +93,8 @@ extension MilestoneViewController {
     }
 }
 
-// MARK: - UICollectionViewDelegate
+// MARK: UICollectionViewDelegate
+
 extension MilestoneViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard let item = dataSource.itemIdentifier(for: indexPath) else { return }
@@ -111,7 +112,7 @@ extension MilestoneViewController: UICollectionViewDelegate {
     }
 }
 
-// MARK: - UICollectionViewDelegateFlowLayout
+// MARK: UICollectionViewDelegateFlowLayout
 
 extension MilestoneViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView,

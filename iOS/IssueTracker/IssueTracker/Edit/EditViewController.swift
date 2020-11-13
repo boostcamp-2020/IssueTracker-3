@@ -11,10 +11,23 @@ protocol EditDisplayLogic: class {
     func displayFetchAll(viewModel: [IssueDetailEditViewModel])
 }
 
-class EditViewController: UIViewController, EditDisplayLogic {
+final class EditViewController: UIViewController {
+    
+    // MARK: Properties
+    
     @IBOutlet weak var editTableView: UITableView!
+    
+    private let id: Int?
+    private let editType: EditType?
+    private let labels: [CustomButtonView]?
+    private let milestone: CustomButtonView?
+    
     private var dataSource: EditDataSource!
     private var interactor: EditBusinessLogic!
+    private var displayedSelected = [IssueDetailEditViewModel]()
+    private var displayedList = [IssueDetailEditViewModel]()
+    
+    // MARK: Enum
 
     enum Section: Int, CaseIterable, CustomStringConvertible {
         case selected
@@ -27,6 +40,14 @@ class EditViewController: UIViewController, EditDisplayLogic {
             }
         }
     }
+    
+    enum EditType {
+        case assignee
+        case label
+        case milestone
+    }
+    
+    // MARK: Nested Class
 
     class EditDataSource: UITableViewDiffableDataSource<Section, IssueDetailEditViewModel> {
         override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
@@ -35,17 +56,8 @@ class EditViewController: UIViewController, EditDisplayLogic {
         }
     }
 
-    enum EditType {
-        case assignee
-        case label
-        case milestone
-    }
-
-    private let id: Int?
-    private let editType: EditType?
-    private let labels: [CustomButtonView]?
-    private let milestone: CustomButtonView?
-
+    // MARK: View Cycle
+    
     init?(coder: NSCoder,
           id: Int?,
           editType: EditType,
@@ -86,6 +98,8 @@ class EditViewController: UIViewController, EditDisplayLogic {
             break
         }
     }
+    
+    // MARK: Setup
 
     private func setup() {
         let interactor = EditInteractor()
@@ -95,13 +109,7 @@ class EditViewController: UIViewController, EditDisplayLogic {
         presenter.viewController = self
     }
 
-    private var displayedSelected = [IssueDetailEditViewModel]()
-    private var displayedList = [IssueDetailEditViewModel]()
-
-    func displayFetchAll(viewModel: [IssueDetailEditViewModel]) {
-        displayedList = viewModel
-        performQuery()
-    }
+    // MARK: Configure
 
     func configureDataSource() {
         dataSource = EditDataSource(
@@ -126,13 +134,11 @@ class EditViewController: UIViewController, EditDisplayLogic {
                     if let milestone = item.milestone {
                         cell.configure(button: milestone)
                     }
-
                 }
-
                 return cell
             })
     }
-
+    
     func performQuery() {
         var snapshot = NSDiffableDataSourceSnapshot<Section, IssueDetailEditViewModel>()
         snapshot.appendSections([.selected])
@@ -142,6 +148,8 @@ class EditViewController: UIViewController, EditDisplayLogic {
         snapshot.appendItems(displayedList)
         dataSource.apply(snapshot, animatingDifferences: true)
     }
+    
+    // MARK: Actions
     
     @IBAction func cancelTouched(_ sender: Any) {
         dismiss(animated: true)
@@ -161,11 +169,21 @@ class EditViewController: UIViewController, EditDisplayLogic {
     }
 }
 
+// MARK: EditDisplayLogic
+
+extension EditViewController: EditDisplayLogic {
+    func displayFetchAll(viewModel: [IssueDetailEditViewModel]) {
+        displayedList = viewModel
+        performQuery()
+    }
+}
+
+// MARK: UITableViewDelegate
+
 extension EditViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let editType = editType else { return }
 
-        // TODO: logic 생각
         guard !(indexPath.section == 1 && editType == .milestone && !displayedSelected.isEmpty) else {
             tableView.shake()
             return
@@ -175,17 +193,16 @@ extension EditViewController: UITableViewDelegate {
               let cell = tableView.cellForRow(at: indexPath) as? EditTableViewCell else { return }
 
         if indexPath.section == 0 {
-            cell.chagneButtonImage(buttonType: .seleted)
+            cell.changeButtonImage(buttonType: .seleted)
             displayedList.append(selectedItem)
             guard let index = displayedSelected.firstIndex(of: selectedItem) else { return }
             displayedSelected.remove(at: index)
         } else {
-            cell.chagneButtonImage(buttonType: .list)
+            cell.changeButtonImage(buttonType: .list)
             displayedSelected.append(selectedItem)
             guard let index = displayedList.firstIndex(of: selectedItem) else { return }
             displayedList.remove(at: index)
         }
-
         performQuery()
     }
 }

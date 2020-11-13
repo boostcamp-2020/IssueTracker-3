@@ -27,6 +27,7 @@ final class IssueListViewController: UIViewController {
     private var selectAllFlag = true
 
     var dataSource: UICollectionViewDiffableDataSource<Section, IssueListViewModel>!
+    var displayedIssue = [IssueListViewModel]()
     var interactor: IssueListBusinessLogic!
     
     // MARK: Enums
@@ -34,13 +35,13 @@ final class IssueListViewController: UIViewController {
     enum Section: CaseIterable {
         case main
     }
+
+    // MARK: View Cycle
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
         setup()
     }
-
-    // MARK: View Cycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -58,8 +59,6 @@ final class IssueListViewController: UIViewController {
         interactor.fetchIssues()
         toggleIndicatorView(state: true)
     }
-
-    var displayedIssue = [IssueListViewModel]()
 
     // MARK: Setup
     
@@ -118,8 +117,7 @@ final class IssueListViewController: UIViewController {
         if #available(iOS 14.0, *) {
             var layoutConfig = UICollectionLayoutListConfiguration(appearance: .plain)
             layoutConfig.trailingSwipeActionsConfigurationProvider = { [weak self] indexPath in
-                guard let item = self?.dataSource.itemIdentifier(for: indexPath),
-                      let id = item.id
+                guard let item = self?.dataSource.itemIdentifier(for: indexPath)
                 else {
                     return nil
                 }
@@ -134,7 +132,6 @@ final class IssueListViewController: UIViewController {
                         }
                     })
                     completion(true)
-                    // TODO: 배치?
                 }
                 close.backgroundColor = .systemRed
                 return UISwipeActionsConfiguration(actions: [close])

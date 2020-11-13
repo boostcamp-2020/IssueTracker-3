@@ -39,6 +39,7 @@ extension EditInteractor: EditBusinessLogic {
             }
         }
     }
+    
     func fetchAllGetLabel() {
         networkService.request(apiConfiguration: LabelEndPoint.getLebels) { result in
             switch result {
@@ -54,6 +55,7 @@ extension EditInteractor: EditBusinessLogic {
             }
         }
     }
+    
     func fetchAllGetMilestone() {
         networkService.request(apiConfiguration: MilestoneEndPoint.getMilestones) { result in
             switch result {

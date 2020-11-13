@@ -9,22 +9,6 @@ import UIKit
 import Combine
 import MarkdownView
 
-// Must
-// TODO: image link
-// TODO: upload logic (데이터 저장 + upload)
-// TODO: 밑에 3개 patch logic
-// TODO: 밑에 3개 view / vc 구현
-// TODO: VIP 구성
-// TODO: upload 후 alert or toast
-
-// TODO: 이미지 링크
-// TODO: 링크 터치 구현
-
-// Details
-// TODO: 글 없어지면 placeholder 다시 뜨게 수정
-// TODO: UIMenuController 손 보기
-// TODO: refactoring -> 코드 최적화
-
 final class CreateIssueViewController: UIViewController {
     
     // MARK: Properties
@@ -35,24 +19,23 @@ final class CreateIssueViewController: UIViewController {
     @IBOutlet private weak var separatorView: UIView!
     @IBOutlet private weak var commentTextViewBottomConstraint: NSLayoutConstraint!
     
-    private var interactor: CreateIssueBusinessLogic!
-    private var markdownPreview: MarkdownView?
-    private var keyboardShowObserver: AnyCancellable?
-    private var keyboardHideObserver: AnyCancellable?
-
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var assigneeStackView: UIStackView!
     @IBOutlet weak var labelStackView: UIStackView!
     @IBOutlet weak var milestoneStackView: UIStackView!
     
+    private var interactor: CreateIssueBusinessLogic!
+    private var markdownPreview: MarkdownView?
+    private var keyboardShowObserver: AnyCancellable?
+    private var keyboardHideObserver: AnyCancellable?
+    private var publisher: AnyCancellable!
+
     var isEdit: Bool = false
     var issueNumber: Int?
     var titleText: String?
     var body: String?
     var labels: [CustomButtonView]?
     var milestone: CustomButtonView?
-
-    private var publisher: AnyCancellable!
 
     // MARK: View Cycle
     

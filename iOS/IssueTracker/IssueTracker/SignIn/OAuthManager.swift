@@ -8,6 +8,10 @@
 import Foundation
 import AuthenticationServices
 
+struct CallBackUrl: Codable {
+    let url: String
+}
+
 final class OAuthManager {
     private let provider: ASWebAuthenticationPresentationContextProviding
     private let callbackScheme: String
@@ -51,8 +55,4 @@ final class OAuthManager {
         session?.prefersEphemeralWebBrowserSession = true
         session?.start()
     }
-}
-
-struct CallBackUrl: Codable {
-    let url: String
 }

@@ -8,7 +8,9 @@
 import UIKit
 import Combine
 
-class SignUpViewController: UIViewController {
+final class SignUpViewController: UIViewController {
+    
+    // MARK: Properties
     
     @IBOutlet private weak var idTextField: UITextField!
     @IBOutlet private weak var pwTextField: UITextField!
@@ -19,16 +21,15 @@ class SignUpViewController: UIViewController {
     private var keyboardHideObserver: AnyCancellable?
     private var currentTextField: UITextField?
     
+    // MARK: View Cycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         hideKeyboardWhenTappedAround()
         configureObservers()
     }
     
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        super.touchesBegan(touches, with: event)
-        view.endEditing(true)
-    }
+    // MARK: Configure
     
     private func configureObservers() {
         keyboardShowObserver = NotificationCenter.default
@@ -38,6 +39,31 @@ class SignUpViewController: UIViewController {
         keyboardHideObserver = NotificationCenter.default
             .publisher(for: UIResponder.keyboardWillHideNotification)
             .sink { [weak self] _ in self?.keyboardWillHide() }
+    }
+    
+    // MARK: Actions
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesBegan(touches, with: event)
+        view.endEditing(true)
+    }
+    
+    @IBAction func signUpButtonTouched(_ sender: Any) {
+        let networkService = NetworkService()
+        let user = User(userID: idTextField.text, password: pwTextField.text)
+        
+        guard let encodedData = try? JSONEncoder().encode(user) else { return }
+        
+        networkService.request(apiConfiguration: SignInEndPoint.signUp(encodedData)) { result in
+            switch result {
+            case .failure(let error):
+                debugPrint(error)
+            case .success(_:):
+                DispatchQueue.main.async { [weak self] in
+                    self?.navigationController?.popViewController(animated: true)
+                }
+            }
+        }
     }
     
     private func keyboardWillShow(_ notification: Notification) {
@@ -58,24 +84,6 @@ class SignUpViewController: UIViewController {
     private func keyboardWillHide() {
         UIView.animate(withDuration: 0.25) { [weak self] in
             self?.view.transform = .identity
-        }
-    }
-    
-    @IBAction func signUpButtonTouched(_ sender: Any) {
-        let networkService = NetworkService()
-        let user = User(userID: idTextField.text, password: pwTextField.text)
-        
-        guard let encodedData = try? JSONEncoder().encode(user) else { return }
-        
-        networkService.request(apiConfiguration: SignInEndPoint.signUp(encodedData)) { result in
-            switch result {
-            case .failure(let error):
-                debugPrint(error)
-            case .success(_:):
-                DispatchQueue.main.async { [weak self] in
-                    self?.navigationController?.popViewController(animated: true)
-                }
-            }
         }
     }
 }

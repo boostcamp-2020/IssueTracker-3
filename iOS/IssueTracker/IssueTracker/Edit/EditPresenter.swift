@@ -11,7 +11,6 @@ protocol EditPresentationLogic {
     func presentFetchAllGetUser(issues: AllGetUserList)
     func presentFetchAllGetLabel(issues: LabelList)
     func presentFetchAllGetMilestone(issues: MilestoneList)
-
 }
 
 final class EditPresenter: EditPresentationLogic {
@@ -44,7 +43,6 @@ final class EditPresenter: EditPresentationLogic {
                                                               milestone: nil,
                                                               assignee: nil) })
         viewController?.displayFetchAll(viewModel: viewModel)
-
     }
 
     func presentFetchAllGetMilestone(issues: MilestoneList) {

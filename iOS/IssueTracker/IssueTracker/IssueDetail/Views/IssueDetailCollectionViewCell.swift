@@ -9,6 +9,7 @@ import UIKit
 import SwiftyMarkdown
 
 class IssueDetailCollectionViewCell: UICollectionViewCell {
+    
     @IBOutlet weak var authorLabel: UILabel!
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!

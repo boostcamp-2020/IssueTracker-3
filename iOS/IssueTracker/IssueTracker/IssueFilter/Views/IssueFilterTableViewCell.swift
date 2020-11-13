@@ -24,10 +24,9 @@ enum ChevronDirection {
     }
 }
 
-class IssueFilterTableViewCell: UITableViewCell {
+final class IssueFilterTableViewCell: UITableViewCell {
 
     @IBOutlet weak var titleLabel: UILabel!
-
     @IBOutlet weak var down: UIButton!
     @IBOutlet weak var check: UIButton!
     @IBOutlet weak var right: UIButton!
@@ -50,7 +49,6 @@ class IssueFilterTableViewCell: UITableViewCell {
         if state.isSelected {
             back.backgroundColor = .systemYellow
         }
-
         self.backgroundConfiguration = back
     }
 

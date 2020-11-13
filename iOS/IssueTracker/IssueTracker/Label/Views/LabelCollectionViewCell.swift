@@ -8,6 +8,7 @@
 import UIKit
 
 class LabelCollectionViewCell: UICollectionViewListCell {
+    
     @IBOutlet weak var labelStackView: UIStackView!
     @IBOutlet weak var descriptionLabel: UILabel!
 

@@ -7,7 +7,10 @@
 
 import UIKit
 
-class IssueFilterViewController: UIViewController {
+final class IssueFilterViewController: UIViewController {
+    
+    // MARK: Properties
+    
     @IBOutlet weak var issueFilterTableView: UITableView!
 
     var dataSource: DataSource!
@@ -19,6 +22,8 @@ class IssueFilterViewController: UIViewController {
     private lazy var issueBottomFilter: [IssueFilterViewModel] = {
         return generateBottomFilters()
     }()
+    
+    // MARK: Enum
 
     enum Section: Int, Hashable, CaseIterable, CustomStringConvertible {
         case condition, detailedCondition
@@ -30,6 +35,8 @@ class IssueFilterViewController: UIViewController {
             }
         }
     }
+    
+    // MARK: Nested Class
 
     class DataSource: UITableViewDiffableDataSource<Section, IssueFilterViewModel> {
         override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
@@ -37,6 +44,8 @@ class IssueFilterViewController: UIViewController {
             return sectionKind?.description
         }
     }
+    
+    // MARK: View Cycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,6 +55,8 @@ class IssueFilterViewController: UIViewController {
         configureDataSource()
         performQuery()
     }
+    
+    // MARK: Actions
 
     @IBAction func cancelButtonTouched(_ sender: UIBarButtonItem) {
         self.dismiss(animated: true, completion: nil)
@@ -61,6 +72,8 @@ class IssueFilterViewController: UIViewController {
     }
 }
 
+// MARK: TableView
+
 extension IssueFilterViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let selectedItem = dataSource.itemIdentifier(for: indexPath),
@@ -69,13 +82,11 @@ extension IssueFilterViewController: UITableViewDelegate {
 
         if selectedItem.childItem.count > 0 {
             selectedItem.isChevron = true
-
             issueBottomFilter.insert(contentsOf: selectedItem.childItem, at: indexPath.row + 1)
             performQuery()
         } else {
             selectedItem.isChevron = false
         }
-
         cell.configure(withViewModel: selectedItem)
     }
 
@@ -86,17 +97,17 @@ extension IssueFilterViewController: UITableViewDelegate {
 
         if selectedItem.childItem.count > 0 {
             selectedItem.isChevron = false
-
             let range = indexPath.row + 1...indexPath.row + selectedItem.childItem.count
             issueBottomFilter.removeSubrange(range)
             performQuery()
         } else {
             selectedItem.isChevron = true
         }
-
         cell.configure(withViewModel: selectedItem)
     }
 }
+
+// MARK: CollectionView DataSource
 
 extension IssueFilterViewController {
     func configureDataSource() {
@@ -122,6 +133,8 @@ extension IssueFilterViewController {
         dataSource.apply(snapshot, animatingDifferences: true)
     }
 }
+
+// MARK: generate filters
 
 private func generateTopFilters() -> [IssueFilterViewModel] {
     var filters = [IssueFilterViewModel]()

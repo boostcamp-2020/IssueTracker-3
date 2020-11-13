@@ -11,17 +11,23 @@ protocol LabelDisplayLogic: class {
     func displayFetchedLabels(viewModel: [LabelViewModel])
 }
 
-class LabelViewController: UIViewController, LabelDisplayLogic {
+final class LabelViewController: UIViewController {
 
+    // MARK: Properties
+    
     @IBOutlet weak var labelCollectionView: UICollectionView!
     
     private var dataSource: UICollectionViewDiffableDataSource<Section, LabelViewModel>!
-
     private var interactor: LabelBusinessLogic!
+    private var displayedLabel = [LabelViewModel]()
 
+    // MARK: Enums
+    
     enum Section {
         case main
     }
+    
+    // MARK: View Cycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,8 +39,9 @@ class LabelViewController: UIViewController, LabelDisplayLogic {
         super.viewWillAppear(animated)
         interactor.fetchLabels()
     }
-
+    
     // MARK: Setup
+    
     private func setup() {
         let viewController = self
         let interactor = LabelInteractor()
@@ -44,8 +51,18 @@ class LabelViewController: UIViewController, LabelDisplayLogic {
         presenter.viewController = viewController
     }
 
-    private var displayedLabel = [LabelViewModel]()
+    // MARK: Actions
 
+    @IBAction func makeLabelButtonTouched(_ sender: Any) {
+        showAlert(type: .color) {
+            self.interactor.fetchLabels()
+        }
+    }
+}
+
+// MARK: LabelDisplayLogic
+
+extension LabelViewController: LabelDisplayLogic {
     func displayFetchedLabels(viewModel: [LabelViewModel]) {
         displayedLabel = viewModel
         var snapshot = NSDiffableDataSourceSnapshot<Section, LabelViewModel>()
@@ -53,14 +70,9 @@ class LabelViewController: UIViewController, LabelDisplayLogic {
         snapshot.appendItems(displayedLabel)
         dataSource.apply(snapshot, animatingDifferences: false)
     }
-
-    @IBAction func makeLabelButtonTouched(_ sender: Any) {
-        showAlert(type: .color) {
-            self.interactor.fetchLabels()
-        }
-    }
-
 }
+
+// MARK: UICollectionView DataSource
 
 extension LabelViewController {
     func configureDataSource() {
@@ -82,6 +94,8 @@ extension LabelViewController {
     }
 }
 
+// MARK: UICollectionViewDelegate
+
 extension LabelViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard let item = dataSource.itemIdentifier(for: indexPath) else { return }
@@ -99,6 +113,8 @@ extension LabelViewController: UICollectionViewDelegate {
         }
     }
 }
+
+// MARK: UICollectionViewDelegateFlowLayout
 
 extension LabelViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView,

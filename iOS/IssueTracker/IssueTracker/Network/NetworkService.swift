@@ -11,7 +11,7 @@ protocol NetworkServiceProvider {
     func request(apiConfiguration: APIConfiguration, handler: @escaping (Result<Data, NetworkError>) -> Void)
 }
 
-class NetworkService: NetworkServiceProvider {
+final class NetworkService: NetworkServiceProvider {
     @KeyChain(key: "token") static var token: String
     private let session: URLSession
     

@@ -7,28 +7,7 @@
 
 import Foundation
 
-class IssueListModelController {
-
-    func filteredBasedOnILeftCommentOn() {
-
-    }
-
-    func filteredBasedOnAssignedToMe() {
-
-    }
-
-    func filteredBasedOnCreatedByMe() {
-
-    }
-
-    func filteredBasedOnClose() {
-
-    }
-
-    func filteredBasedOnOpen() {
-
-    }
-
+final class IssueListModelController {
     func filteredBasedOnTitle(with filter: String, model: [IssueListViewModel]) -> [IssueListViewModel] {
         let filtered = model.filter { $0.contains(filter) }
         return filtered

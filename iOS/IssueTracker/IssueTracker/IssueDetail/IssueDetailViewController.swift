@@ -19,7 +19,7 @@ protocol IssueDetailBottomSheetDelegate: class {
     func issueDetailViewShouldCloseIssue()
 }
 
-final class IssueDetailViewController: UIViewController, IssueDetailDisplayLogic {
+final class IssueDetailViewController: UIViewController {
     static let identifier = "IssueDetailViewController"
     
     // MARK: Properties
@@ -27,6 +27,10 @@ final class IssueDetailViewController: UIViewController, IssueDetailDisplayLogic
     @IBOutlet weak var issueDetailCollectionView: UICollectionView!
     
     private var interactor: IssueDetailBusinessLogic!
+    private var dataSource: UICollectionViewDiffableDataSource<Section, IssueDetailViewModel>!
+    private var displayedComments = [IssueDetailViewModel]()
+    private var publisher: AnyCancellable!
+    
     private weak var issueDetailBottomSheet: IssueDetailBottomSheetViewController!
     private var visualEffectView: UIVisualEffectView!
     private var runningAnimations = [UIViewPropertyAnimator]()
@@ -34,34 +38,18 @@ final class IssueDetailViewController: UIViewController, IssueDetailDisplayLogic
     private var bottomSheetVisible = false
     private var bottomSheetHeight: CGFloat = .zero
     private let bottomSheetHandleAreaHeight: CGFloat = 100
-
-    private var publisher: AnyCancellable!
-
-    // MARK: Enums
-
-    enum Section: Hashable {
-        case main
-    }
-
-    private var dataSource: UICollectionViewDiffableDataSource<Section, IssueDetailViewModel>!
-
+    
+    private let id: Int
+    private let firstComment: IssueListViewModel!
+    
     var nextState: BottomSheetState {
         return bottomSheetVisible ? .collapsed : .expanded
     }
     
-    private let id: Int
-    private let firstComment: IssueListViewModel!
+    // MARK: Enums
 
-    init?(coder: NSCoder, id: Int?, firstComment: IssueListViewModel) {
-        self.id = id ?? 0
-        self.firstComment = firstComment
-        super.init(coder: coder)
-    }
-
-    required init?(coder: NSCoder) {
-        self.id = 0
-        self.firstComment = nil
-        super.init(coder: coder)
+    enum Section: Hashable {
+        case main
     }
 
     // MARK: View Cycle
@@ -85,16 +73,20 @@ final class IssueDetailViewController: UIViewController, IssueDetailDisplayLogic
         super.viewDidDisappear(animated)
         tabBarController?.tabBar.isHidden = false
     }
-
-    private func configureNotification() {
-        publisher = NotificationCenter.default
-            .publisher(for: Notification.Name(rawValue: "createIssueClosed"))
-            .sink { [weak self] _ in
-//                guard let id = issueNubmer.userInfo?["issueNumber"] as? Int else { return }
-//                self?.interactor.fetchComments(id: id)
-                self?.navigationController?.popViewController(animated: true)
-            }
+    
+    init?(coder: NSCoder, id: Int?, firstComment: IssueListViewModel) {
+        self.id = id ?? 0
+        self.firstComment = firstComment
+        super.init(coder: coder)
     }
+
+    required init?(coder: NSCoder) {
+        self.id = 0
+        self.firstComment = nil
+        super.init(coder: coder)
+    }
+    
+    // MARK: Setup
     
     private func setup() {
         let interactor = IssueDetailInteractor()
@@ -105,15 +97,15 @@ final class IssueDetailViewController: UIViewController, IssueDetailDisplayLogic
         
         _ = [id].publisher.assign(to: \.issueID, on: issueDetailBottomSheet)
     }
+    
+    // MARK: Configure
 
-    private var displayedComments = [IssueDetailViewModel]()
-
-    func displayFetchedComments(viewModel: [IssueDetailViewModel]) {
-        displayedComments = viewModel
-        var snapshot = NSDiffableDataSourceSnapshot<Section, IssueDetailViewModel>()
-        snapshot.appendSections([.main])
-        snapshot.appendItems(displayedComments)
-        dataSource.apply(snapshot, animatingDifferences: false)
+    private func configureNotification() {
+        publisher = NotificationCenter.default
+            .publisher(for: Notification.Name(rawValue: "createIssueClosed"))
+            .sink { [weak self] _ in
+                self?.navigationController?.popViewController(animated: true)
+            }
     }
     
     private func configureNavigationItem() {
@@ -123,6 +115,8 @@ final class IssueDetailViewController: UIViewController, IssueDetailDisplayLogic
                                              action: #selector(editButtonTouched))
         navigationItem.rightBarButtonItem = editButtonItem
     }
+    
+    // MARK: Actions
     
     @objc func editButtonTouched() {
         let storyBoard = UIStoryboard(name: "IssueList", bundle: nil)
@@ -140,6 +134,18 @@ final class IssueDetailViewController: UIViewController, IssueDetailDisplayLogic
     }
 }
 
+// MARK: IssueDetailDisplayLogic
+
+extension IssueDetailViewController: IssueDetailDisplayLogic {
+    func displayFetchedComments(viewModel: [IssueDetailViewModel]) {
+        displayedComments = viewModel
+        var snapshot = NSDiffableDataSourceSnapshot<Section, IssueDetailViewModel>()
+        snapshot.appendSections([.main])
+        snapshot.appendItems(displayedComments)
+        dataSource.apply(snapshot, animatingDifferences: false)
+    }
+}
+
 // MARK: UICollectionView DataSource
 
 extension IssueDetailViewController {
@@ -153,8 +159,6 @@ extension IssueDetailViewController {
                     return UICollectionViewCell()
                 }
                 cell.configure(of: item)
-                // let img =
-                // "https://user-images.githubusercontent.com/5876149/97951341-39d26600-1ddd-11eb-94e7-9102b90bda8b.jpg"
                 self.interactor.loadAuthorImage(imageURL: item.img) { data in
                     DispatchQueue.main.async {
                         cell.profileImage.image = UIImage(data: data)
@@ -181,11 +185,15 @@ extension IssueDetailViewController {
     }
 }
 
+// MARK: IssueDetailBottomSheetDelegate
+
 extension IssueDetailViewController: IssueDetailBottomSheetDelegate {
     enum BottomSheetState {
         case expanded
         case collapsed
     }
+    
+    // MARK: Configure
 
     private func configureBottomSheet() {
         bottomSheetHeight = (view.frame.height * 2) / 3
@@ -214,6 +222,8 @@ extension IssueDetailViewController: IssueDetailBottomSheetDelegate {
         
         issueDetailBottomSheet.view.addGestureRecognizer(panGestureRecognizer)
     }
+    
+    // MARK: Animation
     
     private func animateTransitionIfNeeded(state: BottomSheetState, duration: TimeInterval) {
         if runningAnimations.isEmpty {
@@ -284,6 +294,8 @@ extension IssueDetailViewController: IssueDetailBottomSheetDelegate {
             animator.continueAnimation(withTimingParameters: nil, durationFactor: 0)
         }
     }
+    
+    // MARK: Actions
     
     @objc func bottomSheetTapped(recognzier: UITapGestureRecognizer) {
         switch recognzier.state {

@@ -13,6 +13,7 @@ final class IssueCommentViewController: UIViewController {
     
     private let networkService = NetworkService()
     private var addComment: AddComment?
+    
     var issueID: Int?
     var completionHandler: (() -> Void)?
 
