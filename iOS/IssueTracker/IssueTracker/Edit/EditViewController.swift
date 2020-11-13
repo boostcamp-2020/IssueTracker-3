@@ -47,7 +47,7 @@ class EditViewController: UIViewController, EditDisplayLogic {
     private let milestone: CustomButtonView?
 
     init?(coder: NSCoder,
-          id: Int?,
+          id: Int,
           editType: EditType,
           labels: [CustomButtonView]?,
           milestone: CustomButtonView?) {
