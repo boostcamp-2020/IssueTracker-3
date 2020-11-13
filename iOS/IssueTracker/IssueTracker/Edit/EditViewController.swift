@@ -203,6 +203,7 @@ extension EditViewController: UITableViewDelegate {
             guard let index = displayedList.firstIndex(of: selectedItem) else { return }
             displayedList.remove(at: index)
         }
+
         performQuery()
     }
 }

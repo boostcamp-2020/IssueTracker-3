@@ -39,7 +39,7 @@ extension CreateIssueInteractor: CreateIssueBusinessLogic {
             debugPrint("uploadIssue encoding error")
             return
         }
-        networkService.request(apiConfiguration: CreateIssueEndPoint.upload(data)) { [weak self] result in
+        networkService.request(apiConfiguration: CreateIssueEndPoint.upload(data)) { result in
             switch result {
             case .failure(let error):
                 debugPrint(error)
