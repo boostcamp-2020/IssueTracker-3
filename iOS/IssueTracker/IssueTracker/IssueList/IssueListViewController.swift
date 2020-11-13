@@ -217,10 +217,10 @@ extension IssueListViewController: IssueListDisplayLogic {
 
 extension IssueListViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        displayedIssue = issueListModelController
+        let filteredData = issueListModelController
             .filteredBasedOnTitle(with: searchText,
                                   model: displayedIssue).sorted { $0.title > $1.title }
-        performApply()
+        performApply(filtered: filteredData)
         self.searchText = searchText
     }
 
@@ -233,7 +233,14 @@ extension IssueListViewController: UISearchBarDelegate {
     func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
         self.navigationItem.searchController?.searchBar.text = searchText
     }
-    
+
+    func performApply(filtered: [IssueListViewModel]) {
+        var snapshot = NSDiffableDataSourceSnapshot<Section, IssueListViewModel>()
+        snapshot.appendSections([.main])
+        snapshot.appendItems(filtered)
+        dataSource.apply(snapshot, animatingDifferences: false)
+    }
+
     func performApply() {
         var snapshot = NSDiffableDataSourceSnapshot<Section, IssueListViewModel>()
         snapshot.appendSections([.main])
