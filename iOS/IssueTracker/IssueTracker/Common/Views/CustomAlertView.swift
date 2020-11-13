@@ -160,7 +160,7 @@ class CustomAlertView: UIViewController {
         case .date:
             let encodedData = AddMilestone(id: id, name: nil, description: nil, dueDate: nil).encoded()
             endpoint = MilestoneEndPoint.deleteMilestone(encodedData)
-        case .none:
+        case .none: 
             break
         }
 

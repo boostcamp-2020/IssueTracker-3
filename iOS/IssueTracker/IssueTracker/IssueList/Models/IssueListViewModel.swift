@@ -8,7 +8,7 @@
 import UIKit
 
 struct IssueListViewModel: Hashable {
-    let id: Int
+    let id: Int?
     let title: String
     let description: String
     let milestone: CustomButtonView
@@ -16,7 +16,7 @@ struct IssueListViewModel: Hashable {
     let isOpen: Bool
     let identifier = UUID()
 
-    init(id: Int,
+    init(id: Int?,
          title: String,
          description: String,
          milestone: CustomButtonView,

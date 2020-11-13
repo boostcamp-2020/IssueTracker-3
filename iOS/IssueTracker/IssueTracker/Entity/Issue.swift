@@ -10,7 +10,7 @@ import Foundation
 typealias IssueList = [Issue]
 
 struct Issue: Codable {
-    let id: Int
+    let id: Int?
     let title: String
     let body: String
     let userID: Int
@@ -23,7 +23,7 @@ struct Issue: Codable {
     let milestone: MilestoneList?
     let comment: IssueComment?
     
-    init(id: Int = 0,
+    init(id: Int?,
          title: String,
          body: String,
          userID: Int = 1,
