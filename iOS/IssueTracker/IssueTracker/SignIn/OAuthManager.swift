@@ -46,9 +46,7 @@ final class OAuthManager {
                     handler(jwt)
                 }
             }
-
         }
-
         session?.presentationContextProvider = provider
         session?.prefersEphemeralWebBrowserSession = true
         session?.start()

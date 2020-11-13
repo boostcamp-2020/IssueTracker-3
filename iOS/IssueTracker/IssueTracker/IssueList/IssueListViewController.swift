@@ -118,14 +118,16 @@ final class IssueListViewController: UIViewController {
         if #available(iOS 14.0, *) {
             var layoutConfig = UICollectionLayoutListConfiguration(appearance: .plain)
             layoutConfig.trailingSwipeActionsConfigurationProvider = { [weak self] indexPath in
-                guard let item = self?.dataSource.itemIdentifier(for: indexPath) else {
+                guard let item = self?.dataSource.itemIdentifier(for: indexPath),
+                      let id = item.id
+                else {
                     return nil
                 }
                 
                 let close = UIContextualAction(style: .destructive,
                                                 title: "Close") { [weak self] _, _, completion in
                     self?.toggleIndicatorView(state: true)
-                    self?.interactor.closeIssue(id: item.id, state: 0, handler: {
+                    self?.interactor.closeIssue(id: id, state: 0, handler: {
                         DispatchQueue.main.async { [weak self] in
                             self?.toggleIndicatorView(state: false)
                         }
@@ -172,7 +174,8 @@ final class IssueListViewController: UIViewController {
         }
         selectedItems.forEach({
             toggleIndicatorView(state: true)
-            interactor.closeIssue(id: $0.id, state: 0) { [weak self] in
+            guard let id = $0.id else { return }
+            interactor.closeIssue(id: id, state: 0) { [weak self] in
                 DispatchQueue.main.async { [weak self] in
                     self?.toggleIndicatorView(state: false)
                 }

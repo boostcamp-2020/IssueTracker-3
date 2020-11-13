@@ -52,7 +52,7 @@ final class IssueDetailViewController: UIViewController, IssueDetailDisplayLogic
     private let id: Int!
     private let firstComment: IssueListViewModel!
 
-    init?(coder: NSCoder, id: Int, firstComment: IssueListViewModel) {
+    init?(coder: NSCoder, id: Int?, firstComment: IssueListViewModel) {
         self.id = id
         self.firstComment = firstComment
         super.init(coder: coder)
