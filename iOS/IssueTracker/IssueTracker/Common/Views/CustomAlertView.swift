@@ -190,7 +190,7 @@ class CustomAlertView: UIViewController {
   
     @IBAction func randomColorButtonTouched(_ sender: Any) {
         let randomColor = UIColor().random()
-        colorBackgroundView.backgroundColor = UIColor().random()
+        colorBackgroundView.backgroundColor = randomColor
         colorLabel.text = randomColor.hexString
     }
 

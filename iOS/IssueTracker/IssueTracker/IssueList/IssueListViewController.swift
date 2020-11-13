@@ -124,8 +124,9 @@ final class IssueListViewController: UIViewController {
                 
                 let close = UIContextualAction(style: .destructive,
                                                 title: "Close") { [weak self] _, _, completion in
+                    guard let id = item.id else { return }
                     self?.toggleIndicatorView(state: true)
-                    self?.interactor.closeIssue(id: item.id, state: 0, handler: {
+                    self?.interactor.closeIssue(id: id, state: 0, handler: {
                         DispatchQueue.main.async { [weak self] in
                             self?.toggleIndicatorView(state: false)
                         }
@@ -172,7 +173,8 @@ final class IssueListViewController: UIViewController {
         }
         selectedItems.forEach({
             toggleIndicatorView(state: true)
-            interactor.closeIssue(id: $0.id, state: 0) { [weak self] in
+            guard let id = $0.id else { return }
+            interactor.closeIssue(id: id, state: 0) { [weak self] in
                 DispatchQueue.main.async { [weak self] in
                     self?.toggleIndicatorView(state: false)
                 }

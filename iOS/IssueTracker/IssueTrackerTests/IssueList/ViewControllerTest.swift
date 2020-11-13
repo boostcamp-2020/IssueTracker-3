@@ -89,7 +89,10 @@ class ViewControllerTest: XCTestCase {
 
         // MARK: Spied methods
 
-        override func apply(_ snapshot: NSDiffableDataSourceSnapshot<IssueListViewController.Section, IssueListViewModel>, animatingDifferences: Bool = true, completion: (() -> Void)? = nil) {
+        override func apply(_ snapshot: NSDiffableDataSourceSnapshot<
+                                IssueListViewController.Section, IssueListViewModel>,
+                            animatingDifferences: Bool = true,
+                            completion: (() -> Void)? = nil) {
             applyCalled = true
         }
 
@@ -232,7 +235,9 @@ class ViewControllerTest: XCTestCase {
         loadView()
         sut.displayedIssue = testDisplayedLists
         sut.performApply()
-        sut.issueListCollectionView.selectItem(at: IndexPath(row: 0, section: 0), animated: false, scrollPosition: .bottom)
+        sut.issueListCollectionView.selectItem(at: IndexPath(row: 0, section: 0),
+                                               animated: false,
+                                               scrollPosition: .bottom)
         sut.closeSelectedIssueTouched(UIBarButtonItem(title: "선택 이슈 닫기", style: .plain, target: nil, action: nil))
 
         //Then

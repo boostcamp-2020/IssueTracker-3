@@ -229,13 +229,12 @@ final class CreateIssueViewController: UIViewController {
     }
 
     func editViewController(editType: EditViewController.EditType) {
-        guard let issueNumber = issueNumber else { return }
         let storyboard = UIStoryboard(name: "IssueList", bundle: nil)
         let viewController = storyboard
             .instantiateViewController(identifier: "EditViewController",
                                        creator: { coder -> EditViewController? in
                                         return EditViewController(coder: coder,
-                                                                  id: issueNumber,
+                                                                  id: self.issueNumber,
                                                                   editType: editType,
                                                                   labels: self.labels,
                                                                   milestone: self.milestone)
