@@ -14,7 +14,18 @@ class UserModel extends Model {
     try {
       const result = await db.query<T>(`SELECT * FROM USER WHERE login_id = ? AND password = ?`, pData);
       this.data = [...result[0]];
-      return !!this.data.length;
+      return this.data[0].id;
+    } catch (err) {
+      console.error(err);
+      throw err;
+    }
+  }
+
+  async selectAll<T>(): Promise<boolean> {
+    try {
+      const result = await db.query<T>("SELECT * FROM USER");
+      this.data = [...result[0]];
+      return this.data;
     } catch (err) {
       console.error(err);
       throw err;

@@ -1,7 +1,9 @@
 import db from "@providers/database";
 import Model from "@models/model";
 import { Assignee } from "@interfaces/assignee";
-import HTTPCODE from "@root/magicnumber";
+import HTTPCODE from "@utils/magicnumber";
+import response from "@utils/response";
+import { resMessage } from "@interfaces/response";
 
 class AssigneeModel extends Model {
   protected tableName: string;
@@ -29,12 +31,12 @@ class AssigneeModel extends Model {
     }
   }
 
-  async add(pData: Assignee): Promise<number> {
+  async add(pData: Assignee): Promise<resMessage> {
     try {
       this.data = await super.insert(pData, this.tableName);
-      return this.data ? HTTPCODE.SUCCESS : HTTPCODE.FAIL;
+      return this.data ? response(HTTPCODE.SUCCESS, `${this.data}`) : response(HTTPCODE.FAIL, `fail insert`);
     } catch {
-      return HTTPCODE.SERVER_ERR;
+      return response(HTTPCODE.SERVER_ERR, `internal server error`);
     }
   }
 

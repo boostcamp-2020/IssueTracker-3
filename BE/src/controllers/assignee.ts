@@ -3,7 +3,7 @@
 import { Request, Response } from "express";
 import AssigneeModel from "@models/assignee";
 import { Assignee } from "@interfaces/assignee";
-import HTTPCODE from "@root/magicnumber";
+import HTTPCODE from "@utils/magicnumber";
 
 const get = async (req: Request, res: Response): Promise<Response> => {
   try {
@@ -35,8 +35,8 @@ const edit = async (req: Request, res: Response): Promise<Response> => {
 
     for (const assignee of assignees) {
       const result = await AssigneeModel.add(assignee);
-      if (result === HTTPCODE.FAIL) return res.sendStatus(result);
-      if (result === HTTPCODE.SERVER_ERR) return res.sendStatus(result);
+      if (result.httpcode === HTTPCODE.FAIL) return res.sendStatus(result.httpcode);
+      if (result.httpcode === HTTPCODE.SERVER_ERR) return res.sendStatus(result.httpcode);
     }
     return res.sendStatus(HTTPCODE.SUCCESS);
   } catch {

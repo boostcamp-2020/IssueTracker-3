@@ -1,7 +1,9 @@
 import db from "@providers/database";
 import Model from "@models/model";
 import { Comment } from "@interfaces/comment";
-import HTTPCODE from "@root/magicnumber";
+import HTTPCODE from "@utils/magicnumber";
+import filter from "@utils/filter";
+import makeResponse from "@root/utils/response";
 
 class CommentModel extends Model {
   protected tableName: string;
@@ -18,7 +20,7 @@ class CommentModel extends Model {
       FROM ${this.tableName} c 
       JOIN USER u on c.user_id = u.id
       WHERE c.issue_id = ${id}`);
-      this.data = [...data[0]];
+      this.data = [...data[0].map(filter.nullFilter)];
       return this.data;
     } catch (err) {
       console.error(err);
@@ -29,9 +31,9 @@ class CommentModel extends Model {
   async add(pData: Comment): Promise<any> {
     try {
       this.data = await super.insert(pData, this.tableName);
-      return this.data ? HTTPCODE.SUCCESS : HTTPCODE.FAIL;
+      return this.data ? makeResponse(HTTPCODE.SUCCESS, this.data) : makeResponse(HTTPCODE.SUCCESS, `fail insert`);
     } catch {
-      return HTTPCODE.SERVER_ERR;
+      return makeResponse(HTTPCODE.SUCCESS, `internal Server error`);
     }
   }
 
