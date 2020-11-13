@@ -84,8 +84,8 @@ extension MilestoneViewController {
                 }
                 cell.configure(viewModel: item)
 
-                cell.contentView.layer.cornerRadius = 10
-                cell.contentView.clipsToBounds = true
+                cell.layer.cornerRadius = 10
+                cell.clipsToBounds = true
 
                 return cell
             })
@@ -116,6 +116,6 @@ extension MilestoneViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return .init(width: self.view.bounds.width - 12, height: 80)
+        return .init(width: self.view.bounds.width - 12, height: 88)
     }
 }
