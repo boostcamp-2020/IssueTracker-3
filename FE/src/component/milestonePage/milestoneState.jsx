@@ -7,6 +7,7 @@ import Information from "./information";
 import DeleteMilestone from "./buttons/deleteButton";
 import EditMilestone from "./buttons/editButton";
 import CloseMilestone from "./buttons/closeButton";
+import axiosApi from "../../util/axiosApi";
 
 const StyledMilestoneState = styled.div`
   width: 50%;
@@ -25,7 +26,7 @@ const ButtonWrapper = styled.div`
 function MilestoneState({ id }) {
   const [issues, setIssues] = useState([]);
   useEffect(async () => {
-    const response = await axios.get("http://101.101.210.34:3000/issue");
+    const response = await axiosApi("/issue","GET");
     setIssues(response.data);
   }, []);
 

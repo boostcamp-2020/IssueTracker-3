@@ -46,9 +46,9 @@ comments: [...comments[0].map(filter.nullFilter)],
 	async add(pData: Issue): Promise<any> {
 		try {
 			this.data = await super.insert(pData, this.tableName);
-			return this.data ? makeResponse(HTTPCODE.SUCCESS, this.data) : makeResponse(HTTPCODE.SUCCESS, `fail insert`);
+			return this.data ? makeResponse(HTTPCODE.SUCCESS, this.data) : makeResponse(HTTPCODE.FAIL, `fail insert`);
 		} catch {
-			return makeResponse(HTTPCODE.SUCCESS, `internal server error`);
+			return makeResponse(HTTPCODE.SERVER_ERR, `internal server error`);
 		}
 	}
 

@@ -1,10 +1,10 @@
-import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { hot } from "react-hot-loader";
 import styled from "styled-components";
 import MilestoneList from "../component/milestonePage/list/milestoneList";
 import ListHeader from "../component/milestonePage/list/milestoneListHeader";
 import MilestoneListHeader from "../component/milestonePage/buttonWrapper";
+import axiosApi from "../util/axiosApi";
 
 const StyledMilestoneListPage = styled.div`
   display: flex;
@@ -37,7 +37,7 @@ const DivListWrapper = styled.div`
 function MilestoneListPage() {
   const [milestone, setMilestones] = useState([]);
   useEffect(async () => {
-    const response = await axios.get("http://101.101.210.34:3000/milestone");
+    const response = await axiosApi("/milestone","GET");
     setMilestones(response.data);
   }, []);
 

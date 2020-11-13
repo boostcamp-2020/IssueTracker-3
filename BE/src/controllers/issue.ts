@@ -3,9 +3,10 @@ import IssueModel from "@models/issue";
 import { Issue } from "@interfaces/issue";
 import HTTPCODE from "@utils/magicnumber";
 import filterFunc from "@utils/filter";
+import { Tag } from "@interfaces/tag";
+import TagModel from "@models/tag";
 
 const get = async (req: Request, res: Response): Promise<any> => {
-  console.log(req.user);
   try {
     const result = await IssueModel.select();
     return res.json(result);
@@ -33,6 +34,7 @@ const getFilter = async (req: Request, res: Response): Promise<any> => {
 };
 
 const add = async (req: Request, res: Response): Promise<any> => {
+
   const issue: Issue = {
     id: null,
     title: req.body.title,
@@ -41,10 +43,27 @@ const add = async (req: Request, res: Response): Promise<any> => {
     created_at: new Date(),
     closed_at: req.body?.closed_at ?? null,
     state: true,
-    milestone_id: req.body?.milestone_at ?? null,
+    milestone_id: req.body?.milestone_id ?? null,
   };
-  const result = await IssueModel.add(issue);
-  return res.status(result.httpcode).json(result.message);
+
+  let result = await IssueModel.add(issue);
+  if (result.httpcode === HTTPCODE.FAIL || result.httpcode === HTTPCODE.SERVER_ERR) return res.status(result.httpcode).json(result.message);
+  if (req.body.labelids.length > 0) {
+    const tags = req.body.labelids.map((value: number) => {
+      const tag: Tag = {
+        id: null,
+        issue_id: result.message,
+        label_id: value,
+      };
+      return tag;
+    });
+    for (const tag of tags) {
+      result = await TagModel.add(tag);
+      if (result === HTTPCODE.FAIL) return res.status(HTTPCODE.FAIL).json(`FAIL TO INSERT TAG`);
+      if (result === HTTPCODE.SERVER_ERR) return res.status(HTTPCODE.SERVER_ERR).json(`internal server error`);
+    }
+  }
+  return res.status(HTTPCODE.SUCCESS).json(`success insert issue`);
 };
 
 const edit = async (req: Request, res: Response): Promise<any> => {
@@ -54,7 +73,6 @@ const edit = async (req: Request, res: Response): Promise<any> => {
     body: req.body.body,
     user_id: req.body.user_id,
     closed_at: req.body?.closed_at ?? null,
-    state: req.body.state,
     milestone_id: req.body?.milestone_id ?? null,
   };
   const result = await IssueModel.edit(issue);
