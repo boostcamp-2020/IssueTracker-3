@@ -8,6 +8,7 @@
 import Foundation
 
 struct KeychainItem {
+    
     // MARK: Types
 
     enum KeychainError: Error {

@@ -7,23 +7,18 @@
 
 import UIKit
 
-class IssueFilterViewModel: Hashable {
-    let title: String
-
-    let chevronDirection: [ChevronDirection] // 지울예정
-
-    var isChevron: Bool
-
-    let childTitle: String = "" // 지울예정
+final class IssueFilterViewModel: Hashable {
+    let title: Filter
+    let chevronDirection: [ChevronDirection]
+    let childTitle: String = ""
     let image: UIImage? = nil
-
-    var hasChildren: Bool
     let childItem: [IssueFilterViewModel]
     let identifier = UUID()
+    var isChevron: Bool
+    var hasChildren: Bool
+    var needsSeparator: Bool = true
 
-    var needsSeparator: Bool = true // 지울예정
-
-    init(title: String,
+    init(title: Filter,
          chevronDirection: [ChevronDirection],
          isChevron: Bool,
          hasChildren: Bool = false,

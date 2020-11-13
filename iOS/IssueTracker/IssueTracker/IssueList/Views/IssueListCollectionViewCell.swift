@@ -8,40 +8,26 @@
 import UIKit
 
 final class IssueListCollectionViewCell: UICollectionViewListCell {
-    @IBOutlet private weak var titleLabel: UILabel!
-    @IBOutlet private weak var descriptionLabel: UILabel!
-    @IBOutlet weak var labelStackView: UIStackView!
-    
-    var isInEditingMode: Bool = false {
-        didSet {
-            toggleEditingMode()
-        }
-    }
-    
-    override var isSelected: Bool {
-        didSet {
-            if isInEditingMode {
-                backgroundColor = .systemGray4
-            }
-        }
-    }
-    
-//    override func prepareForReuse() {
-//        super.prepareForReuse()
-//
-//        labelStackView.subviews.forEach({
-//            $0.removeFromSuperview()
-//        })
-//    }
 
-    func configureIssueListCell(of item: IssueListViewModel) {
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var descriptionLabel: UILabel!
+    @IBOutlet weak var labelStackView: UIStackView!
+    @IBOutlet weak var issueOpenButton: UIButton!
+    @IBOutlet weak var issueClosedButton: UIButton!
+    
+    func configure(of item: IssueListViewModel) {
+        configureCellLabels(with: item)
+        configureLabelStackView(milestone: item.milestone, labels: item.labels)
+        configureAccessories()
+        configureStateButton(with: item)
+    }
+    
+    private func configureCellLabels(with item: IssueListViewModel) {
         titleLabel.text = item.title
         descriptionLabel.text = item.description
-        
-        configureLabelStackView(milestone: item.milestone, labels: item.labels)
     }
-    
-    func configureLabelStackView(milestone: UIButton, labels: [UIButton]) {
+
+    private func configureLabelStackView(milestone: UIButton, labels: [UIButton]) {
         labelStackView.subviews.forEach({
             $0.removeFromSuperview()
         })
@@ -52,12 +38,21 @@ final class IssueListCollectionViewCell: UICollectionViewListCell {
         })
     }
     
-    // TODO: Moving Animation
-    private func toggleEditingMode() {
-        if isInEditingMode {
-            contentView.layer.bounds.origin.x -= 40
-        } else {
-            contentView.layer.bounds.origin.x += 40
+    private func configureStateButton(with item: IssueListViewModel) {
+        guard item.isOpen else {
+            issueClosedButton.isHidden = false
+            issueOpenButton.isHidden = true
+            issueOpenButton.alpha = 0
+            return
         }
+        issueOpenButton.isHidden = false
+        issueOpenButton.alpha = 1
+        issueClosedButton.isHidden = true
+        return
+    }
+    
+    private func configureAccessories() {
+        accessories = [.multiselect(displayed: .whenEditing, options: .init())]
+        separatorLayoutGuide.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor).isActive = true
     }
 }

@@ -24,17 +24,15 @@ enum ChevronDirection {
     }
 }
 
-class IssueFilterTableViewCell: UITableViewCell {
+final class IssueFilterTableViewCell: UITableViewCell {
 
     @IBOutlet weak var titleLabel: UILabel!
-
     @IBOutlet weak var down: UIButton!
     @IBOutlet weak var check: UIButton!
     @IBOutlet weak var right: UIButton!
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -43,6 +41,15 @@ class IssueFilterTableViewCell: UITableViewCell {
 
     override func prepareForReuse() {
         
+    }
+
+    override func updateConfiguration(using state: UICellConfigurationState) {
+        var back = UIBackgroundConfiguration.listPlainCell().updated(for: state)
+    
+        if state.isSelected {
+            back.backgroundColor = .systemYellow
+        }
+        self.backgroundConfiguration = back
     }
 
     func changeButton(kind: ChevronDirection) {
@@ -63,8 +70,8 @@ class IssueFilterTableViewCell: UITableViewCell {
     }
 
     func configure(withViewModel viewModel: IssueFilterViewModel) {
-        titleLabel.text = viewModel.title
-
+        titleLabel.text = "\(viewModel.title)"
+        
         if viewModel.childItem.isEmpty {
             check.isHidden = viewModel.isChevron
             right.isHidden = true

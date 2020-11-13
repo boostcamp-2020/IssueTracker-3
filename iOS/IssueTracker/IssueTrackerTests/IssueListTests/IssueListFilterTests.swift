@@ -17,7 +17,7 @@ class IssueListFilterTests: XCTestCase {
 
         // When
         //controller.filtered(with filter: String)
-        let filteredIssueListViewModel = controller.filtered(with: "test", model: filteredIssues)
+        let filteredIssueListViewModel = controller.filteredBasedOnTitle(with: "test", model: filteredIssues)
 
         // Then
         XCTAssertEqual(filteredIssueListViewModel.count, 3)
