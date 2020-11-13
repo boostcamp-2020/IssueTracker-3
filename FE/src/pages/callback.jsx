@@ -13,11 +13,10 @@ function Callback({ history, location }) {
         const result = await axios.post(`http://101.101.210.34:3000/auth/github/web`, {
           code,
         });
-        console.log(result);
-
+        console.log(result.data.JW);
         // 유저 JWT 토큰을 저장합니다.
         localStorage.setItem('token', result.data.JWT);
-        history.push('/'); // 로그인이 완료되면 보여줄 페이지
+        window.location.href="/";
       } catch (error) {
         history.push('/error'); // api요청이 실패했을때 애러 핸들링 페이지
       }

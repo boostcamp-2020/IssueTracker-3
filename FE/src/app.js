@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { hot } from "react-hot-loader";
 import styled from "styled-components";
 import { Switch, Route, BrowserRouter } from "react-router-dom";
@@ -12,6 +12,7 @@ import MilestoneCreatePage from "@pages/milestoneCreatePage";
 import MilestoneListPage from "@pages/milestoneListPage";
 import RegisterPage from "@pages/registerPage";
 import Callback from "@pages/callback";
+import axiosApi from "@util/axiosApi";
 
 
 const StyledContent = styled.div`
@@ -27,6 +28,13 @@ const App = () => {
     name: "",
     url: "",
   });
+  useEffect(async () => {
+    if (localStorage.getItem("token") !== null) {
+      const userInfo = await axiosApi("/auth", "GET");
+      console.log("test",userInfo.data);
+      setUser({ id: userInfo.token_id, name: userInfo.token_name, url: "" });
+    }
+  },[]);
   return (
     <StyledContent>
       <BrowserRouter>

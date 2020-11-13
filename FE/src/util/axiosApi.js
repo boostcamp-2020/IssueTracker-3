@@ -8,6 +8,9 @@ const axiosApi = async (url, method, data = null) => {
     method,
     url,
     data,
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem("token")}`,
+    },
   });
   return res;
 };
