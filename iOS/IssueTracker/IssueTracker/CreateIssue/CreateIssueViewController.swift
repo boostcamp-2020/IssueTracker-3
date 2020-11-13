@@ -184,8 +184,8 @@ final class CreateIssueViewController: UIViewController {
     
     @IBAction func uploadIssueTouched(_ sender: Any) {
         // Alert -> 성공 / 실패 시
-        guard let issueNumber = issueNumber else { return }
-        if isEdit {
+        
+        if let issueNumber = issueNumber, isEdit {
             interactor.editIssue(id: issueNumber,
                                  title: titleTextField.text ?? "",
                                  comment: commentTextView.text,
@@ -195,20 +195,20 @@ final class CreateIssueViewController: UIViewController {
                         .default
                         .post(.init(name: Notification.Name(rawValue: "createIssueClosed"),
                                     userInfo: ["issueNumber": self.issueNumber ?? 0]))
-                self.dismiss(animated: true)
+                    self.dismiss(animated: true)
                 }
+            }
+            
+            if !labelStackView.subviews.isEmpty {
+                interactor.uploadLabel(id: issueNumber, labelIDs: labelIDs)
+            }
+            
+            if !assigneeStackView.subviews.isEmpty {
+                interactor.uploadAssignee(id: issueNumber, assigneeIDs: assigneeIDs)
             }
         } else {
             interactor.uploadIssue(title: titleTextField.text ?? "", comment: commentTextView.text, milestoneID: 0)
             self.dismiss(animated: true)
-        }
-        
-        if !labelStackView.subviews.isEmpty {
-            interactor.uploadLabel(id: issueNumber, labelIDs: labelIDs)
-        }
-
-        if !assigneeStackView.subviews.isEmpty {
-            interactor.uploadAssignee(id: issueNumber, assigneeIDs: assigneeIDs)
         }
     }
 
