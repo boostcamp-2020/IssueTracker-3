@@ -78,8 +78,7 @@ extension MilestoneViewController {
         dataSource = UICollectionViewDiffableDataSource<Section, MilestoneViewModel>(
             collectionView: milestoneCollectionView,
             cellProvider: {(collectionView, indexPath, item) -> UICollectionViewCell? in
-                guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MilestoneCollectionViewCell",
-                                                                    for: indexPath) as? MilestoneCollectionViewCell
+                guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MilestoneCollectionViewCell", for: indexPath) as? MilestoneCollectionViewCell
                 else {
                     return UICollectionViewCell()
                 }
@@ -117,6 +116,6 @@ extension MilestoneViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return .init(width: self.view.bounds.width - 12, height: 88)
+        return .init(width: self.view.bounds.width - 12, height: 80)
     }
 }

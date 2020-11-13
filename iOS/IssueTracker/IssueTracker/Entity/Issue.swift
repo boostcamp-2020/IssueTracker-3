@@ -19,6 +19,7 @@ struct Issue: Codable {
     let createdAt: String?
     let closedAt: String?
     let labels: LabelList?
+    let labelids: [Int]?
     let assignee: AssigneeList?
     let milestone: MilestoneList?
     let comment: IssueComment?
@@ -32,6 +33,7 @@ struct Issue: Codable {
          createdAt: String? = nil,
          closedAt: String? = nil,
          labels: LabelList? = nil,
+         labelids: [Int]? = nil,
          assignee: AssigneeList? = nil,
          milestone: MilestoneList? = nil,
          comment: IssueComment? = nil) {
@@ -44,6 +46,7 @@ struct Issue: Codable {
         self.createdAt = createdAt
         self.closedAt = closedAt
         self.labels = labels
+        self.labelids = labelids
         self.assignee = assignee
         self.milestone = milestone
         self.comment = comment
@@ -51,6 +54,7 @@ struct Issue: Codable {
 
     enum CodingKeys: String, CodingKey {
         case id, title, body, state, labels, assignee, milestone, comment
+        case labelids = "labelids"
         case userID = "user_id"
         case milestoneID = "milestone_id"
         case createdAt = "created_at"

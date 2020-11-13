@@ -12,7 +12,7 @@ protocol CreateIssueDataStore {
 }
 
 protocol CreateIssueBusinessLogic {
-    func uploadIssue(title: String, comment: String, milestoneID: Int?)
+    func uploadIssue(title: String, comment: String, milestoneID: Int?, labelids: [Int])
     func uploadLabel(id: Int, labelIDs: [Int?])
     func uploadAssignee(id: Int, assigneeIDs: [Int?])
     func editIssue(id: Int, title: String, comment: String, milestoneID: Int?, completion: @escaping () -> Void)
@@ -23,18 +23,17 @@ final class CreateIssueInteractor: CreateIssueDataStore {
     var createdIssue: Issue?
     private var issueID: Int?
     
-    private func createIssue(id: Int = 0, title: String, comment: String, milestoneID: Int?) -> Issue {
+    private func createIssue(id: Int = 0, title: String, comment: String, milestoneID: Int?, labelids: [Int]? = nil) -> Issue {
         guard let milestoneID = milestoneID else {
-            return Issue(id: id, title: title, body: comment)
+            return Issue(id: id, title: title, body: comment, labelids: labelids)
         }
-        return Issue(id: id, title: title, body: comment, milestoneID: .integer(milestoneID))
+        return Issue(id: id, title: title, body: comment, milestoneID: .integer(milestoneID), labelids: labelids)
     }
 }
 
 extension CreateIssueInteractor: CreateIssueBusinessLogic {
-
-    func uploadIssue(title: String, comment: String, milestoneID: Int?) {
-        createdIssue = createIssue(title: title, comment: comment, milestoneID: milestoneID)
+    func uploadIssue(title: String, comment: String, milestoneID: Int?, labelids: [Int]) {
+        createdIssue = createIssue(title: title, comment: comment, milestoneID: milestoneID, labelids: labelids)
         guard let data = createdIssue?.encoded() else {
             debugPrint("uploadIssue encoding error")
             return
@@ -45,11 +44,12 @@ extension CreateIssueInteractor: CreateIssueBusinessLogic {
                 debugPrint(error)
                 return
             case .success(let data):
-                guard let decodedData: Int = try? data.decoded() else {
+                guard let decodedData: String = try? data.decoded() else {
                     debugPrint("upload response decode 실패")
                     return
                 }
-                self?.issueID = decodedData
+                debugPrint(decodedData)
+                //self?.issueID = decodedData
                 // patch - label 등 나머지
                 return
             }

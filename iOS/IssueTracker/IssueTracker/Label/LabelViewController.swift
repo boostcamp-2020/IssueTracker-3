@@ -67,8 +67,7 @@ extension LabelViewController {
         dataSource = UICollectionViewDiffableDataSource<Section, LabelViewModel>(
             collectionView: labelCollectionView,
             cellProvider: {(collectionView, indexPath, item) -> UICollectionViewCell? in
-                guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "LabelCollectionViewCell",
-                                                                    for: indexPath) as? LabelCollectionViewCell
+                guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "LabelCollectionViewCell", for: indexPath) as? LabelCollectionViewCell
                 else {
                     return UICollectionViewCell()
                 }
