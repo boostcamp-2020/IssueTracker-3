@@ -4,14 +4,21 @@ import session from "express-session";
 import bodyParser from "body-parser";
 import helmet from "helmet";
 
-import index from "./routes/index";
-import auth from "./routes/auth";
-import milestone from "./routes/milestone";
-import label from "./routes/label";
-import issue from "./routes/issue";
-import event from "./routes/event";
+import index from "@routes/index";
+import auth from "@routes/auth";
+import milestone from "@routes/milestone";
+import label from "@routes/label";
+import issue from "@routes/issue";
+import event from "@routes/event";
+import tag from "@routes/tag";
+import comment from "@routes/comment";
+import assignee from "@routes/assignee";
+import Passport from "@providers/passport";
 
-import Passport from "./providers/passport";
+import dotenv from "dotenv";
+import path from "path";
+
+dotenv.config({ path: path.join(__dirname, "../../.env") });
 
 class App {
   private app: Application;
@@ -42,7 +49,7 @@ class App {
     this.app.use(passport.initialize());
     this.app.use(
       session({
-        secret: `@#@$MYSIGN#@$#$`,
+        secret: process.env.JWT_SECRET as string,
         resave: false,
         saveUninitialized: true,
       })
@@ -58,6 +65,9 @@ class App {
     this.app.use("/label", label);
     this.app.use("/issue", issue);
     this.app.use("/event", event);
+    this.app.use("/tag", tag);
+    this.app.use("/comment", comment);
+    this.app.use("/assignee", assignee);
   }
 }
 export default App;

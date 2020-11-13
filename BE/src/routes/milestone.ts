@@ -1,17 +1,11 @@
-import express, { Request, Response, NextFunction } from "express";
+import express from "express";
+import Controller from "../controllers/milestone";
 
 const router = express.Router();
 
-router.get("/", (req: Request, res: Response, next: NextFunction) => {
-  res.send("milestone get");
-});
-router.post("/", (req: Request, res: Response, next: NextFunction) => {
-  res.send("milesone post");
-});
-router.patch("/", (req: Request, res: Response, next: NextFunction) => {
-  res.send("milesone patch");
-});
-router.delete("/", (req: Request, res: Response, next: NextFunction) => {
-  res.send("milesone delete");
-});
+router.get("/", Controller.get);
+router.post("/", Controller.add);
+router.patch("/", Controller.edit);
+router.delete("/", Controller.del);
+router.patch("/:id/state/:state", Controller.changeState);
 export = router;

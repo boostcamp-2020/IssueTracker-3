@@ -4,7 +4,8 @@
 
 
 ## Library
-1. <a href="https://github.com/Alamofire/AlamofireImage" target="_self">Alamofire</a>
+~~1. <a href="https://github.com/Alamofire/AlamofireImage" target="_self">Alamofire</a>~~
+URLSession으로 Service를 만들어서 사용
 
 ## Requirements
 
@@ -23,9 +24,7 @@ end
 ```
 
 ## Swift Package Manager
-```swift
-  import Alamofire
-```
+
 
 ## Installation
 

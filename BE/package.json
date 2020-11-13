@@ -26,6 +26,7 @@
   },
   "dependencies": {
     "@types/express-session": "^1.17.0",
+    "@types/jsonwebtoken": "^8.5.0",
     "@types/passport": "^1.0.4",
     "@types/passport-github": "^1.1.5",
     "@types/passport-local": "^1.0.33",
@@ -37,6 +38,7 @@
     "express-session": "^1.17.1",
     "helmet": "^4.1.1",
     "jsonwebtoken": "^8.5.1",
+    "module-alias": "^2.2.2",
     "morgan": "^1.10.0",
     "multer": "^1.4.2",
     "mysql2": "^2.2.5",
@@ -45,5 +47,13 @@
     "passport-github": "^1.1.0",
     "passport-jwt": "^4.0.0",
     "passport-local": "^1.0.0"
+  },
+  "_moduleAliases": {
+    "@root": "build",
+    "@controllers": "build/controllers",
+    "@interfaces": "build/interfaces",
+    "@models": "build/models",
+    "@providers": "build/providers",
+    "@routes": "build/routes"
   }
 }
