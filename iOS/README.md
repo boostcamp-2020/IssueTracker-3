@@ -6,6 +6,7 @@
 <details>
   <summary>:file_cabinet: File구조</summary>
     <div markdown=“1”>
+      <pre>
 IssueTracker  
 ├── Common  
 │  ├── Extension  
@@ -140,6 +141,7 @@ IssueTracker
 │    └── SignInWithAppleButton.swift  
 └── SignUp  
 └── SignUpViewController.swift
+         </pre>
     </div>
 </details>
 
