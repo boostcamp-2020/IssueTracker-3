@@ -6,7 +6,7 @@
 
 <div align="center">
 
-[iOS](https://github.com/boostcamp-2020/IssueTracker-3/tree/master/iOS)&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;[FrontEnd](https://github.com/boostcamp-2020/IssueTracker-3/tree/master/FE)&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;[BackEnd](https://github.com/boostcamp-2020/IssueTracker-3/tree/master/BE)
+[iOS README](https://github.com/boostcamp-2020/IssueTracker-3/tree/master/iOS)&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;[Web README](https://github.com/boostcamp-2020/IssueTracker-3/tree/master/BE)
 
 [Wiki Documentation](https://github.com/boostcamp-2020/IssueTracker-3/wiki)&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;[Issue](https://github.com/boostcamp-2020/IssueTracker-3/issues)
 
