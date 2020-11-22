@@ -1,7 +1,7 @@
 import db from "@providers/database";
 import Model from "@models/model";
 import { Event } from "@interfaces/event";
-import HTTPCODE from "@root/magicnumber";
+import HTTPCODE from "@utils/magicnumber";
 
 class EventModel extends Model {
   protected tableName: string;

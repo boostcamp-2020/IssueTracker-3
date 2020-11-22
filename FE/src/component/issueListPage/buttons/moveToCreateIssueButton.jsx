@@ -5,12 +5,15 @@ import { Link } from "react-router-dom";
 
 const StyledMoveToCreateIssueButton = styled.button`
   display: flex;
-  border: 1px dotted black;
+  border: 1px solid forestgreen;
   margin: 5px;
+  color: white;
+  border-radius: 5px;
+  background-color: #33cc33;
 `;
 function MoveToCreateIssueButton() {
   return (
-    <Link to="./issuecreate">
+    <Link to="./issuecreate" style={{ textDecoration: "none" }}>
       <StyledMoveToCreateIssueButton> New issue </StyledMoveToCreateIssueButton>
     </Link>
   );

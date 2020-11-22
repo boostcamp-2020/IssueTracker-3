@@ -28,9 +28,10 @@
 
 </div>
 
-## IssueTracker 배포
+## IssueTracker 배포 주소
+[JS](http://101.101.210.34/)
 
-http://101.101.210.34/
+[iOS](https://kr.object.ncloudstorage.com/issuetracker-3/apps/download.html)
 
 ## IssueTracker 기획
 

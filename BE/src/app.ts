@@ -3,6 +3,7 @@ import passport from "passport";
 import session from "express-session";
 import bodyParser from "body-parser";
 import helmet from "helmet";
+import cors from "cors";
 
 import index from "@routes/index";
 import auth from "@routes/auth";
@@ -56,6 +57,7 @@ class App {
     );
     this.app.use(passport.session());
     this.passportConfig.config();
+    this.app.use(cors());
   }
 
   private routes() {
