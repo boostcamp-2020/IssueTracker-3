@@ -3,6 +3,14 @@
 [![build](https://github.com/boostcamp-2020/IssueTracker-3/workflows/iOS%20CI/badge.svg)](https://github.com/boostcamp-2020/IssueTracker-3/actions)
 
 
+## 화면
+![001](./Image/이미지.001.jpeg)
+![002](./Image/이미지.002.jpeg)
+![003](./Image/이미지.003.jpeg)
+![004](./Image/이미지.004.jpeg)
+
+
+
 ## Library
 ~~1. <a href="https://github.com/Alamofire/AlamofireImage" target="_self">Alamofire</a>~~
 URLSession으로 Service를 만들어서 사용
@@ -22,10 +30,6 @@ target 'IssueTracker' do
 
 end
 ```
-
-## Swift Package Manager
-
-
 ## Installation
 
 ```
