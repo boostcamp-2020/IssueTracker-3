@@ -2,9 +2,9 @@
 [![Releases](https://img.shields.io/github/v/release/boostcamp-2020/IssueTracker-3)](https://github.com/boostcamp-2020/IssueTracker-3/releases)
 [![build](https://github.com/boostcamp-2020/IssueTracker-3/workflows/iOS%20CI/badge.svg)](https://github.com/boostcamp-2020/IssueTracker-3/actions)
 
-## 파일 구조
+## 디렉토리 구조
 <details>
-  <summary>:file_cabinet: File구조</summary>
+  <summary>:file_cabinet: File 구조</summary>
     <div markdown=“1”>
       <pre>
 IssueTracker  
