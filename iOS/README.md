@@ -4,7 +4,7 @@
 
 ## 디렉토리 구조
 <details>
-  <summary>:file_cabinet: File 구조</summary>
+  <summary>파일 구조 :file_cabinet: </summary>
     <div markdown=“1”>
       <pre>
 IssueTracker  
@@ -181,6 +181,22 @@ IssueTracker
    - Property Wrapper 사용
    - 참고자료 : [KeyChain](https://medium.com/@justfaceit/ios-%EC%95%B1-%EB%B6%80%ED%92%88-%EB%A7%8C%EB%93%A4%EA%B8%B0-1-preferencestorage-%EC%84%A4%EC%A0%95-%EC%A0%80%EC%9E%A5%EC%9D%84-%EC%9C%84%ED%95%9C-%EA%B3%B5%ED%86%B5-%ED%81%B4%EB%9E%98%EC%8A%A4-2eb2c27af941)
    
+## Unit Test
+#### IssueList
+- IssueListEndPointTest
+- IssueListViewModelTest
+- ViewControllerTest
+- InteractorTest
+- IssueListFilterTests
+- IssueListMakeTests
+
+#### Test Doubles
+- NetworkServiceMock
+- IssueListBusinessLogicSpy
+- CollectionViewDiffableDataSourceSpy
+- IssueListPresentationLogicSpy
+- IssuesMock
+
 ## Library
 - [MarkdownView](https://github.com/keitaoouchi/MarkdownView)
 - [SwiftyMarkdown](https://github.com/SimonFairbairn/SwiftyMarkdown)
@@ -189,6 +205,7 @@ IssueTracker
  - iOS 14.0+
  - Xcode 12.1+
  - Swift 5.3+
+ 
  
 ## Cocoapods
 ```ruby
