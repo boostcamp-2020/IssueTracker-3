@@ -2,6 +2,147 @@
 [![Releases](https://img.shields.io/github/v/release/boostcamp-2020/IssueTracker-3)](https://github.com/boostcamp-2020/IssueTracker-3/releases)
 [![build](https://github.com/boostcamp-2020/IssueTracker-3/workflows/iOS%20CI/badge.svg)](https://github.com/boostcamp-2020/IssueTracker-3/actions)
 
+## 파일 구조
+<details>
+  <summary>:file_cabinet: File구조</summary>
+    <div markdown=“1”>
+IssueTracker  
+├── Common  
+│  ├── Extension  
+│  │  ├── Data+decoded.swift  
+│  │  ├── Date+timeAgoDisplay.swift  
+│  │  ├── DateFormatter+format.swift  
+│  │  ├── Encodable+encoded.swift  
+│  │  ├── String+asURL.swift  
+│  │  ├── String+toDate.swift  
+│  │  ├── UIColor+hex.swift  
+│  │  ├── UIColor+hexString.swift  
+│  │  ├── UIColor+random.swift  
+│  │  ├── UIColor+visibleTextColor.swift  
+│  │  ├── UIVIew+snapshot.swift  
+│  │  ├── UIView+IBInspectable.swift  
+│  │  ├── UIView+shake.swift  
+│  │  ├── UIViewController+hideKeyboardWhenTapped.swift  
+│  │  └── URL+searchToken.swift  
+│  ├── KeychainAccess.swift  
+│  ├── PropertyWrapper  
+│  │  ├── KeyChain.swift  
+│  │  └── UserDefault.swift  
+│  └── Views  
+│    ├── CustomAlertController.storyboard  
+│    ├── CustomAlertView.swift  
+│    └── CustomButtonView.swift  
+├── CreateIssue  
+│  ├── CreateIssueInteractor.swift  
+│  ├── CreateIssueViewController.swift  
+│  └── Models  
+│    └── CreateIssueEndPoint.swift  
+├── Edit  
+│  ├── EditInteractor.swift  
+│  ├── EditPresenter.swift  
+│  ├── EditViewController.swift  
+│  ├── Models  
+│  │  ├── IssueDetailEditEndPoint.swift  
+│  │  └── IssueDetailEditViewModel.swift  
+│  └── Views  
+│    └── EditTableViewCell.swift  
+├── Entity  
+│  ├── AllGetUser.swift  
+│  ├── Assignee.swift  
+│  ├── Comment.swift  
+│  ├── Issue.swift  
+│  ├── IssueComment.swift  
+│  ├── Label.swift  
+│  ├── Milestone.swift  
+│  ├── User.swift  
+│  └── UserInfo.swift  
+├── Info.plist  
+├── IssueDetail  
+│  ├── Edit  
+│  │  └── EditTableViewController.swift  
+│  ├── IssueCommentViewController.swift  
+│  ├── IssueDetailBottomSheetViewController.swift  
+│  ├── IssueDetailInteractor.swift  
+│  ├── IssueDetailPresenter.swift  
+│  ├── IssueDetailViewController.swift  
+│  ├── Models  
+│  │  ├── IssueDetailEndPoint.swift  
+│  │  └── IssueDetailViewModel.swift  
+│  └── Views  
+│    ├── IssueDetailCollectionReusableView.swift  
+│    └── IssueDetailCollectionViewCell.swift  
+├── IssueFilter  
+│  ├── IssueFilterViewController.swift  
+│  ├── Models  
+│  │  └── IssueFilterViewModel.swift  
+│  └── Views  
+│    ├── HeaderView.swift  
+│    └── IssueFilterTableViewCell.swift  
+├── IssueList  
+│  ├── IssueListEndPoint.swift  
+│  ├── IssueListInteractor.swift  
+│  ├── IssueListPresenter.swift  
+│  ├── IssueListViewController.swift  
+│  ├── Models  
+│  │  ├── IssueListModelController.swift  
+│  │  └── IssueListViewModel.swift  
+│  └── Views  
+│    └── IssueListCollectionViewCell.swift  
+├── IssueTracker  
+│  └── Base.lproj  
+│    ├── Authentication.storyboard  
+│    └── IssueList.storyboard  
+├── IssueTracker.entitlements  
+├── Label  
+│  ├── Label.storyboard  
+│  ├── LabelInteractor.swift  
+│  ├── LabelPresenter.swift  
+│  ├── LabelViewController.swift  
+│  ├── Models  
+│  │  ├── LabelEndPoint.swift  
+│  │  └── LabelViewModel.swift  
+│  └── Views  
+│    └── LabelCollectionViewCell.swift  
+├── Milestone  
+│  ├── Base.lproj  
+│  │  └── MileStone.storyboard  
+│  ├── MilestoneInterator.swift  
+│  ├── MilestonePresenter.swift  
+│  ├── MilestoneViewController.swift  
+│  ├── Models  
+│  │  ├── MilestoneCalculator.swift  
+│  │  ├── MilestoneEndPoint.swift  
+│  │  └── MilestoneViewModel.swift  
+│  └── Views  
+│    └── MilestoneCollectionViewCell.swift  
+├── Network  
+│  ├── APIConfiguration.swift  
+│  ├── APIServer.swift  
+│  ├── ContentType.swift  
+│  ├── HTTPHeader.swift  
+│  ├── HTTPMethod.swift  
+│  ├── NetworkError.swift  
+│  └── NetworkService.swift  
+├── SceneDelegate.swift  
+├── Setting  
+│  ├── Setting.storyboard  
+│  └── SettingViewController.swift  
+├── SignIn  
+│  ├── KeychainItem.swift  
+│  ├── Models  
+│  │  ├── AppleModel.swift  
+│  │  ├── AppleUser.swift  
+│  │  ├── RequestLogin.swift  
+│  │  └── SignInEndPoint.swift  
+│  ├── OAuthManager.swift  
+│  ├── SignInViewController.swift  
+│  └── Views  
+│    └── SignInWithAppleButton.swift  
+└── SignUp  
+└── SignUpViewController.swift
+    </div>
+</details>
+
 ## 화면 구성
 ![001](./Image/이미지.001.jpeg)
 ![002](./Image/이미지.002.jpeg)
