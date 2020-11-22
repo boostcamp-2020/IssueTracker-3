@@ -16,7 +16,7 @@
 ![diagram](./Image/diagram.jpg)
 
 ## View
-|  | View | DataSource | Layout | Cell |
+| Scene | View | DataSource | Layout | Cell |
 |:-:|:-:|:-:|:-:|:-:|
 | IssueList | CollectionView | DiffableDataSource | CompositionalLayout | CollectionViewListCell |
 | IssueDetail | CollectionView | DiffableDataSource | FlowLayout | CollectionViewCell |
