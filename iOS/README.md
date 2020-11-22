@@ -12,12 +12,15 @@
 ## Architecture
 - VIP
 - [Clean Swift](https://clean-swift.com/) 적용
+- ![diagram](./Image/diagram.jpg)
 
 ## View
 - CollectionView
    - Diffable DataSource
    - Compositional Layout
+   - CollectionViewListCell
    - Flow Layout
+   - CollectionViewCell
 - TableView
 
 ## Network
