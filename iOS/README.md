@@ -9,8 +9,21 @@
 ![003](./Image/이미지.003.jpeg)
 ![004](./Image/이미지.004.jpeg)
 
+## Architecture
+- VIP
+- [Clean Swift](https://clean-swift.com/) 적용
+
+## View
+- CollectionView
+   - Diffable DataSource
+   - Compositional Layout
+   - Flow Layout
+- TableView
+
 ## Network
-URLSession으로 Service를 만들어서 사용
+- `NetworkService`객체 & `NetworkServiceProvider`Protocol
+- URLSession 사용
+- [Code 보러가기](https://github.com/boostcamp-2020/IssueTracker-3/tree/master/iOS/IssueTracker/IssueTracker/Network)
 
 ## Requirements
 
